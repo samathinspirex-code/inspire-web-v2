@@ -59,7 +59,6 @@ function Login({ onDone }: { onDone: () => void }) {
         <label className="field wide"><span className="lbl">Password</span><input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required /></label>
         {err && <p className="warn">{err}</p>}
         <button className="btn" type="submit">Sign in</button>
-        <small>Separate from the current CMS. Admins are created with <code>scripts/create_admin.py</code>.</small>
       </form>
     </div>
   );
