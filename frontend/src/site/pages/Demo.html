@@ -1,0 +1,418 @@
+<!doctype html><html lang="en"><head><!--IC_HEAD--><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inspire College — Free demo class</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@400..500&amp;family=Outfit:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.ic{--bg:#f6f3fd;--card:#fff;--soft:#f5f2fc;--ink:#160f24;--muted:#5f5670;--line:rgba(22,15,36,.09);--act:#6d28d9;--act-ink:#5b21b6;--act-soft:rgba(109,40,217,.1);--ok:#047857;--warm:#b45309;--shadow:0 24px 60px -36px rgba(42,14,92,.3);min-height:100vh;background:var(--bg);color:var(--ink);font:16px/1.55 Geist,"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.ic *{box-sizing:border-box;min-width:0}
+.ic a{color:inherit}
+.ic button,.ic input,.ic select{font-family:inherit}
+.ic :focus-visible{outline:3px solid var(--act);outline-offset:3px;border-radius:14px}
+.ic h1,.ic h2,.ic h3{margin:0;font-family:Geist,Outfit,system-ui,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.05}
+.lite{font-weight:300}
+.top{position:sticky;top:12px;z-index:30;padding:0 12px}
+.tbar{max-width:1280px;margin:0 auto;height:64px;padding:0 10px 0 16px;display:flex;align-items:center;gap:12px;border-radius:999px;background:rgba(255,255,255,.84);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--line);box-shadow:0 18px 40px -26px rgba(42,14,92,.4)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Geist,Outfit,system-ui;font-weight:650;font-size:18px;letter-spacing:-.03em;flex:none}
+.mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#4c1d95);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+.xp{flex:1;max-width:420px;margin-left:auto;display:flex;align-items:center;gap:10px}
+.xp .b{width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:grid;place-items:center;color:#3b1d00;font-weight:800;font-size:13px;flex:none}
+.xp small{display:flex;justify-content:space-between;font-size:12.5px;font-weight:600;color:var(--muted)}
+.trk{display:block;height:9px;border-radius:9px;background:var(--soft);overflow:hidden;margin-top:5px}
+.trk b{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#7c3aed,#c026d3);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.x{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--soft);text-decoration:none;font-size:20px;flex:none}
+.wrap{max-width:1280px;margin:0 auto;padding:28px max(4vw,16px) 100px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font-weight:650;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.p{background:var(--act);color:#fff;box-shadow:0 16px 36px -14px rgba(109,40,217,.7)}
+.ic a.btn.p:hover{color:#fff}
+.btn.k{background:var(--ink);color:#fff}
+.btn.s{background:var(--soft);color:var(--ink)}
+.btn.w{background:#fff;color:#2a0e5c}
+.btn.sm{min-height:44px;padding:0 18px;font-size:14.5px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:stretch}
+.hero{border-radius:48px;overflow:hidden;position:relative;min-height:620px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,4vw,44px);background:linear-gradient(180deg,rgba(20,8,40,.05) 20%,rgba(20,8,40,.88)),url(/assets/c207daef09b15a19b09b7923f7ef32fd.webp) center/cover}
+.hero .pill{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:13px;font-weight:650;margin-bottom:auto}
+.hero h1{font-size:clamp(40px,4.8vw,64px)}
+.hero p{color:rgba(255,255,255,.86);font-size:17px;max-width:46ch;margin:14px 0 0}
+.perks{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.perks li{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:20px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:14.5px;font-weight:560}
+.perks i{width:28px;height:28px;border-radius:50%;background:#fff;color:#6d28d9;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12px;flex:none}
+.panel{background:var(--card);border-radius:48px;padding:clamp(24px,4vw,48px);box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;justify-content:center}
+.panel h2{font-size:clamp(30px,3vw,42px)}
+.panel .sub{color:var(--muted);margin:8px 0 24px}
+.form-stack{display:grid;gap:14px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+label.l{display:grid;gap:6px;font-size:14px;font-weight:600}
+.ic input[type=text],.ic input[type=email],.ic input[type=tel],.ic input[type=password],.ic select{font-size:16px;color:var(--ink);background:var(--soft);border:1.5px solid transparent;border-radius:20px;min-height:56px;padding:12px 18px;width:100%}
+.ic input:focus,.ic select:focus{outline:none;border-color:var(--act);background:var(--card)}
+.err{color:#be123c;font-size:14.5px;margin:0;min-height:20px}
+.switch{font-size:14.5px;color:var(--muted);text-align:center;margin-top:6px}
+.switch button{border:0;background:none;color:var(--act-ink);font-weight:650;cursor:pointer;font-size:14.5px;min-height:44px}
+.note{font-size:13px;color:var(--muted);background:var(--soft);border-radius:18px;padding:10px 14px}
+.toast{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:14.5px;margin-bottom:18px;align-self:flex-start;animation:pop .5s cubic-bezier(.2,.8,.2,1)}
+.toast i{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3b1d00;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800}
+@keyframes pop{from{opacity:0;transform:translateY(-10px) scale(.96)}}
+.cls{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr);gap:16px;align-items:start}
+.player{position:relative;border-radius:40px;overflow:hidden;background:#0d0a14;aspect-ratio:16/9;box-shadow:var(--shadow)}
+.player video{width:100%;height:100%;object-fit:cover;display:block}
+.ptag{position:absolute;left:16px;top:16px;display:flex;gap:8px}
+.ptag span{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.92);color:#2a0e5c;font-size:12.5px;font-weight:700}
+.meta{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;margin:20px 4px 0}
+.meta h2{font-size:clamp(26px,2.6vw,34px)}
+.meta p{margin:6px 0 0;color:var(--muted)}
+.tabs{display:flex;gap:6px;padding:5px;border-radius:999px;background:var(--card);border:1px solid var(--line);margin-top:18px;width:max-content;max-width:100%;overflow-x:auto}
+.tabs button{border:0;background:none;color:var(--muted);font-weight:620;font-size:14px;min-height:40px;padding:0 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.tabs button.on{background:var(--ink);color:#fff}
+.box{margin-top:12px;background:var(--card);border-radius:36px;padding:24px;border:1px solid var(--line)}
+.box p{margin:0 0 10px;color:var(--muted)}
+.box ul{margin:0;padding-left:20px;color:var(--muted)}
+.box li{margin:6px 0}
+.m{max-width:84%;padding:11px 15px;border-radius:20px;font-size:14.5px;background:var(--soft);margin-bottom:8px}
+.m.me{background:var(--act);color:#fff;margin-left:auto}
+.sug{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.sug button{border:1px solid var(--line);background:var(--card);border-radius:999px;font-weight:600;font-size:13px;min-height:40px;padding:0 14px;cursor:pointer;color:var(--ink)}
+.side{display:grid;gap:12px}
+.card{background:var(--card);border-radius:36px;padding:22px;border:1px solid var(--line)}
+.card h3{font-size:19px;letter-spacing:-.02em}
+.chs{display:grid;gap:8px;margin-top:14px}
+.ch{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;text-align:left;padding:10px 12px;border-radius:22px;border:1.5px solid transparent;background:var(--soft);cursor:pointer;color:var(--ink);font:inherit}
+.ch.on{border-color:var(--act);background:var(--card)}
+.ch .n{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:var(--card);border:1.5px solid var(--line)}
+.ch.done .n{background:var(--ok);border-color:var(--ok);color:#fff}
+.ch b{display:block;font-weight:600;font-size:14.5px}
+.ch small{color:var(--muted);font-size:12.5px}
+.ch em{font-style:normal;font-size:12px;font-weight:700;color:var(--ok)}
+.qz{display:grid;gap:8px;margin-top:12px}
+.qz p{margin:4px 0 2px;font-weight:600;font-size:15px}
+.opt{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:12px 14px;border-radius:18px;border:1.5px solid transparent;background:var(--soft);cursor:pointer;color:var(--ink);font:inherit;font-size:14.5px}
+.opt.on{border-color:var(--act);background:var(--card)}
+.opt.right{border-color:var(--ok);background:rgba(4,120,87,.07)}
+.opt.wrong{border-color:#be123c;background:rgba(190,18,60,.06)}
+.lock{border-radius:36px;padding:22px;color:#fff;background:linear-gradient(140deg,#2a0e5c,#6d28d9 60%,#a855f7);position:relative;overflow:hidden}
+.lock h3{font-size:21px}
+.lock p{margin:6px 0 0;color:rgba(255,255,255,.85);font-size:14.5px}
+.lock .tk{margin-top:14px;display:grid;gap:6px}
+.lock .tk span{display:flex;gap:10px;align-items:center;font-size:14px;color:rgba(255,255,255,.9)}
+.lock .tk i{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.5);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;flex:none}
+.lock .tk i.ok{background:#fff;color:#6d28d9;border-color:#fff}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.badges span{display:flex;align-items:center;gap:8px;padding:7px 13px 7px 7px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:620;color:var(--muted)}
+.badges span i{width:26px;height:26px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:11px}
+.badges span.got{background:rgba(4,120,87,.1);color:var(--ok)}
+.badges span.got i{background:var(--ok);border-color:var(--ok);color:#fff}
+.livehero{border-radius:48px;overflow:hidden;color:#fff;padding:clamp(26px,4vw,52px);background:linear-gradient(120deg,rgba(20,8,40,.92),rgba(109,40,217,.75)),url(/assets/4a27b48337542cf553b90736f49b0fab.webp) center/cover}
+.livehero h1{font-size:clamp(38px,4.6vw,62px);max-width:16ch}
+.livehero p{color:rgba(255,255,255,.86);max-width:52ch;margin:14px 0 0;font-size:17px}
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.slot{text-align:left;padding:20px;border-radius:32px;border:2px solid transparent;background:var(--card);cursor:pointer;color:var(--ink);font:inherit;box-shadow:var(--shadow)}
+.slot.on{border-color:var(--act)}
+.slot b{display:block;font-family:Geist,Outfit,system-ui;font-size:20px;font-weight:600;letter-spacing:-.02em}
+.slot small{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.slot em{display:inline-block;font-style:normal;margin-top:10px;font-size:12px;font-weight:700;color:var(--ok);background:rgba(4,120,87,.1);padding:4px 10px;border-radius:999px}
+.done{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px}
+.tick{width:84px;height:84px;border-radius:30px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:grid;place-items:center;margin-bottom:18px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.kv span{color:var(--muted)}
+.offer{border-radius:36px;padding:24px;background:linear-gradient(140deg,#2a0e5c,#6d28d9);color:#fff}
+.offer p{color:rgba(255,255,255,.85)}
+@media(max-width:960px){.split,.cls,.done{grid-template-columns:minmax(0,1fr)}.hero{min-height:440px}.slots{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.row2,.perks{grid-template-columns:minmax(0,1fr)}.logo>span:not(.mark){display:none}.tbar{height:58px}.hero,.panel,.livehero{border-radius:36px}.player{border-radius:28px}.btn{padding:0 20px}}
+@supports(padding:max(0px)){.wrap{padding-bottom:calc(100px + env(safe-area-inset-bottom))}}
+@media(horizontal-viewport-segments:2){.split,.cls,.done{grid-template-columns:env(viewport-segment-width 0 0,1fr) env(viewport-segment-width 1 0,1fr);column-gap:calc(env(viewport-segment-left 1 0,0px) - env(viewport-segment-right 0 0,0px))}}
+@media(prefers-reduced-motion:reduce){.ic *{animation:none!important;transition:none!important}}
+</style>
+<style id="finish">
+/* Finishing layer: typography, rhythm, focus, micro-interactions */
+.ic h1,.ic h2,.ic h3,.ic .h2,.ic .htitle{text-wrap:balance}
+.ic p,.ic li,.ic small,.ic .lead{text-wrap:pretty}
+.ic{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.ic .price,.ic .xam b,.ic .xdue b,.ic .kpis b,.ic .pa,.ic .ffacts b,.ic .xsum,.ic .fr b{font-variant-numeric:tabular-nums}
+.ic .chips,.ic .filters,.ic .schoolpick,.ic .xlv,.ic .lvls{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.ic ::selection{background:#ddd6fe;color:#1a1033}
+.ic :focus-visible{outline:3px solid #8b5cf6;outline-offset:3px;border-radius:14px}
+.ic .btn{position:relative;overflow:hidden;isolation:isolate;-webkit-tap-highlight-color:transparent;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
+.ic .btn:active{transform:scale(.97)}
+.ic .btn.p::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ic .btn.p:hover::after{transform:translateX(120%)}
+.ic .btn.p:hover{box-shadow:0 16px 34px -14px rgba(109,40,217,.75)}
+.ic .eyebrow{line-height:1.3}
+.ic .eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor;opacity:.7}
+.ic img{max-width:100%}
+.ic .lead{max-width:min(60ch,100%)}
+@supports (animation-timeline:scroll()){.ic::after{content:"";position:fixed;left:0;top:0;height:3px;width:100%;z-index:300;transform-origin:0 50%;background:linear-gradient(90deg,#7c3aed,#c084fc,#f472b6);animation:icprog linear both;animation-timeline:scroll(root);pointer-events:none}@keyframes icprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+@media(max-width:760px){
+ .ic .band{padding:56px 0}
+ .ic .h2{font-size:clamp(30px,8.4vw,40px);line-height:1.04;letter-spacing:-.04em}
+ .ic .lead{font-size:16.5px;line-height:1.55}
+ .ic .eyebrow{font-size:12px;margin-bottom:12px}
+ .ic .cta{gap:10px}
+ .ic .hero .cta .btn,.ic .final .cta .btn,.ic .fres .fact .btn{flex:1 1 100%;justify-content:center}
+ .ic .cup small{display:block;font-size:12px;line-height:1.35;margin-top:4px}
+ .ic .cup b{font-size:30px}
+ .ic .ticks{gap:10px 16px}
+}
+@media(max-width:360px){.ic .h2{font-size:29px}.ic .htitle{font-size:34px!important}.ic .wrap{padding-left:14px;padding-right:14px}}
+@media(min-width:1600px){.ic .wrap{max-width:1320px}}
+@media(prefers-reduced-motion:reduce){.ic::after{display:none}.ic .btn.p::after{display:none}}
+</style>
+<style id="brand">.brand{display:inline-flex!important;align-items:center;gap:12px;text-decoration:none}.brand .lg{height:28px;width:auto;display:block;flex:none}.brand .lg-w{display:none}.ic.dk .brand .lg-c{display:none}.ic.dk .brand .lg-w{display:block}.brand.onlyw .lg-w{display:block}.brand .lgsub{padding-left:12px;border-left:1px solid currentColor;opacity:.75;font-size:14px;font-weight:550;line-height:1.1;white-space:nowrap;display:inline!important}.ic .logo.brand>span.lgsub{display:inline!important}@media(max-width:760px){.brand .lg{height:24px}.brand .lgsub{display:none!important}}@media(max-width:380px){.brand .lg{height:20px}}</style>
+<style>html{scroll-behavior:smooth}</style></head><body><template id="dc-tpl">
+
+<div class="ic">
+<header class="top"><div class="tbar">
+  <a class="logo brand" href="Main.dc.html"><img class="lg lg-c" src="/assets/b902c0e1d0b5e18b502f5249ee882e83.webp" alt="Inspire College" width="139" height="30"><img class="lg lg-w" src="/assets/dad81691bc200060ed05886b0e6b2ea9.webp" alt="" aria-hidden="true" width="139" height="30"><span class="lgsub">Free demo class</span></a>
+  <div class="xp" aria-label="Your progress"><span class="b">L{{level}}</span><span style="flex:1"><small><span>{{levelName}}</span><span>{{xp}} XP</span></small><span class="trk"><b style="width: {{xpW}}"></b></span></span></div>
+  <a class="x" href="Main.dc.html" aria-label="Back to home">×</a>
+</div></header>
+
+<main class="wrap">
+
+<template data-sc="if" value="{{sReg}}" hint-placeholder-val="{{ true }}">
+<div class="split">
+  <section class="hero">
+    <span class="pill">Free · no card needed</span>
+    <h1>Try a real Inspire class. <span class="lite">Free.</span></h1>
+    <p>Register, watch a recorded session, pass a 3-question check, then unlock a seat in a live online class with a lecturer.</p>
+    <ul class="perks"><li><i>1</i>Recorded demo session</li><li><i>2</i>AI study buddy</li><li><i>3</i>Quick quiz and badges</li><li><i>4</i>Seat in a live class</li></ul>
+  </section>
+  <section class="panel">
+    <h2>Create your free account</h2>
+    <p class="sub">Takes 30 seconds. You'll use it to log in to Inspire Brain.</p>
+    <div class="form-stack">
+      <label class="l">Full name<input type="text" value="{{name}}" onInput="{{setName}}" autocomplete="name"></label>
+      <div class="row2"><label class="l">Email<input type="email" value="{{email}}" onInput="{{setEmail}}" autocomplete="email"></label><label class="l">Mobile / WhatsApp<input type="tel" value="{{phone}}" onInput="{{setPhone}}" autocomplete="tel"></label></div>
+      <label class="l">I'm interested in<select value="{{interest}}" onChange="{{setInterest}}"><template data-sc="for" list="{{interests}}" as="o" hint-placeholder-count="6"><option value="{{o}}">{{o}}</option></template></select></label>
+      <label class="l">Create a password<input type="password" value="{{pw}}" onInput="{{setPw}}" autocomplete="new-password"></label>
+      <p class="err" role="alert">{{err}}</p>
+      <button class="btn p" type="button" onClick="{{register}}">Create account · +50 XP</button>
+      <p class="switch">Already registered? <button type="button" onClick="{{toLogin}}">Log in</button></p>
+      <p class="note">This creates a sample Inspire Brain account filled with demo data. It is deleted automatically after 24 hours.</p>
+    </div>
+  </section>
+</div>
+</template>
+
+<template data-sc="if" value="{{sLogin}}" hint-placeholder-val="{{ false }}">
+<div class="split">
+  <section class="hero" style="background-image:linear-gradient(180deg,rgba(20,8,40,.05) 20%,rgba(20,8,40,.88)),url(/assets/650a6ca988ed1aa1768e2a81718a726e.webp)">
+    <span class="pill">Inspire Brain · student login</span>
+    <h1>Welcome{{welcomeName}}. <span class="lite">Your class is ready.</span></h1>
+    <p>Log in to open your demo classroom. Your progress and XP are saved to your account.</p>
+  </section>
+  <section class="panel">
+    <template data-sc="if" value="{{justRegistered}}" hint-placeholder-val="{{ false }}"><div class="toast"><i>+50</i>Account created. Badge unlocked: Signed up</div></template>
+    <h2>Log in</h2>
+    <p class="sub">Use the email and password of your demo account.</p>
+    <div class="form-stack">
+      <label class="l">Email<input type="email" value="{{email}}" onInput="{{setEmail}}" autocomplete="email"></label>
+      <label class="l">Password<input type="password" value="{{pw2}}" onInput="{{setPw2}}" autocomplete="current-password"></label>
+      <p class="err" role="alert">{{err}}</p>
+      <button class="btn k" type="button" onClick="{{login}}">Log in to my demo class</button>
+      <p class="switch">New here? <button type="button" onClick="{{toReg}}">Create a free account</button></p>
+    </div>
+  </section>
+</div>
+</template>
+
+<template data-sc="if" value="{{sClass}}" hint-placeholder-val="{{ false }}">
+<template data-sc="if" value="{{showLoginToast}}" hint-placeholder-val="{{ false }}"><div class="toast"><i>+20</i>Logged in. Your demo class is open.</div></template>
+<div class="cls">
+  <section>
+    <div class="player">
+      <video src="/assets/9713a6d48bf3c1cc686b97648d297ae5.mp4" poster="/assets/05aab9df038da008212518655775f86a.webp" controls playsinline onEnded="{{onEnded}}"></video>
+      <div class="ptag"><span>Recorded session</span><span>{{curCh.t}}</span></div>
+    </div>
+    <div class="meta">
+      <div><h2>Demo: Prompting AI like a pro</h2><p>From the AI Mastery short course · School of CPD · about 25 minutes in full</p></div>
+      <button class="btn p sm" type="button" onClick="{{markWatched}}">{{markTxt}}</button>
+    </div>
+    <div class="tabs" role="tablist"><template data-sc="for" list="{{tabs}}" as="t" hint-placeholder-count="4"><button type="button" role="tab" class="{{t.cls}}" onClick="{{t.go}}" aria-selected="{{t.on}}">{{t.t}}</button></template></div>
+    <template data-sc="if" value="{{tNotes}}" hint-placeholder-val="{{ true }}"><div class="box"><p><b style="color:var(--ink)">Key ideas from this session</b></p><ul><li>A good prompt gives the AI a role, the task, the context and the format you want back.</li><li>Ask for steps or options, then refine. Treat it like a conversation.</li><li>Always check facts. AI can sound confident and still be wrong.</li><li>Never paste private or confidential information into public AI tools.</li></ul></div></template>
+    <template data-sc="if" value="{{tAi}}" hint-placeholder-val="{{ false }}"><div class="box"><template data-sc="for" list="{{aiMsgs}}" as="m" hint-placeholder-count="2"><div class="{{m.cls}}">{{m.t}}</div></template><div class="sug"><template data-sc="for" list="{{aiSugs}}" as="s" hint-placeholder-count="3"><button type="button" onClick="{{s.ask}}">{{s.q}}</button></template></div></div></template>
+    <template data-sc="if" value="{{tRes}}" hint-placeholder-val="{{ false }}"><div class="box"><p><b style="color:var(--ink)">Resources</b></p><ul><li>Prompt template: Role · Task · Context · Format</li><li>Session slides (available after you enrol)</li><li>Practice exercise: rewrite three weak prompts</li></ul></div></template>
+    <template data-sc="if" value="{{tAbout}}" hint-placeholder-val="{{ false }}"><div class="box"><p>This demo comes from <b style="color:var(--ink)">AI Mastery</b>, a 12-week CPD-validated short course, 100% online with live sessions and the LMS, from LKR 75,000. It covers generative AI, large language models, prompt engineering, productivity tools, decision support, no-code AI solutions and responsible AI adoption. No coding required.</p><a class="btn s sm" href="Program.dc.html">See all programmes</a></div></template>
+  </section>
+  <aside class="side">
+    <div class="card">
+      <h3>Session chapters</h3>
+      <div class="chs"><template data-sc="for" list="{{chapters}}" as="c" hint-placeholder-count="4"><button type="button" class="{{c.cls}}" onClick="{{c.go}}" aria-pressed="{{c.on}}"><span class="n">{{c.n}}</span><span><b>{{c.t}}</b><small>{{c.d}}</small></span><em>{{c.xp}}</em></button></template></div>
+    </div>
+    <div class="card">
+      <h3>Quick check · 3 questions</h3>
+      <template data-sc="if" value="{{quizLocked}}" hint-placeholder-val="{{ true }}"><p style="color:var(--muted);font-size:14.5px;margin:8px 0 0">Watch all 4 chapters to unlock the quiz.</p></template>
+      <template data-sc="if" value="{{quizOpen}}" hint-placeholder-val="{{ false }}"><div class="qz"><template data-sc="for" list="{{quiz}}" as="q" hint-placeholder-count="3"><div><p>{{q.q}}</p><template data-sc="for" list="{{q.opts}}" as="o" hint-placeholder-count="3"><button type="button" class="{{o.cls}}" onClick="{{o.pick}}" style="margin-top:6px">{{o.t}}</button></template></div></template><p class="err" role="alert">{{quizMsg}}</p><button class="btn k sm" type="button" onClick="{{submitQuiz}}">Submit answers · +60 XP</button></div></template>
+      <template data-sc="if" value="{{quizDone}}" hint-placeholder-val="{{ false }}"><p style="color:var(--ok);font-weight:650;margin:10px 0 0">3 of 3 correct. Badge unlocked: Quiz ace</p></template>
+    </div>
+    <div class="lock">
+      <h3>{{liveTitle}}</h3>
+      <p>{{liveSub}}</p>
+      <div class="tk"><template data-sc="for" list="{{reqs}}" as="r" hint-placeholder-count="3"><span><i class="{{r.cls}}">✓</i>{{r.t}}</span></template></div>
+      <template data-sc="if" value="{{liveReady}}" hint-placeholder-val="{{ false }}"><button class="btn w sm" type="button" onClick="{{toLive}}" style="margin-top:16px;width:100%">Choose my live class</button></template>
+    </div>
+    <div class="badges"><template data-sc="for" list="{{badges}}" as="b" hint-placeholder-count="4"><span class="{{b.cls}}"><i>✓</i>{{b.t}}</span></template></div>
+  </aside>
+</div>
+</template>
+
+<template data-sc="if" value="{{sLive}}" hint-placeholder-val="{{ false }}">
+<template data-sc="if" value="{{notBooked}}" hint-placeholder-val="{{ true }}">
+<section class="livehero"><span style="display:inline-block;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.16);font-size:13px;font-weight:650;margin-bottom:18px">Unlocked · +100 XP</span><h1>Your live class is <span class="lite">unlocked.</span></h1><p>Join a real live online session with a lecturer and current students. Pick a time that suits you.</p></section>
+<h2 style="font-size:26px;margin:28px 4px 0">Choose a live demo session</h2>
+<div class="slots"><template data-sc="for" list="{{slots}}" as="s" hint-placeholder-count="3"><button type="button" class="{{s.cls}}" onClick="{{s.pick}}" aria-pressed="{{s.on}}"><b>{{s.d}}</b><small>{{s.t}}</small><small>{{s.c}}</small><em>{{s.seats}}</em></button></template></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><button class="btn p" type="button" onClick="{{book}}">Reserve my live seat</button><button class="btn s" type="button" onClick="{{backClass}}">Back to the recording</button></div>
+<p class="note" style="margin-top:14px">Sample schedule for the design. The live site lists real upcoming sessions from Inspire Brain.</p>
+</template>
+<template data-sc="if" value="{{booked}}" hint-placeholder-val="{{ false }}">
+<div class="done">
+  <section class="panel">
+    <div class="tick" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b1d00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"></path></svg></div>
+    <h2>You're in, {{first}}!</h2>
+    <p class="sub">Your live seat is reserved. We've sent the join link to {{email}} and WhatsApp.</p>
+    <div class="kv"><span>Session</span><b>{{slot.c}}</b></div>
+    <div class="kv"><span>When</span><b>{{slot.d}} · {{slot.t}}</b></div>
+    <div class="kv"><span>Where</span><b>Inspire Brain live room</b></div>
+    <div class="kv"><span>Your level</span><b>Level {{level}} · {{xp}} XP</b></div>
+    <div class="badges" style="margin-top:16px"><template data-sc="for" list="{{badges}}" as="b" hint-placeholder-count="4"><span class="{{b.cls}}"><i>✓</i>{{b.t}}</span></template></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px"><button class="btn k sm" type="button">Add to calendar</button><a class="btn s sm" href="/portal">Open Inspire Brain</a></div>
+  </section>
+  <section class="offer">
+    <h2 style="font-size:32px">Liked it? Make it official.</h2>
+    <p>Your XP and badges carry over when you enrol. The first 20 students receive a LKR 200,000 scholarship, and HNDs start from LKR 9,999 a month.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn w" href="Program.dc.html">Enrol now</a><a class="btn" style="background:rgba(255,255,255,.14);color:#fff" href="https://wa.me/94743762393">Talk to an advisor</a></div>
+  </section>
+</div>
+</template>
+</template>
+
+</main>
+</div>
+</template><div id="dc-root"></div><script>(function(){
+"use strict";
+function DCLogic(props){this.props=props||{};this.state={};}
+DCLogic.prototype.setState=function(p){var n=typeof p==='function'?p(this.state,this.props):p;this.state=Object.assign({},this.state,n);schedule();};
+DCLogic.prototype.forceUpdate=function(){schedule();};
+window.DCLogic=DCLogic;
+var tpl,inst,root,queued=false;
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;render();});}
+function lit(p){p=p.trim();if(p==='true')return true;if(p==='false')return false;if(p==='null')return null;if(/^-?\d+(\.\d+)?$/.test(p))return +p;if(/^(['"]).*\1$/.test(p))return p.slice(1,-1);return undefined;}
+function get(scope,path){var l=lit(path);if(l!==undefined||path.trim()==='null')return l;var parts=path.trim().split('.'),v=scope;for(var i=0;i<parts.length;i++){if(v==null)return undefined;v=v[parts[i]];}return v;}
+var HOLE=/\{\{\s*([^}]+?)\s*\}\}/g,WHOLE=/^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+function interp(str,scope){return str.replace(HOLE,function(_,p){var v=get(scope,p);return v==null?'':String(v);});}
+function attrVal(str,scope){var m=str.match(WHOLE);if(m)return get(scope,m[1]);return interp(str,scope);}
+var EV={onclick:'click',oninput:'input',onchange:'change',onkeydown:'keydown',onmouseenter:'mouseenter',onfocus:'focus',onended:'ended',onsubmit:'submit'};
+function build(node,scope,out){
+ if(node.nodeType===3){out.appendChild(document.createTextNode(node.nodeValue.indexOf('{{')>=0?interp(node.nodeValue,scope):node.nodeValue));return;}
+ if(node.nodeType!==1)return;
+ var tag=node.localName;
+ if(tag==='template'&&node.hasAttribute('data-sc')){var k=node.getAttribute('data-sc'),src=node.content;
+  if(k==='for'){var list=attrVal(node.getAttribute('list')||'',scope)||[],as=node.getAttribute('as')||'item';for(var i=0;i<list.length;i++){var s=Object.create(scope);s[as]=list[i];s.$index=i;kids(src,s,out);}}
+  else if(attrVal(node.getAttribute('value')||'',scope))kids(src,scope,out);return;}
+ if(tag==='helmet'||tag==='dc-import')return;
+ var el=node.namespaceURI==='http://www.w3.org/2000/svg'?document.createElementNS(node.namespaceURI,node.nodeName):document.createElement(tag);
+ var h=null,val;
+ for(var a=0;a<node.attributes.length;a++){var at=node.attributes[a],n=at.name;
+  if(n.indexOf('hint-')===0)continue;
+  if(EV[n]){var fn=attrVal(at.value,scope);if(typeof fn==='function'){h=h||{};h[EV[n]]=fn;}continue;}
+  var v=at.value.indexOf('{{')>=0?attrVal(at.value,scope):at.value;
+  if(n==='value'&&(tag==='input'||tag==='select'||tag==='textarea')){val=v;continue;}
+  if(v===false||v==null)continue;
+  if(n==='href'&&typeof v==='string'){var mm=v.match(/^([A-Za-z]+)\.dc\.html(?:#(.*))?$/);if(mm)v=window.icRoute(mm[1],mm[2]||'');}el.setAttribute(n,v===true?'':String(v));
+ }
+ if(h)el.__h=h;
+ if(tag==='template'){return;}
+ kids(node.content||node,scope,el);
+ if(val!==undefined){el.__v=val==null?'':String(val);}
+ out.appendChild(el);
+}
+function kids(node,scope,out){var c=node.childNodes;for(var i=0;i<c.length;i++)build(c[i],scope,out);}
+function morph(a,b){
+ var ac=a.childNodes,bc=b.childNodes,i;
+ for(i=0;i<bc.length;i++){var o=ac[i],n=bc[i];
+  if(!o){a.appendChild(n.cloneNode(true));fixVals(a.lastChild,n);continue;}
+  if(o.nodeType!==n.nodeType||o.nodeName!==n.nodeName){a.replaceChild(n.cloneNode(true),o);fixVals(a.childNodes[i],n);continue;}
+  if(n.nodeType===3){if(o.nodeValue!==n.nodeValue)o.nodeValue=n.nodeValue;continue;}
+  if(n.nodeType!==1)continue;
+  var oa=o.attributes,j;
+  for(j=oa.length-1;j>=0;j--){if(!n.hasAttribute(oa[j].name))o.removeAttribute(oa[j].name);}
+  for(j=0;j<n.attributes.length;j++){var at=n.attributes[j];if(o.getAttribute(at.name)!==at.value)o.setAttribute(at.name,at.value);}
+  o.__h=n.__h;
+  if(n.__v!==undefined){o.__v=n.__v;}
+  morph(o,n);
+  if(n.__v!==undefined&&o.value!==n.__v)o.value=n.__v;
+ }
+ while(ac.length>bc.length)a.removeChild(a.lastChild);
+}
+function fixVals(o,n){if(!o||n.nodeType!==1)return;o.__h=n.__h;if(n.__v!==undefined){o.__v=n.__v;}var oc=o.childNodes,nc=n.childNodes;for(var i=0;i<nc.length;i++)fixVals(oc[i],nc[i]);if(n.__v!==undefined)o.value=n.__v;}
+function render(){var vals=inst.renderVals()||{};var frag=document.createElement('div');kids(tpl,vals,frag);morph(root,frag);
+ root.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused&&!v.__tried){v.__tried=1;v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}});}
+function find(t,type){while(t&&t!==document){if(t.__h&&t.__h[type])return t;t=t.parentNode;}return null;}
+['click','input','change','keydown','submit'].forEach(function(type){document.addEventListener(type,function(e){var el=find(e.target,type);if(el){if(type==='submit')e.preventDefault();el.__h[type](e);}
+ if(type==='click'){var a=e.target.closest&&e.target.closest('a[href]');if(a&&!e.defaultPrevented)link(a,e);}});});
+['mouseenter','focus','ended'].forEach(function(type){document.addEventListener(type,function(e){var t=e.target;if(t&&t.__h&&t.__h[type])t.__h[type](e);},true);});
+function link(a,e){var href=a.getAttribute('href');if(!href)return;
+ if(href.charAt(0)==='#'){e.preventDefault();var t=href.length>1&&document.getElementById(href.slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo({top:0,behavior:'smooth'});return;}
+ var m=href.match(/^([A-Za-z]+)\.dc\.html(#.*)?$/);if(m){e.preventDefault();location.href=window.icRoute(m[1],(m[2]||'').slice(1));return;}
+ if(/^https?:/.test(href)){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}}
+window.__dcBoot=function(defaults){tpl=document.getElementById('dc-tpl').content;root=document.getElementById('dc-root');inst=new window.Component(defaults||{});if(!inst.state)inst.state={};render();if(inst.componentDidMount)inst.componentDidMount();
+ var h=(location.hash||'').slice(1)||window.__dcHash;if(h)setTimeout(function(){var t=document.getElementById(h);if(t)t.scrollIntoView({block:'start'});},120);};
+})();
+</script><script>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 'reg', name: '', email: '', phone: '', pw: '', pw2: '', interest: 'Not sure yet', err: '', reg: false, toastLogin: false, ch: 0, watched: [false, false, false, false], tab: 'notes', ans: [null, null, null], quizDone: false, quizMsg: '', slot: 0, booked: false, ai: [{ cls: 'm', t: 'Hi! I’m your AI study buddy. Ask me anything about this session.' }] };
+  }
+  renderVals() {
+    const s = this.state;
+    const okEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
+    const CH = [['Why prompts matter', '3 min'], ['The Role · Task · Context · Format recipe', '8 min'], ['Live example: a better study plan', '9 min'], ['Recap and responsible use', '5 min']];
+    const watchedN = s.watched.filter(Boolean).length;
+    const chapters = CH.map((c, i) => ({ n: s.watched[i] ? '✓' : i + 1, t: c[0], d: c[1], on: i === s.ch, xp: s.watched[i] ? '+20 XP' : '', cls: 'ch' + (i === s.ch ? ' on' : '') + (s.watched[i] ? ' done' : ''), go: () => this.setState({ ch: i }) }));
+    const markCur = () => { if (s.watched[s.ch]) { this.setState({ ch: Math.min(3, s.ch + 1) }); return; } const w = s.watched.slice(); w[s.ch] = true; const nx = w.indexOf(false); this.setState({ watched: w, ch: nx === -1 ? s.ch : nx }); };
+    const Q = [
+      ['A strong prompt includes…', ['Just one keyword', 'Role, task, context and format', 'As many emojis as possible'], 1],
+      ['If the AI sounds confident, you should…', ['Trust it fully', 'Check important facts', 'Stop using it'], 1],
+      ['Which should you avoid pasting into public AI tools?', ['A public news article', 'Your private or confidential data', 'A general question'], 1]
+    ];
+    const quiz = Q.map((q, qi) => ({ q: q[0], opts: q[1].map((t, oi) => { const picked = s.ans[qi] === oi; let cls = 'opt' + (picked ? ' on' : ''); if (s.quizDone && oi === q[2]) cls = 'opt right'; return { t, cls, pick: () => { if (s.quizDone) return; const a = s.ans.slice(); a[qi] = oi; this.setState({ ans: a, quizMsg: '' }); } }; }) }));
+    const submitQuiz = () => { if (s.ans.some(a => a === null)) { this.setState({ quizMsg: 'Answer all three questions first.' }); return; } const wrong = Q.filter((q, i) => s.ans[i] !== q[2]).length; if (wrong) { this.setState({ quizMsg: wrong + ' answer' + (wrong > 1 ? 's' : '') + ' to rethink. Check the Notes tab and try again.' }); return; } this.setState({ quizDone: true, quizMsg: '' }); };
+    const allWatched = watchedN === 4;
+    const liveReady = allWatched && s.quizDone;
+    let xp = 0; if (s.reg) xp += 50; if (s.step !== 'reg' && s.step !== 'login') xp += 20; xp += watchedN * 20; if (s.quizDone) xp += 60; if (s.step === 'live') xp += 100; if (s.booked) xp += 50;
+    const level = xp >= 300 ? 3 : xp >= 120 ? 2 : 1;
+    const levelName = ['Explorer', 'Learner', 'Live-ready'][level - 1];
+    const badges = [['Signed up', s.reg], ['First class', allWatched], ['Quiz ace', s.quizDone], ['Live-ready', s.step === 'live']].map(b => ({ t: b[0], cls: b[1] ? 'got' : '' }));
+    const reqs = [['Watch all 4 chapters (' + watchedN + '/4)', allWatched], ['Pass the 3-question check', s.quizDone], ['Choose a live session', s.booked]].map(r => ({ t: r[0], cls: r[1] ? 'ok' : '' }));
+    const TB = [['notes', 'Notes'], ['ai', 'AI buddy'], ['res', 'Resources'], ['about', 'About the course']];
+    const tabs = TB.map(t => ({ t: t[1], on: s.tab === t[0], cls: s.tab === t[0] ? 'on' : '', go: () => this.setState({ tab: t[0] }) }));
+    const A = { 'Give me a prompt example': 'Try: “You are a study coach. Make me a 5-day revision plan for Database Design, 45 minutes a day, as a table.”', 'Why does format matter?': 'Telling the AI the format (table, bullet list, email) saves you editing time and makes answers easier to use.', 'Can AI do my assignment?': 'It can help you understand and plan, but your work must be your own. Inspire Brain’s buddy never submits work for you.' };
+    const aiSugs = Object.keys(A).map(q => ({ q, ask: () => this.setState({ ai: [...s.ai, { cls: 'm me', t: q }, { cls: 'm', t: A[q] }] }) }));
+    const SL = [['Saturday', '10:00 am – 11:30 am', 'AI Mastery · Live demo', '12 seats left'], ['Tuesday', '7:00 pm – 8:00 pm', 'HND Computing · Live taster', '8 seats left'], ['Thursday', '7:30 pm – 8:30 pm', 'Foundation · Live taster', '15 seats left']];
+    const slots = SL.map((x, i) => ({ d: x[0], t: x[1], c: x[2], seats: x[3], on: i === s.slot, cls: 'slot' + (i === s.slot ? ' on' : ''), pick: () => this.setState({ slot: i }) }));
+    const sl = slots[s.slot];
+    const first = s.name.trim().split(' ')[0] || 'friend';
+    return {
+      sReg: s.step === 'reg', sLogin: s.step === 'login', sClass: s.step === 'class', sLive: s.step === 'live',
+      xp, xpW: Math.min(100, Math.round(xp / 3.5)) + '%', level, levelName,
+      name: s.name, email: s.email, phone: s.phone, pw: s.pw, pw2: s.pw2, interest: s.interest,
+      interests: ['Not sure yet', 'Computing & AI', 'Business & Accounting', 'Health & Social Care', 'Law', 'Short courses (CPD)', 'Postgraduate'],
+      setName: e => this.setState({ name: e.target.value }), setEmail: e => this.setState({ email: e.target.value }), setPhone: e => this.setState({ phone: e.target.value }), setPw: e => this.setState({ pw: e.target.value }), setPw2: e => this.setState({ pw2: e.target.value }), setInterest: e => this.setState({ interest: e.target.value }),
+      err: s.err,
+      register: () => { if (s.name.trim().length < 2 || !okEmail(s.email) || s.phone.replace(/\D/g, '').length < 9 || s.pw.length < 6) { this.setState({ err: 'Please add your name, a valid email, a mobile number and a password of at least 6 characters.' }); return; } this.setState({ err: 'Creating your demo account…' }); window.icDemo('signup', { name: s.name, email: s.email, phone: s.phone, interest: s.interest, password: s.pw }).catch(e => this.setState({ err: e.message })); },
+      toLogin: () => this.setState({ step: 'login', err: '' }), toReg: () => this.setState({ step: 'reg', err: '' }),
+      justRegistered: s.reg, welcomeName: s.name.trim() ? ', ' + first : '',
+      login: () => { if (!okEmail(s.email) || !s.pw2) { this.setState({ err: 'Enter your email and password.' }); return; } this.setState({ err: 'Signing you in…' }); window.icDemo('login', { email: s.email, password: s.pw2 }).catch(e => this.setState({ err: e.message })); },
+      showLoginToast: s.toastLogin && watchedN === 0,
+      curCh: { t: 'Chapter ' + (s.ch + 1) + ' of 4' }, chapters,
+      markWatched: markCur, onEnded: markCur, markTxt: s.watched[s.ch] ? (allWatched ? 'All chapters watched' : 'Next chapter →') : 'Mark chapter watched · +20 XP',
+      tabs, tNotes: s.tab === 'notes', tAi: s.tab === 'ai', tRes: s.tab === 'res', tAbout: s.tab === 'about', aiMsgs: s.ai, aiSugs,
+      quiz, quizLocked: !allWatched, quizOpen: allWatched && !s.quizDone, quizDone: s.quizDone, quizMsg: s.quizMsg, submitQuiz,
+      liveReady, liveTitle: liveReady ? 'Live class unlocked' : 'Unlock a live class', liveSub: liveReady ? 'Pick a time and join real students with a lecturer.' : 'Finish the recording and the quick check to join a real live session.', reqs,
+      toLive: () => this.setState({ step: 'live' }), badges,
+      slots, slot: sl, notBooked: !s.booked, booked: s.booked, book: () => this.setState({ booked: true }), backClass: () => this.setState({ step: 'class' }),
+      first
+    };
+  }
+}
+
+window.Component=Component;window.__dcBoot(window.icBootProps({}));</script></body></html>

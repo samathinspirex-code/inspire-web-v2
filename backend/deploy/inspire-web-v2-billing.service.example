@@ -1,0 +1,7 @@
+[Unit]
+Description=Inspire Web v2 - instalment billing: issue due invoices, reminders, queued emails
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/ubuntu/inspire-web-v2/backend
+ExecStart=/home/ubuntu/inspire-web-v2/backend/.venv/bin/python scripts/run_billing.py

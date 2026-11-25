@@ -1,0 +1,88 @@
+import json
+
+from fastapi import APIRouter, Depends, Header, HTTPException, Request
+from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.database import get_db
+from app.core.security import read_token
+from app.modules.demo import service
+from app.modules.demo.models import DemoState, DemoUser
+
+router = APIRouter(prefix="/api/v1/demo", tags=["demo"])
+
+
+class SignupIn(BaseModel):
+    name: str
+    email: str
+    phone: str
+    interest: str = ""
+    password: str
+    utm: dict | None = None
+
+
+class LoginIn(BaseModel):
+    email: str
+    password: str
+
+
+def _session(user: DemoUser) -> dict:
+    return {
+        "token": service.token_for(user),
+        "expires_at": user.expires_at.isoformat(),
+        "user": {"name": user.full_name, "email": user.email},
+    }
+
+
+async def current_demo_user(authorization: str = Header(default=""), db: AsyncSession = Depends(get_db)) -> DemoUser:
+    token = authorization.removeprefix("Bearer ").strip()
+    uid = read_token(token, "demo") if token else None
+    user = await service.get_active(db, uid) if uid else None
+    if not user:
+        raise HTTPException(401, "Demo session expired. Please log in again.")
+    return user
+
+
+@router.post("/signup")
+async def signup(body: SignupIn, db: AsyncSession = Depends(get_db)):
+    try:
+        user = await service.signup(db, name=body.name, email=body.email, phone=body.phone, interest=body.interest, password=body.password, utm=body.utm)
+    except service.DemoError as e:
+        raise HTTPException(e.status, e.message) from e
+    return _session(user)
+
+
+@router.post("/login")
+async def login(body: LoginIn, db: AsyncSession = Depends(get_db)):
+    try:
+        user = await service.login(db, body.email, body.password)
+    except service.DemoError as e:
+        raise HTTPException(e.status, e.message) from e
+    return _session(user)
+
+
+@router.get("/me")
+async def me(user: DemoUser = Depends(current_demo_user), db: AsyncSession = Depends(get_db)):
+    row = await db.get(DemoState, user.id)
+    return {
+        "user": {"name": user.full_name, "email": user.email, "phone": user.phone, "interest": user.interest},
+        "expires_at": user.expires_at.isoformat(),
+        "state": row.state if row else None,
+    }
+
+
+@router.put("/state")
+async def put_state(request: Request, user: DemoUser = Depends(current_demo_user), db: AsyncSession = Depends(get_db)):
+    raw = await request.body()
+    try:
+        payload = json.loads(raw or b"{}")
+    except ValueError as e:
+        raise HTTPException(400, "Invalid JSON") from e
+    state = payload.get("state") if isinstance(payload, dict) else None
+    if not isinstance(state, dict):
+        raise HTTPException(422, "state must be an object")
+    try:
+        events = await service.save_state(db, user, state, len(raw))
+    except service.DemoError as e:
+        raise HTTPException(e.status, e.message) from e
+    return {"ok": True, "events": events}

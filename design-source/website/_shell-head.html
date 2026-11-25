@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inspire College — Sri Lanka's first tech-enabled online higher education institution</title>
+<meta name="description" content="100% online UK-regulated ATHE qualifications, HNDs, Foundations, top-up degrees, postgraduate and CPD courses. Live classes, AI study buddy and a free demo class.">
+<meta name="theme-color" content="#6d28d9">
+<style>html,body{margin:0;height:100%;background:#fff}#app{position:fixed;inset:0;width:100%;height:100%;border:0;display:block}
+#load{position:fixed;inset:0;display:grid;place-items:center;font:600 15px system-ui;color:#6d28d9;background:#fff;transition:opacity .3s}#load.off{opacity:0;pointer-events:none}</style>
+</head>
+<body>
+<div id="load">Inspire College</div>
+<iframe id="app" title="Inspire College"></iframe>
+<script>
+/* ===== Inspire tracking layer: fill these in to switch tags on ===== */
+var IC_CONFIG = { gtm: '', ga4: '', metaPixel: '', tiktokPixel: '', googleAdsId: '', googleAdsPurchaseLabel: '', googleAdsLeadLabel: '' };
+window.dataLayer = window.dataLayer || [];
+(function () {
+  var C = IC_CONFIG, any = C.gtm || C.ga4 || C.metaPixel || C.tiktokPixel || C.googleAdsId;
+  function gtag() { window.dataLayer.push(arguments); }
+  window.gtag = window.gtag || gtag;
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
+  var q = new URLSearchParams(location.search), keep = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid', 'ttclid'].forEach(function (k) { if (q.get(k)) keep[k] = q.get(k); });
+  try { if (Object.keys(keep).length) localStorage.setItem('icUTM', JSON.stringify(keep)); keep = JSON.parse(localStorage.getItem('icUTM') || '{}'); } catch (e) {}
+  try { var au = (q.get('aud') || q.get('utm_audience') || '').toLowerCase(), cp = (q.get('utm_campaign') || '') + ' ' + (q.get('utm_content') || ''); if (!au && /parent|mum|dad|family/i.test(cp)) au = 'parent'; if (!au && /student|school.?leaver|career/i.test(cp)) au = 'student'; if (au === 'parent' || au === 'student') localStorage.setItem('icAud', au); } catch (e) {}
+  function load(src) { var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s); }
+  function start() {
+    gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+    if (C.gtm) { window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' }); load('https://www.googletagmanager.com/gtm.js?id=' + C.gtm); }
+    if (C.ga4 || C.googleAdsId) { load('https://www.googletagmanager.com/gtag/js?id=' + (C.ga4 || C.googleAdsId)); gtag('js', new Date()); if (C.ga4) gtag('config', C.ga4); if (C.googleAdsId) gtag('config', C.googleAdsId); }
+    if (C.metaPixel) { !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s) }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js'); fbq('init', C.metaPixel); fbq('track', 'PageView'); }
+    if (C.tiktokPixel) { !function (w, d, t) { w.TiktokAnalyticsObject = t; var ttq = w[t] = w[t] || []; ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie']; ttq.setAndDefer = function (t, e) { t[e] = function () { t.push([e].concat(Array.prototype.slice.call(arguments, 0))) } }; for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]); ttq.load = function (e) { var n = 'https://analytics.tiktok.com/i18n/pixel/events.js'; ttq._i = ttq._i || {}; ttq._i[e] = []; ttq._i[e]._u = n; var o = d.createElement('script'); o.async = !0; o.src = n + '?sdkid=' + e + '&lib=' + t; var a = d.getElementsByTagName('script')[0]; a.parentNode.insertBefore(o, a) }; ttq.load(C.tiktokPixel); ttq.page(); }(window, document, 'ttq'); }
+  }
+  var MAP = { view_item: ['ViewContent', 'ViewContent'], begin_checkout: ['InitiateCheckout', 'InitiateCheckout'], add_to_cart: ['AddToCart', 'AddToCart'], add_payment_info: ['AddPaymentInfo', 'AddPaymentInfo'], purchase: ['Purchase', 'CompletePayment'], generate_lead: ['Lead', 'SubmitForm'], sign_up: ['CompleteRegistration', 'CompleteRegistration'] };
+  window.icEmit = function (p) {
+    try { p = Object.assign({}, keep, p); } catch (e) {}
+    window.dataLayer.push(p);
+    if (C.gtm) return; /* with GTM, tags are configured in the container */
+    var m = MAP[p.event], val = p.value ? { value: p.value, currency: p.currency || 'LKR' } : {};
+    if (window.fbq && m) fbq('track', m[0], Object.assign({ content_ids: (p.items || []).map(function (i) { return i.item_id; }), content_type: 'product' }, val));
+    if (window.ttq && m) ttq.track(m[1], Object.assign({ content_id: (p.items && p.items[0] && p.items[0].item_id) || '', content_type: 'product' }, val));
+    if (C.ga4 && window.gtag) { var x = Object.assign({}, p); delete x.event; gtag('event', p.event, x); }
+    if (C.googleAdsId && p.event === 'purchase' && C.googleAdsPurchaseLabel) gtag('event', 'conversion', Object.assign({ send_to: C.googleAdsId + '/' + C.googleAdsPurchaseLabel, transaction_id: p.transaction_id }, val));
+    if (C.googleAdsId && p.event === 'generate_lead' && C.googleAdsLeadLabel) gtag('event', 'conversion', { send_to: C.googleAdsId + '/' + C.googleAdsLeadLabel });
+  };
+  if (!any) return;
+  var choice = null; try { choice = localStorage.getItem('icConsent'); } catch (e) {}
+  if (choice === 'yes') { start(); return; }
+  if (choice === 'no') return;
+  var b = document.createElement('div'); b.id = 'icConsent';
+  b.innerHTML = '<p><b>Cookies</b>We use cookies to understand what helps students and to measure our ads. You choose.</p><span><button data-c="no">Only essential</button><button data-c="yes">Accept</button></span>';
+  b.setAttribute('style', 'position:fixed;left:16px;bottom:16px;z-index:9999;max-width:360px;padding:16px 18px;border-radius:22px;background:#121016;color:#fff;font:14px/1.45 system-ui,sans-serif;box-shadow:0 24px 60px -20px rgba(0,0,0,.5)');
+  document.body.appendChild(b);
+  var st = document.createElement('style'); st.textContent = '#icConsent p{margin:0}#icConsent b{display:block;margin-bottom:4px}#icConsent span{display:flex;gap:8px;margin-top:12px}#icConsent button{flex:1;min-height:40px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font:600 13.5px system-ui;cursor:pointer}#icConsent button[data-c=yes]{background:#fff;color:#121016;border-color:#fff}';
+  document.head.appendChild(st);
+  b.addEventListener('click', function (e) { var c = e.target.getAttribute && e.target.getAttribute('data-c'); if (!c) return; try { localStorage.setItem('icConsent', c); } catch (x) {} b.remove(); if (c === 'yes') start(); });
+})();
+</script>

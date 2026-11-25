@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+.env
+data/*.db
+data/media/
+data/dev-server.log
+.pytest_cache/
+data/dev-admin.txt
+backups/
+data/slips/

@@ -1,0 +1,3544 @@
+{
+ "IC_CAT": {
+  "hnd-se": {
+   "s": "HND · Software Engineering",
+   "n": "HND-Level Study in Computing – Software Engineering Pathway",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "18 months",
+   "i": "/_blob/56b7f2da7a5200c8c69300aedde2c024"
+  },
+  "hnd-ai": {
+   "s": "HND · Computing & AI",
+   "n": "HND-Level Study in Computing & Artificial Intelligence",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "18 months",
+   "i": "/_blob/360ee812dbd8b06e0c8d0466fcc6e2d1"
+  },
+  "hnd-cyber": {
+   "s": "HND · Cyber Security",
+   "n": "HND-Level Study in Computing – Cyber Security Pathway",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "18 months",
+   "i": "/_blob/75c3ae7cbeac009d12cffb9c3772b324"
+  },
+  "hnd-data": {
+   "s": "HND · Data Analytics",
+   "n": "HND-Level Study in Computing – Data Analytics Pathway",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "18 months",
+   "i": "/_blob/50497969f86def66413907403d96f5fa"
+  },
+  "hnd-net": {
+   "s": "HND · NetDevOps",
+   "n": "HND-Level Study in Computing – NetDevOps Pathway",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "18 months",
+   "i": "/_blob/71702a6dd30a279ea346e5c8a51d8f72"
+  },
+  "hnd-acc": {
+   "s": "HND · Accounting & Finance",
+   "n": "HND-Level Study in Accounting & Finance",
+   "l": "HND",
+   "b": "ATHE (UK)",
+   "p": "hnd",
+   "f": "from LKR 280,000",
+   "d": "12–18 months",
+   "i": "/_blob/c26eb636170f3306dfb17aa0c8929ac8"
+  },
+  "f-idt": {
+   "s": "Foundation · Digital Technologies",
+   "n": "Foundation-Level – Information & Digital Technologies",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/a66e865f746418f7c249c77622575c84"
+  },
+  "f-bus": {
+   "s": "Foundation · Business",
+   "n": "Foundation in Business",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/552198928148e7f650f560523de7be38"
+  },
+  "f-acc": {
+   "s": "Foundation · Accounting",
+   "n": "Foundation in Accounting",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/eb8ded50a8f89858e13101da1518fb65"
+  },
+  "f-stat": {
+   "s": "Foundation · Applied Statistics",
+   "n": "Foundation in Applied Statistics",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/700a47ba5b1c261c8a0143ff6a1f8cf3"
+  },
+  "f-eng": {
+   "s": "Foundation · English & Comms",
+   "n": "Foundation in English & Communications for Business",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/2266ab5a3faf7a51451c570d88b32b37"
+  },
+  "f-sme": {
+   "s": "Foundation · Small Business Start-up",
+   "n": "Foundation in Small Business & Social Enterprise Start-up",
+   "l": "Foundation",
+   "b": "ATHE (UK)",
+   "p": "fnd",
+   "f": "LKR 49,500",
+   "d": "8 months",
+   "i": "/_blob/d7297d66eb86ebc37ce53d0eed8a85e9"
+  },
+  "pg-edu": {
+   "s": "PG Dip · Educational Leadership",
+   "n": "Postgraduate-Level Study in Strategic Educational Leadership & Management",
+   "l": "Postgraduate",
+   "b": "ATHE (UK)",
+   "p": "pg",
+   "f": "LKR 350,000",
+   "d": "10–12 months",
+   "i": "/_blob/a39f44d0a31a44129e6e79042d56eacf"
+  },
+  "pg-ai": {
+   "s": "PG Dip · Computing (AI)",
+   "n": "Postgraduate Diploma in Computing: Artificial Intelligence",
+   "l": "Postgraduate",
+   "b": "UK-regulated",
+   "p": "pg",
+   "f": "from LKR 400,000",
+   "d": "10 or 12 months",
+   "i": "/_blob/e389c81bbc724f55fd11cfbb37f850a2"
+  },
+  "pg-gen": {
+   "s": "PG Dip · Computing (General)",
+   "n": "Postgraduate Diploma in Computing: General Route",
+   "l": "Postgraduate",
+   "b": "UK-regulated",
+   "p": "pg",
+   "f": "from LKR 400,000",
+   "d": "10 or 12 months",
+   "i": "/_blob/ca4381bf753a08946a873d468e4c0bd1"
+  },
+  "pg-se": {
+   "s": "PG Dip · Computing (Software Eng.)",
+   "n": "Postgraduate Diploma in Computing: Software Engineering",
+   "l": "Postgraduate",
+   "b": "UK-regulated",
+   "p": "pg",
+   "f": "from LKR 400,000",
+   "d": "10 or 12 months",
+   "i": "/_blob/9909c8448005916ce74e76bb864cf895"
+  },
+  "pg-app": {
+   "s": "PG · Application Development",
+   "n": "Postgraduate-Level Study in Computing: Application Development",
+   "l": "Postgraduate",
+   "b": "UK-regulated",
+   "p": "pg",
+   "f": "from LKR 350,000",
+   "d": "10 or 12 months",
+   "i": "/_blob/b12cb5fd0b662f8605a6843aa64fda3d"
+  },
+  "pg-data": {
+   "s": "PG · Data Analytics",
+   "n": "Postgraduate-Level Study in Computing: Data Analytics",
+   "l": "Postgraduate",
+   "b": "UK-regulated",
+   "p": "pg",
+   "f": "from LKR 350,000",
+   "d": "10 or 12 months",
+   "i": "/_blob/c05a2d05632297bc93824571fb5104ff"
+  },
+  "tu-beng": {
+   "s": "UoB BEng (Hons) Software Eng. Top-Up",
+   "n": "UoB BEng (Hons) Software Engineering (Top-Up)",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 400,000",
+   "d": "12 months",
+   "i": "/_blob/7b5e92693234d7f157d97f52f204d7b9"
+  },
+  "tu-fin": {
+   "s": "Top-Up · Management (Finance)",
+   "n": "Bachelor’s-Level Study in Management: Finance Pathway",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 250,000",
+   "d": "10–12 months",
+   "i": "/_blob/272389582f2a702a06e605cc7dcefdcf"
+  },
+  "tu-gen": {
+   "s": "Top-Up · Management (General)",
+   "n": "Bachelor’s-Level Study in Management: General Route",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 250,000",
+   "d": "10–12 months",
+   "i": "/_blob/e809ca1a49a37b9faa8f59049ac5ebe3"
+  },
+  "tu-people": {
+   "s": "Top-Up · Managing People",
+   "n": "Bachelor’s-Level Study in Management: Managing People Pathway",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 250,000",
+   "d": "10–12 months",
+   "i": "/_blob/5d208a8a94a292e2202a85fb29264dc1"
+  },
+  "tu-ops": {
+   "s": "Top-Up · Operations Mgmt",
+   "n": "Bachelor’s-Level Study in Management: Operations Management Pathway",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 250,000",
+   "d": "10–12 months",
+   "i": "/_blob/4fea0937215b31de5caad4bf571e1637"
+  },
+  "tu-sales": {
+   "s": "Top-Up · Sales & Marketing",
+   "n": "Bachelor’s-Level Study in Management: Sales & Marketing Pathway",
+   "l": "Top-Up",
+   "b": "UK university partner",
+   "p": "pg",
+   "f": "LKR 250,000",
+   "d": "10–12 months",
+   "i": "/_blob/b92c409333d3fd95370a948500190087"
+  },
+  "c-aimastery": {
+   "s": "AI Mastery",
+   "n": "AI Mastery",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "from LKR 75,000",
+   "d": "12 weeks",
+   "i": "/_blob/05aab9df038da008212518655775f86a"
+  },
+  "c-aihr": {
+   "s": "AI for HR",
+   "n": "AI for HR",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "LKR 50,000",
+   "d": "6 weeks",
+   "i": "/_blob/9b79ddb4dd7fe05d48532d0ca28b76cb"
+  },
+  "c-aimkt": {
+   "s": "AI for Marketing",
+   "n": "AI For Marketing",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "LKR 30,000",
+   "d": "4 weeks",
+   "i": "/_blob/1eb3d8ebcf26f96feaa13af68c478968"
+  },
+  "c-cyber": {
+   "s": "Cyber Security in the AI Era",
+   "n": "Cyber Security in the AI Era",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "LKR 75,000",
+   "d": "12 weeks",
+   "i": "/_blob/5a65404b02dc3f4c332d02e7deede027"
+  },
+  "c-looker": {
+   "s": "Data Analytics with Looker Studio",
+   "n": "Data Analytics with Google & Looker Studio",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "LKR 35,000",
+   "d": "6 weeks",
+   "i": "/_blob/f41774a6748f7f652c56a1b88d2dba34"
+  },
+  "c-dm": {
+   "s": "Digital Marketing & Analytics",
+   "n": "Digital Marketing & Analytics Essentials",
+   "l": "Short course",
+   "b": "CPD",
+   "p": "cpd",
+   "f": "LKR 30,000",
+   "d": "4 weeks",
+   "i": "/_blob/2a7f07599fe22f375ae04bfd461d6959"
+  }
+ },
+ "IC_CAMP": {
+  "scholarship": {
+   "tag": "Scholarship",
+   "text": "The first 20 students receive a LKR 200,000 scholarship.",
+   "short": "First 20 students get a LKR 200,000 scholarship",
+   "perk": "Apply for the LKR 200,000 scholarship (first 20 students)"
+  },
+  "intake": {
+   "tag": "Now enrolling",
+   "text": "New intake open. Reserve your seat with the registration fee.",
+   "short": "New intake open · reserve your seat today",
+   "perk": "Your seat in the next intake is held"
+  },
+  "referral": {
+   "tag": "Bring a friend",
+   "text": "Earn LKR 15,000 for every friend who enrols.",
+   "short": "Bring a friend · earn LKR 15,000 each",
+   "perk": "Share your link and earn LKR 15,000 per friend who enrols"
+  },
+  "coffee": {
+   "tag": "Free coffee",
+   "text": "CPD UK and ATHE students get 48 free Barista coffees a year.",
+   "short": "48 free Barista coffees a year with CPD UK & ATHE",
+   "perk": "Claim your first free Barista coffee this week"
+  }
+ },
+ "IC_CPDFEE": {
+  "c-aimastery": 75000,
+  "c-cyber": 75000,
+  "c-aihr": 50000,
+  "c-looker": 35000,
+  "c-aimkt": 30000,
+  "c-dm": 30000
+ },
+ "CARDS": [
+  {
+   "name": "HND-Level Study in Computing – Software Engineering",
+   "type": "HND",
+   "cat": "HND",
+   "school": "Computing",
+   "img": "/_blob/56b7f2da7a5200c8c69300aedde2c024",
+   "hue": "",
+   "dur": "18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "Full-stack and cloud: programming, web, databases, cloud-native development, DevOps and cybersecurity.",
+   "k": "software developer coding web cloud devops mobile"
+  },
+  {
+   "name": "HND-Level Study in Computing & Artificial Intelligence",
+   "type": "HND · AI",
+   "cat": "HND",
+   "school": "Computing",
+   "img": "/_blob/360ee812dbd8b06e0c8d0466fcc6e2d1",
+   "hue": "",
+   "dur": "18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "Computing foundations into data science, machine learning and AI, with applied projects in Year 2.",
+   "k": "ai artificial intelligence machine learning data science"
+  },
+  {
+   "name": "HND-Level Study in Computing – Cyber Security",
+   "type": "HND",
+   "cat": "HND",
+   "school": "Computing",
+   "img": "/_blob/75c3ae7cbeac009d12cffb9c3772b324",
+   "hue": "",
+   "dur": "18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "Network protection, secure systems, ethical hacking, penetration testing and digital forensics.",
+   "k": "cyber security hacking forensics soc"
+  },
+  {
+   "name": "Foundation-Level – Information & Digital Technologies",
+   "type": "Foundation",
+   "cat": "Foundation",
+   "school": "Computing",
+   "img": "/_blob/a66e865f746418f7c249c77622575c84",
+   "hue": "",
+   "dur": "8 months",
+   "body": "ATHE",
+   "fee": "LKR 49,500",
+   "monthly": "or LKR 5,000 a month · limited offer",
+   "blurb": "Programming, cybersecurity, data and web and mobile development for students finishing O/Ls.",
+   "k": "it digital tech o/l programming app"
+  },
+  {
+   "name": "Foundation in Business",
+   "type": "Foundation",
+   "cat": "Foundation",
+   "school": "Business",
+   "img": "/_blob/552198928148e7f650f560523de7be38",
+   "hue": "",
+   "dur": "8 months",
+   "body": "ATHE",
+   "fee": "LKR 49,500",
+   "monthly": "or LKR 5,000 a month · limited offer",
+   "blurb": "Your first step after O/Ls into business and management, leading on to an HND.",
+   "k": "business management o/l"
+  },
+  {
+   "name": "AI Mastery",
+   "type": "Short course",
+   "cat": "Short Course",
+   "school": "CPD",
+   "img": "/_blob/05aab9df038da008212518655775f86a",
+   "hue": "",
+   "dur": "12 weeks",
+   "body": "CPD",
+   "fee": "from LKR 75,000",
+   "monthly": "CPD-validated · no coding needed",
+   "blurb": "Generative AI, LLMs, prompt engineering, no-code AI and responsible adoption, with a final applied use case.",
+   "k": "ai chatgpt prompt llm"
+  },
+  {
+   "name": "HND-Level Study in Computing – Data Analytics",
+   "type": "HND",
+   "cat": "HND",
+   "school": "Computing",
+   "img": "/_blob/50497969f86def66413907403d96f5fa",
+   "hue": "",
+   "dur": "18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "Programming, databases, analytical methods, data engineering and machine learning.",
+   "k": "data analytics analyst machine learning"
+  },
+  {
+   "name": "HND-Level Study in Computing – NetDevOps",
+   "type": "HND",
+   "cat": "HND",
+   "school": "Computing",
+   "img": "/_blob/71702a6dd30a279ea346e5c8a51d8f72",
+   "hue": "",
+   "dur": "18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "Network engineering, cloud configuration, network automation and DevOps workflows.",
+   "k": "network cloud devops automation"
+  },
+  {
+   "name": "HND-Level Study in Accounting & Finance",
+   "type": "HND",
+   "cat": "HND",
+   "school": "Business",
+   "img": "/_blob/c26eb636170f3306dfb17aa0c8929ac8",
+   "hue": "",
+   "dur": "12–18 months",
+   "body": "ATHE",
+   "fee": "from LKR 280,000",
+   "monthly": "or LKR 9,999 a month · limited offer",
+   "blurb": "240 credits across accounting, finance, taxation, economics and the legal side of accounting.",
+   "k": "accounting finance tax"
+  },
+  {
+   "name": "Foundation in Accounting",
+   "type": "Foundation",
+   "cat": "Foundation",
+   "school": "Business",
+   "img": "/_blob/eb8ded50a8f89858e13101da1518fb65",
+   "hue": "",
+   "dur": "8 months",
+   "body": "ATHE",
+   "fee": "LKR 49,500",
+   "monthly": "or LKR 5,000 a month · limited offer",
+   "blurb": "Start your accounting journey after O/Ls with a UK Level 3 foundation.",
+   "k": "accounting o/l"
+  },
+  {
+   "name": "Foundation in Small Business & Social Enterprise Start-up",
+   "type": "Foundation",
+   "cat": "Foundation",
+   "school": "Business",
+   "img": "/_blob/d7297d66eb86ebc37ce53d0eed8a85e9",
+   "hue": "",
+   "dur": "8 months",
+   "body": "ATHE",
+   "fee": "LKR 49,500",
+   "monthly": "or LKR 5,000 a month · limited offer",
+   "blurb": "Plan and launch a small business or social enterprise.",
+   "k": "startup entrepreneur business"
+  },
+  {
+   "name": "Strategic Educational Leadership & Management",
+   "type": "Postgraduate",
+   "cat": "Postgraduate",
+   "school": "Education",
+   "img": "/_blob/a39f44d0a31a44129e6e79042d56eacf",
+   "hue": "",
+   "dur": "10–12 months",
+   "body": "ATHE (UK)",
+   "fee": "LKR 350,000",
+   "monthly": "or LKR 36,000 a month · Level 7",
+   "blurb": "For principals, headteachers and academic managers ready to lead.",
+   "k": "education teacher principal leadership"
+  },
+  {
+   "name": "Postgraduate Diploma in Computing: Artificial Intelligence",
+   "type": "Postgraduate",
+   "cat": "Postgraduate",
+   "school": "Computing",
+   "img": "/_blob/e389c81bbc724f55fd11cfbb37f850a2",
+   "hue": "",
+   "dur": "10 or 12 months",
+   "body": "UK-regulated",
+   "fee": "from LKR 400,000",
+   "monthly": "Level 7",
+   "blurb": "A postgraduate route into AI for graduates and professionals.",
+   "k": "ai postgraduate pg"
+  },
+  {
+   "name": "UoB BEng (Hons) Software Engineering (Top-Up)",
+   "type": "Top-up",
+   "cat": "Top-Up",
+   "school": "Computing",
+   "img": "/_blob/7b5e92693234d7f157d97f52f204d7b9",
+   "hue": "",
+   "dur": "12 months",
+   "body": "University partner",
+   "fee": "LKR 400,000",
+   "monthly": "Honours degree in a year",
+   "blurb": "Top up your HND to a BEng (Hons) in Software Engineering.",
+   "k": "degree top-up beng software"
+  },
+  {
+   "name": "Bachelor’s in Management: Sales & Marketing (Top-Up)",
+   "type": "Top-up",
+   "cat": "Top-Up",
+   "school": "Business",
+   "img": "/_blob/b92c409333d3fd95370a948500190087",
+   "hue": "",
+   "dur": "10–12 months",
+   "body": "University partner",
+   "fee": "LKR 250,000",
+   "monthly": "Top-up in a year",
+   "blurb": "Finish a management degree with a sales and marketing focus.",
+   "k": "degree top-up management marketing"
+  },
+  {
+   "name": "Digital Marketing & Analytics Essentials",
+   "type": "Short course",
+   "cat": "Short Course",
+   "school": "CPD",
+   "img": "/_blob/2a7f07599fe22f375ae04bfd461d6959",
+   "hue": "",
+   "dur": "4 weeks",
+   "body": "CPD",
+   "fee": "LKR 30,000",
+   "monthly": "CPD certificate",
+   "blurb": "The essentials of digital marketing and how to measure it.",
+   "k": "marketing social media ads analytics"
+  },
+  {
+   "name": "Data Analytics with Google & Looker Studio",
+   "type": "Short course",
+   "cat": "Short Course",
+   "school": "CPD",
+   "img": "/_blob/f41774a6748f7f652c56a1b88d2dba34",
+   "hue": "",
+   "dur": "6 weeks",
+   "body": "CPD",
+   "fee": "LKR 35,000",
+   "monthly": "CPD certificate",
+   "blurb": "Build clear dashboards and reports with Google tools and Looker Studio.",
+   "k": "data excel dashboard looker"
+  },
+  {
+   "name": "AI for HR",
+   "type": "Short course",
+   "cat": "Short Course",
+   "school": "CPD",
+   "img": "/_blob/9b79ddb4dd7fe05d48532d0ca28b76cb",
+   "hue": "",
+   "dur": "6 weeks",
+   "body": "CPD",
+   "fee": "LKR 50,000",
+   "monthly": "CPD certificate",
+   "blurb": "Apply AI across recruitment, people operations and HR decisions.",
+   "k": "ai hr human resources"
+  },
+  {
+   "name": "Jain University degrees",
+   "type": "Degree",
+   "cat": "Degrees",
+   "school": "Jain University",
+   "img": "/_blob/2525607f9303074ff4a330fd63cf1a64",
+   "hue": "",
+   "dur": "BBA · BCA · B.COM · MBA · MCA",
+   "body": "Jain University",
+   "fee": "Talk to an advisor",
+   "monthly": "23 programmes",
+   "blurb": "Bachelor’s and master’s degrees with Jain University, studied online from Sri Lanka.",
+   "k": "degree bba bca bcom mba mca bachelor master"
+  }
+ ],
+ "STORIES": [
+  [
+   "Nidarshana Premkumar",
+   "HND · Inspire College",
+   "/_blob/09837c527e84a92316e486e08aac96dc",
+   "66%"
+  ],
+  [
+   "Gimhani Edirisinghe",
+   "HND · Inspire College",
+   "/_blob/611c94883ba62d0bd5f4039c934d0719",
+   "70%"
+  ],
+  [
+   "Akram Razik",
+   "Foundation + HND · Inspire College",
+   "/_blob/306af9da34846d4e9ac72a934dc008df",
+   "63%"
+  ],
+  [
+   "Keneth Joel",
+   "Level 4 · Inspire College",
+   "/_blob/5c091c05f7b949dc153bf80ba9f087d9",
+   "54%"
+  ],
+  [
+   "Yara Benjamin",
+   "Foundation · Inspire College",
+   "/_blob/975d6324bb39d4835d5e638fe5c2db8f",
+   "68%"
+  ]
+ ],
+ "LEADERS": [
+  [
+   "Steven Enderby",
+   "Chairman",
+   "SE"
+  ],
+  [
+   "Dinesh Kumara",
+   "Director / CEO",
+   "DK"
+  ],
+  [
+   "Bhanuka Harischandra",
+   "Director",
+   "BH"
+  ],
+  [
+   "Tim Edwards",
+   "Director",
+   "TE"
+  ],
+  [
+   "Kanishka Liyanage",
+   "COO",
+   "KL"
+  ],
+  [
+   "Sumaiya Iqbal",
+   "Chief Academic Officer",
+   "SI"
+  ],
+  [
+   "M. D. Nishadie Gunathilaka",
+   "Programme Lead, School of Computing",
+   "NG"
+  ],
+  [
+   "Leandra Joseph",
+   "Programme Lead, School of Business",
+   "LJ"
+  ]
+ ],
+ "FAQ": [
+  [
+   "Is everything online?",
+   "Yes. Inspire College offers 100% online qualifications and professional courses. Classes, materials and recordings live in Inspire Brain, our student portal."
+  ],
+  [
+   "Are the qualifications recognised?",
+   "Our HNDs and Foundation programmes are awarded by ATHE, an Ofqual-regulated UK awarding organisation, with routes to UK top-up degrees. We also partner with WINC, LSBF, Jain University and the CPD Certification Service."
+  ],
+  [
+   "Can I pay in instalments?",
+   "Yes. Pay in full, or spread your fee into monthly instalments with secure PayHere payment links. Registration starts from LKR 9,500. Try the fee planner above."
+  ],
+  [
+   "How does the free coffee work?",
+   "Enrolled CPD UK and ATHE students get one free coffee a week at participating Barista cafés during Inspire Hours, Monday to Friday daytime: 4 a month, 48 a year."
+  ],
+  [
+   "What happens after I apply?",
+   "We review your application, an advisor contacts you, we confirm your entry requirements and you complete enrolment."
+  ]
+ ],
+ "FAQP": [
+  [
+   "Is this a recognised qualification?",
+   "Yes. Our HNDs and Foundation programmes are awarded by ATHE, an Ofqual-regulated UK awarding organisation, with routes to UK top-up degrees."
+  ],
+  [
+   "How will I know how my child is doing?",
+   "With your child’s consent, a parent view in Inspire Brain shows attendance, grades and upcoming deadlines, and advisors are a WhatsApp message away."
+  ],
+  [
+   "Can we pay monthly?",
+   "Yes. Pay in full or in monthly instalments by PayHere link. Registration starts from LKR 9,500, and the first 20 students receive a LKR 200,000 scholarship."
+  ],
+  [
+   "Who teaches the classes?",
+   "Live online sessions are led by Sri Lankan lecturers who hold relevant master’s degrees, with recordings in the student portal."
+  ],
+  [
+   "What happens after we apply?",
+   "We review the application, an advisor contacts you, we confirm entry requirements and you complete enrolment together."
+  ]
+ ],
+ "DETAIL": {
+  "hnd-se": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For builders and problem-solvers.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · Software Engineering",
+   "name": "HND-Level Study in Computing – Software Engineering Pathway",
+   "qual": "Level 4 & 5 Extended Diplomas",
+   "img": "/_blob/56b7f2da7a5200c8c69300aedde2c024",
+   "alt": "A student sketching software architecture",
+   "chip": "Full-stack + cloud",
+   "blurb": "A full-stack and cloud-focused qualification that develops your software development, engineering and deployment skills, with a route to a UK top-up degree.",
+   "overview": "Level 4 covers programming, web technologies, databases, networks and computing principles. Level 5 moves into cloud-native development, advanced programming, DevOps, virtualisation, cybersecurity and modern software engineering practice.",
+   "years": [
+    [
+     "Level 4",
+     "Programming, web technologies, databases, networks and computing principles."
+    ],
+    [
+     "Level 5",
+     "Cloud-native development, advanced programming, DevOps, virtualisation and cybersecurity."
+    ]
+   ],
+   "skills": [
+    "Programming",
+    "Web technologies",
+    "Databases",
+    "Cloud-native development",
+    "DevOps",
+    "Virtualisation"
+   ],
+   "careers": [
+    "Software developer",
+    "Software engineer",
+    "Mobile developer",
+    "Cloud engineer",
+    "DevOps technician"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND Software Engineering"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "hnd-ai": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For the AI generation.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · Computing & AI",
+   "name": "HND-Level Study in Computing & Artificial Intelligence",
+   "qual": "Level 4 & 5 Extended Diplomas",
+   "img": "/_blob/360ee812dbd8b06e0c8d0466fcc6e2d1",
+   "alt": "A student training a machine learning model",
+   "chip": "Data science + ML",
+   "blurb": "A specialised HND that builds your computing foundations and advances into data science, machine learning and AI.",
+   "overview": "Year 1 covers the basics. Year 2 moves into projects and applied work in AI, data engineering and machine learning.",
+   "years": [
+    [
+     "Year 1",
+     "Programming, databases, statistics, analytics and AI fundamentals."
+    ],
+    [
+     "Year 2",
+     "Digital transformation projects, advanced statistics, AI theory, data engineering and practical machine learning."
+    ]
+   ],
+   "skills": [
+    "Programming",
+    "Statistics",
+    "Analytics",
+    "AI theory",
+    "Data engineering",
+    "Machine learning"
+   ],
+   "careers": [
+    "AI",
+    "Data science",
+    "Machine learning",
+    "Analytics"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND Computing & AI"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "hnd-cyber": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For digital defenders.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · Cyber Security",
+   "name": "HND-Level Study in Computing – Cyber Security Pathway",
+   "qual": "Level 4 & 5 Extended Diplomas",
+   "img": "/_blob/75c3ae7cbeac009d12cffb9c3772b324",
+   "alt": "A student monitoring security screens",
+   "chip": "Route to UK Cyber top-up",
+   "blurb": "A specialised HND in cybersecurity, risk management, network protection, secure systems and ethical hacking.",
+   "overview": "Year 1 builds foundations. Year 2 moves into advanced, hands-on security work.",
+   "years": [
+    [
+     "Year 1",
+     "Programming, networks, security principles and computing essentials."
+    ],
+    [
+     "Year 2",
+     "Penetration testing, digital forensics, network operations, cloud configuration and defensive strategies."
+    ]
+   ],
+   "skills": [
+    "Network protection",
+    "Secure systems",
+    "Ethical hacking",
+    "Penetration testing",
+    "Digital forensics",
+    "Cloud security"
+   ],
+   "careers": [
+    "Cybersecurity operations",
+    "SOC analyst",
+    "Ethical hacker",
+    "Digital forensics",
+    "Cloud security"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND Cyber Security"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "hnd-data": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For people who love patterns.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · Data Analytics",
+   "name": "HND-Level Study in Computing – Data Analytics Pathway",
+   "qual": "Level 4 & 5 Extended Diplomas",
+   "img": "/_blob/50497969f86def66413907403d96f5fa",
+   "alt": "A student presenting dashboards",
+   "chip": "Direct routes to UK top-ups",
+   "blurb": "Programming, databases, analytical methods, data engineering and machine learning, with direct routes to UK top-up degrees.",
+   "overview": "Build the technical and analytical skills to turn data into decisions, from databases to machine learning.",
+   "years": [
+    [
+     "Foundations",
+     "Programming, databases and analytical methods."
+    ],
+    [
+     "Advanced",
+     "Data engineering and machine learning."
+    ]
+   ],
+   "skills": [
+    "Programming",
+    "Databases",
+    "Analytical methods",
+    "Data engineering",
+    "Machine learning"
+   ],
+   "careers": [
+    "Data analyst",
+    "Data technologist",
+    "BI analyst"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND Data Analytics"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "hnd-net": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For the people who keep the internet running.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · NetDevOps",
+   "name": "HND-Level Study in Computing – NetDevOps Pathway",
+   "qual": "Level 4 & 5 Extended Diplomas",
+   "img": "/_blob/71702a6dd30a279ea346e5c8a51d8f72",
+   "alt": "A student working at a server rack",
+   "chip": "Network + cloud top-ups",
+   "blurb": "Network engineering, cloud configuration, network automation and DevOps workflows, with a route to UK top-up degrees in Network Engineering or Cloud Infrastructure.",
+   "overview": "Learn how modern networks are built, automated and run in the cloud.",
+   "years": [
+    [
+     "Foundations",
+     "Network engineering and computing principles."
+    ],
+    [
+     "Advanced",
+     "Cloud configuration, network automation and DevOps workflows."
+    ]
+   ],
+   "skills": [
+    "Network engineering",
+    "Cloud configuration",
+    "Network automation",
+    "DevOps workflows"
+   ],
+   "careers": [
+    "NetDevOps engineer",
+    "Network engineer",
+    "Cloud infrastructure"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND NetDevOps"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "hnd-acc": {
+   "lvl": "HND",
+   "body": "ATHE (UK)",
+   "dur": "12–18 months",
+   "fee": 280000,
+   "feeHead": "from LKR 280,000",
+   "offer": true,
+   "startAmt": "LKR 9,999 / month",
+   "startNote": "after LKR 10,000 registration · Year 1",
+   "monthTrust": "From LKR 9,999 a month",
+   "fees": [
+    {
+     "h": "Year 1 · LKR 99,900",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 89,900"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 9,999"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 179"
+      ]
+     ]
+    },
+    {
+     "h": "Year 2 · LKR 180,000",
+     "rows": [
+      [
+       "Registration (once)",
+       "LKR 10,000"
+      ],
+      [
+       "Balance",
+       "LKR 170,000"
+      ],
+      [
+       "Monthly",
+       "9 × LKR 18,890"
+      ],
+      [
+       "Awarding-body fee",
+       "GBP 193"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "Start your HND with LKR 9,999.",
+   "feeNote": "Year 2 is LKR 180,000 for this programme. Awarding-body fees in GBP are paid separately. Some figures on the live page differ slightly, so admissions confirms the final schedule.",
+   "who": [
+    "School leavers after A/Ls",
+    "Foundation graduates moving up",
+    "Working people switching careers",
+    "Learners aiming for a UK top-up degree"
+   ],
+   "whoTitle": "For future accountants.",
+   "entry": "Contact admissions for entry requirements. Foundation graduates progress directly.",
+   "cups": "48 free coffees a year",
+   "plan": "hnd",
+   "finalLine": "Start your HND with LKR 9,999.",
+   "short": "HND · Accounting & Finance",
+   "name": "HND-Level Study in Accounting & Finance",
+   "qual": "Level 4 & 5 Extended Diplomas · 240 credits",
+   "img": "/_blob/c26eb636170f3306dfb17aa0c8929ac8",
+   "alt": "A student working on financial statements",
+   "chip": "Professional accounting route",
+   "blurb": "A 240-credit qualification covering accounting, finance and related business areas, with a practical view of how accounting works in real organisations.",
+   "overview": "Builds on core accounting principles and extends into taxation, the business environment, economics and the legal aspects of accounting.",
+   "years": [
+    [
+     "Core",
+     "Accounting principles, finance and the business environment."
+    ],
+    [
+     "Advanced",
+     "Taxation, economics and the legal aspects of accounting."
+    ]
+   ],
+   "skills": [
+    "Accounting principles",
+    "Finance",
+    "Taxation",
+    "Economics",
+    "Business law"
+   ],
+   "careers": [
+    "Higher education",
+    "Professional accounting pathways"
+   ],
+   "path": [
+    [
+     "Start",
+     "Foundation (optional)"
+    ],
+    [
+     "You are here",
+     "HND Accounting & Finance"
+    ],
+    [
+     "Next",
+     "UK top-up degree (final year)"
+    ],
+    [
+     "Then",
+     "Master’s"
+    ]
+   ]
+  },
+  "f-idt": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step into tech.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · Digital Technologies",
+   "name": "Foundation-Level – Information & Digital Technologies",
+   "img": "/_blob/a66e865f746418f7c249c77622575c84",
+   "alt": "A school leaver designing an app",
+   "chip": "Leads on to Level 4 and the HND",
+   "blurb": "An entry-level course for post-O/L students covering programming, cybersecurity, digital technologies, data concepts, and web and mobile development.",
+   "overview": "Build a strong foundation in computing and IT before advancing to higher-level IT pathways.",
+   "years": [
+    [
+     "Core areas",
+     "Programming, cybersecurity and digital technologies."
+    ],
+    [
+     "Applied",
+     "Data concepts and modern web and mobile development."
+    ]
+   ],
+   "skills": [
+    "Programming",
+    "Cybersecurity",
+    "Digital technologies",
+    "Data concepts",
+    "Web & mobile development"
+   ],
+   "careers": [
+    "Level 4 diplomas",
+    "HND programmes",
+    "Entry-level tech roles"
+   ]
+  },
+  "f-bus": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step after O/Ls.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · Business",
+   "name": "Foundation in Business",
+   "img": "/_blob/6ce2497355e531ee512bb60825217e99",
+   "alt": "A school leaver studying online",
+   "chip": "Leads on to the HND",
+   "blurb": "Your first step after O/Ls into business and management, leading on to an HND.",
+   "overview": "A practical introduction to how businesses work, preparing you for higher-level business study.",
+   "years": [
+    [
+     "Core",
+     "Business fundamentals and management."
+    ],
+    [
+     "Applied",
+     "Communication and study skills for higher education."
+    ]
+   ],
+   "skills": [
+    "Business fundamentals",
+    "Management",
+    "Communication",
+    "Study skills"
+   ],
+   "careers": [
+    "HND in Business",
+    "Entry-level business roles"
+   ]
+  },
+  "f-acc": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step after O/Ls.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · Accounting",
+   "name": "Foundation in Accounting",
+   "img": "/_blob/c26eb636170f3306dfb17aa0c8929ac8",
+   "alt": "A student working with numbers",
+   "chip": "Leads on to HND Accounting",
+   "blurb": "Start your accounting journey after O/Ls with a UK Level 3 foundation.",
+   "overview": "Learn core accounting ideas and get ready for the HND-Level Study in Accounting & Finance.",
+   "years": [
+    [
+     "Core",
+     "Accounting basics and numeracy."
+    ],
+    [
+     "Applied",
+     "Business finance foundations."
+    ]
+   ],
+   "skills": [
+    "Accounting basics",
+    "Numeracy",
+    "Business finance"
+   ],
+   "careers": [
+    "HND-Level Study in Accounting & Finance",
+    "Accounts assistant roles"
+   ]
+  },
+  "f-stat": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step after O/Ls.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · Applied Statistics",
+   "name": "Foundation in Applied Statistics",
+   "img": "/_blob/50497969f86def66413907403d96f5fa",
+   "alt": "Students reviewing charts",
+   "chip": "Leads on to data pathways",
+   "blurb": "Build your skills with numbers and data after O/Ls.",
+   "overview": "An entry route into data-focused study, leading to HNDs in Data Analytics or Computing & AI.",
+   "years": [
+    [
+     "Core",
+     "Statistics fundamentals."
+    ],
+    [
+     "Applied",
+     "Working with data."
+    ]
+   ],
+   "skills": [
+    "Statistics",
+    "Data handling",
+    "Problem solving"
+   ],
+   "careers": [
+    "HND Data Analytics",
+    "HND Computing & AI"
+   ]
+  },
+  "f-eng": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step after O/Ls.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · English & Comms",
+   "name": "Foundation in English & Communications for Business",
+   "img": "/_blob/42b14f61d3511834bb2ab5111636f45b",
+   "alt": "A student presenting to classmates",
+   "chip": "Confidence for business",
+   "blurb": "Build confident business English and communication skills after O/Ls.",
+   "overview": "Strengthen the English and communication skills you need for higher study and work.",
+   "years": [
+    [
+     "Core",
+     "Business English."
+    ],
+    [
+     "Applied",
+     "Communication for work."
+    ]
+   ],
+   "skills": [
+    "Business English",
+    "Presentations",
+    "Written communication"
+   ],
+   "careers": [
+    "HND in Business",
+    "Customer-facing roles"
+   ]
+  },
+  "f-sme": {
+   "lvl": "Foundation",
+   "body": "ATHE (UK)",
+   "qual": "Level 3 Diploma",
+   "dur": "8 months",
+   "fee": 49500,
+   "feeHead": "LKR 49,500",
+   "offer": true,
+   "startAmt": "LKR 5,000 / month",
+   "startNote": "after LKR 9,500 registration · 8 months",
+   "monthTrust": "From LKR 5,000 a month",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 49,500",
+     "rows": [
+      [
+       "Registration (once, non-refundable)",
+       "LKR 9,500"
+      ],
+      [
+       "Monthly",
+       "8 × LKR 5,000"
+      ],
+      [
+       "Total",
+       "LKR 49,500"
+      ]
+     ]
+    }
+   ],
+   "feeTitle": "UK qualifications from just LKR 5,000 a month.",
+   "feeNote": "Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.",
+   "who": [
+    "Students who have finished O/Ls",
+    "Learners who want a head start",
+    "Anyone planning an HND or degree",
+    "Career starters"
+   ],
+   "whoTitle": "For your first step after O/Ls.",
+   "entry": "Designed for students finishing O/Ls. Contact admissions for entry requirements.",
+   "cups": "32 free coffees over 8 months",
+   "plan": "fnd",
+   "path": [
+    [
+     "Today",
+     "O/Ls done"
+    ],
+    [
+     "You are here",
+     "Foundation · Level 3"
+    ],
+    [
+     "Next",
+     "Level 4 diploma or HND"
+    ],
+    [
+     "Then",
+     "UK top-up degree"
+    ]
+   ],
+   "finalLine": "Start from LKR 5,000 a month.",
+   "short": "Foundation · Small Business Start-up",
+   "name": "Foundation in Small Business & Social Enterprise Start-up",
+   "img": "/_blob/39d306276ca642e3b132b84ab20bbc4a",
+   "alt": "A student pitching a business idea",
+   "chip": "For young founders",
+   "blurb": "Learn how to plan and launch a small business or social enterprise.",
+   "overview": "An entrepreneurial foundation for students who want to build something of their own.",
+   "years": [
+    [
+     "Core",
+     "Starting a business."
+    ],
+    [
+     "Applied",
+     "Social enterprise and planning."
+    ]
+   ],
+   "skills": [
+    "Business planning",
+    "Social enterprise",
+    "Pitching"
+   ],
+   "careers": [
+    "Your own venture",
+    "HND in Business"
+   ]
+  },
+  "pg-edu": {
+   "lvl": "Postgraduate",
+   "body": "ATHE (UK)",
+   "qual": "Level 7 Extended Diploma",
+   "dur": "10–12 months",
+   "offer": false,
+   "monthTrust": "LKR 36,000 a month",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "Built for leaders in education.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG Dip · Educational Leadership",
+   "name": "Postgraduate-Level Study in Strategic Educational Leadership & Management",
+   "fee": 350000,
+   "feeHead": "LKR 350,000",
+   "startAmt": "LKR 36,000 / month",
+   "startNote": "or LKR 350,000 in full · 10–12 months",
+   "fees": [
+    {
+     "h": "Programme fee · LKR 350,000",
+     "rows": [
+      [
+       "Full fee",
+       "LKR 350,000"
+      ],
+      [
+       "Monthly option",
+       "LKR 36,000 / month"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/a39f44d0a31a44129e6e79042d56eacf",
+   "alt": "A principal leading a staff meeting",
+   "chip": "For principals and academic leaders",
+   "blurb": "A UK-regulated programme for experienced education professionals in leadership and management roles.",
+   "overview": "Build leadership capacity and move into higher-level education management roles.",
+   "years": [
+    [
+     "Leadership",
+     "Strategic leadership, team leadership and change management."
+    ],
+    [
+     "Management",
+     "School operations, resource planning, teaching quality and professional development."
+    ]
+   ],
+   "skills": [
+    "Strategic leadership",
+    "Educational management",
+    "Team leadership",
+    "Resource planning",
+    "Teaching quality",
+    "Change management"
+   ],
+   "careers": [
+    "Senior leadership",
+    "Principal / headteacher",
+    "Academic management"
+   ],
+   "who": [
+    "Senior leaders and principals",
+    "Headteachers",
+    "Academic managers",
+    "School administrators"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your leadership role"
+    ],
+    [
+     "You are here",
+     "Level 7 PG Diploma"
+    ],
+    [
+     "Next",
+     "Higher-level management"
+    ],
+    [
+     "Ask us",
+     "Progression options"
+    ]
+   ]
+  },
+  "pg-ai": {
+   "lvl": "Postgraduate",
+   "body": "UK-regulated",
+   "qual": "Postgraduate Diploma · Level 7",
+   "dur": "10 or 12 months",
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "For professionals ready to go further.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG Dip · Computing (AI)",
+   "name": "Postgraduate Diploma in Computing: Artificial Intelligence",
+   "fee": 400000,
+   "feeHead": "from LKR 400,000",
+   "startAmt": "from LKR 400,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 400,000"
+      ],
+      [
+       "Duration",
+       "10 or 12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/360ee812dbd8b06e0c8d0466fcc6e2d1",
+   "alt": "A student working with AI",
+   "chip": "Level 7 computing",
+   "blurb": "A postgraduate route into artificial intelligence for graduates and professionals.",
+   "overview": "Deepen your computing expertise with a focus on AI.",
+   "years": [
+    [
+     "Focus",
+     "Artificial intelligence."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Artificial intelligence",
+    "Advanced computing"
+   ],
+   "careers": [
+    "AI roles",
+    "Master’s progression"
+   ],
+   "who": [
+    "Computing graduates",
+    "Tech professionals",
+    "Career changers with a degree",
+    "Future AI specialists"
+   ],
+   "path": [
+    [
+     "Before",
+     "Degree or equivalent"
+    ],
+    [
+     "You are here",
+     "PG Diploma"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Specialist roles"
+    ]
+   ]
+  },
+  "pg-gen": {
+   "lvl": "Postgraduate",
+   "body": "UK-regulated",
+   "qual": "Postgraduate Diploma · Level 7",
+   "dur": "10 or 12 months",
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "For professionals ready to go further.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG Dip · Computing (General)",
+   "name": "Postgraduate Diploma in Computing: General Route",
+   "fee": 400000,
+   "feeHead": "from LKR 400,000",
+   "startAmt": "from LKR 400,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 400,000"
+      ],
+      [
+       "Duration",
+       "10 or 12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/56b7f2da7a5200c8c69300aedde2c024",
+   "alt": "A student designing software",
+   "chip": "Level 7 computing",
+   "blurb": "A broad postgraduate route across modern computing.",
+   "overview": "Advance your computing knowledge at Level 7.",
+   "years": [
+    [
+     "Focus",
+     "General computing."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Advanced computing"
+   ],
+   "careers": [
+    "Senior tech roles",
+    "Master’s progression"
+   ],
+   "who": [
+    "Computing graduates",
+    "Tech professionals",
+    "Career changers with a degree",
+    "Team leads"
+   ],
+   "path": [
+    [
+     "Before",
+     "Degree or equivalent"
+    ],
+    [
+     "You are here",
+     "PG Diploma"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Senior roles"
+    ]
+   ]
+  },
+  "pg-se": {
+   "lvl": "Postgraduate",
+   "body": "UK-regulated",
+   "qual": "Postgraduate Diploma · Level 7",
+   "dur": "10 or 12 months",
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "For professionals ready to go further.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG Dip · Computing (Software Eng.)",
+   "name": "Postgraduate Diploma in Computing: Software Engineering",
+   "fee": 400000,
+   "feeHead": "from LKR 400,000",
+   "startAmt": "from LKR 400,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 400,000"
+      ],
+      [
+       "Duration",
+       "10 or 12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/56b7f2da7a5200c8c69300aedde2c024",
+   "alt": "A student sketching architecture",
+   "chip": "Level 7 computing",
+   "blurb": "A postgraduate route in software engineering.",
+   "overview": "Take your software engineering practice to Level 7.",
+   "years": [
+    [
+     "Focus",
+     "Software engineering."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Software engineering"
+   ],
+   "careers": [
+    "Senior developer",
+    "Master’s progression"
+   ],
+   "who": [
+    "Developers",
+    "Computing graduates",
+    "Tech leads",
+    "Career changers with a degree"
+   ],
+   "path": [
+    [
+     "Before",
+     "Degree or equivalent"
+    ],
+    [
+     "You are here",
+     "PG Diploma"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Senior roles"
+    ]
+   ]
+  },
+  "pg-app": {
+   "lvl": "Postgraduate",
+   "body": "UK-regulated",
+   "qual": "Postgraduate Diploma · Level 7",
+   "dur": "10 or 12 months",
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "For professionals ready to go further.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG · Application Development",
+   "name": "Postgraduate-Level Study in Computing: Application Development",
+   "fee": 350000,
+   "feeHead": "from LKR 350,000",
+   "startAmt": "from LKR 350,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 350,000"
+      ],
+      [
+       "Duration",
+       "10 or 12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/a66e865f746418f7c249c77622575c84",
+   "alt": "An app being designed",
+   "chip": "Level 7 computing",
+   "blurb": "Postgraduate study in application development.",
+   "overview": "Build advanced application development skills.",
+   "years": [
+    [
+     "Focus",
+     "Application development."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Application development"
+   ],
+   "careers": [
+    "App developer",
+    "Master’s progression"
+   ],
+   "who": [
+    "Developers",
+    "Computing graduates",
+    "Product builders",
+    "Career changers with a degree"
+   ],
+   "path": [
+    [
+     "Before",
+     "Degree or equivalent"
+    ],
+    [
+     "You are here",
+     "PG Diploma"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Senior roles"
+    ]
+   ]
+  },
+  "pg-data": {
+   "lvl": "Postgraduate",
+   "body": "UK-regulated",
+   "qual": "Postgraduate Diploma · Level 7",
+   "dur": "10 or 12 months",
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Invest in your next level.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.",
+   "whoTitle": "For professionals ready to go further.",
+   "entry": "For graduates and experienced professionals. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "finalLine": "Talk to an advisor about your plan.",
+   "short": "PG · Data Analytics",
+   "name": "Postgraduate-Level Study in Computing: Data Analytics",
+   "fee": 350000,
+   "feeHead": "from LKR 350,000",
+   "startAmt": "from LKR 350,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 350,000"
+      ],
+      [
+       "Duration",
+       "10 or 12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/50497969f86def66413907403d96f5fa",
+   "alt": "Dashboards on a screen",
+   "chip": "Level 7 computing",
+   "blurb": "Postgraduate study in data analytics.",
+   "overview": "Advance your analytics capability at Level 7.",
+   "years": [
+    [
+     "Focus",
+     "Data analytics."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Data analytics"
+   ],
+   "careers": [
+    "Senior analyst",
+    "Master’s progression"
+   ],
+   "who": [
+    "Analysts",
+    "Graduates",
+    "Managers working with data",
+    "Career changers with a degree"
+   ],
+   "path": [
+    [
+     "Before",
+     "Degree or equivalent"
+    ],
+    [
+     "You are here",
+     "PG Diploma"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Senior roles"
+    ]
+   ]
+  },
+  "tu-beng": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "12 months",
+   "fee": 400000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "UoB BEng (Hons) Software Eng. Top-Up",
+   "name": "UoB BEng (Hons) Software Engineering (Top-Up)",
+   "feeHead": "LKR 400,000",
+   "startAmt": "LKR 400,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 400,000"
+      ],
+      [
+       "Duration",
+       "12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/56b7f2da7a5200c8c69300aedde2c024",
+   "alt": "A software engineering student",
+   "chip": "Honours degree in 12 months",
+   "blurb": "Top up your HND to a BEng (Hons) in Software Engineering.",
+   "overview": "Complete the final year of a software engineering honours degree online.",
+   "years": [
+    [
+     "Final year",
+     "Software engineering at honours level."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Software engineering"
+   ],
+   "careers": [
+    "Software engineer",
+    "Master’s progression"
+   ]
+  },
+  "tu-fin": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "10–12 months",
+   "fee": 250000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "Top-Up · Management (Finance)",
+   "name": "Bachelor’s-Level Study in Management: Finance Pathway",
+   "feeHead": "LKR 250,000",
+   "startAmt": "LKR 250,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 250,000"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/c26eb636170f3306dfb17aa0c8929ac8",
+   "alt": "Finance work",
+   "chip": "Top-up in a year",
+   "blurb": "Top up to a bachelor’s in management with a finance focus.",
+   "overview": "Finish your degree with a finance pathway.",
+   "years": [
+    [
+     "Final year",
+     "Management with finance."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Management",
+    "Finance"
+   ],
+   "careers": [
+    "Finance roles",
+    "MBA progression"
+   ]
+  },
+  "tu-gen": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "10–12 months",
+   "fee": 250000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "Top-Up · Management (General)",
+   "name": "Bachelor’s-Level Study in Management: General Route",
+   "feeHead": "LKR 250,000",
+   "startAmt": "LKR 250,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 250,000"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/39d306276ca642e3b132b84ab20bbc4a",
+   "alt": "A business pitch",
+   "chip": "Top-up in a year",
+   "blurb": "Top up to a bachelor’s in management.",
+   "overview": "Finish your management degree online.",
+   "years": [
+    [
+     "Final year",
+     "General management."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Management"
+   ],
+   "careers": [
+    "Management roles",
+    "MBA progression"
+   ]
+  },
+  "tu-people": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "10–12 months",
+   "fee": 250000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "Top-Up · Managing People",
+   "name": "Bachelor’s-Level Study in Management: Managing People Pathway",
+   "feeHead": "LKR 250,000",
+   "startAmt": "LKR 250,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 250,000"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/42b14f61d3511834bb2ab5111636f45b",
+   "alt": "A team meeting",
+   "chip": "Top-up in a year",
+   "blurb": "Top up to a bachelor’s focused on managing people.",
+   "overview": "Finish your degree with a people-management focus.",
+   "years": [
+    [
+     "Final year",
+     "Managing people."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Management",
+    "People management"
+   ],
+   "careers": [
+    "HR and people roles",
+    "MBA progression"
+   ]
+  },
+  "tu-ops": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "10–12 months",
+   "fee": 250000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "Top-Up · Operations Mgmt",
+   "name": "Bachelor’s-Level Study in Management: Operations Management Pathway",
+   "feeHead": "LKR 250,000",
+   "startAmt": "LKR 250,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 250,000"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/42b14f61d3511834bb2ab5111636f45b",
+   "alt": "A business meeting",
+   "chip": "Top-up in a year",
+   "blurb": "Top up to a bachelor’s with an operations focus.",
+   "overview": "Finish your degree with operations management.",
+   "years": [
+    [
+     "Final year",
+     "Operations management."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Management",
+    "Operations"
+   ],
+   "careers": [
+    "Operations roles",
+    "MBA progression"
+   ]
+  },
+  "tu-sales": {
+   "lvl": "Top-Up",
+   "body": "UK university partner",
+   "qual": "Bachelor’s top-up",
+   "dur": "10–12 months",
+   "fee": 250000,
+   "offer": false,
+   "monthTrust": "Monthly plans available",
+   "feeTitle": "Finish your degree in a year.",
+   "feeNote": "Payment plans are set with an advisor. Contact admissions for entry requirements.",
+   "whoTitle": "For HND graduates ready to finish a degree.",
+   "entry": "Designed for HND or equivalent graduates. Contact admissions for entry requirements.",
+   "cups": "40 free coffees",
+   "plan": "pg",
+   "who": [
+    "HND graduates",
+    "Working professionals with a Level 5",
+    "Learners after a UK-recognised diploma",
+    "Future managers"
+   ],
+   "path": [
+    [
+     "Before",
+     "HND · Level 5"
+    ],
+    [
+     "You are here",
+     "Top-up degree"
+    ],
+    [
+     "Next",
+     "Master’s"
+    ],
+    [
+     "Then",
+     "Leadership roles"
+    ]
+   ],
+   "finalLine": "Complete your bachelor’s online.",
+   "short": "Top-Up · Sales & Marketing",
+   "name": "Bachelor’s-Level Study in Management: Sales & Marketing Pathway",
+   "feeHead": "LKR 250,000",
+   "startAmt": "LKR 250,000",
+   "startNote": "payment plan set with an advisor",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 250,000"
+      ],
+      [
+       "Duration",
+       "10–12 months"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/39d306276ca642e3b132b84ab20bbc4a",
+   "alt": "A sales pitch",
+   "chip": "Top-up in a year",
+   "blurb": "Top up to a bachelor’s with a sales and marketing focus.",
+   "overview": "Finish your degree with sales and marketing.",
+   "years": [
+    [
+     "Final year",
+     "Sales and marketing management."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Management",
+    "Sales",
+    "Marketing"
+   ],
+   "careers": [
+    "Sales and marketing roles",
+    "MBA progression"
+   ]
+  },
+  "c-aimastery": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "AI Mastery",
+   "name": "AI Mastery",
+   "dur": "12 weeks",
+   "fee": 75000,
+   "feeHead": "from LKR 75,000",
+   "startAmt": "from LKR 75,000",
+   "startNote": "12 weeks · CPD-validated",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 75,000"
+      ],
+      [
+       "Duration",
+       "12 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/05aab9df038da008212518655775f86a",
+   "alt": "Professionals in an AI workshop",
+   "chip": "No coding required",
+   "blurb": "Use AI tools with confidence, assess AI opportunities and risks, and design AI-enabled solutions for your organisation.",
+   "overview": "A non-technical programme for professionals. You work on real business scenarios and finish with an applied AI use case.",
+   "years": [
+    [
+     "Topics",
+     "Generative AI, large language models, prompt engineering and productivity tools."
+    ],
+    [
+     "Applied",
+     "Decision support, no-code AI solutions and responsible AI adoption, ending with a final use case."
+    ]
+   ],
+   "skills": [
+    "Generative AI",
+    "LLMs",
+    "Prompt engineering",
+    "No-code AI",
+    "Responsible AI"
+   ],
+   "careers": [
+    "AI-enabled roles at work"
+   ]
+  },
+  "c-aihr": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "AI for HR",
+   "name": "AI for HR",
+   "dur": "6 weeks",
+   "fee": 50000,
+   "feeHead": "LKR 50,000",
+   "startAmt": "LKR 50,000",
+   "startNote": "6 weeks · CPD",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 50,000"
+      ],
+      [
+       "Duration",
+       "6 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/05aab9df038da008212518655775f86a",
+   "alt": "An HR workshop",
+   "chip": "For HR teams",
+   "blurb": "Apply AI across recruitment, people operations and HR decision-making.",
+   "overview": "A practical CPD course for HR professionals.",
+   "years": [
+    [
+     "Focus",
+     "AI in HR."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "AI tools for HR"
+   ],
+   "careers": [
+    "HR roles"
+   ]
+  },
+  "c-aimkt": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "AI for Marketing",
+   "name": "AI For Marketing",
+   "dur": "4 weeks",
+   "fee": 30000,
+   "feeHead": "LKR 30,000",
+   "startAmt": "LKR 30,000",
+   "startNote": "4 weeks · CPD",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 30,000"
+      ],
+      [
+       "Duration",
+       "4 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/c207daef09b15a19b09b7923f7ef32fd",
+   "alt": "A learner in a live class",
+   "chip": "For marketers",
+   "blurb": "Use AI to plan, create and measure marketing faster.",
+   "overview": "A short, practical CPD course for marketers.",
+   "years": [
+    [
+     "Focus",
+     "AI in marketing."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "AI tools for marketing"
+   ],
+   "careers": [
+    "Marketing roles"
+   ]
+  },
+  "c-cyber": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "Cyber Security in the AI Era",
+   "name": "Cyber Security in the AI Era",
+   "dur": "12 weeks",
+   "fee": 75000,
+   "feeHead": "LKR 75,000",
+   "startAmt": "LKR 75,000",
+   "startNote": "12 weeks · CPD",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 75,000"
+      ],
+      [
+       "Duration",
+       "12 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/75c3ae7cbeac009d12cffb9c3772b324",
+   "alt": "Security monitoring screens",
+   "chip": "Modern threats",
+   "blurb": "Understand how AI is changing cyber threats and defences.",
+   "overview": "A CPD course on security in an AI-driven world.",
+   "years": [
+    [
+     "Focus",
+     "Cyber security and AI."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Cyber security",
+    "AI threats"
+   ],
+   "careers": [
+    "Security-aware roles"
+   ]
+  },
+  "c-looker": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "Data Analytics with Looker Studio",
+   "name": "Data Analytics with Google & Looker Studio",
+   "dur": "6 weeks",
+   "fee": 35000,
+   "feeHead": "LKR 35,000",
+   "startAmt": "LKR 35,000",
+   "startNote": "6 weeks · CPD",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 35,000"
+      ],
+      [
+       "Duration",
+       "6 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/50497969f86def66413907403d96f5fa",
+   "alt": "Dashboards",
+   "chip": "Hands-on dashboards",
+   "blurb": "Build clear dashboards and reports with Google tools and Looker Studio.",
+   "overview": "A hands-on CPD course in practical analytics.",
+   "years": [
+    [
+     "Focus",
+     "Google tools and Looker Studio."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Dashboards",
+    "Reporting"
+   ],
+   "careers": [
+    "Analytics at work"
+   ]
+  },
+  "c-dm": {
+   "lvl": "Short course",
+   "body": "CPD",
+   "qual": "CPD-validated short course",
+   "offer": false,
+   "monthTrust": "CPD certificate",
+   "feeTitle": "One clear fee.",
+   "feeNote": "Live online sessions plus the LMS. Contact admissions for the next cohort date.",
+   "whoTitle": "For professionals who want skills fast.",
+   "entry": "Open to working professionals and students. No coding required unless stated.",
+   "cups": "4 free coffees in your first month",
+   "plan": "cpd",
+   "who": [
+    "Working professionals",
+    "Managers and team leads",
+    "Entrepreneurs",
+    "Students adding a skill"
+   ],
+   "path": [
+    [
+     "Today",
+     "Your current role"
+    ],
+    [
+     "You are here",
+     "CPD short course"
+    ],
+    [
+     "Next",
+     "Apply it at work"
+    ],
+    [
+     "Or",
+     "Stack it with an HND"
+    ]
+   ],
+   "finalLine": "Join the next cohort.",
+   "short": "Digital Marketing & Analytics",
+   "name": "Digital Marketing & Analytics Essentials",
+   "dur": "4 weeks",
+   "fee": 30000,
+   "feeHead": "LKR 30,000",
+   "startAmt": "LKR 30,000",
+   "startNote": "4 weeks · CPD",
+   "fees": [
+    {
+     "h": "Programme fee",
+     "rows": [
+      [
+       "Fee",
+       "from LKR 30,000"
+      ],
+      [
+       "Duration",
+       "4 weeks"
+      ],
+      [
+       "Payment plan",
+       "Set with an advisor"
+      ]
+     ]
+    }
+   ],
+   "img": "/_blob/c207daef09b15a19b09b7923f7ef32fd",
+   "alt": "A learner in a live class",
+   "chip": "Campaigns + analytics",
+   "blurb": "The essentials of digital marketing and how to measure it.",
+   "overview": "A short CPD course covering digital channels and analytics.",
+   "years": [
+    [
+     "Focus",
+     "Digital marketing and analytics."
+    ],
+    [
+     "Format",
+     "Live online sessions plus the LMS."
+    ]
+   ],
+   "skills": [
+    "Digital marketing",
+    "Analytics"
+   ],
+   "careers": [
+    "Marketing roles"
+   ]
+  }
+ },
+ "DETAIL_IMGS": {
+  "f-bus": "/_blob/552198928148e7f650f560523de7be38",
+  "f-acc": "/_blob/eb8ded50a8f89858e13101da1518fb65",
+  "f-stat": "/_blob/700a47ba5b1c261c8a0143ff6a1f8cf3",
+  "f-eng": "/_blob/2266ab5a3faf7a51451c570d88b32b37",
+  "f-sme": "/_blob/d7297d66eb86ebc37ce53d0eed8a85e9",
+  "pg-ai": "/_blob/e389c81bbc724f55fd11cfbb37f850a2",
+  "pg-gen": "/_blob/ca4381bf753a08946a873d468e4c0bd1",
+  "pg-se": "/_blob/9909c8448005916ce74e76bb864cf895",
+  "pg-app": "/_blob/b12cb5fd0b662f8605a6843aa64fda3d",
+  "pg-data": "/_blob/c05a2d05632297bc93824571fb5104ff",
+  "tu-beng": "/_blob/7b5e92693234d7f157d97f52f204d7b9",
+  "tu-fin": "/_blob/272389582f2a702a06e605cc7dcefdcf",
+  "tu-gen": "/_blob/e809ca1a49a37b9faa8f59049ac5ebe3",
+  "tu-people": "/_blob/5d208a8a94a292e2202a85fb29264dc1",
+  "tu-ops": "/_blob/4fea0937215b31de5caad4bf571e1637",
+  "tu-sales": "/_blob/b92c409333d3fd95370a948500190087",
+  "c-aihr": "/_blob/9b79ddb4dd7fe05d48532d0ca28b76cb",
+  "c-aimkt": "/_blob/1eb3d8ebcf26f96feaa13af68c478968",
+  "c-cyber": "/_blob/5a65404b02dc3f4c332d02e7deede027",
+  "c-looker": "/_blob/f41774a6748f7f652c56a1b88d2dba34",
+  "c-dm": "/_blob/2a7f07599fe22f375ae04bfd461d6959"
+ }
+}

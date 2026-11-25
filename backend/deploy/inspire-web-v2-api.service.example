@@ -1,0 +1,11 @@
+[Unit]
+Description=Inspire Web v2 API (separate from inspire-api)
+After=network.target
+
+[Service]
+WorkingDirectory=/home/ubuntu/inspire-web-v2/backend
+ExecStart=/home/ubuntu/inspire-web-v2/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8120
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,284 @@
+<!doctype html><html lang="en"><head><!--IC_HEAD--><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inspire College — AI Aptitude Match</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@400..500&amp;family=Outfit:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.ic{--bg:#0d0a14;--soft:rgba(255,255,255,.07);--card:#1c1626;--ink:#f5f2fb;--muted:#bcb3cc;--line:rgba(255,255,255,.12);--act:#7c3aed;--act-ink:#c4b5fd;--ok:#34d399;min-height:100vh;background:radial-gradient(80% 60% at 85% 0%,rgba(124,58,237,.35),transparent 60%),radial-gradient(60% 50% at 0% 100%,rgba(236,72,153,.18),transparent 60%),#0d0a14;color:var(--ink);font:17px/1.55 Geist,"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.ic *{box-sizing:border-box;min-width:0}
+.ic a{color:inherit}
+.ic a:hover{color:#c4b5fd}
+.ic button{font-family:inherit}
+.ic :focus-visible{outline:3px solid #a78bfa;outline-offset:3px;border-radius:12px}
+.ic h1,.ic h2,.ic h3{margin:0;font-weight:650;letter-spacing:-.04em;line-height:1.05;text-wrap:balance}
+.ser{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.02em;color:#c4b5fd}
+.bar{max-width:1240px;margin:0 auto;padding:18px max(4vw,16px);display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:750;letter-spacing:-.03em;font-size:18px}
+.mark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#a78bfa,#6d28d9);display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px}
+.xp{margin-left:auto;display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:999px;background:var(--soft);font-weight:650;font-size:14px}
+.xp b{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3b1d00;display:grid;place-items:center;font-size:12px}
+.close{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--soft);text-decoration:none;font-size:20px}
+.main{max-width:1240px;margin:0 auto;padding:clamp(20px,4vw,48px) max(4vw,16px) 80px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,4vw,56px);align-items:start}
+.prog{display:flex;gap:6px;margin:0 0 28px}
+.prog i{flex:1;height:6px;border-radius:6px;background:var(--soft)}
+.prog i.on{background:linear-gradient(90deg,#a78bfa,#f0abfc)}
+.qn{font-size:14px;font-weight:650;color:#c4b5fd;margin:0 0 10px}
+.qt{font-size:clamp(30px,4vw,52px)}
+.opts{display:grid;gap:12px;margin-top:30px}
+.opt{display:flex;align-items:center;gap:16px;width:100%;text-align:left;min-height:68px;padding:14px 20px;border-radius:28px;border:1.5px solid var(--line);background:var(--soft);color:var(--ink);font:560 17px Geist,"Plus Jakarta Sans",system-ui;cursor:pointer;transition:transform .2s,background .2s}
+.opt:hover{transform:translateX(4px);background:rgba(255,255,255,.12)}
+.opt .k{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.side{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:40px;padding:26px;position:sticky;top:20px}
+.side h3{font-size:20px;letter-spacing:-.02em}
+.side p{color:var(--muted);font-size:15px;margin:6px 0 0}
+.rows{display:grid;gap:12px;margin-top:20px}
+.row{display:grid;grid-template-columns:118px 1fr 42px;gap:10px;align-items:center;font-size:14px}
+.trk{height:10px;border-radius:10px;background:rgba(255,255,255,.1);overflow:hidden}
+.trk b{display:block;height:100%;border-radius:10px;background:linear-gradient(90deg,#a78bfa,#f0abfc);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.badges span{font-size:13px;font-weight:650;padding:7px 12px;border-radius:999px;background:var(--soft)}
+.badges span.got{background:rgba(52,211,153,.16);color:#6ee7b7}
+.res{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.hero-r{border-radius:44px;padding:clamp(24px,3vw,40px);background:linear-gradient(140deg,#4c1d95,#7c3aed 60%,#c026d3);position:relative;overflow:hidden}
+.hero-r .tag{display:inline-block;font-size:13px;font-weight:700;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.18);margin-bottom:16px}
+.hero-r h2{font-size:clamp(34px,4vw,54px)}
+.hero-r p{color:rgba(255,255,255,.88);margin:14px 0 0}
+.big{font-size:88px;font-weight:750;letter-spacing:-.06em;line-height:1;margin-top:18px}
+.big small{font-size:18px;font-weight:600;letter-spacing:0;margin-left:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font-weight:650;font-size:16px;text-decoration:none;border:0;cursor:pointer}
+.btn.w{background:#fff;color:#2a0e5c}
+.ic a.btn.w:hover{color:#2a0e5c}
+.btn.g{background:rgba(255,255,255,.12);color:#fff}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.rec{display:grid;gap:10px;margin-top:18px}
+.rec a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-radius:24px;background:var(--soft);text-decoration:none;font-weight:600}
+.rec small{display:block;color:var(--muted);font-weight:450;font-size:14px}
+.rec em{font-style:normal;font-size:13px;font-weight:700;color:#6ee7b7;white-space:nowrap}
+.ai{display:flex;gap:12px;padding:16px 18px;border-radius:24px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);margin-top:18px;font-size:15px}
+.ai i{font-style:normal;width:32px;height:32px;border-radius:10px;background:#7c3aed;display:grid;place-items:center;flex:none}
+@media(max-width:860px){.main,.res{grid-template-columns:minmax(0,1fr)}.side{position:static}.opt{min-height:60px;font-size:16px}.big{font-size:64px}}
+
+.ic{font-family:Geist,"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;letter-spacing:-.005em}
+.ic h1,.ic h2,.ic h3,.ic h4{font-family:Geist,Outfit,Geist,"Plus Jakarta Sans",system-ui,sans-serif;font-weight:600;letter-spacing:-.035em}
+.ser{font-family:inherit!important;font-style:normal!important;font-weight:300!important;letter-spacing:-.03em}
+.ic button,.ic input,.ic select,.ic textarea{font-family:Geist,"Plus Jakarta Sans",system-ui,sans-serif}
+
+@media(max-width:380px){.ic .wrap{padding:0 14px}.ic h1{font-size:34px!important;letter-spacing:-.04em}.ic .btn{padding:0 18px}}
+@supports(padding:max(0px)){.tabbar,.mtab{padding-bottom:calc(14px + env(safe-area-inset-bottom))!important}.applybar,.mbar{bottom:calc(12px + env(safe-area-inset-bottom))}}
+
+@media(horizontal-viewport-segments:2){.main,.res{display:grid!important;grid-template-columns:env(viewport-segment-width 0 0,1fr) env(viewport-segment-width 1 0,1fr)!important;column-gap:calc(env(viewport-segment-left 1 0,0px) - env(viewport-segment-right 0 0,0px))!important}.ic .wrap{padding:0 24px}}
+@media(vertical-viewport-segments:2){.hdr{top:0}}
+</style>
+<style>.cnote{color:var(--muted);font-size:14px;margin:6px 0 12px}
+.car{border-radius:24px;border:1px solid var(--line);overflow:hidden;background:var(--card)}
+.car-h,.car-r{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:center;padding:12px 16px}
+.car-h{background:var(--soft);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.car-r{border-top:1px solid var(--line);font-size:14.5px}
+.car-r b{font-weight:650}
+.car-r .lk{font-weight:700;color:var(--act-ink,#6d28d9);font-variant-numeric:tabular-nums}
+.car-r .gl{font-weight:600;font-variant-numeric:tabular-nums}
+.csrc{color:var(--muted);font-size:12px;margin:10px 0 0;line-height:1.45}
+@media(max-width:560px){.car-h{display:none}.car-r{grid-template-columns:1fr 1fr;row-gap:4px}.car-r b{grid-column:1/-1}.car-r .lk::before{content:"Sri Lanka ";display:block;font-size:11px;font-weight:600;color:var(--muted)}.car-r .gl::before{content:"Abroad ";display:block;font-size:11px;font-weight:600;color:var(--muted)}}
+</style><style id="finish">
+/* Finishing layer: typography, rhythm, focus, micro-interactions */
+.ic h1,.ic h2,.ic h3,.ic .h2,.ic .htitle{text-wrap:balance}
+.ic p,.ic li,.ic small,.ic .lead{text-wrap:pretty}
+.ic{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.ic .price,.ic .xam b,.ic .xdue b,.ic .kpis b,.ic .pa,.ic .ffacts b,.ic .xsum,.ic .fr b{font-variant-numeric:tabular-nums}
+.ic .chips,.ic .filters,.ic .schoolpick,.ic .xlv,.ic .lvls{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.ic ::selection{background:#ddd6fe;color:#1a1033}
+.ic :focus-visible{outline:3px solid #8b5cf6;outline-offset:3px;border-radius:14px}
+.ic .btn{position:relative;overflow:hidden;isolation:isolate;-webkit-tap-highlight-color:transparent;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
+.ic .btn:active{transform:scale(.97)}
+.ic .btn.p::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ic .btn.p:hover::after{transform:translateX(120%)}
+.ic .btn.p:hover{box-shadow:0 16px 34px -14px rgba(109,40,217,.75)}
+.ic .eyebrow{line-height:1.3}
+.ic .eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor;opacity:.7}
+.ic img{max-width:100%}
+.ic .lead{max-width:min(60ch,100%)}
+@supports (animation-timeline:scroll()){.ic::after{content:"";position:fixed;left:0;top:0;height:3px;width:100%;z-index:300;transform-origin:0 50%;background:linear-gradient(90deg,#7c3aed,#c084fc,#f472b6);animation:icprog linear both;animation-timeline:scroll(root);pointer-events:none}@keyframes icprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+@media(max-width:760px){
+ .ic .band{padding:56px 0}
+ .ic .h2{font-size:clamp(30px,8.4vw,40px);line-height:1.04;letter-spacing:-.04em}
+ .ic .lead{font-size:16.5px;line-height:1.55}
+ .ic .eyebrow{font-size:12px;margin-bottom:12px}
+ .ic .cta{gap:10px}
+ .ic .hero .cta .btn,.ic .final .cta .btn,.ic .fres .fact .btn{flex:1 1 100%;justify-content:center}
+ .ic .cup small{display:block;font-size:12px;line-height:1.35;margin-top:4px}
+ .ic .cup b{font-size:30px}
+ .ic .ticks{gap:10px 16px}
+}
+@media(max-width:360px){.ic .h2{font-size:29px}.ic .htitle{font-size:34px!important}.ic .wrap{padding-left:14px;padding-right:14px}}
+@media(min-width:1600px){.ic .wrap{max-width:1320px}}
+@media(prefers-reduced-motion:reduce){.ic::after{display:none}.ic .btn.p::after{display:none}}
+</style>
+<style id="brand">.brand{display:inline-flex!important;align-items:center;gap:12px;text-decoration:none}.brand .lg{height:28px;width:auto;display:block;flex:none}.brand .lg-w{display:none}.ic.dk .brand .lg-c{display:none}.ic.dk .brand .lg-w{display:block}.brand.onlyw .lg-w{display:block}.brand .lgsub{padding-left:12px;border-left:1px solid currentColor;opacity:.75;font-size:14px;font-weight:550;line-height:1.1;white-space:nowrap;display:inline!important}.ic .logo.brand>span.lgsub{display:inline!important}@media(max-width:760px){.brand .lg{height:24px}.brand .lgsub{display:none!important}}@media(max-width:380px){.brand .lg{height:20px}}</style>
+<style>html{scroll-behavior:smooth}</style></head><body><template id="dc-tpl">
+
+<div class="ic">
+<header class="bar">
+  <a class="logo onlyw brand" href="Main.dc.html"><img class="lg lg-w" src="/assets/dad81691bc200060ed05886b0e6b2ea9.webp" alt="Inspire College" width="139" height="30"><span class="lgsub">AI Match</span></a>
+  <span class="xp" aria-label="XP earned"><b>XP</b>{{xp}} XP</span>
+  <a class="close" href="Main.dc.html" aria-label="Back to home">×</a>
+</header>
+<div class="main">
+<template data-sc="if" value="{{asking}}" hint-placeholder-val="{{ true }}">
+  <section aria-live="polite">
+    <div class="prog" aria-hidden="true"><template data-sc="for" list="{{dots}}" as="d" hint-placeholder-count="8"><i class="{{d.cls}}"></i></template></div>
+    <p class="qn">Question {{qNum}} of 8 · +10 XP each</p>
+    <h1 class="qt">{{q.t}}</h1>
+    <div class="opts">
+      <template data-sc="for" list="{{q.opts}}" as="o" hint-placeholder-count="4"><button class="opt" type="button" onClick="{{o.pick}}"><span class="k">{{o.k}}</span>{{o.t}}</button></template>
+    </div>
+    <template data-sc="if" value="{{canBack}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{back}}" style="margin-top:22px;border:0;background:none;color:var(--muted);font:600 15px "Plus Jakarta Sans",system-ui;cursor:pointer;min-height:44px">← Previous question</button></template>
+  </section>
+  <aside class="side" aria-label="Live AI reading">
+    <h3>Your strengths, live</h3>
+    <p>Our AI updates your match with every answer.</p>
+    <div class="rows"><template data-sc="for" list="{{bars}}" as="b" hint-placeholder-count="6"><div class="row"><span>{{b.label}}</span><span class="trk"><b style="width: {{b.w}}"></b></span><span>{{b.pct}}</span></div></template></div>
+    <div class="badges"><template data-sc="for" list="{{badges}}" as="g" hint-placeholder-count="3"><span class="{{g.cls}}">{{g.t}}</span></template></div>
+  </aside>
+</template>
+<template data-sc="if" value="{{done}}" hint-placeholder-val="{{ false }}">
+  <div class="res">
+    <section class="hero-r">
+      <span class="tag">Your best match · +50 XP bonus</span>
+      <h2>You're built for the {{top.school}}.</h2>
+      <p>{{top.why}}</p>
+      <div class="big">{{top.pct}}<small>match</small></div>
+      <div class="cta"><a class="btn w" href="{{top.first}}">Enrol with my match</a><button class="btn g" type="button" onClick="{{restart}}">Retake</button></div>
+    </section>
+    <section>
+      <h3 style="font-size:24px">What you could become</h3>
+      <p class="cnote">Typical pay for roles this path leads to. Sri Lanka: monthly gross, middle 80% of earners. Abroad: average yearly salary.</p>
+      <div class="car"><div class="car-h"><span>Career</span><span>Sri Lanka / month</span><span>Abroad / year</span></div><template data-sc="for" list="{{top.careers}}" as="c" hint-placeholder-count="3"><div class="car-r"><b>{{c.role}}</b><span class="lk">{{c.lk}}</span><span class="gl">{{c.gl}}</span></div></template></div>
+      <p class="csrc">Sources: Paylab Sri Lanka salary survey (2025–26); Remote Recruiting Report global averages (USD); UK figures from ONS ASHE 2025 and England teacher pay scales from Sept 2025. Pay depends on experience, employer and country. Indicative only.</p>
+      <h3 style="font-size:24px;margin-top:28px">Recommended for you</h3>
+      <div class="rec"><template data-sc="for" list="{{top.progs}}" as="p" hint-placeholder-count="3"><a href="{{p.href}}"><span>{{p.n}}<small>{{p.d}}</small></span><em>{{p.f}}</em></a></template></div>
+      <div class="ai"><i aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"></path></svg></i><span><b>AI insight:</b> {{top.tip}}</span></div>
+      <h3 style="font-size:20px;margin-top:28px">Your full profile</h3>
+      <div class="rows"><template data-sc="for" list="{{bars}}" as="b" hint-placeholder-count="6"><div class="row"><span>{{b.label}}</span><span class="trk"><b style="width: {{b.w}}"></b></span><span>{{b.pct}}</span></div></template></div>
+      <p style="color:var(--muted);font-size:13.5px;margin-top:16px">A guide, not a test score. An advisor will go through your result with you.</p>
+    </section>
+  </div>
+</template>
+</div>
+</div>
+</template><div id="dc-root"></div><script>(function(){
+"use strict";
+function DCLogic(props){this.props=props||{};this.state={};}
+DCLogic.prototype.setState=function(p){var n=typeof p==='function'?p(this.state,this.props):p;this.state=Object.assign({},this.state,n);schedule();};
+DCLogic.prototype.forceUpdate=function(){schedule();};
+window.DCLogic=DCLogic;
+var tpl,inst,root,queued=false;
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;render();});}
+function lit(p){p=p.trim();if(p==='true')return true;if(p==='false')return false;if(p==='null')return null;if(/^-?\d+(\.\d+)?$/.test(p))return +p;if(/^(['"]).*\1$/.test(p))return p.slice(1,-1);return undefined;}
+function get(scope,path){var l=lit(path);if(l!==undefined||path.trim()==='null')return l;var parts=path.trim().split('.'),v=scope;for(var i=0;i<parts.length;i++){if(v==null)return undefined;v=v[parts[i]];}return v;}
+var HOLE=/\{\{\s*([^}]+?)\s*\}\}/g,WHOLE=/^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+function interp(str,scope){return str.replace(HOLE,function(_,p){var v=get(scope,p);return v==null?'':String(v);});}
+function attrVal(str,scope){var m=str.match(WHOLE);if(m)return get(scope,m[1]);return interp(str,scope);}
+var EV={onclick:'click',oninput:'input',onchange:'change',onkeydown:'keydown',onmouseenter:'mouseenter',onfocus:'focus',onended:'ended',onsubmit:'submit'};
+function build(node,scope,out){
+ if(node.nodeType===3){out.appendChild(document.createTextNode(node.nodeValue.indexOf('{{')>=0?interp(node.nodeValue,scope):node.nodeValue));return;}
+ if(node.nodeType!==1)return;
+ var tag=node.localName;
+ if(tag==='template'&&node.hasAttribute('data-sc')){var k=node.getAttribute('data-sc'),src=node.content;
+  if(k==='for'){var list=attrVal(node.getAttribute('list')||'',scope)||[],as=node.getAttribute('as')||'item';for(var i=0;i<list.length;i++){var s=Object.create(scope);s[as]=list[i];s.$index=i;kids(src,s,out);}}
+  else if(attrVal(node.getAttribute('value')||'',scope))kids(src,scope,out);return;}
+ if(tag==='helmet'||tag==='dc-import')return;
+ var el=node.namespaceURI==='http://www.w3.org/2000/svg'?document.createElementNS(node.namespaceURI,node.nodeName):document.createElement(tag);
+ var h=null,val;
+ for(var a=0;a<node.attributes.length;a++){var at=node.attributes[a],n=at.name;
+  if(n.indexOf('hint-')===0)continue;
+  if(EV[n]){var fn=attrVal(at.value,scope);if(typeof fn==='function'){h=h||{};h[EV[n]]=fn;}continue;}
+  var v=at.value.indexOf('{{')>=0?attrVal(at.value,scope):at.value;
+  if(n==='value'&&(tag==='input'||tag==='select'||tag==='textarea')){val=v;continue;}
+  if(v===false||v==null)continue;
+  if(n==='href'&&typeof v==='string'){var mm=v.match(/^([A-Za-z]+)\.dc\.html(?:#(.*))?$/);if(mm)v=window.icRoute(mm[1],mm[2]||'');}el.setAttribute(n,v===true?'':String(v));
+ }
+ if(h)el.__h=h;
+ if(tag==='template'){return;}
+ kids(node.content||node,scope,el);
+ if(val!==undefined){el.__v=val==null?'':String(val);}
+ out.appendChild(el);
+}
+function kids(node,scope,out){var c=node.childNodes;for(var i=0;i<c.length;i++)build(c[i],scope,out);}
+function morph(a,b){
+ var ac=a.childNodes,bc=b.childNodes,i;
+ for(i=0;i<bc.length;i++){var o=ac[i],n=bc[i];
+  if(!o){a.appendChild(n.cloneNode(true));fixVals(a.lastChild,n);continue;}
+  if(o.nodeType!==n.nodeType||o.nodeName!==n.nodeName){a.replaceChild(n.cloneNode(true),o);fixVals(a.childNodes[i],n);continue;}
+  if(n.nodeType===3){if(o.nodeValue!==n.nodeValue)o.nodeValue=n.nodeValue;continue;}
+  if(n.nodeType!==1)continue;
+  var oa=o.attributes,j;
+  for(j=oa.length-1;j>=0;j--){if(!n.hasAttribute(oa[j].name))o.removeAttribute(oa[j].name);}
+  for(j=0;j<n.attributes.length;j++){var at=n.attributes[j];if(o.getAttribute(at.name)!==at.value)o.setAttribute(at.name,at.value);}
+  o.__h=n.__h;
+  if(n.__v!==undefined){o.__v=n.__v;}
+  morph(o,n);
+  if(n.__v!==undefined&&o.value!==n.__v)o.value=n.__v;
+ }
+ while(ac.length>bc.length)a.removeChild(a.lastChild);
+}
+function fixVals(o,n){if(!o||n.nodeType!==1)return;o.__h=n.__h;if(n.__v!==undefined){o.__v=n.__v;}var oc=o.childNodes,nc=n.childNodes;for(var i=0;i<nc.length;i++)fixVals(oc[i],nc[i]);if(n.__v!==undefined)o.value=n.__v;}
+function render(){var vals=inst.renderVals()||{};var frag=document.createElement('div');kids(tpl,vals,frag);morph(root,frag);
+ root.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused&&!v.__tried){v.__tried=1;v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}});}
+function find(t,type){while(t&&t!==document){if(t.__h&&t.__h[type])return t;t=t.parentNode;}return null;}
+['click','input','change','keydown','submit'].forEach(function(type){document.addEventListener(type,function(e){var el=find(e.target,type);if(el){if(type==='submit')e.preventDefault();el.__h[type](e);}
+ if(type==='click'){var a=e.target.closest&&e.target.closest('a[href]');if(a&&!e.defaultPrevented)link(a,e);}});});
+['mouseenter','focus','ended'].forEach(function(type){document.addEventListener(type,function(e){var t=e.target;if(t&&t.__h&&t.__h[type])t.__h[type](e);},true);});
+function link(a,e){var href=a.getAttribute('href');if(!href)return;
+ if(href.charAt(0)==='#'){e.preventDefault();var t=href.length>1&&document.getElementById(href.slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo({top:0,behavior:'smooth'});return;}
+ var m=href.match(/^([A-Za-z]+)\.dc\.html(#.*)?$/);if(m){e.preventDefault();location.href=window.icRoute(m[1],(m[2]||'').slice(1));return;}
+ if(/^https?:/.test(href)){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}}
+window.__dcBoot=function(defaults){tpl=document.getElementById('dc-tpl').content;root=document.getElementById('dc-root');inst=new window.Component(defaults||{});if(!inst.state)inst.state={};render();if(inst.componentDidMount)inst.componentDidMount();
+ var h=(location.hash||'').slice(1)||window.__dcHash;if(h)setTimeout(function(){var t=document.getElementById(h);if(t)t.scrollIntoView({block:'start'});},120);};
+})();
+</script><script>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { i: 0, picks: [] }; }
+  renderVals() {
+    const K = ['comp', 'bus', 'health', 'law', 'edu', 'cpd'];
+    const LBL = { comp: 'Computing', bus: 'Business', health: 'Health', law: 'Law', edu: 'Education', cpd: 'CPD skills' };
+    const Q = [
+      { t: 'A friend’s laptop is acting strange. You…', o: [['Open settings and start fixing it', { comp: 3 }], ['Ask what happened and calm them down', { health: 2, edu: 1 }], ['Work out whether to repair or replace', { bus: 3 }], ['Check the warranty terms', { law: 3 }]] },
+      { t: 'Which school subject felt easiest?', o: [['Maths or ICT', { comp: 3, bus: 1 }], ['Commerce or Accounting', { bus: 3 }], ['Biology or Science', { health: 3 }], ['English, History or Literature', { law: 2, edu: 2 }]] },
+      { t: 'Your dream Saturday project is…', o: [['Building an app or a game', { comp: 3 }], ['Starting a small online shop', { bus: 3, cpd: 1 }], ['Volunteering at a care home', { health: 3 }], ['Teaching kids to code or read', { edu: 3 }]] },
+      { t: 'In a group assignment you usually…', o: [['Do the technical work', { comp: 2 }], ['Plan, divide tasks and lead', { bus: 2, edu: 1 }], ['Keep everyone motivated', { health: 2, edu: 1 }], ['Make the argument airtight', { law: 3 }]] },
+      { t: 'Which headline would you click first?', o: [['“New AI model writes its own code”', { comp: 3 }], ['“Sri Lankan startup raises funding”', { bus: 3 }], ['“New rules on data privacy”', { law: 3, comp: 1 }], ['“5 skills employers want in 2027”', { cpd: 3 }]] },
+      { t: 'How do you like to learn?', o: [['Hands-on, by trying things', { comp: 2, cpd: 1 }], ['Case studies and real examples', { bus: 2, law: 1 }], ['Talking it through with people', { health: 1, edu: 2 }], ['Short, focused sessions', { cpd: 3 }]] },
+      { t: 'Five years from now you’d love to be…', o: [['A software or AI engineer', { comp: 3 }], ['Running a team or a business', { bus: 3 }], ['Working in healthcare in the UK', { health: 3 }], ['Leading a classroom or a school', { edu: 3 }]] },
+      { t: 'Right now you are…', o: [['Just finished O/Ls or A/Ls', { comp: 1, bus: 1 }], ['Working and want to upskill fast', { cpd: 3 }], ['Working and want a full qualification', { bus: 1, comp: 1 }], ['An educator ready to lead', { edu: 3 }]] }
+    ];
+    const RES = {
+      comp: { school: 'School of Computing', why: 'You solve problems by building. You love logic, tech and making things work.', tip: 'Start with the Foundation-Level – Information & Digital Technologies if you are post-O/L, or go straight to an HND pathway.', progs: [['HND-Level Study in Computing – Software Engineering', '18 months · ATHE', 'LKR 9,999 / month', 'hnd-se'], ['HND-Level Study in Computing & Artificial Intelligence', '18 months · ATHE', 'LKR 9,999 / month', 'hnd-ai'], ['Foundation-Level – Information & Digital Technologies', '8 months · ATHE', 'LKR 5,000 / month', 'f-idt']], careers: [['Software engineer', 'LKR 129K–555K', 'USD 53,900'], ['AI engineer', 'LKR 62K–280K', 'USD 57,500'], ['Data analyst', 'LKR 33K–298K', 'USD 55,200']] },
+      bus: { school: 'School of Business', why: 'You think in plans, people and numbers. You like to lead and make things happen.', tip: 'Pair your programme with the Digital Marketing short course to build a portfolio early.', progs: [['Foundation in Business', '8 months · ATHE', 'LKR 5,000 / month', 'f-bus'], ['HND-Level Study in Accounting & Finance', '12–18 months · ATHE', 'LKR 9,999 / month', 'hnd-acc'], ['Digital Marketing & Analytics Essentials', '4 weeks · CPD', 'LKR 30,000', 'c-dm']], careers: [['Marketing manager', 'LKR 95K–254K', 'USD 42,900'], ['HR manager', 'LKR 55K–290K', 'USD 48,200'], ['Accountant', 'LKR 42K–173K', 'USD 44,800']] },
+      health: { school: 'School of Health & Social Care', why: 'You care about people and stay calm when others need you.', tip: 'Health & Social Care pathways open routes into care-sector careers, including overseas.', progs: [['Health & Social Care pathway', 'School of Health & Social Care', 'Talk to an advisor', ''], ['Foundation in English & Communications for Business', '8 months · ATHE', 'LKR 5,000 / month', 'f-eng']], careers: [['Care worker / caregiver', 'LKR 25K–78K', 'GBP 27,468 (UK)'], ['Health care assistant', 'LKR 28K–82K', ''], ['Charge nurse', 'LKR 44K–140K', '']] },
+      law: { school: 'School of Law', why: 'You read the fine print, build strong arguments and care about what’s fair.', tip: 'Our School of Law pathways suit careful thinkers. An advisor can map your entry route.', progs: [['Law pathway', 'School of Law', 'Talk to an advisor', ''], ['Foundation in Business', '8 months · ATHE', 'LKR 5,000 / month', 'f-bus']], careers: [['Lawyer / legal officer', 'LKR 53K–148K', ''], ['Head of legal', 'LKR 73K–290K', ''], ['Compliance manager', '', 'USD 54,000']] },
+      edu: { school: 'School of Education', why: 'You light up when you help others learn, and you like to organise and lead.', tip: 'Experienced educators can step into the Postgraduate programme in Strategic Educational Leadership.', progs: [['PG Diploma in Strategic Educational Leadership & Management', 'Level 7 · ATHE · 10–12 months', 'from LKR 350,000', 'pg-edu'], ['AI for HR', '6 weeks · CPD', 'LKR 50,000', 'c-aihr']], careers: [['Secondary school teacher', 'LKR 45K–90K', 'GBP 32,916+ (England)'], ['University lecturer', 'LKR 64K–112K', ''], ['School principal', 'LKR 39K–220K', '']] },
+      cpd: { school: 'School of CPD', why: 'You want job-ready skills, fast, alongside work or study.', tip: 'Short courses are CPD certified and stack well with an HND later.', progs: [['AI Mastery', '12 weeks · CPD', 'from LKR 75,000', 'c-aimastery'], ['Digital Marketing & Analytics Essentials', '4 weeks · CPD', 'LKR 30,000', 'c-dm'], ['Data Analytics with Google & Looker Studio', '6 weeks · CPD', 'LKR 35,000', 'c-looker']], careers: [['Digital marketing specialist', 'LKR 40K–121K', 'USD 37,900'], ['Data analyst', 'LKR 33K–298K', 'USD 55,200'], ['AI engineer', 'LKR 62K–280K', 'USD 57,500']] }
+    };
+    const picks = this.state.picks, i = this.state.i;
+    const sc = {}; K.forEach(k => sc[k] = 0);
+    picks.forEach((p, qi) => { const w = Q[qi].o[p][1]; Object.keys(w).forEach(k => sc[k] += w[k]); });
+    const max = Math.max(1, ...K.map(k => sc[k]));
+    const total = K.reduce((a, k) => a + sc[k], 0) || 1;
+    const sorted = [...K].sort((a, b) => sc[b] - sc[a]);
+    const pctOf = k => picks.length ? Math.round(40 + 55 * sc[k] / max) : 0;
+    const bars = sorted.map(k => ({ label: LBL[k], w: (picks.length ? Math.round(100 * sc[k] / max) : 4) + '%', pct: picks.length ? pctOf(k) + '%' : '–' }));
+    const done = i >= Q.length;
+    const q = done ? { t: '', opts: [] } : { t: Q[i].t, opts: Q[i].o.map((o, j) => ({ k: 'ABCD'[j], t: o[0], pick: () => this.setState({ picks: [...picks.slice(0, i), j], i: i + 1 }) })) };
+    const r = RES[sorted[0]];
+    const top = { school: r.school, why: r.why, tip: r.tip, pct: pctOf(sorted[0]) + '%', progs: r.progs.map(p => ({ ...window.icMatchProg(p), href: p[3] ? 'Program.dc.html#p-' + p[3] : 'https://wa.me/94711993331?text=' + encodeURIComponent('Hi Inspire College, my AI match was ' + r.school + '. Please tell me about ' + p[0] + '.') })), careers: r.careers.map(c => ({ role: c[0], lk: c[1] || 'Not enough data', gl: c[2] || '—', hasGl: !!c[2] })), first: r.progs[0][3] ? 'Program.dc.html#p-' + r.progs[0][3] : 'Enrol.dc.html' };
+    const xp = picks.length * 10 + (done ? 50 : 0);
+    const badges = [{ t: 'First answer', cls: picks.length >= 1 ? 'got' : '' }, { t: 'Halfway hero', cls: picks.length >= 4 ? 'got' : '' }, { t: 'Self-discoverer', cls: done ? 'got' : '' }];
+    return {
+      asking: !done, done, q, qNum: i + 1, xp, bars, badges, top,
+      dots: Q.map((_, j) => ({ cls: j <= i ? 'on' : '' })),
+      canBack: i > 0 && !done, back: () => this.setState({ i: i - 1, picks: picks.slice(0, i - 1) }),
+      restart: () => this.setState({ i: 0, picks: [] })
+    };
+  }
+}
+
+window.Component=Component;window.__dcBoot(window.icBootProps({}));</script></body></html>

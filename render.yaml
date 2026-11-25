@@ -1,0 +1,58 @@
+# Render Blueprint for the Inspire Web v2 backend (FastAPI + instalment billing job).
+# Render → New → Blueprint → pick this repo. Values marked `sync: false` are entered by you in the Render dashboard
+# (secrets are never stored in the repo). The website itself is on Vercel (frontend/).
+services:
+  - type: web
+    name: inspire-web-v2-api
+    runtime: python
+    region: singapore
+    plan: starter            # always on: the 15-minute billing job and PayHere callbacks need it (free plan sleeps)
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: python scripts/upgrade_db.py   # adds new tables/columns only; never drops data
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
+    healthCheckPath: /health
+    autoDeploy: true
+    disk:                    # bank slips and media uploads survive deploys
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: ENVIRONMENT
+        value: staging       # keeps the sandbox test tools (run billing for a date, simulate card) available
+      - key: DATABASE_URL
+        value: postgresql://postgres.pgsikvnscfclsavjybmc@aws-0-ap-northeast-2.pooler.supabase.com:5432/postgres
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SITE_URL        # the Vercel website address, e.g. https://inspire-web-v2.vercel.app
+        sync: false
+      - key: CORS_ORIGINS    # JSON list, e.g. ["https://inspire-web-v2.vercel.app"]
+        sync: false
+      - key: PUBLIC_BASE_URL # this API's own address, for PayHere notify, e.g. https://inspire-web-v2-api.onrender.com
+        sync: false
+      - key: PAYHERE_MODE
+        value: sandbox
+      - key: PAYHERE_MERCHANT_ID
+        value: "1239041"     # PayHere SANDBOX merchant
+      - key: PAYHERE_MERCHANT_SECRET
+        sync: false
+      - key: MAILJET_API_KEY
+        sync: false
+      - key: MAILJET_SECRET_KEY
+        sync: false
+      - key: MAIL_ENABLED
+        value: "true"
+      - key: MAIL_TEST_TO    # while testing, every email goes to this inbox
+        sync: false
+      - key: MAIL_FROM_EMAIL
+        value: enrol@inspire.college
+      - key: MAIL_FROM_NAME
+        value: Inspire College
+      - key: MEDIA_DIR
+        value: /var/data/media
+      - key: SLIP_DIR
+        value: /var/data/slips

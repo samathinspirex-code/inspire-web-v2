@@ -1,0 +1,1366 @@
+<!doctype html><html lang="en"><head><!--IC_HEAD--><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inspire College — Programme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Geist+Mono:wght@400..500&amp;family=Outfit:wght@300..700&amp;family=Plus+Jakarta+Sans:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.ic{--bg:#fff;--soft:#f5f2fc;--card:#fff;--ink:#160f24;--muted:#5f5670;--line:rgba(22,15,36,.09);--act:#6d28d9;--act-ink:#5b21b6;--act-soft:rgba(109,40,217,.1);--coffee:#b45309;--ok:#047857;--shadow:0 24px 60px -36px rgba(42,14,92,.3);background:var(--bg);color:var(--ink);font:16.5px/1.6 Geist,"Plus Jakarta Sans",-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+.ic *{box-sizing:border-box;min-width:0}
+.ic a{color:inherit}
+.ic a:hover{color:var(--act-ink)}
+.ic button,.ic input,.ic select{font-family:inherit}
+.ic :focus-visible{outline:3px solid var(--act);outline-offset:3px;border-radius:14px}
+.ic h1,.ic h2,.ic h3,.ic h4{margin:0;font-family:Geist,Outfit,system-ui,sans-serif;font-weight:600;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+.lite{font-weight:300;color:var(--act-ink)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,18px)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--act-ink);margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;font-weight:650;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.p{background:var(--act);color:#fff;box-shadow:0 16px 36px -14px rgba(109,40,217,.7)}
+.ic a.btn.p:hover{color:#fff}
+.btn.s{background:var(--soft);color:var(--ink)}
+.btn.k{background:var(--ink);color:#fff}
+.btn.w{background:#fff;color:#2a0e5c}
+.ic a.btn.w:hover{color:#2a0e5c}
+.btn.sm{min-height:44px;padding:0 18px;font-size:14.5px}
+.hdr{position:sticky;top:12px;z-index:60;padding:0 12px}
+.hbar{max-width:1240px;margin:0 auto;height:66px;padding:0 10px 0 18px;display:flex;align-items:center;gap:10px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);border:1px solid var(--line);box-shadow:0 18px 40px -24px rgba(42,14,92,.4)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Geist,Outfit,system-ui;font-weight:650;letter-spacing:-.03em;font-size:18px;flex:none}
+.mark{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#7c3aed,#4c1d95);display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;flex:none}
+.hnav{display:flex;gap:2px;margin:0 auto}
+.hnav a{display:flex;align-items:center;min-height:42px;padding:0 14px;border-radius:999px;color:var(--muted);font-weight:600;font-size:15px;text-decoration:none}
+.hnav a:hover{background:var(--act-soft);color:var(--act-ink)}
+.demo{display:flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--act-soft);color:var(--act-ink);font-weight:650;font-size:14.5px;text-decoration:none;flex:none}
+.crumbs{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);margin:30px 0 16px;flex-wrap:wrap}
+.crumbs a{text-decoration:none}
+.picker{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.lvls{display:flex;padding:5px;border-radius:999px;background:var(--soft);gap:2px;overflow-x:auto;max-width:100%}
+.lvls{scrollbar-width:none;-webkit-overflow-scrolling:touch}.lvls::-webkit-scrollbar{display:none}
+.lvls button{flex:none;border:0;background:none;color:var(--muted);font-weight:620;font-size:14px;min-height:40px;padding:0 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.lvls button.on{background:var(--card);color:var(--ink);box-shadow:0 4px 14px -6px rgba(42,14,92,.35)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none}
+.chips button{flex:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;font-size:14px;min-height:42px;padding:0 16px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.chips button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4vw,56px);align-items:center;padding:26px 0 10px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.badges span{font-size:13px;font-weight:650;padding:7px 14px;border-radius:999px;background:var(--soft)}
+.badges span.v{background:var(--act);color:#fff}
+.badges span.o{background:rgba(180,83,9,.1);color:var(--coffee)}
+.htitle{font-size:clamp(38px,4.8vw,66px);line-height:1;letter-spacing:-.045em}
+.lead{font-size:clamp(17px,1.4vw,20px);color:var(--muted);max-width:58ch;margin:16px 0 0}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.trust{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;font-size:14px;color:var(--muted);font-weight:560}
+.trust span{display:flex;gap:7px;align-items:center}
+.trust i{width:20px;height:20px;border-radius:50%;background:rgba(4,120,87,.12);color:var(--ok);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800}
+.pic{position:relative;border-radius:48px;aspect-ratio:5/4.3;background-size:cover;background-position:center;box-shadow:var(--shadow)}
+.chip{position:absolute;display:flex;align-items:center;gap:9px;padding:11px 16px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);font-size:14px;font-weight:620}
+.chip.a{left:-14px;top:26px}
+.chip.b{right:18px;bottom:-16px}
+.dot{width:9px;height:9px;border-radius:50%;background:#ef4444;box-shadow:0 0 0 4px rgba(239,68,68,.2)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:34px 0 0;border-radius:36px;background:var(--soft);padding:8px}
+.facts div{padding:16px 20px}
+.facts div+div{border-left:1px solid var(--line)}
+.facts small{display:block;color:var(--muted);font-size:13px;font-weight:600}
+.facts b{font-family:Geist,Outfit,system-ui;font-size:19px;font-weight:600;letter-spacing:-.02em}
+.two{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:clamp(28px,4vw,56px);align-items:start;padding:56px 0}
+.aside{position:sticky;top:96px;display:grid;gap:12px}
+.acard{background:var(--card);border-radius:40px;padding:24px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.big{font-family:Geist,Outfit,system-ui;font-size:40px;font-weight:600;letter-spacing:-.04em;line-height:1.05}
+.big small{display:block;font-family:Geist,"Plus Jakarta Sans",system-ui;font-size:14px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px}
+.qmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin:18px 0}
+.qmap span{display:grid;gap:6px;text-align:center;font-size:11.5px;font-weight:650;color:var(--muted)}
+.qmap i{height:8px;border-radius:8px;background:var(--soft)}
+.qmap span.on i{background:linear-gradient(90deg,#7c3aed,#c026d3)}
+.rew{display:grid;gap:8px;margin-top:12px}
+.rew div{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:22px;background:var(--soft);font-size:14px}
+.rew i{width:36px;height:36px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12px;flex:none;color:#fff}
+.rew b{display:block;font-size:14.5px}
+.rew small{color:var(--muted);font-size:12.5px}
+.sec{padding:44px 0;border-bottom:1px solid var(--line)}
+.sec:first-child{padding-top:0}
+.sec h2{font-size:clamp(28px,3vw,40px);margin-bottom:8px}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.tags span{display:flex;align-items:center;gap:10px;padding:10px 18px 10px 10px;border-radius:999px;background:var(--soft);font-weight:600;font-size:15px}
+.tags span i{width:28px;height:28px;border-radius:50%;background:var(--act);color:#fff;display:grid;place-items:center;font-style:normal;font-size:12px}
+.yrs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.yr{border-radius:36px;padding:24px;background:var(--soft)}
+.yr small{font-size:12px;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:var(--act-ink)}
+.yr p{margin:8px 0 0;font-size:16px}
+.who{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.who div{padding:16px 18px;border-radius:28px;border:1px solid var(--line);font-weight:600;display:flex;gap:12px;align-items:center}
+.who div i{width:38px;height:38px;border-radius:14px;background:var(--act-soft);color:var(--act-ink);display:grid;place-items:center;font-style:normal;font-weight:750;flex:none;font-size:13px}
+.path{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.step{flex:1 1 160px;border-radius:30px;padding:18px 20px;background:var(--soft)}
+.step small{display:block;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.step b{display:block;font-size:16px;margin-top:4px;line-height:1.3}
+.step.here{background:var(--act);color:#fff}
+.step.here small{color:rgba(255,255,255,.8)}
+.fees{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:22px}
+.ft{border-radius:36px;padding:22px;border:1px solid var(--line);background:var(--card)}
+.ft h3{font-size:20px;margin-bottom:10px}
+.fr{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.fr:last-child{border-bottom:0}
+.fr span{color:var(--muted)}
+.fr b{text-align:right}
+.fnote{font-size:13.5px;color:var(--muted);margin:14px 0 0}
+.lt{margin-top:22px;border-radius:999px;padding:8px 8px 8px 22px;display:flex;align-items:center;gap:14px;background:linear-gradient(110deg,#2a0e5c,#6d28d9);color:#fff;flex-wrap:wrap}
+.lt p{margin:0;flex:1 1 260px;font-size:15px}
+.qa{display:grid;gap:10px;margin-top:20px}
+.qa button{width:100%;text-align:left;border:0;background:var(--soft);border-radius:28px;padding:18px 24px;cursor:pointer;color:var(--ink);font-weight:620;font-size:17px;display:flex;justify-content:space-between;gap:16px}
+.qa button span{color:var(--act-ink);font-size:22px;line-height:1}
+.qa p{margin:-4px 0 4px;padding:0 24px 6px;color:var(--muted)}
+.demo-band{margin:0 max(2vw,8px);border-radius:60px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;background:var(--soft)}
+.demo-band .im{border-radius:44px;aspect-ratio:16/10;background-size:cover;background-position:center}
+.final{margin:40px max(2vw,8px) 0;border-radius:60px;color:#fff;text-align:center;padding:clamp(56px,7vw,100px) 20px;background:linear-gradient(120deg,rgba(42,14,92,.92),rgba(109,40,217,.8)),url(/assets/3537de4c83a85a1d4360988c476f4aa1.webp) center/cover}
+.final .lead{color:rgba(255,255,255,.86);margin-left:auto;margin-right:auto}
+.final .cta{justify-content:center}
+footer{padding:48px 0 130px;font-size:14px;color:var(--muted)}
+.mbar{display:none}
+.sheet{position:fixed;inset:0;z-index:90;background:rgba(13,10,20,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px}
+.pane{background:var(--bg);width:min(1040px,100%);max-height:calc(100% - 20px);overflow:auto;border-radius:48px;box-shadow:0 40px 90px -30px rgba(0,0,0,.6);animation:up .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(30px)}}
+.phead{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:16px 22px;border-bottom:1px solid var(--line)}
+.phrow{display:flex;align-items:center;gap:14px}
+.lvl{display:flex;align-items:center;gap:10px;flex:1}
+.lvl .b{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:grid;place-items:center;color:#3b1d00;font-weight:800;font-size:13px;flex:none}
+.lvl small{display:flex;justify-content:space-between;font-size:12.5px;font-weight:650;color:var(--muted)}
+.trk{display:block;height:9px;border-radius:9px;background:var(--soft);overflow:hidden;margin-top:5px}
+.trk b{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#7c3aed,#c026d3);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.x{width:44px;height:44px;border-radius:50%;border:0;background:var(--soft);font-size:20px;cursor:pointer;color:var(--ink);flex:none}
+.quests{display:flex;gap:6px;margin-top:12px;overflow-x:auto}
+.quests span{display:flex;align-items:center;gap:8px;flex:none;padding:6px 12px 6px 6px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:650;color:var(--muted)}
+.quests span i{width:24px;height:24px;border-radius:50%;background:var(--card);border:1.5px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:11px}
+.quests span.ok{color:var(--ok)}
+.quests span.ok i{background:var(--ok);border-color:var(--ok);color:#fff}
+.quests span.cur{background:var(--ink);color:#fff}
+.quests span.cur i{background:#fff;color:var(--ink);border-color:#fff}
+.pbody{padding:clamp(20px,3vw,34px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.8fr);gap:24px;align-items:start}
+.pbody h2{font-size:clamp(28px,3vw,40px);margin-bottom:6px}
+.psub{color:var(--muted);margin:0 0 18px}
+.toast{display:flex;align-items:center;gap:12px;padding:10px 16px 10px 10px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:14px;margin-bottom:16px;width:max-content;max-width:100%;animation:pop .5s cubic-bezier(.2,.8,.2,1)}
+.toast i{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#3b1d00;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;flex:none}
+@keyframes pop{from{opacity:0;transform:translateY(-8px) scale(.96)}}
+.form-stack{display:grid;gap:14px}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+label.l{display:grid;gap:6px;font-size:14px;font-weight:600}
+.ic input[type=text],.ic input[type=email],.ic input[type=tel]{font-size:16px;color:var(--ink);background:var(--soft);border:1.5px solid transparent;border-radius:20px;min-height:56px;padding:12px 18px;width:100%}
+.ic input:focus{outline:none;border-color:var(--act);background:var(--card)}
+.seg2{display:flex;padding:4px;border-radius:999px;background:var(--soft);width:max-content;max-width:100%}
+.seg2 button{border:0;background:none;color:var(--muted);font-weight:620;font-size:14px;min-height:42px;padding:0 18px;border-radius:999px;cursor:pointer}
+.seg2 button.on{background:var(--card);color:var(--ink);box-shadow:0 4px 14px -6px rgba(42,14,92,.35)}
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;padding:16px 18px;border-radius:28px;border:2px solid transparent;background:var(--soft);cursor:pointer;color:var(--ink);font:inherit}
+.opt.on{border-color:var(--act);background:var(--card)}
+.opt b{display:block;font-weight:650}
+.opt small{color:var(--muted);font-size:14px}
+.opt .pr{margin-left:auto;font-weight:700;white-space:nowrap;text-align:right}
+.opt .pr small{display:block;font-weight:500}
+.rad{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none}
+.opt.on .rad{border:7px solid var(--act)}
+.tagh{font-size:11.5px;font-weight:750;padding:3px 9px;border-radius:999px;background:rgba(4,120,87,.12);color:var(--ok);margin-left:6px;vertical-align:2px}
+.drop{border:2px dashed rgba(109,40,217,.35);border-radius:36px;padding:30px;text-align:center;background:var(--soft)}
+.check{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:0;background:none;padding:4px 0;cursor:pointer;font:inherit;color:var(--muted);font-size:15px}
+.check i{width:26px;height:26px;border-radius:9px;border:2px solid var(--line);flex:none;display:grid;place-items:center;font-style:normal;color:#fff;font-size:13px;font-weight:800}
+.check.on i{background:var(--act);border-color:var(--act)}
+.err{color:#be123c;font-size:14.5px;margin:0;min-height:20px}
+.nav2{display:flex;justify-content:space-between;gap:12px;margin-top:6px}
+.sum{border-radius:36px;padding:18px;background:var(--soft);position:sticky;top:120px}
+.sum .img{aspect-ratio:16/9;border-radius:28px;background-size:cover;background-position:center;margin-bottom:12px}
+.sl{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:14.5px}
+.sl span:first-child{color:var(--muted)}
+.sl.t{border-top:1px solid var(--line);margin-top:6px;padding-top:12px;font-size:19px;font-weight:700}
+.sl.t span:first-child{color:var(--ink)}
+.unl{display:grid;gap:6px;margin-top:12px}
+.unl span{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:18px;background:var(--card);font-size:13.5px;font-weight:600;color:var(--muted)}
+.unl span i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;background:var(--soft)}
+.unl span.on{color:var(--ink)}
+.unl span.on i{background:var(--ok);color:#fff}
+.handoff{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
+.celebrate{border-radius:40px;padding:28px;background:linear-gradient(140deg,#2a0e5c,#6d28d9 60%,#a855f7);color:#fff}
+.celebrate .tro{width:84px;height:84px;border-radius:30px;background:linear-gradient(135deg,#fbbf24,#f59e0b);display:grid;place-items:center;margin-bottom:18px}
+.celebrate p{color:rgba(255,255,255,.86)}
+.bd{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.bd span{display:flex;align-items:center;gap:8px;padding:7px 13px 7px 7px;border-radius:999px;background:rgba(255,255,255,.14);font-size:13px;font-weight:620}
+.bd span i{width:26px;height:26px;border-radius:50%;background:#fff;color:#6d28d9;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800}
+.spin{width:56px;height:56px;border-radius:50%;border:6px solid var(--act-soft);border-top-color:var(--act);margin:0 0 16px;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media(max-width:1060px){.hnav{display:none}.two{grid-template-columns:minmax(0,1fr)}.aside{position:static}}
+@media(max-width:900px){.hero,.pbody,.demo-band,.handoff{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.facts div+div{border-left:0}.fees,.yrs{grid-template-columns:minmax(0,1fr)}.sum{position:static}}
+@media(max-width:620px){.hdr{top:8px;padding:0 8px}.hbar{height:58px;padding:0 8px 0 12px}.logo>span:not(.mark),.hcta{display:none}.demo{margin-left:auto}.htitle{font-size:36px}.chip.a{left:10px;top:-12px}.who,.row2{grid-template-columns:minmax(0,1fr)}.final,.demo-band{border-radius:40px}.pic{border-radius:36px}.lt{border-radius:32px;padding:16px}
+.mbar{display:flex;position:fixed;left:10px;right:10px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:70;align-items:center;gap:10px;padding:8px 8px 8px 18px;border-radius:999px;background:var(--ink);color:#fff;box-shadow:0 20px 40px -14px rgba(0,0,0,.5)}
+.mbar p{margin:0;flex:1;font-size:13px;line-height:1.25}.mbar p b{display:block;font-size:15px}
+.pane{border-radius:36px 36px 0 0;max-height:100%}.sheet{padding:0;align-items:flex-end}}
+@media(max-width:380px){.ic .wrap{padding:0 14px}.htitle{font-size:32px}.btn{padding:0 18px}}
+@media(horizontal-viewport-segments:2){.hero,.two,.pbody{grid-template-columns:env(viewport-segment-width 0 0,1fr) env(viewport-segment-width 1 0,1fr);column-gap:calc(env(viewport-segment-left 1 0,0px) - env(viewport-segment-right 0 0,0px))}}
+@media(prefers-reduced-motion:reduce){.ic *{animation:none!important;transition:none!important}}
+</style>
+<style>.views{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0}
+.vw{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:var(--soft);font-size:13px;color:var(--muted)}
+.vw b{color:var(--ink)}
+.vw .dot{width:8px;height:8px;border-radius:50%;background:#16a34a;box-shadow:0 0 0 0 rgba(22,163,74,.5);animation:vpulse 1.8s infinite}
+@keyframes vpulse{70%{box-shadow:0 0 0 7px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.vs{font-size:11px;font-weight:700;color:#b45309;background:#fff7ed;border-radius:999px;padding:4px 9px}
+.relw{padding:clamp(48px,6vw,84px) 0 0}
+.relg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.relc{border-radius:30px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.relc:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.ri{position:relative;aspect-ratio:16/10;background-size:cover;background-position:center;margin:6px;border-radius:24px}
+.ri span{position:absolute;left:10px;bottom:10px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:#2a0e5c;font-size:12px;font-weight:650}
+.ri em{position:absolute;right:10px;top:10px;font-style:normal;padding:5px 10px;border-radius:999px;background:#16a34a;color:#fff;font-size:11px;font-weight:700}
+.rb{padding:10px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.rb b{font-size:15.5px;line-height:1.25}
+.rb small{color:var(--muted);font-size:13px}
+.ra{display:flex;gap:8px;margin-top:auto;padding-top:12px}
+.ra .btn{flex:1;justify-content:center}
+@media(max-width:1060px){.relg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.relg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scrollbar-width:none}.relg::-webkit-scrollbar{display:none}.relc{flex:0 0 78%;scroll-snap-align:start}}
+.bonus{display:flex;align-items:center;gap:14px;margin-top:14px;padding:16px 18px;border-radius:24px;background:linear-gradient(130deg,rgba(124,58,237,.12),rgba(236,72,153,.1));border:1.5px solid rgba(124,58,237,.3)}.bonus div{flex:1;min-width:0}.bonus b{display:block;font-size:16px}.bonus span{display:block;color:var(--muted);font-size:13.5px;margin-top:3px}.whyp{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.whyp span{padding:7px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:600}@media(max-width:560px){.bonus{flex-direction:column;align-items:stretch}.bonus .btn{width:100%;justify-content:center}}
+.pshop{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:12px}
+.pcard{position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:2px;padding:20px 18px 16px;border-radius:26px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;font:inherit;color:var(--ink);transition:transform .3s,border-color .3s,box-shadow .3s}
+.pcard:hover{transform:translateY(-3px);border-color:#a78bfa;box-shadow:var(--shadow)}
+.pcard.hot{border-color:var(--act);box-shadow:0 0 0 3px rgba(124,58,237,.12)}
+.pcard .pa{font-family:Geist,Outfit,sans-serif;font-size:26px;letter-spacing:-.03em}
+.pcard .pu{color:var(--muted);font-size:12.5px}
+.pcard .pt{margin-top:10px;font-size:15px}
+.pcard .pd{color:var(--muted);font-size:13px;line-height:1.4}
+.pcard .pgo{margin-top:12px;color:var(--act-ink);font-weight:650;font-size:13.5px}
+.xov{position:fixed;inset:0;z-index:210;background:rgba(20,8,40,.5);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:xfade .25s ease both}
+@keyframes xfade{from{opacity:0}}
+.xsh{position:fixed;z-index:211;top:12px;right:12px;bottom:12px;width:min(520px,calc(100% - 24px));display:flex;flex-direction:column;background:var(--bg);border-radius:36px;box-shadow:0 40px 90px -30px rgba(20,8,40,.6);overflow:hidden;animation:xin .45s cubic-bezier(.2,.8,.2,1) both;color:var(--ink)}
+@keyframes xin{from{transform:translateX(40px);opacity:0}}
+.xhd{display:flex;align-items:center;gap:10px;padding:16px 16px 12px 22px;border-bottom:1px solid var(--line)}
+.xhd b{font-family:Geist,Outfit,sans-serif;font-size:19px;letter-spacing:-.02em;flex:1}
+.xic{width:40px;height:40px;border-radius:50%;border:0;background:var(--soft);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:20px;line-height:1;flex:none}
+.xsteps{display:flex;gap:6px;padding:12px 22px 0}
+.xsteps span{flex:1;height:5px;border-radius:5px;background:var(--line);transition:background .4s}
+.xsteps span.on{background:linear-gradient(90deg,#7c3aed,#a855f7)}
+.xcamp{margin:14px 22px 0;padding:10px 14px;border-radius:18px;background:linear-gradient(120deg,#2a0e5c,#6d28d9);color:#fff;font-size:13.5px;line-height:1.35;display:flex;gap:10px;align-items:center}
+.xcamp em{font-style:normal;flex:none;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 9px;font-size:12px;font-weight:700}
+.xbd{flex:1;overflow-y:auto;padding:16px 22px 22px;-webkit-overflow-scrolling:touch}
+.xh{font-family:Geist,Outfit,sans-serif;font-size:24px;letter-spacing:-.025em;line-height:1.1;margin:6px 0 4px}
+.xsub{color:var(--muted);font-size:14px;margin:0 0 14px}
+.xprog{display:flex;gap:12px;align-items:center;padding:10px;border-radius:24px;background:var(--soft)}
+.xprog .xpi{width:64px;height:64px;border-radius:18px;background-size:cover;background-position:center;flex:none}
+.xprog .xpt{flex:1;min-width:0}
+.xprog .xpt small{display:block;color:var(--act-ink);font-size:12px;font-weight:700}
+.xprog .xpt b{display:block;font-size:15px;line-height:1.25;margin-top:2px}
+.xprog .xpt span{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.xlink{border:0;background:none;color:var(--act-ink);font:650 13.5px Geist,"Plus Jakarta Sans",system-ui;cursor:pointer;padding:6px;flex:none}
+.xlv{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:4px 0 12px;padding-bottom:2px}
+.xlv::-webkit-scrollbar{display:none}
+.xlv button{flex:none;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:600 13.5px Geist,"Plus Jakarta Sans",system-ui;min-height:38px;padding:0 14px;border-radius:999px;cursor:pointer}
+.xlv button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.xlist{display:grid;gap:8px}
+.xli{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:22px;padding:8px 12px 8px 8px;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .2s,transform .2s}
+.xli:hover{border-color:#a78bfa;transform:translateX(2px)}
+.xli i{width:48px;height:48px;border-radius:14px;background-size:cover;background-position:center;flex:none}
+.xli span{flex:1;min-width:0}
+.xli b{display:block;font-size:14.5px;line-height:1.25}
+.xli small{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.xli em{font-style:normal;color:var(--act-ink);font-weight:700;font-size:18px}
+.xsec{margin:20px 0 10px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.xpl{position:relative;display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:24px;padding:14px 16px;cursor:pointer;font:inherit;color:var(--ink);margin-bottom:8px;transition:border-color .2s,box-shadow .2s}
+.xpl .rd{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);flex:none;transition:border .2s}
+.xpl.on{border-color:var(--act);box-shadow:0 0 0 3px rgba(124,58,237,.14)}
+.xpl.on .rd{border:7px solid var(--act)}
+.xpl .xpt2{flex:1;min-width:0}
+.xpl .xpt2 b{display:block;font-size:15px}
+.xpl .xpt2 small{display:block;color:var(--muted);font-size:13px;margin-top:2px;line-height:1.35}
+.xpl .xam{text-align:right;flex:none}
+.xpl .xam b{display:block;font-family:Geist,Outfit,sans-serif;font-size:19px;letter-spacing:-.02em}
+.xpl .xam small{display:block;color:var(--muted);font-size:11.5px}
+.xhot{position:absolute;top:-9px;left:18px;background:linear-gradient(90deg,#7c3aed,#a855f7);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+.xadd{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1.5px dashed var(--line);background:transparent;border-radius:22px;padding:10px 12px 10px 10px;cursor:pointer;font:inherit;color:var(--ink);margin-bottom:8px;transition:all .2s}
+.xadd i{width:44px;height:44px;border-radius:14px;background-size:cover;background-position:center;flex:none}
+.xadd span{flex:1;min-width:0}
+.xadd b{display:block;font-size:14px;line-height:1.25}
+.xadd small{display:block;color:var(--muted);font-size:12.5px}
+.xadd em{font-style:normal;flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--act-ink);font-size:20px;font-weight:700;transition:all .25s}
+.xadd.on{border-style:solid;border-color:var(--act);background:var(--act-soft)}
+.xadd.on em{background:var(--act);color:#fff;transform:rotate(45deg)}
+.xup{display:flex;gap:12px;align-items:center;padding:14px;border-radius:22px;background:linear-gradient(120deg,rgba(124,58,237,.1),rgba(236,72,153,.08));margin-top:6px}
+.xup span{flex:1;font-size:13.5px;line-height:1.4}
+.xup b{display:block;font-size:14.5px}
+.xfree{margin-top:18px;padding:16px;border-radius:26px;background:linear-gradient(140deg,rgba(124,58,237,.1),rgba(236,72,153,.08));border:1.5px solid rgba(124,58,237,.25)}
+.xfh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.xfh b{font-size:15.5px}
+.xfh span{flex:none;padding:4px 10px;border-radius:999px;background:var(--card);font-size:12px;font-weight:700;color:var(--muted)}
+.xfh span.ok{background:#16a34a;color:#fff}
+.xfree p{margin:4px 0 12px;color:var(--muted);font-size:13px}
+.xfg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.xfc{position:relative;display:flex;align-items:center;gap:8px;text-align:left;padding:8px;border-radius:18px;border:1.5px solid var(--line);background:var(--card);cursor:pointer;font:inherit;color:var(--ink);transition:border-color .2s,transform .2s}
+.xfc i{width:38px;height:38px;border-radius:12px;background-size:cover;background-position:center;flex:none}
+.xfc span{flex:1;min-width:0}
+.xfc b{display:block;font-size:12.5px;line-height:1.2}
+.xfc small{display:block;font-size:11px;color:#16a34a;font-weight:700;margin-top:2px}
+.xfc small s{color:var(--muted);font-weight:500;margin-right:3px}
+.xfc em{position:absolute;right:-5px;top:-5px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:11px;background:var(--act);color:#fff;transform:scale(0);transition:transform .25s cubic-bezier(.2,1.6,.4,1)}
+.xfc.on{border-color:var(--act);box-shadow:0 0 0 3px rgba(124,58,237,.14)}
+.xfc.on em{transform:scale(1)}
+.xfc.dim{opacity:.5}
+.xrw{margin-top:16px;padding:14px 16px;border-radius:22px;background:var(--soft)}
+.xrh{display:flex;justify-content:space-between;gap:10px;font-size:13.5px}
+.xrh span{color:var(--act-ink);font-weight:700}
+.xrbar{height:8px;border-radius:8px;background:var(--line);margin:10px 0;overflow:hidden}
+.xrbar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#7c3aed,#ec4899);transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.xrl{display:flex;flex-wrap:wrap;gap:6px}
+.xrl span{padding:5px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--card);color:var(--muted);border:1px dashed var(--line)}
+.xrl span{display:inline-flex;align-items:center;gap:6px}.xrl span.on{background:var(--card);color:var(--ink);border:1px solid rgba(124,58,237,.35)}
+@media(max-width:380px){.xfg{grid-template-columns:1fr}}
+.x25{color:#16a34a;font-weight:700}.xadd small s{color:var(--muted)}
+.xstk{margin-top:18px;padding:16px;border-radius:26px;background:linear-gradient(140deg,rgba(234,88,12,.1),rgba(236,72,153,.08));border:1.5px solid rgba(234,88,12,.25)}
+.xstk p{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.xstk-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px}
+.xstk-bar i{font-style:normal;text-align:center;padding:8px 4px;border-radius:16px;background:var(--card);border:1.5px solid var(--line);transition:all .3s}
+.xstk-bar i em{display:block;font-style:normal;font-family:Geist,Outfit,sans-serif;font-weight:700;font-size:17px;color:var(--muted)}
+.xstk-bar i small{display:block;font-size:10.5px;font-weight:600;color:var(--muted)}
+.xstk-bar i.on{background:linear-gradient(140deg,#f97316,#ec4899);border-color:transparent;transform:translateY(-2px)}
+.xstk-bar i.on em,.xstk-bar i.on small{color:#fff}
+.xperk{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.xperk span{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--soft);font-size:12.5px;font-weight:600}
+.xf{display:grid;gap:12px}
+.xf label{display:block;font-size:13px;font-weight:650;margin-bottom:6px}
+.xf input{width:100%;box-sizing:border-box;min-height:50px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);padding:0 16px;font:500 16px Geist,"Plus Jakarta Sans",system-ui;outline:none;transition:border-color .2s}
+.xf input:focus{border-color:var(--act)}
+.xmeth{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.xmeth button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:12px;text-align:left;cursor:pointer;font:inherit}
+.xmeth button b{display:block;font-size:14px}
+.xmeth button small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.xmeth button.on{border-color:var(--act);box-shadow:0 0 0 3px rgba(124,58,237,.14)}
+.xsum{margin-top:16px;border-radius:22px;background:var(--soft);padding:14px 16px;font-size:14px}
+.xsum div{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.xsum div span:first-child{color:var(--muted);white-space:nowrap}
+.xsum div span:last-child{text-align:right;font-weight:600}
+.xsum .tot{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;font-size:16px}
+.xsum .tot span:last-child{font-family:Geist,Outfit,sans-serif;font-size:20px;color:var(--act-ink)}
+.xerr{margin:12px 0 0;color:#e11d48;font-size:13.5px;font-weight:600}
+.xft{border-top:1px solid var(--line);padding:12px 16px calc(14px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;background:var(--bg)}
+.xft .xdue{flex:1;min-width:0;line-height:1.2}
+.xft .xdue small{display:block;color:var(--muted);font-size:12px}
+.xft .xdue b{display:block;font-family:Geist,Outfit,sans-serif;font-size:21px;letter-spacing:-.02em}
+.xft .btn{flex:none}
+.xtrust{display:flex;gap:6px;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-top:12px}
+.xbusy{display:inline-block;width:16px;height:16px;border-radius:50%;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;animation:xspin .8s linear infinite;margin-right:8px;vertical-align:-3px}
+@keyframes xspin{to{transform:rotate(360deg)}}
+.xdone{text-align:center;padding:10px 4px 4px;position:relative}
+.xconf{position:absolute;inset:-20px 0 auto;height:0;pointer-events:none}
+.xconf i{position:absolute;top:0;width:8px;height:14px;border-radius:3px;opacity:0;animation:xfall 2.4s cubic-bezier(.2,.6,.4,1) forwards}
+@keyframes xfall{0%{opacity:1;transform:translateY(-20px) rotate(0)}100%{opacity:0;transform:translateY(420px) rotate(540deg)}}
+.xbadge{width:84px;height:84px;margin:6px auto 10px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#7c3aed,#a855f7);color:#fff;font-size:38px;box-shadow:0 18px 40px -12px rgba(124,58,237,.6);animation:xpop .6s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes xpop{from{transform:scale(.3);opacity:0}}
+.xticket{margin:16px 0 0;border-radius:26px;background:var(--card);border:1.5px solid var(--line);text-align:left;overflow:hidden}
+.xticket .tt{padding:14px 16px;background:linear-gradient(120deg,#2a0e5c,#7c3aed);color:#fff}
+.xticket .tt small{opacity:.8;font-size:12px;display:block}
+.xticket .tt b{font-size:16px;display:block;margin-top:2px}
+.xticket .tb{padding:12px 16px;font-size:13.5px}
+.xticket .tb div{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
+.xticket .tb div span:first-child{color:var(--muted);white-space:nowrap}
+.xticket .tb div span:last-child{font-weight:600;text-align:right}
+.xcoffee{margin-top:12px;display:flex;gap:12px;align-items:center;text-align:left;padding:12px 14px;border-radius:22px;background:#fff7ed;color:#7c2d12;animation:xpop .6s .4s cubic-bezier(.2,1.6,.4,1) both}
+.xcoffee i{font-style:normal;font-size:15px;font-weight:700;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.7);flex:none}
+.xcoffee b{display:block;font-size:14px}
+.xcoffee span{font-size:12.5px}
+.xnext{text-align:left;margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.xnext li{display:flex;gap:10px;align-items:center;font-size:14px}
+.xnext li i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--act-ink);font-weight:700;font-size:12px;flex:none}
+.xdone .cta{justify-content:center}
+.xnote{color:var(--muted);font-size:12px;margin-top:14px}
+.xquest{display:block;margin:14px auto 0;border:0;background:none;color:var(--muted);font:500 13px Geist,"Plus Jakarta Sans",system-ui;text-decoration:underline;cursor:pointer}
+.camp{display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;padding:6px 8px 6px 6px;border-radius:999px;background:linear-gradient(120deg,#2a0e5c,#7c3aed);color:#fff;font-size:13.5px;font-weight:600;border:0;cursor:pointer;font-family:inherit;max-width:100%;text-align:left;box-shadow:0 10px 30px -14px rgba(124,58,237,.7)}
+.camp em{font-style:normal;flex:none;background:#fff;color:#5b21b6;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
+.camp span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.camp b{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center}
+.resume{display:flex;align-items:center;gap:10px;position:fixed;left:50%;transform:translateX(-50%);bottom:96px;z-index:66;padding:8px 8px 8px 10px;border-radius:999px;background:var(--ink);color:var(--bg);border:0;cursor:pointer;font:600 13.5px Geist,"Plus Jakarta Sans",system-ui;box-shadow:0 20px 40px -16px rgba(20,8,40,.6);animation:dockin .45s cubic-bezier(.2,.8,.2,1) both;max-width:calc(100% - 32px)}
+.resume i{width:30px;height:30px;border-radius:50%;background-size:cover;background-position:center;flex:none}
+.resume span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.resume b{flex:none;background:var(--act);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px}
+@keyframes dockin{from{opacity:0;transform:translate(-50%,20px)}}
+@media(max-width:760px){.xsh{top:auto;left:0;right:0;bottom:0;width:100%;max-height:94vh;max-height:94dvh;border-radius:30px 30px 0 0;animation:xup .45s cubic-bezier(.2,.8,.2,1) both}.xbd{padding:14px 18px 18px}.xhd{padding:14px 14px 10px 18px}.xsteps{padding:10px 18px 0}.xcamp{margin:12px 18px 0}.resume{bottom:150px}.camp{font-size:12.5px}}
+@keyframes xup{from{transform:translateY(60px);opacity:0}}
+@media(max-width:380px){.xmeth{grid-template-columns:1fr}.xpl{padding:12px}.xpl .xam b{font-size:17px}}</style>
+<style>@media(min-width:901px){.ic .hero h1{font-size:clamp(40px,3.9vw,56px)!important;line-height:1.04;max-width:16ch}}</style><style id="pgcss">.pg{--a:var(--act,#6d28d9);--ink:#121016;--ink2:#2b2733;--mut:#6b6675;--hair:rgba(18,16,22,.1);--paper:#fbfaf8;--tint:#f3f1ee;background:var(--paper);color:var(--ink);font:16px/1.6 Geist,"Plus Jakarta Sans",system-ui,sans-serif;letter-spacing:-.006em}
+.ic.dk .pg{--ink:#f4f2f7;--ink2:#d6d1de;--mut:#a39dad;--hair:rgba(255,255,255,.12);--paper:#0f0d13;--tint:#1a1720}
+.pg *{box-sizing:border-box}
+.pg-w{max-width:1200px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+.pg a{color:inherit}
+.ic .pg h1,.ic .pg h2,.ic .pg h3{font-family:Geist,Outfit,system-ui,sans-serif;color:var(--ink);margin:0;font-weight:600}
+/* buttons */
+.pb{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:999px;border:1px solid transparent;font:600 15px Geist,"Plus Jakarta Sans",system-ui;letter-spacing:-.01em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s cubic-bezier(.2,.8,.2,1),background .2s,border-color .2s,color .2s}
+.pb:active{transform:scale(.98)}
+.pb-sm{min-height:42px;padding:0 18px;font-size:14px}
+.pb-full{width:100%}
+.pb-a{background:var(--a);color:#fff}
+.pb-a:hover{filter:brightness(1.08)}
+.pb-ink{background:var(--ink);color:var(--paper)}
+.pb-ghost{background:transparent;border-color:var(--hair);color:var(--ink)}
+.pb-ghost:hover,.pb-line:hover{border-color:var(--ink)}
+.pb-line{background:transparent;border-color:var(--hair);color:var(--ink)}
+.pb-w{background:#fff;color:#121016}
+.pb-glass{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);color:#fff}
+.ic .pg a.pb-a,.ic .pg a.pb-a:hover{color:#fff}
+/* header */
+.pg-hd{position:relative;z-index:5;border-bottom:1px solid var(--hair);background:var(--paper)}
+.pg-hdi{display:flex;align-items:center;gap:28px;height:68px}
+.pg-logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:650;font-size:16px;letter-spacing:-.02em}
+.pg-logo .mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--a);color:#fff;font-size:12px;font-weight:700}
+.pg-nav{display:flex;gap:26px;margin-left:12px}
+.pg-nav a{text-decoration:none;color:var(--mut);font-size:14.5px;font-weight:500}
+.pg-nav a:hover{color:var(--ink)}
+.pg-hda{margin-left:auto;display:flex;align-items:center;gap:18px}
+.pg-tl{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14.5px;font-weight:550;color:var(--ink)}
+.pg-tl:hover{text-decoration:underline;text-underline-offset:4px}
+/* selector */
+.pg-sel{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px 0 12px}
+.pg-crumb{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--mut)}
+.pg-crumb a{text-decoration:none}.pg-crumb a:hover{color:var(--ink)}.pg-crumb i{font-style:normal;opacity:.4}.pg-crumb span{color:var(--ink)}
+.pg-seg{display:flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--hair);overflow-x:auto;scrollbar-width:none;max-width:100%}
+.pg-seg::-webkit-scrollbar{display:none}
+.pg-seg button{flex:none;border:0;background:none;color:var(--mut);font:550 13.5px Geist,system-ui;min-height:36px;padding:0 14px;border-radius:999px;cursor:pointer}
+.pg-seg button.on{background:var(--ink);color:var(--paper)}
+.pg-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 0 4px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
+.pg-chips::-webkit-scrollbar{display:none}
+.pg-chips button{flex:none;border:1px solid var(--hair);background:transparent;color:var(--ink2);font:500 13.5px Geist,system-ui;min-height:36px;padding:0 14px;border-radius:999px;cursor:pointer}
+.pg-chips button:hover{border-color:var(--ink)}
+.pg-chips button.on{border-color:var(--ink);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+/* hero */
+.pg-hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,5vw,72px);align-items:end;padding:clamp(28px,4vw,56px) 0 clamp(28px,3vw,40px)}
+.pg-kick{display:flex;flex-wrap:wrap;gap:0;margin:0 0 22px;font:500 12.5px "Geist Mono",ui-monospace,monospace;letter-spacing:.02em;text-transform:uppercase;color:var(--mut)}
+.pg-kick span+span::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.5;margin:0 10px;vertical-align:middle}
+.pg-kick .hot{color:var(--a)}
+.pg-h1{font-size:clamp(40px,4.9vw,68px)!important;line-height:1!important;letter-spacing:-.045em!important;font-weight:600!important;max-width:17ch;text-wrap:balance}
+.pg-lead{font-size:clamp(17px,1.4vw,20px);line-height:1.55;color:var(--ink2);margin:24px 0 0;max-width:52ch}
+.pg-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pg-micro{margin:14px 0 0;font-size:13.5px;color:var(--mut)}
+.pg-views{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:18px 0 0;padding-top:18px;border-top:1px solid var(--hair);font-size:13px;color:var(--mut)}
+.pg-views span{display:inline-flex;align-items:center;gap:8px}
+.pg-views em{font-style:normal;font:500 11px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.04em;color:#a16207;border:1px solid rgba(161,98,7,.3);padding:3px 8px;border-radius:999px}
+.lv{width:7px;height:7px;border-radius:50%;background:#16a34a;display:inline-block;box-shadow:0 0 0 0 rgba(22,163,74,.45);animation:pglv 2s infinite}
+@keyframes pglv{70%{box-shadow:0 0 0 6px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.pg-fig{margin:0;position:relative}
+.pg-img{aspect-ratio:4/5;border-radius:28px;background-size:cover;background-position:center}
+.pg-fig figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font-size:13px;color:var(--mut)}
+.pg-fig figcaption span{display:inline-flex;align-items:center;gap:8px}
+/* facts */
+.pg-facts{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin:0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.pg-facts div{padding:18px 20px 18px 0}
+.pg-facts div+div{padding-left:20px;border-left:1px solid var(--hair)}
+.pg-facts dt{font:500 11.5px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.pg-facts dd{margin:6px 0 0;font-size:15.5px;font-weight:600;line-height:1.3}
+/* sticky subnav */
+.pg-sub{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid var(--hair);margin-top:28px}
+.pg-subi{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.pg-subl{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.pg-subl::-webkit-scrollbar{display:none}
+.pg-subl a{flex:none;text-decoration:none;font-size:14px;font-weight:500;color:var(--mut);padding:8px 12px;border-radius:999px}
+.pg-subl a:hover{color:var(--ink);background:var(--tint)}
+.pg-subr{display:flex;align-items:center;gap:14px;flex:none}
+.pg-subr span{font-size:14px;color:var(--mut)}
+.pg-subr b{color:var(--ink)}
+/* body */
+.pg-body{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(32px,5vw,80px);align-items:start;padding-top:8px}
+.pg-s{padding:56px 0;border-bottom:1px solid var(--hair);scroll-margin-top:72px}
+.pg-last{border-bottom:0}
+.pg-n{margin:0 0 14px;font:500 12px "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--a)}
+.pg-h2{font-size:clamp(28px,3vw,40px)!important;line-height:1.08!important;letter-spacing:-.035em!important;max-width:22ch}
+.pg-h3{font-size:15px!important;font-weight:600!important;margin:0 0 14px!important;letter-spacing:-.01em}
+.pg-p{font-size:17px;color:var(--ink2);max-width:64ch;margin:18px 0 0}
+.pg-who{list-style:none;padding:0;margin:28px 0 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--hair)}
+.pg-who li{display:flex;gap:14px;align-items:baseline;padding:16px 16px 16px 0;border-bottom:1px solid var(--hair);font-size:15.5px}
+.pg-who li:nth-child(even){padding-left:16px;border-left:1px solid var(--hair)}
+.pg-who li span{font:500 12px "Geist Mono",monospace;color:var(--mut)}
+.pg-yrs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.pg-yrs div{padding:22px;border-radius:22px;background:var(--tint)}
+.pg-yrs h3{font-size:15px!important;margin:0 0 8px!important}
+.pg-yrs p{margin:0;color:var(--ink2);font-size:15px}
+.pg-skills{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+.pg-skills li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.pg-skills svg{flex:none;margin-top:4px;color:var(--a)}
+.pg-fine{margin:14px 0 0;font-size:12.5px;color:var(--mut);line-height:1.5}
+.pg-path{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:26px;border:1px solid var(--hair);border-radius:22px;overflow:hidden}
+.pg-path div{padding:16px 18px;border-left:1px solid var(--hair)}
+.pg-path div:first-child{border-left:0}
+.pg-path small{display:block;font:500 11px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.pg-path b{display:block;margin-top:6px;font-size:14.5px;font-weight:600;line-height:1.3}
+.pg-path .on,.pg-path .here{background:var(--ink);color:var(--paper)}
+.pg-path .on small,.pg-path .here small{color:rgba(255,255,255,.6)}
+.pg-out{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:32px}
+.pg-roles{list-style:none;padding:0;margin:0;border-top:1px solid var(--hair)}
+.pg-roles li{padding:12px 0;border-bottom:1px solid var(--hair);font-size:15.5px;font-weight:500}
+.pg-pay{width:100%;border-collapse:collapse;font-size:15px}
+.pg-pay th,.pg-pay td{text-align:left;padding:12px 0;border-bottom:1px solid var(--hair);font-weight:500}
+.pg-pay tr:first-child th,.pg-pay tr:first-child td{border-top:1px solid var(--hair)}
+.pg-pay td{text-align:right;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* plans */
+.pg-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:26px}
+.pg-plans button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;padding:22px 20px 18px;border-radius:24px;border:1px solid var(--hair);background:var(--paper);cursor:pointer;font:inherit;color:var(--ink);transition:border-color .2s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.pg-plans button:hover{border-color:var(--ink);transform:translateY(-2px)}
+.pg-plans button.hot{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.pg-plans .tag{position:absolute;top:-10px;left:18px;font:500 11px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:4px 9px;border-radius:999px}
+.pg-plans .pt{font-size:14px;font-weight:600}
+.pg-plans .pa{font-size:28px;font-weight:600;letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1.1}
+.pg-plans .pa small{display:block;font-size:13px;font-weight:500;color:var(--mut);letter-spacing:0;margin-top:2px}
+.pg-plans .pd{font-size:13.5px;color:var(--mut);line-height:1.45}
+.pg-plans .pgo{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:10px;font-size:13.5px;font-weight:600;color:var(--a)}
+.pg-bonus{display:flex;align-items:center;gap:16px;margin-top:14px;padding:18px 20px;border-radius:22px;background:var(--tint)}
+.pg-bonus>div{flex:1;min-width:0}
+.pg-bonus b{display:block;font-size:15px}
+.pg-bonus span{display:block;font-size:13.5px;color:var(--mut);margin-top:2px}
+.pg .ic{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--paper);border:1px solid var(--hair);color:var(--a)}
+.pg-break{margin-top:14px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.pg-break summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:600;font-size:15px;display:flex;justify-content:space-between}
+.pg-break summary::after{content:"+";font-weight:400;font-size:20px;line-height:1;color:var(--mut)}
+.pg-break[open] summary::after{content:"–"}
+.pg-break summary::-webkit-details-marker{display:none}
+.pg-ft{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;padding-bottom:6px}
+.pg-ft table{width:100%;border-collapse:collapse;font-size:14.5px}
+.pg-ft caption{text-align:left;font-weight:600;padding:0 0 8px}
+.pg-ft th,.pg-ft td{padding:9px 0;border-top:1px solid var(--hair);text-align:left;font-weight:500;color:var(--ink2)}
+.pg-ft td{text-align:right;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.pg-sch{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:20px;padding:22px 24px;border-radius:24px;background:var(--ink);color:var(--paper)}
+.pg-sch b{display:block;font-size:16px}
+.pg-sch span{display:block;font-size:14px;opacity:.7;margin-top:2px}
+.pg-steps{list-style:none;padding:0;margin:26px 0 0;counter-reset:s;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pg-steps li{counter-increment:s;padding:22px;border-radius:22px;border:1px solid var(--hair)}
+.pg-steps li::before{content:"0" counter(s);display:block;font:500 12px "Geist Mono",monospace;color:var(--a);margin-bottom:22px}
+.pg-steps b{display:block;font-size:15.5px}
+.pg-steps span{display:block;font-size:14px;color:var(--mut);margin-top:6px;line-height:1.5}
+.pg-faq{margin-top:22px;border-top:1px solid var(--hair)}
+.pg-faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border:0;border-bottom:1px solid var(--hair);background:none;color:var(--ink);font:600 16px Geist,system-ui;text-align:left;cursor:pointer}
+.pg-faq button i{font-style:normal;font-weight:400;font-size:22px;color:var(--mut);flex:none}
+.pg-faq p{margin:0;padding:4px 0 22px;color:var(--ink2);border-bottom:1px solid var(--hair);max-width:62ch}
+/* rail */
+.pg-rail{position:sticky;top:84px;padding:40px 0 56px}
+.pg-card{padding:26px;border-radius:28px;border:1px solid var(--hair);background:var(--paper);box-shadow:0 1px 0 rgba(18,16,22,.04),0 30px 60px -40px rgba(18,16,22,.25)}
+.pg-cs{margin:0;font-size:13.5px;font-weight:550;color:var(--mut)}
+.pg-price{margin:8px 0 0;font-size:34px;font-weight:600;letter-spacing:-.04em;line-height:1.05;font-variant-numeric:tabular-nums}
+.pg-pn{margin:6px 0 0;font-size:13.5px;color:var(--mut)}
+.pg-rp{display:grid;gap:0;margin:20px 0 18px;border-top:1px solid var(--hair)}
+.rpi{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border:0;border-bottom:1px solid var(--hair);background:none;color:var(--ink);font:500 14px Geist,system-ui;text-align:left;cursor:pointer}
+.rpi b{font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rpi:hover span{text-decoration:underline;text-underline-offset:3px}
+.pg-card .pb+.pb{margin-top:10px}
+.pg-secure{display:flex;align-items:center;justify-content:center;gap:6px;margin:14px 0 0;font-size:12.5px;color:var(--mut)}
+.pg-inc{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:14px;padding-top:20px;border-top:1px solid var(--hair)}
+.pg-inc li{display:flex;gap:12px;align-items:center}
+.pg-inc b{display:block;font-size:14px;font-weight:600}
+.pg-inc small{display:block;font-size:12.5px;color:var(--mut)}
+/* proof */
+.pg-proof{padding:88px 0 0}
+.pg-ph{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.pg-pnote{margin:0;max-width:40ch;color:var(--mut);font-size:15px}
+.pg-faces{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.pg-faces figure{margin:0}
+.pg-faces figure div{aspect-ratio:3/4;border-radius:22px;background-size:cover}
+.pg-faces figcaption{margin-top:10px}
+.pg-faces b{display:block;font-size:14.5px;font-weight:600}
+.pg-faces span{display:block;font-size:13px;color:var(--mut)}
+.pg-logos{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 32px;margin-top:48px;padding:24px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);font-weight:600;letter-spacing:-.02em;color:var(--mut);font-size:15px}
+/* related */
+.pg-rel{padding:88px 0 0}
+.pg-relg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.pg-rc .pg-ri{position:relative;aspect-ratio:4/3;border-radius:22px;background-size:cover;background-position:center}
+.pg-rc .pg-ri em{position:absolute;left:12px;top:12px;font-style:normal;font:500 11px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.04em;background:var(--paper);color:var(--ink);padding:5px 9px;border-radius:999px}
+.pg-rc .pg-rl{margin:14px 0 0;font:500 11.5px "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.pg-rc h3{font-size:17px!important;letter-spacing:-.02em;margin:6px 0 0!important;line-height:1.25}
+.pg-rc .pg-rm{margin:4px 0 0;font-size:14px;color:var(--mut)}
+.pg-rc .pg-ra{display:flex;gap:8px;margin-top:14px}
+/* end */
+.pg-end{padding:96px 0 0}
+.pg-endi{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:0;align-items:stretch;background:#121016;color:#fff;border-radius:36px;overflow:hidden;padding:0!important;max-width:calc(1200px - 2*clamp(18px,4vw,40px))}
+.pg-endi>div:first-child{padding:clamp(32px,5vw,64px)}
+.ic .pg .pg-endi h2{color:#fff;font-size:clamp(32px,4vw,54px);line-height:1.02;letter-spacing:-.04em}
+.pg-endi h2 span{color:rgba(255,255,255,.55)}
+.pg-endi p{color:rgba(255,255,255,.7);margin:18px 0 0;max-width:46ch}
+.pg-endimg{min-height:320px;background:url(/assets/c207daef09b15a19b09b7923f7ef32fd.webp) center/cover}
+.pg-foot{padding:48px 0 120px;font-size:13.5px;color:var(--mut)}
+.pg-foot .pg-w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.pg-foot a{text-decoration:none;margin-left:18px}
+/* responsive */
+@media(max-width:1060px){.pg-nav{display:none}.pg-body{grid-template-columns:minmax(0,1fr)}.pg-rail{position:static;padding:8px 0 0;order:-1}.pg-rail .pg-inc{grid-template-columns:1fr 1fr}.pg-facts{grid-template-columns:repeat(3,minmax(0,1fr))}.pg-facts div:nth-child(4){border-left:0;padding-left:0}.pg-facts div:nth-child(n+4){border-top:1px solid var(--hair)}.pg-relg,.pg-faces{grid-template-columns:repeat(3,minmax(0,1fr))}.pg-faces figure:nth-child(n+4),.pg-relg article:nth-child(4){display:none}}
+@media(max-width:860px){.pg-hero{grid-template-columns:minmax(0,1fr);align-items:start}.pg-fig{order:-1}.pg-img{aspect-ratio:16/10}.pg-out{grid-template-columns:minmax(0,1fr)}.pg-endi{grid-template-columns:minmax(0,1fr)}.pg-endimg{min-height:220px;order:-1}.pg-subr span{display:none}}
+@media(max-width:640px){
+ .pg-hdi{height:60px;gap:12px}.pg-tl{display:none}.pg-hd .pg-tl{display:none}
+ .pg-sel{padding-top:16px}.pg-crumb{display:none}
+ .pg-h1{font-size:clamp(34px,10vw,44px)!important;max-width:none}
+ .pg-lead{font-size:16.5px;margin-top:16px}
+ .pg-cta .pb{flex:1 1 100%}
+ .pg-facts{grid-template-columns:1fr 1fr}.pg-facts div{padding:14px 12px 14px 0!important;border-left:0!important}.pg-facts div:nth-child(even){padding-left:12px!important;border-left:1px solid var(--hair)!important}.pg-facts div:nth-child(n+3){border-top:1px solid var(--hair)}.pg-facts div:nth-child(5){grid-column:span 2}
+ .pg-sub{margin-top:18px}.pg-subr{display:none}
+ .pg-s{padding:44px 0}
+ .pg-who,.pg-skills,.pg-yrs{grid-template-columns:minmax(0,1fr)}.pg-who li:nth-child(even){padding-left:0;border-left:0}
+ .pg-path{grid-template-columns:1fr 1fr}.pg-path div:nth-child(3){border-left:0}.pg-path div:nth-child(n+3){border-top:1px solid var(--hair)}
+ .pg-steps{grid-template-columns:minmax(0,1fr)}
+ .pg-bonus{flex-wrap:wrap}.pg-bonus .pb{width:100%}
+ .pg-rail .pg-inc{grid-template-columns:1fr}
+ .pg-card{padding:20px;border-radius:24px}
+ .pg-faces,.pg-relg{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(-1*clamp(18px,4vw,40px));padding:0 clamp(18px,4vw,40px) 6px;scrollbar-width:none}
+ .pg-faces::-webkit-scrollbar,.pg-relg::-webkit-scrollbar{display:none}
+ .pg-faces figure,.pg-faces figure:nth-child(n+4){flex:0 0 46%;scroll-snap-align:start;display:block}
+ .pg-relg article,.pg-relg article:nth-child(4){flex:0 0 76%;scroll-snap-align:start;display:block}
+ .pg-endi{border-radius:28px}.pg-end .pg-cta .pb{flex:1 1 100%}
+ .pg-proof,.pg-rel,.pg-end{padding-top:64px}
+ .pg-foot a{margin:0 16px 0 0}
+}
+@media(prefers-reduced-motion:reduce){.lv{animation:none}}</style><style id="finish">
+/* Finishing layer: typography, rhythm, focus, micro-interactions */
+.ic h1,.ic h2,.ic h3,.ic .h2,.ic .htitle{text-wrap:balance}
+.ic p,.ic li,.ic small,.ic .lead{text-wrap:pretty}
+.ic{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.ic .price,.ic .xam b,.ic .xdue b,.ic .kpis b,.ic .pa,.ic .ffacts b,.ic .xsum,.ic .fr b{font-variant-numeric:tabular-nums}
+.ic .chips,.ic .filters,.ic .schoolpick,.ic .xlv,.ic .lvls{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 36px),transparent)}
+.ic ::selection{background:#ddd6fe;color:#1a1033}
+.ic :focus-visible{outline:3px solid #8b5cf6;outline-offset:3px;border-radius:14px}
+.ic .btn{position:relative;overflow:hidden;isolation:isolate;-webkit-tap-highlight-color:transparent;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s}
+.ic .btn:active{transform:scale(.97)}
+.ic .btn.p::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.ic .btn.p:hover::after{transform:translateX(120%)}
+.ic .btn.p:hover{box-shadow:0 16px 34px -14px rgba(109,40,217,.75)}
+.ic .eyebrow{line-height:1.3}
+.ic .eyebrow::before{content:"";width:18px;height:2px;border-radius:2px;background:currentColor;opacity:.7}
+.ic img{max-width:100%}
+.ic .lead{max-width:min(60ch,100%)}
+@supports (animation-timeline:scroll()){.ic::after{content:"";position:fixed;left:0;top:0;height:3px;width:100%;z-index:300;transform-origin:0 50%;background:linear-gradient(90deg,#7c3aed,#c084fc,#f472b6);animation:icprog linear both;animation-timeline:scroll(root);pointer-events:none}@keyframes icprog{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+@media(max-width:760px){
+ .ic .band{padding:56px 0}
+ .ic .h2{font-size:clamp(30px,8.4vw,40px);line-height:1.04;letter-spacing:-.04em}
+ .ic .lead{font-size:16.5px;line-height:1.55}
+ .ic .eyebrow{font-size:12px;margin-bottom:12px}
+ .ic .cta{gap:10px}
+ .ic .hero .cta .btn,.ic .final .cta .btn,.ic .fres .fact .btn{flex:1 1 100%;justify-content:center}
+ .ic .cup small{display:block;font-size:12px;line-height:1.35;margin-top:4px}
+ .ic .cup b{font-size:30px}
+ .ic .ticks{gap:10px 16px}
+}
+@media(max-width:360px){.ic .h2{font-size:29px}.ic .htitle{font-size:34px!important}.ic .wrap{padding-left:14px;padding-right:14px}}
+@media(min-width:1600px){.ic .wrap{max-width:1320px}}
+@media(prefers-reduced-motion:reduce){.ic::after{display:none}.ic .btn.p::after{display:none}}
+</style>
+<style id="offers">.ofb{position:relative;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 12px;border-radius:999px;border:1px solid var(--line,rgba(18,16,22,.1));background:transparent;color:inherit;font:550 14px Geist,"Plus Jakarta Sans",system-ui;cursor:pointer;flex:none;transition:border-color .2s,background .2s}
+.ofb:hover{border-color:currentColor}
+.ofb i{font-style:normal;min-width:20px;height:20px;padding:0 6px;border-radius:999px;display:grid;place-items:center;background:var(--act,#6d28d9);color:#fff;font:600 11.5px Geist,system-ui}
+.ofv{position:fixed;inset:0;z-index:220;background:rgba(18,16,22,.36);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:ofin .25s ease both}
+@keyframes ofin{from{opacity:0}}
+.ofp{position:fixed;z-index:221;top:12px;right:12px;bottom:12px;width:min(440px,calc(100% - 24px));display:flex;flex-direction:column;background:#fbfaf8;color:#121016;border-radius:32px;box-shadow:0 40px 90px -30px rgba(18,16,22,.5);overflow:hidden;animation:ofsl .45s cubic-bezier(.2,.8,.2,1) both;font-family:Geist,"Plus Jakarta Sans",system-ui,sans-serif}
+.ic.dk .ofp{background:#141119;color:#f4f2f7}
+@keyframes ofsl{from{transform:translateX(30px);opacity:0}}
+.ofh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:26px 24px 18px;border-bottom:1px solid rgba(18,16,22,.08)}
+.ofh p{margin:0;font:500 11.5px "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--act,#6d28d9)}
+.ofh h3{margin:8px 0 0;font:600 24px/1.1 Geist,system-ui;letter-spacing:-.03em;color:inherit}
+.ofx{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(18,16,22,.1);background:transparent;color:inherit;font-size:20px;line-height:1;cursor:pointer}
+.ofs{flex:1;overflow-y:auto;padding:8px 24px 8px}
+.ofo{padding:20px 0;border-bottom:1px solid rgba(18,16,22,.08)}
+.ofo:last-child{border-bottom:0}
+.oft{display:flex;align-items:center;gap:8px}
+.ofk{font:500 11px "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:#6b6675}
+.off{font:500 10.5px "Geist Mono",ui-monospace,monospace;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#121016;color:#fff}
+.ic.dk .off{background:#f4f2f7;color:#121016}
+.ofo h4{margin:8px 0 0;font:600 18px/1.25 Geist,system-ui;letter-spacing:-.02em;color:inherit}
+.ofo p{margin:6px 0 0;font-size:14px;line-height:1.5;color:#6b6675}
+.ofa{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px}
+.ofc{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;color:var(--act,#6d28d9)!important;font:600 14px Geist,system-ui;cursor:pointer;text-decoration:none}
+.ofo.feat .ofc{color:#fff!important}
+.ofc:hover{text-decoration:underline;text-underline-offset:4px}
+.ofm{font-size:12.5px;color:#6b6675;text-align:right}
+.ofo.feat{margin:12px -12px 8px;padding:20px 18px;border:0;border-radius:24px;background:#121016;color:#fff}
+.ofo.feat p,.ofo.feat .ofk,.ofo.feat .ofm{color:rgba(255,255,255,.66)}
+.ofo.feat .ofc{color:#fff}
+.ofo.feat .off{background:#fff;color:#121016}
+.ofn{margin:0;padding:14px 24px calc(18px + env(safe-area-inset-bottom));font-size:12px;color:#6b6675;border-top:1px solid rgba(18,16,22,.08)}
+@media(max-width:760px){.ofb{height:36px;padding:0 10px}.ofb .ofl{display:none}.ofp{top:auto;left:0;right:0;bottom:0;width:100%;max-height:88vh;max-height:88dvh;border-radius:28px 28px 0 0;animation:ofup .4s cubic-bezier(.2,.8,.2,1) both}.ofh{padding:22px 20px 14px}.ofs{padding:4px 20px}.ofn{padding:12px 20px calc(16px + env(safe-area-inset-bottom))}}
+@keyframes ofup{from{transform:translateY(40px);opacity:0}}
+@media(max-width:360px){.ofb i{display:none}}</style><style id="plogos">.plogos{display:flex;align-items:center;justify-content:center;gap:clamp(28px,6vw,72px);flex-wrap:wrap}.plogo{height:44px;width:auto;display:block;opacity:.92;transition:opacity .2s}.plogo:hover{opacity:1}.pl-athe{height:30px}.pl-cpd{height:56px}.pl-lsbf{height:42px}.pl-winc{height:46px}.ic.dk .plogo{background:#fff;padding:8px 12px;border-radius:12px;box-sizing:content-box}.ph-p{text-align:center;margin:0 auto 22px;max-width:56ch}.ph-p h2{font-size:clamp(22px,2.2vw,28px);margin:0;letter-spacing:-.02em}.ph-p p{margin:6px 0 0;color:var(--muted,#6b6675);font-size:14.5px}@media(max-width:560px){.plogos{display:grid!important;grid-template-columns:1fr 1fr;gap:22px 18px;justify-items:center;align-items:center}.plogo{height:36px;max-width:100%;object-fit:contain}.pl-athe{height:24px}.pl-cpd{height:50px}}</style><style id="brand">.brand{display:inline-flex!important;align-items:center;gap:12px;text-decoration:none}.brand .lg{height:28px;width:auto;display:block;flex:none}.brand .lg-w{display:none}.ic.dk .brand .lg-c{display:none}.ic.dk .brand .lg-w{display:block}.brand.onlyw .lg-w{display:block}.brand .lgsub{padding-left:12px;border-left:1px solid currentColor;opacity:.75;font-size:14px;font-weight:550;line-height:1.1;white-space:nowrap;display:inline!important}.ic .logo.brand>span.lgsub{display:inline!important}@media(max-width:760px){.brand .lg{height:24px}.brand .lgsub{display:none!important}}@media(max-width:380px){.brand .lg{height:20px}}</style>
+<style>html{scroll-behavior:smooth}</style></head><body><template id="dc-tpl">
+
+<div class="ic">
+
+<div class="pg">
+<header class="pg-hd"><div class="pg-w pg-hdi">
+  <a class="pg-logo brand" href="Main.dc.html"><img class="lg lg-c" src="/assets/b902c0e1d0b5e18b502f5249ee882e83.webp" alt="Inspire College" width="139" height="30"><img class="lg lg-w" src="/assets/dad81691bc200060ed05886b0e6b2ea9.webp" alt="" aria-hidden="true" width="139" height="30"></a>
+  <nav class="pg-nav" aria-label="Main"><a href="Main.dc.html#programs">Programmes</a><a href="Main.dc.html#schools">Schools</a><a href="Main.dc.html#why">Why Inspire</a><a href="/portal">Student portal</a></nav>
+  <div class="pg-hda"><button type="button" class="ofb" onClick="{{ofOpenFn}}" aria-label="See current offers"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span class="ofl">Offers</span><i>{{ofCount}}</i></button><a class="pg-tl" href="Demo.dc.html">Free demo class</a><button class="pb pb-ink pb-sm" type="button" onClick="{{openEnrol}}">Apply</button></div>
+</div></header>
+
+<div class="pg-w">
+  <div class="pg-sel">
+    <nav class="pg-crumb" aria-label="Breadcrumb"><a href="Main.dc.html">Home</a><i>/</i><a href="Main.dc.html#programs">Programmes</a><i>/</i><span>{{p.lvl}}</span></nav>
+    <div class="pg-seg" role="group" aria-label="Level"><template data-sc="for" list="{{lvlTabs}}" as="t" hint-placeholder-count="5"><button type="button" class="{{t.cls}}" onClick="{{t.go}}" aria-pressed="{{t.on}}">{{t.t}}</button></template></div>
+  </div>
+  <div class="pg-chips" role="group" aria-label="Choose a programme"><template data-sc="for" list="{{chips}}" as="c" hint-placeholder-count="6"><button type="button" class="{{c.cls}}" onClick="{{c.go}}" aria-pressed="{{c.on}}">{{c.short}}</button></template></div>
+
+  <section class="pg-hero">
+    <div class="pg-hl">
+      <p class="pg-kick"><span>{{p.lvl}}</span><span>{{p.body}}</span><span>100% online</span><template data-sc="if" value="{{p.offer}}" hint-placeholder-val="{{ false }}"><span class="hot">Limited offer</span></template></p>
+      <h1 class="pg-h1">{{p.name}}</h1>
+      <p class="pg-lead">{{p.blurb}}</p>
+      <div class="pg-cta"><button class="pb pb-a" type="button" onClick="{{openEnrol}}">{{ctaMain}}</button><a class="pb pb-ghost" href="Demo.dc.html">Try a free class first</a></div>
+      <p class="pg-micro">Enrol in about 2 minutes · Free counselling · {{p.monthTrust}}</p>
+      <p class="pg-views"><span><i class="lv"></i>{{vw.now}} people viewing now</span><span>{{vw.views}} views this week</span><template data-sc="if" value="{{vw.sample}}" hint-placeholder-val="{{ true }}"><em title="Connect analytics to show live numbers">Sample data</em></template></p>
+    </div>
+    <figure class="pg-fig"><div class="pg-img" style="background-image:url({{p.img}})" role="img" aria-label="{{p.alt}}"></div><figcaption><span><i class="lv"></i>Live online classes</span><span>{{p.chip}}</span></figcaption></figure>
+  </section>
+
+  <dl class="pg-facts">
+    <div><dt>Duration</dt><dd>{{p.dur}}</dd></div>
+    <div><dt>Qualification</dt><dd>{{p.qual}}</dd></div>
+    <div><dt>Awarded by</dt><dd>{{p.body}}</dd></div>
+    <div><dt>Study mode</dt><dd>Live online + replays</dd></div>
+    <div><dt>Fee</dt><dd>{{p.feeHead}}</dd></div>
+  </dl>
+</div>
+
+<nav class="pg-sub" aria-label="On this page"><div class="pg-w pg-subi"><div class="pg-subl"><a href="#ov">Overview</a><a href="#cu">Curriculum</a><a href="#ou">Outcomes</a><a href="#fe">Fees</a><a href="#en">Entry</a><a href="#fq">FAQ</a></div><div class="pg-subr"><span><b>{{p.startAmt}}</b></span><button class="pb pb-a pb-sm" type="button" onClick="{{openEnrol}}">Enrol now</button></div></div></nav>
+
+<div class="pg-w pg-body">
+  <main class="pg-main">
+    <section class="pg-s" id="ov"><p class="pg-n">01 · Overview</p>
+      <h2 class="pg-h2">{{p.whoTitle}}</h2>
+      <p class="pg-p">{{p.overview}}</p>
+      <ul class="pg-who"><template data-sc="for" list="{{p.who}}" as="w" hint-placeholder-count="4"><li><span>{{w.n}}</span>{{w.t}}</li></template></ul>
+    </section>
+
+    <section class="pg-s" id="cu"><p class="pg-n">02 · Curriculum</p>
+      <h2 class="pg-h2">What you’ll study</h2>
+      <div class="pg-yrs"><template data-sc="for" list="{{p.years}}" as="y" hint-placeholder-count="2"><div><h3>{{y.k}}</h3><p>{{y.t}}</p></div></template></div>
+      <ul class="pg-skills"><template data-sc="for" list="{{p.skills}}" as="s" hint-placeholder-count="6"><li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>{{s}}</li></template></ul>
+      <p class="pg-fine">Full unit list available from admissions on request.</p>
+    </section>
+
+    <section class="pg-s" id="ou"><p class="pg-n">03 · Outcomes</p>
+      <h2 class="pg-h2">Where it takes you</h2>
+      <div class="pg-path"><template data-sc="for" list="{{p.path}}" as="s" hint-placeholder-count="4"><div class="{{s.cls}}"><small>{{s.k}}</small><b>{{s.t}}</b></div></template></div>
+      <div class="pg-out">
+        <div><h3 class="pg-h3">Roles this prepares you for</h3><ul class="pg-roles"><template data-sc="for" list="{{p.careers}}" as="c" hint-placeholder-count="4"><li>{{c}}</li></template></ul></div>
+        <div><h3 class="pg-h3">Typical pay in Sri Lanka</h3><table class="pg-pay"><tbody><template data-sc="for" list="{{payRows}}" as="r" hint-placeholder-count="3"><tr><th>{{r.role}}</th><td>{{r.lk}}</td></tr></template></tbody></table><p class="pg-fine">Monthly gross, middle 80% of earners. Source: Paylab Sri Lanka salary survey. Indicative only.</p></div>
+      </div>
+    </section>
+
+    <section class="pg-s" id="fe"><p class="pg-n">04 · Fees &amp; payment</p>
+      <h2 class="pg-h2">{{p.feeTitle}}</h2>
+      <div class="pg-plans"><template data-sc="for" list="{{shopPlans}}" as="o" hint-placeholder-count="3"><button type="button" class="{{o.cls}}" onClick="{{o.go}}"><template data-sc="if" value="{{o.hot}}" hint-placeholder-val="{{ false }}"><span class="tag">Most chosen</span></template><span class="pt">{{o.t}}</span><span class="pa">{{o.a}}<small>{{o.u}}</small></span><span class="pd">{{o.d}}</span><span class="pgo">Choose plan <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></button></template></div>
+      <template data-sc="if" value="{{atheBonus}}" hint-placeholder-val="{{ true }}"><div class="pg-bonus"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><div><b>Two CPD short courses included, free</b><span>Choose any two at checkout, from AI Mastery to Digital Marketing. Worth up to LKR 150,000.</span></div><button type="button" class="pb pb-line pb-sm" onClick="{{openEnrol}}">Choose mine</button></div></template>
+      <details class="pg-break"><summary>See the full fee breakdown</summary><div class="pg-ft"><template data-sc="for" list="{{p.fees}}" as="f" hint-placeholder-count="2"><table><caption>{{f.h}}</caption><tbody><template data-sc="for" list="{{f.rows}}" as="r" hint-placeholder-count="4"><tr><th>{{r.k}}</th><td>{{r.v}}</td></tr></template></tbody></table></template></div><p class="pg-fine">{{p.feeNote}}</p></details>
+      <div class="pg-sch"><div><b>First 20 students: LKR 200,000 scholarship.</b><span>Seats go in order of registration. Apply for it as you enrol.</span></div><button class="pb pb-w pb-sm" type="button" onClick="{{openEnrol}}">Reserve my seat</button></div>
+    </section>
+
+    <section class="pg-s" id="en"><p class="pg-n">05 · Entry</p>
+      <h2 class="pg-h2">How to join</h2>
+      <ol class="pg-steps"><li><b>Check you’re eligible</b><span>{{p.entry}}</span></li><li><b>Enrol online</b><span>Choose a plan and pay the registration fee. Upload results and ID now or later.</span></li><li><b>Meet your advisor</b><span>We confirm your entry, set your intake and get you into Inspire Brain.</span></li></ol>
+    </section>
+
+    <section class="pg-s pg-last" id="fq"><p class="pg-n">06 · Questions</p>
+      <h2 class="pg-h2">Before you decide</h2>
+      <div class="pg-faq"><template data-sc="for" list="{{faqs}}" as="q" hint-placeholder-count="5"><button type="button" onClick="{{q.toggle}}" aria-expanded="{{q.open}}"><span>{{q.q}}</span><i>{{q.sign}}</i></button><template data-sc="if" value="{{q.open}}" hint-placeholder-val="{{ false }}"><p>{{q.a}}</p></template></template></div>
+    </section>
+  </main>
+
+  <aside class="pg-rail" aria-label="Enrol in this programme">
+    <div class="pg-card">
+      <p class="pg-cs">{{p.short}}</p>
+      <p class="pg-price">{{p.startAmt}}</p>
+      <p class="pg-pn">{{p.startNote}}</p>
+      <div class="pg-rp"><template data-sc="for" list="{{shopPlans}}" as="o" hint-placeholder-count="3"><button type="button" class="rpi" onClick="{{o.go}}"><span>{{o.t}}</span><b>{{o.a}}</b></button></template></div>
+      <button class="pb pb-a pb-full" type="button" onClick="{{openEnrol}}">{{ctaMain}}</button>
+      <a class="pb pb-ghost pb-full" href="https://wa.me/__IC_WA_ADVISOR__" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12Z"/></svg> Talk to an advisor</a>
+      <p class="pg-secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Secure checkout with PayHere</p>
+      <ul class="pg-inc">
+        <template data-sc="if" value="{{atheBonus}}" hint-placeholder-val="{{ true }}"><li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span><b>2 free CPD courses</b><small>Worth up to LKR 150,000</small></span></li></template>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg></span><span><b>{{p.cups}}</b><small>Free Barista coffee, weekdays</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><span><b>Inspire Brain app</b><small>Live classes, replays, AI study buddy</small></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><span><b>LKR 15,000 per referral</b><small>For every friend who enrols</small></span></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<section class="pg-proof"><div class="pg-w">
+  <div class="pg-ph"><div><p class="pg-n">Students</p><h2 class="pg-h2">Real people. Real progress.</h2></div><a class="pg-tl" href="Main.dc.html#stories">Watch their stories <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  <div class="pg-faces"><template data-sc="for" list="{{faces}}" as="f" hint-placeholder-count="5"><figure><div style="background-image:url({{f.img}});background-position:{{f.pos}} 30%"></div><figcaption><b>{{f.name}}</b><span>{{f.role}}</span></figcaption></figure></template></div>
+  <div class="pg-logos plogos" aria-label="Our partners"><img class="plogo pl-athe" src="/assets/d025bc1ca0b8f72ad0ab0808f0946938.webp" alt="ATHE — Awards for Training and Higher Education" width="193" height="42" loading="lazy"><img class="plogo pl-cpd" src="/assets/d843b7867fdd943381809cc27d7ccf08.webp" alt="CPD Certification Service" width="380" height="346" loading="lazy"><img class="plogo pl-lsbf" src="/assets/c576220371f79f119f0ff207d2a83b56.webp" alt="London School of Business & Finance" width="521" height="167" loading="lazy"><img class="plogo pl-winc" src="/assets/89d5d4e4070541da1715572b7b25d5e3.webp" alt="Western International College Online" width="649" height="240" loading="lazy"></div>
+</div></section>
+
+<section class="pg-rel"><div class="pg-w">
+  <div class="pg-ph"><div><p class="pg-n">Keep exploring</p><h2 class="pg-h2">You may also like</h2></div><p class="pg-pnote">{{relNote}}</p></div>
+  <div class="pg-relg"><template data-sc="for" list="{{rel}}" as="r" hint-placeholder-count="4"><article class="pg-rc"><div class="pg-ri" style="background-image:url({{r.img}})"><template data-sc="if" value="{{r.free}}" hint-placeholder-val="{{ false }}"><em>Free with ATHE</em></template></div><p class="pg-rl">{{r.lvl}}</p><h3>{{r.short}}</h3><p class="pg-rm">{{r.dur}} · {{r.fee}}</p><div class="pg-ra"><button type="button" class="pb pb-line pb-sm" onClick="{{r.view}}">View</button><button type="button" class="pb pb-ink pb-sm" onClick="{{r.enrol}}">Enrol</button></div></article></template></div>
+</div></section>
+
+<section class="pg-end"><div class="pg-w pg-endi">
+  <div><p class="pg-n" style="color:rgba(255,255,255,.6)">Next intake</p><h2>Ready when you are. <span>Start this intake.</span></h2><p>{{p.finalLine}} Talk to an advisor first if you’d like, it’s free.</p>
+  <div class="pg-cta"><button class="pb pb-w" type="button" onClick="{{openEnrol}}">{{ctaMain}}</button><a class="pb pb-glass" href="Demo.dc.html">Try a free class</a></div></div>
+  <div class="pg-endimg" role="img" aria-label="A learner in a live online class"></div>
+</div></section>
+
+<footer class="pg-foot"><div class="pg-w"><span>© 2026 Inspire College · Level 01, Shangri-La, Colombo 2 · +94 71 199 3331</span><span><a href="Main.dc.html">Home</a><a href="Main.dc.html#programs">All programmes</a><a href="https://wa.me/__IC_WA_MAIN__">Contact</a></span></div></footer>
+</div>
+
+<template data-sc="if" value="{{xResume}}" hint-placeholder-val="{{ false }}"><button type="button" class="resume" onClick="{{xResumeGo}}"><i style="background-image:url({{xRes.img}})"></i><span>Continue: {{xRes.short}}</span><b>Resume →</b></button></template>
+<template data-sc="if" value="{{xOpen}}" hint-placeholder-val="{{ false }}">
+<div class="xov" onClick="{{xClose}}"></div>
+<div class="xsh" role="dialog" aria-modal="true" aria-label="Enrol">
+  <div class="xhd"><template data-sc="if" value="{{xCanBack}}" hint-placeholder-val="{{ false }}"><button type="button" class="xic" onClick="{{xBack}}" aria-label="Back">←</button></template><b>{{xTitle}}</b><button type="button" class="xic" onClick="{{xClose}}" aria-label="Close">×</button></div>
+  <template data-sc="if" value="{{xShowSteps}}" hint-placeholder-val="{{ true }}"><div class="xsteps" aria-hidden="true"><template data-sc="for" list="{{xSteps}}" as="t" hint-placeholder-count="2"><span class="{{t}}"></span></template></div></template>
+  <template data-sc="if" value="{{xHasCamp}}" hint-placeholder-val="{{ true }}"><div class="xcamp"><em>{{xCamp.tag}}</em><span>{{xCamp.text}}</span></div></template>
+  <div class="xbd">
+    <template data-sc="if" value="{{xIsPick}}" hint-placeholder-val="{{ false }}">
+      <h3 class="xh">Choose your programme</h3><p class="xsub">Tap one to see your payment plans.</p>
+      <div class="xlv"><template data-sc="for" list="{{xLvls}}" as="l" hint-placeholder-count="5"><button type="button" class="{{l.cls}}" onClick="{{l.pick}}">{{l.t}}</button></template></div>
+      <div class="xlist"><template data-sc="for" list="{{xList}}" as="p" hint-placeholder-count="6"><button type="button" class="xli" onClick="{{p.pick}}"><i style="background-image:url({{p.img}})"></i><span><b>{{p.short}}</b><small>{{p.fee}} · {{p.dur}}</small></span><em>›</em></button></template></div>
+    </template>
+    <template data-sc="if" value="{{xIsPlan}}" hint-placeholder-val="{{ true }}">
+      <div class="xprog"><span class="xpi" style="background-image:url({{xProg.img}})"></span><span class="xpt"><small>{{xProg.lvl}} · {{xProg.body}}</small><b>{{xProg.short}}</b><span>{{xProg.dur}} · 100% online</span></span><button type="button" class="xlink" onClick="{{xChange}}">Change</button></div>
+      <p class="xsec">Pick your payment plan</p>
+      <template data-sc="for" list="{{xPlans}}" as="o" hint-placeholder-count="3"><button type="button" class="{{o.cls}}" onClick="{{o.pick}}" aria-pressed="{{o.on}}"><template data-sc="if" value="{{o.hot}}" hint-placeholder-val="{{ false }}"><span class="xhot">Most popular</span></template><span class="rd"></span><span class="xpt2"><b>{{o.t}}</b><small>{{o.d}}</small></span><span class="xam"><b>{{o.a}}</b><small>{{o.u}}</small></span></button></template>
+      <template data-sc="if" value="{{xAthe}}" hint-placeholder-val="{{ true }}"><div class="xfree"><div class="xfh"><b>Pick your 2 free CPD courses</b><span class="{{xFreeCls}}">{{xFreeCount}}</span></div><p>Included with every ATHE programme. Worth {{xFreeWorth}} at today’s prices.</p>
+      <div class="xfg"><template data-sc="for" list="{{xFree}}" as="a" hint-placeholder-count="6"><button type="button" class="{{a.cls}}" onClick="{{a.toggle}}" aria-pressed="{{a.on}}"><i style="background-image:url({{a.img}})"></i><span><b>{{a.name}}</b><small><s>{{a.fee}}</s> FREE · {{a.dur}}</small></span><em>✓</em></button></template></div></div></template>
+      <div class="xrw"><div class="xrh"><b>Your rewards</b><span>{{xRwTxt}}</span></div><div class="xrbar"><i style="width:{{xRwPct}}"></i></div><div class="xrl"><template data-sc="for" list="{{xRw}}" as="r" hint-placeholder-count="4"><span class="{{r.cls}}">{{r.ic}} {{r.t}}</span></template></div></div>
+      <template data-sc="if" value="{{xIsCpdBuy}}" hint-placeholder-val="{{ false }}"><div class="xstk"><div class="xfh"><b>Stack skills · every extra course 25% off</b><span class="{{xStkCls}}">{{xStkLvl}}</span></div><div class="xstk-bar"><template data-sc="for" list="{{xStkSteps}}" as="t" hint-placeholder-count="4"><i class="{{t.cls}}"><em>{{t.n}}</em><small>{{t.t}}</small></i></template></div><p>{{xStkMsg}}</p></div></template>
+      <template data-sc="if" value="{{xHasAdds}}" hint-placeholder-val="{{ true }}"><p class="xsec">{{xAddTitle}}</p>
+      <template data-sc="for" list="{{xAdds}}" as="a" hint-placeholder-count="2"><button type="button" class="{{a.cls}}" onClick="{{a.toggle}}" aria-pressed="{{a.on}}"><i style="background-image:url({{a.img}})"></i><span><b>{{a.name}}</b><small>{{a.meta}} · <s>{{a.was}}</s> <strong class="x25">{{a.now}}</strong></small></span><em>+</em></button></template></template>
+      <template data-sc="if" value="{{xHasUp}}" hint-placeholder-val="{{ false }}"><div class="xup"><span><b>{{xUp.t}}</b>{{xUp.d}}</span><button type="button" class="btn s sm" onClick="{{xUp.go}}">{{xUp.cta}}</button></div></template>
+      <div class="xperk"><template data-sc="for" list="{{xPerks}}" as="k" hint-placeholder-count="3"><span>{{k}}</span></template></div>
+    </template>
+    <template data-sc="if" value="{{xIsPay}}" hint-placeholder-val="{{ false }}">
+      <h3 class="xh">Almost there{{xHi}}</h3><p class="xsub">We’ll send your receipt and class details on WhatsApp.</p>
+      <div class="xf">
+        <div><label>{{xNameLbl}}</label><input type="text" value="{{xName}}" onInput="{{xSetName}}" autocomplete="name" placeholder="Full name"></div>
+        <div><label>WhatsApp number</label><input type="tel" value="{{xPhone}}" onInput="{{xSetPhone}}" autocomplete="tel" placeholder="07X XXX XXXX"></div>
+        <div><label>Email <span style="color:var(--muted);font-weight:500">(optional)</span></label><input type="email" value="{{xEmail}}" onInput="{{xSetEmail}}" autocomplete="email" placeholder="you@example.com"></div>
+      </div>
+      <p class="xsec">Pay with</p>
+      <div class="xmeth"><template data-sc="for" list="{{xMeths}}" as="m" hint-placeholder-count="2"><button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}"><b>{{m.t}}</b><small>{{m.d}}</small></button></template></div>
+      <div class="xsum"><template data-sc="for" list="{{xLines}}" as="r" hint-placeholder-count="3"><div><span>{{r.k}}</span><span>{{r.v}}</span></div></template><div class="tot"><span>Due today</span><span>{{xToday}}</span></div></div>
+      <template data-sc="if" value="{{xHasErr}}" hint-placeholder-val="{{ false }}"><p class="xerr">{{xErr}}</p></template>
+      <p class="xtrust">Secure checkout with PayHere · Visa · Mastercard · Amex</p>
+    </template>
+    <template data-sc="if" value="{{xIsDone}}" hint-placeholder-val="{{ false }}">
+      <div class="xdone">
+        <div class="xconf" aria-hidden="true"><template data-sc="for" list="{{xConf}}" as="c" hint-placeholder-count="30"><i style="left:{{c.l}};animation-delay:{{c.d}};background:{{c.c}}"></i></template></div>
+        <div class="xbadge">✓</div>
+        <h3 class="xh">You’re in, {{xFirst}}!</h3>
+        <p class="xsub" style="margin:0">{{xDoneSub}}</p>
+        <div class="xticket"><div class="tt"><small>Enrolment reference {{xRef}}</small><b>{{xProg.name}}</b></div><div class="tb"><template data-sc="for" list="{{xLines}}" as="r" hint-placeholder-count="3"><div><span>{{r.k}}</span><span>{{r.v}}</span></div></template><div><span>{{xPaidLbl}}</span><span>{{xToday}}</span></div></div></div>
+        <template data-sc="if" value="{{xAtheDone}}" hint-placeholder-val="{{ true }}"><div class="xcoffee" style="background:#f3e8ff;color:#4c1d95"><i>✓</i><div><b>2 free CPD courses unlocked</b><span>{{xFreeNames}}</span></div></div></template><template data-sc="if" value="{{xCoffee}}" hint-placeholder-val="{{ true }}"><div class="xcoffee"><i>●</i><div><b>Coffee wallet unlocked</b><span>{{xCoffeeTxt}}</span></div></div></template>
+        <template data-sc="if" value="{{xDoneCpd}}" hint-placeholder-val="{{ false }}"><div class="xcoffee" style="background:#ecfdf5;color:#065f46"><i>%</i><div><b>25% off your next CPD course</b><span>As an enrolled CPD student, any other CPD course is 25% off. Talk to your advisor to add it.</span></div></div></template><ul class="xnext"><li><i>1</i>Check WhatsApp for your receipt and intake date</li><li><i>2</i>Log in to Inspire Brain and meet your cohort</li><li><i>3</i>{{xPerkLine}}</li></ul>
+        <div class="cta" style="margin-top:18px"><a class="btn p" href="/portal">Open Inspire Brain</a><a class="btn s" href="{{xShare}}" target="_blank" rel="noopener">Invite a friend · earn LKR 15,000</a></div>
+        <p class="xnote">Design preview: no payment was taken. On the live site this opens PayHere.</p>
+      </div>
+    </template>
+  </div>
+  <template data-sc="if" value="{{xShowFoot}}" hint-placeholder-val="{{ true }}"><div class="xft"><span class="xdue"><small>{{xDueLbl}}</small><b>{{xToday}}</b></span><button type="button" class="btn p" onClick="{{xCta}}"><template data-sc="if" value="{{xBusy}}" hint-placeholder-val="{{ false }}"><span class="xbusy"></span></template>{{xCtaTxt}}</button></div></template>
+  <template data-sc="if" value="{{xHasQuest}}" hint-placeholder-val="{{ false }}"><template data-sc="if" value="{{xIsPlan}}" hint-placeholder-val="{{ false }}"><button type="button" class="xquest" onClick="{{xQuest}}" style="margin:0 auto 12px">Prefer the step-by-step enrolment with XP rewards?</button></template></template>
+</div>
+</template>
+<template data-sc="if" value="{{ofOpen}}" hint-placeholder-val="{{ false }}"><div class="ofv" onClick="{{ofClose}}"></div><aside class="ofp" role="dialog" aria-modal="true" aria-label="Current offers">
+  <div class="ofh"><div><p>Current offers</p><h3>Ways to save at Inspire</h3></div><button type="button" class="ofx" onClick="{{ofClose}}" aria-label="Close">×</button></div>
+  <div class="ofs"><template data-sc="for" list="{{ofList}}" as="o" hint-placeholder-count="6"><article class="{{o.cls}}"><div class="oft"><span class="ofk">{{o.k}}</span><template data-sc="if" value="{{o.feat}}" hint-placeholder-val="{{ false }}"><span class="off">Featured</span></template></div><h4>{{o.t}}</h4><p>{{o.d}}</p><div class="ofa"><a class="ofc" href="{{o.href}}" onClick="{{o.go}}">{{o.cta}}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><span class="ofm">{{o.m}}</span></div></article></template></div>
+  <p class="ofn">Offers can’t always be combined. An advisor confirms what applies to you before you pay.</p>
+</aside></template>
+<div class="mbar"><p><b>{{p.startAmt}}</b>{{p.startNote}}</p><button class="btn p sm" type="button" onClick="{{openEnrol}}">Enrol</button></div>
+
+<template data-sc="if" value="{{enrolOpen}}" hint-placeholder-val="{{ false }}">
+<div class="sheet" role="dialog" aria-modal="true" aria-label="Enrol">
+  <div class="pane">
+    <div class="phead">
+      <div class="phrow">
+        <span class="lvl"><span class="b">L{{level}}</span><span style="flex:1"><small><span>{{levelName}}</span><span>{{xp}} / 600 XP</span></small><span class="trk"><b style="width: {{xpW}}"></b></span></span></span>
+        <button class="x" type="button" onClick="{{closeEnrol}}" aria-label="Save and close">×</button>
+      </div>
+      <div class="quests"><template data-sc="for" list="{{quests}}" as="q" hint-placeholder-count="5"><span class="{{q.cls}}"><i>{{q.n}}</i>{{q.t}} · +{{q.xp}}</span></template></div>
+    </div>
+    <div class="pbody">
+      <template data-sc="if" value="{{notPaying}}" hint-placeholder-val="{{ true }}">
+      <div>
+        <template data-sc="if" value="{{hasToast}}" hint-placeholder-val="{{ false }}"><div class="toast"><i>+{{toast.xp}}</i>{{toast.t}}</div></template>
+
+        <template data-sc="if" value="{{e1}}" hint-placeholder-val="{{ true }}">
+          <h2>Quest 1 · <span class="lite">About you</span></h2>
+          <p class="psub">Takes 30 seconds. Progress saves automatically.</p>
+          <div class="form-stack">
+            <div class="seg2" role="group" aria-label="Who is enrolling"><button type="button" class="{{meCls}}" onClick="{{asMe}}">I'm the student</button><button type="button" class="{{parCls}}" onClick="{{asPar}}">I'm a parent</button></div>
+            <label class="l">{{nameLabel}}<input type="text" value="{{name}}" onInput="{{setName}}" autocomplete="name"></label>
+            <div class="row2"><label class="l">Email<input type="email" value="{{email}}" onInput="{{setEmail}}" autocomplete="email"></label><label class="l">Mobile / WhatsApp<input type="tel" value="{{phone}}" onInput="{{setPhone}}" autocomplete="tel"></label></div>
+            <p class="err" role="alert">{{err}}</p>
+            <div class="nav2"><a class="btn s" href="Aptitude.dc.html">Not sure? AI match</a><button class="btn k" type="button" onClick="{{go2}}">Complete quest · +50 XP</button></div>
+          </div>
+        </template>
+
+        <template data-sc="if" value="{{e2}}" hint-placeholder-val="{{ false }}">
+          <h2>Quest 2 · <span class="lite">Your start</span></h2>
+          <p class="psub">You're enrolling in {{p.short}}. When would you like to start?</p>
+          <div class="form-stack">
+            <template data-sc="for" list="{{starts}}" as="o" hint-placeholder-count="3"><button type="button" class="{{o.cls}}" onClick="{{o.pick}}" aria-pressed="{{o.on}}"><span class="rad" aria-hidden="true"></span><span><b>{{o.t}}</b><small>{{o.d}}</small></span></button></template>
+            <div class="nav2"><button class="btn s" type="button" onClick="{{back}}">Back</button><button class="btn k" type="button" onClick="{{go3}}">Complete quest · +100 XP</button></div>
+          </div>
+        </template>
+
+        <template data-sc="if" value="{{e3}}" hint-placeholder-val="{{ false }}">
+          <h2>Quest 3 · <span class="lite">Documents</span></h2>
+          <p class="psub">Optional bonus quest. Upload O/L, A/L or other results now, or later in Inspire Brain.</p>
+          <div class="drop"><b style="display:block;font-size:18px">{{upTitle}}</b><p class="psub" style="margin:6px 0 16px">PDF, JPG or PNG, up to 10 MB</p><button class="btn s" type="button" onClick="{{doUp}}">Choose file</button></div>
+          <div class="nav2"><button class="btn s" type="button" onClick="{{back}}">Back</button><button class="btn k" type="button" onClick="{{go4}}">{{go4Txt}}</button></div>
+        </template>
+
+        <template data-sc="if" value="{{e4}}" hint-placeholder-val="{{ false }}">
+          <h2>Quest 4 · <span class="lite">Your plan</span></h2>
+          <p class="psub">Plans taken from the live fee schedule for {{p.short}}.</p>
+          <div class="form-stack">
+            <template data-sc="for" list="{{plans}}" as="o" hint-placeholder-count="3"><button type="button" class="{{o.cls}}" onClick="{{o.pick}}" aria-pressed="{{o.on}}"><span class="rad" aria-hidden="true"></span><span><b>{{o.t}}<template data-sc="if" value="{{o.hot}}" hint-placeholder-val="{{ false }}"><span class="tagh">Most popular</span></template></b><small>{{o.d}}</small></span><span class="pr">{{o.a}}<small>{{o.u}}</small></span></button></template>
+            <button type="button" class="{{schCls}}" onClick="{{toggleSch}}" aria-pressed="{{sch}}"><i>✓</i><span><b style="color:var(--ink)">Apply for the LKR 200,000 scholarship · +50 XP</b><br>First 20 students. An advisor confirms eligibility before any fee changes.</span></button>
+            <label class="l">Referral code (optional)<input type="text" value="{{refCode}}" onInput="{{setRef}}" placeholder="e.g. FRIEND-IC"></label>
+            <div class="nav2"><button class="btn s" type="button" onClick="{{back}}">Back</button><button class="btn k" type="button" onClick="{{go5}}">Complete quest · +100 XP</button></div>
+          </div>
+        </template>
+
+        <template data-sc="if" value="{{e5}}" hint-placeholder-val="{{ false }}">
+          <h2>Final quest · <span class="lite">Reserve &amp; pay</span></h2>
+          <p class="psub">Secure checkout. Your seat is held the moment you pay.</p>
+          <div class="form-stack">
+            <template data-sc="for" list="{{methods}}" as="m" hint-placeholder-count="2"><button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}"><span class="rad" aria-hidden="true"></span><span><b>{{m.t}}</b><small>{{m.d}}</small></span></button></template>
+            <button type="button" class="{{agCls}}" onClick="{{toggleAg}}" aria-pressed="{{agree}}"><i>✓</i><span>I agree to the Terms &amp; Conditions and Refund Policy. I understand awarding-body fees in GBP are paid separately.</span></button>
+            <p class="err" role="alert">{{err}}</p>
+            <div class="nav2"><button class="btn s" type="button" onClick="{{back}}">Back</button><button class="btn p" type="button" onClick="{{pay}}">{{payTxt}}</button></div>
+          </div>
+        </template>
+      </div>
+      <aside class="sum" aria-label="Summary">
+        <div class="img" style="background-image:url({{p.img}})"></div>
+        <b>{{p.short}}</b>
+        <div class="sl" style="margin-top:8px"><span>Programme fee</span><span>{{p.feeHead}}</span></div>
+        <div class="sl"><span>Plan</span><span>{{planName}}</span></div>
+        <template data-sc="if" value="{{sch}}" hint-placeholder-val="{{ false }}"><div class="sl"><span>Scholarship</span><span style="color:var(--ok)">Applied, pending review</span></div></template>
+        <div class="sl t"><span>Due today</span><span>{{dueToday}}</span></div>
+        <div class="sl"><span>Then</span><span>{{dueThen}}</span></div>
+        <div class="unl"><template data-sc="for" list="{{unlocks}}" as="u" hint-placeholder-count="4"><span class="{{u.cls}}"><i>✓</i>{{u.t}}</span></template></div>
+      </aside>
+      </template>
+
+      <template data-sc="if" value="{{paying}}" hint-placeholder-val="{{ false }}">
+      <div class="handoff">
+        <div class="celebrate">
+          <div class="tro" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b1d00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"></path></svg></div>
+          <h2 style="font-size:34px">Level 3 unlocked, {{first}}!</h2>
+          <p>All quests complete. 600 XP earned and your rewards are waiting in Inspire Brain.</p>
+          <div class="bd"><span><i>1</i>Explorer</span><span><i>2</i>Pathfinder</span><span><i>3</i>Planner</span><span><i>4</i>Trailblazer</span></div>
+        </div>
+        <div class="acard">
+          <div class="spin" aria-hidden="true"></div>
+          <h3 style="font-size:24px">Taking you to secure payment…</h3>
+          <p style="color:var(--muted);margin:8px 0 0">{{handoffTxt}}</p>
+          <p style="font-size:13px;color:var(--muted);margin:14px 0 0">Design preview: the live site opens a PayHere payment link here. No payment is taken in this mockup.</p>
+          <button class="btn s sm" type="button" onClick="{{backPay}}" style="margin-top:16px">Back to payment</button>
+        </div>
+      </div>
+      </template>
+    </div>
+  </div>
+</div>
+</template>
+
+</div>
+</template><div id="dc-root"></div><script>(function(){
+"use strict";
+function DCLogic(props){this.props=props||{};this.state={};}
+DCLogic.prototype.setState=function(p){var n=typeof p==='function'?p(this.state,this.props):p;this.state=Object.assign({},this.state,n);schedule();};
+DCLogic.prototype.forceUpdate=function(){schedule();};
+window.DCLogic=DCLogic;
+var tpl,inst,root,queued=false;
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(function(){queued=false;render();});}
+function lit(p){p=p.trim();if(p==='true')return true;if(p==='false')return false;if(p==='null')return null;if(/^-?\d+(\.\d+)?$/.test(p))return +p;if(/^(['"]).*\1$/.test(p))return p.slice(1,-1);return undefined;}
+function get(scope,path){var l=lit(path);if(l!==undefined||path.trim()==='null')return l;var parts=path.trim().split('.'),v=scope;for(var i=0;i<parts.length;i++){if(v==null)return undefined;v=v[parts[i]];}return v;}
+var HOLE=/\{\{\s*([^}]+?)\s*\}\}/g,WHOLE=/^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/;
+function interp(str,scope){return str.replace(HOLE,function(_,p){var v=get(scope,p);return v==null?'':String(v);});}
+function attrVal(str,scope){var m=str.match(WHOLE);if(m)return get(scope,m[1]);return interp(str,scope);}
+var EV={onclick:'click',oninput:'input',onchange:'change',onkeydown:'keydown',onmouseenter:'mouseenter',onfocus:'focus',onended:'ended',onsubmit:'submit'};
+function build(node,scope,out){
+ if(node.nodeType===3){out.appendChild(document.createTextNode(node.nodeValue.indexOf('{{')>=0?interp(node.nodeValue,scope):node.nodeValue));return;}
+ if(node.nodeType!==1)return;
+ var tag=node.localName;
+ if(tag==='template'&&node.hasAttribute('data-sc')){var k=node.getAttribute('data-sc'),src=node.content;
+  if(k==='for'){var list=attrVal(node.getAttribute('list')||'',scope)||[],as=node.getAttribute('as')||'item';for(var i=0;i<list.length;i++){var s=Object.create(scope);s[as]=list[i];s.$index=i;kids(src,s,out);}}
+  else if(attrVal(node.getAttribute('value')||'',scope))kids(src,scope,out);return;}
+ if(tag==='helmet'||tag==='dc-import')return;
+ var el=node.namespaceURI==='http://www.w3.org/2000/svg'?document.createElementNS(node.namespaceURI,node.nodeName):document.createElement(tag);
+ var h=null,val;
+ for(var a=0;a<node.attributes.length;a++){var at=node.attributes[a],n=at.name;
+  if(n.indexOf('hint-')===0)continue;
+  if(EV[n]){var fn=attrVal(at.value,scope);if(typeof fn==='function'){h=h||{};h[EV[n]]=fn;}continue;}
+  var v=at.value.indexOf('{{')>=0?attrVal(at.value,scope):at.value;
+  if(n==='value'&&(tag==='input'||tag==='select'||tag==='textarea')){val=v;continue;}
+  if(v===false||v==null)continue;
+  if(n==='href'&&typeof v==='string'){var mm=v.match(/^([A-Za-z]+)\.dc\.html(?:#(.*))?$/);if(mm)v=window.icRoute(mm[1],mm[2]||'');}el.setAttribute(n,v===true?'':String(v));
+ }
+ if(h)el.__h=h;
+ if(tag==='template'){return;}
+ kids(node.content||node,scope,el);
+ if(val!==undefined){el.__v=val==null?'':String(val);}
+ out.appendChild(el);
+}
+function kids(node,scope,out){var c=node.childNodes;for(var i=0;i<c.length;i++)build(c[i],scope,out);}
+function morph(a,b){
+ var ac=a.childNodes,bc=b.childNodes,i;
+ for(i=0;i<bc.length;i++){var o=ac[i],n=bc[i];
+  if(!o){a.appendChild(n.cloneNode(true));fixVals(a.lastChild,n);continue;}
+  if(o.nodeType!==n.nodeType||o.nodeName!==n.nodeName){a.replaceChild(n.cloneNode(true),o);fixVals(a.childNodes[i],n);continue;}
+  if(n.nodeType===3){if(o.nodeValue!==n.nodeValue)o.nodeValue=n.nodeValue;continue;}
+  if(n.nodeType!==1)continue;
+  var oa=o.attributes,j;
+  for(j=oa.length-1;j>=0;j--){if(!n.hasAttribute(oa[j].name))o.removeAttribute(oa[j].name);}
+  for(j=0;j<n.attributes.length;j++){var at=n.attributes[j];if(o.getAttribute(at.name)!==at.value)o.setAttribute(at.name,at.value);}
+  o.__h=n.__h;
+  if(n.__v!==undefined){o.__v=n.__v;}
+  morph(o,n);
+  if(n.__v!==undefined&&o.value!==n.__v)o.value=n.__v;
+ }
+ while(ac.length>bc.length)a.removeChild(a.lastChild);
+}
+function fixVals(o,n){if(!o||n.nodeType!==1)return;o.__h=n.__h;if(n.__v!==undefined){o.__v=n.__v;}var oc=o.childNodes,nc=n.childNodes;for(var i=0;i<nc.length;i++)fixVals(oc[i],nc[i]);if(n.__v!==undefined)o.value=n.__v;}
+function render(){var vals=inst.renderVals()||{};var frag=document.createElement('div');kids(tpl,vals,frag);morph(root,frag);
+ root.querySelectorAll('video[autoplay]').forEach(function(v){if(v.paused&&!v.__tried){v.__tried=1;v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}});}
+function find(t,type){while(t&&t!==document){if(t.__h&&t.__h[type])return t;t=t.parentNode;}return null;}
+['click','input','change','keydown','submit'].forEach(function(type){document.addEventListener(type,function(e){var el=find(e.target,type);if(el){if(type==='submit')e.preventDefault();el.__h[type](e);}
+ if(type==='click'){var a=e.target.closest&&e.target.closest('a[href]');if(a&&!e.defaultPrevented)link(a,e);}});});
+['mouseenter','focus','ended'].forEach(function(type){document.addEventListener(type,function(e){var t=e.target;if(t&&t.__h&&t.__h[type])t.__h[type](e);},true);});
+function link(a,e){var href=a.getAttribute('href');if(!href)return;
+ if(href.charAt(0)==='#'){e.preventDefault();var t=href.length>1&&document.getElementById(href.slice(1));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});else window.scrollTo({top:0,behavior:'smooth'});return;}
+ var m=href.match(/^([A-Za-z]+)\.dc\.html(#.*)?$/);if(m){e.preventDefault();location.href=window.icRoute(m[1],(m[2]||'').slice(1));return;}
+ if(/^https?:/.test(href)){a.setAttribute('target','_blank');a.setAttribute('rel','noopener');}}
+window.__dcBoot=function(defaults){tpl=document.getElementById('dc-tpl').content;root=document.getElementById('dc-root');inst=new window.Component(defaults||{});if(!inst.state)inst.state={};render();if(inst.componentDidMount)inst.componentDidMount();
+ var h=(location.hash||'').slice(1)||window.__dcHash;if(h)setTimeout(function(){var t=document.getElementById(h);if(t)t.scrollIntoView({block:'start'});},120);};
+})();
+</script><script>
+const IC_CAT = (window.IC_DATA&&window.IC_DATA.cat)||{"hnd-se": {"s": "HND · Software Engineering", "n": "HND-Level Study in Computing – Software Engineering Pathway", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "18 months", "i": "/assets/56b7f2da7a5200c8c69300aedde2c024.webp"}, "hnd-ai": {"s": "HND · Computing & AI", "n": "HND-Level Study in Computing & Artificial Intelligence", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "18 months", "i": "/assets/360ee812dbd8b06e0c8d0466fcc6e2d1.webp"}, "hnd-cyber": {"s": "HND · Cyber Security", "n": "HND-Level Study in Computing – Cyber Security Pathway", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "18 months", "i": "/assets/75c3ae7cbeac009d12cffb9c3772b324.webp"}, "hnd-data": {"s": "HND · Data Analytics", "n": "HND-Level Study in Computing – Data Analytics Pathway", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "18 months", "i": "/assets/50497969f86def66413907403d96f5fa.webp"}, "hnd-net": {"s": "HND · NetDevOps", "n": "HND-Level Study in Computing – NetDevOps Pathway", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "18 months", "i": "/assets/71702a6dd30a279ea346e5c8a51d8f72.webp"}, "hnd-acc": {"s": "HND · Accounting & Finance", "n": "HND-Level Study in Accounting & Finance", "l": "HND", "b": "ATHE (UK)", "p": "hnd", "f": "from LKR 280,000", "d": "12–18 months", "i": "/assets/c26eb636170f3306dfb17aa0c8929ac8.webp"}, "f-idt": {"s": "Foundation · Digital Technologies", "n": "Foundation-Level – Information & Digital Technologies", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/a66e865f746418f7c249c77622575c84.webp"}, "f-bus": {"s": "Foundation · Business", "n": "Foundation in Business", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/552198928148e7f650f560523de7be38.webp"}, "f-acc": {"s": "Foundation · Accounting", "n": "Foundation in Accounting", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/eb8ded50a8f89858e13101da1518fb65.webp"}, "f-stat": {"s": "Foundation · Applied Statistics", "n": "Foundation in Applied Statistics", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/700a47ba5b1c261c8a0143ff6a1f8cf3.webp"}, "f-eng": {"s": "Foundation · English & Comms", "n": "Foundation in English & Communications for Business", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/2266ab5a3faf7a51451c570d88b32b37.webp"}, "f-sme": {"s": "Foundation · Small Business Start-up", "n": "Foundation in Small Business & Social Enterprise Start-up", "l": "Foundation", "b": "ATHE (UK)", "p": "fnd", "f": "LKR 49,500", "d": "8 months", "i": "/assets/d7297d66eb86ebc37ce53d0eed8a85e9.webp"}, "pg-edu": {"s": "PG Dip · Educational Leadership", "n": "Postgraduate-Level Study in Strategic Educational Leadership & Management", "l": "Postgraduate", "b": "ATHE (UK)", "p": "pg", "f": "LKR 350,000", "d": "10–12 months", "i": "/assets/a39f44d0a31a44129e6e79042d56eacf.webp"}, "pg-ai": {"s": "PG Dip · Computing (AI)", "n": "Postgraduate Diploma in Computing: Artificial Intelligence", "l": "Postgraduate", "b": "UK-regulated", "p": "pg", "f": "from LKR 400,000", "d": "10 or 12 months", "i": "/assets/e389c81bbc724f55fd11cfbb37f850a2.webp"}, "pg-gen": {"s": "PG Dip · Computing (General)", "n": "Postgraduate Diploma in Computing: General Route", "l": "Postgraduate", "b": "UK-regulated", "p": "pg", "f": "from LKR 400,000", "d": "10 or 12 months", "i": "/assets/ca4381bf753a08946a873d468e4c0bd1.webp"}, "pg-se": {"s": "PG Dip · Computing (Software Eng.)", "n": "Postgraduate Diploma in Computing: Software Engineering", "l": "Postgraduate", "b": "UK-regulated", "p": "pg", "f": "from LKR 400,000", "d": "10 or 12 months", "i": "/assets/9909c8448005916ce74e76bb864cf895.webp"}, "pg-app": {"s": "PG · Application Development", "n": "Postgraduate-Level Study in Computing: Application Development", "l": "Postgraduate", "b": "UK-regulated", "p": "pg", "f": "from LKR 350,000", "d": "10 or 12 months", "i": "/assets/b12cb5fd0b662f8605a6843aa64fda3d.webp"}, "pg-data": {"s": "PG · Data Analytics", "n": "Postgraduate-Level Study in Computing: Data Analytics", "l": "Postgraduate", "b": "UK-regulated", "p": "pg", "f": "from LKR 350,000", "d": "10 or 12 months", "i": "/assets/c05a2d05632297bc93824571fb5104ff.webp"}, "tu-beng": {"s": "UoB BEng (Hons) Software Eng. Top-Up", "n": "UoB BEng (Hons) Software Engineering (Top-Up)", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 400,000", "d": "12 months", "i": "/assets/7b5e92693234d7f157d97f52f204d7b9.webp"}, "tu-fin": {"s": "Top-Up · Management (Finance)", "n": "Bachelor’s-Level Study in Management: Finance Pathway", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 250,000", "d": "10–12 months", "i": "/assets/272389582f2a702a06e605cc7dcefdcf.webp"}, "tu-gen": {"s": "Top-Up · Management (General)", "n": "Bachelor’s-Level Study in Management: General Route", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 250,000", "d": "10–12 months", "i": "/assets/e809ca1a49a37b9faa8f59049ac5ebe3.webp"}, "tu-people": {"s": "Top-Up · Managing People", "n": "Bachelor’s-Level Study in Management: Managing People Pathway", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 250,000", "d": "10–12 months", "i": "/assets/5d208a8a94a292e2202a85fb29264dc1.webp"}, "tu-ops": {"s": "Top-Up · Operations Mgmt", "n": "Bachelor’s-Level Study in Management: Operations Management Pathway", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 250,000", "d": "10–12 months", "i": "/assets/4fea0937215b31de5caad4bf571e1637.webp"}, "tu-sales": {"s": "Top-Up · Sales & Marketing", "n": "Bachelor’s-Level Study in Management: Sales & Marketing Pathway", "l": "Top-Up", "b": "UK university partner", "p": "pg", "f": "LKR 250,000", "d": "10–12 months", "i": "/assets/b92c409333d3fd95370a948500190087.webp"}, "c-aimastery": {"s": "AI Mastery", "n": "AI Mastery", "l": "Short course", "b": "CPD", "p": "cpd", "f": "from LKR 75,000", "d": "12 weeks", "i": "/assets/05aab9df038da008212518655775f86a.webp"}, "c-aihr": {"s": "AI for HR", "n": "AI for HR", "l": "Short course", "b": "CPD", "p": "cpd", "f": "LKR 50,000", "d": "6 weeks", "i": "/assets/9b79ddb4dd7fe05d48532d0ca28b76cb.webp"}, "c-aimkt": {"s": "AI for Marketing", "n": "AI For Marketing", "l": "Short course", "b": "CPD", "p": "cpd", "f": "LKR 30,000", "d": "4 weeks", "i": "/assets/1eb3d8ebcf26f96feaa13af68c478968.webp"}, "c-cyber": {"s": "Cyber Security in the AI Era", "n": "Cyber Security in the AI Era", "l": "Short course", "b": "CPD", "p": "cpd", "f": "LKR 75,000", "d": "12 weeks", "i": "/assets/5a65404b02dc3f4c332d02e7deede027.webp"}, "c-looker": {"s": "Data Analytics with Looker Studio", "n": "Data Analytics with Google & Looker Studio", "l": "Short course", "b": "CPD", "p": "cpd", "f": "LKR 35,000", "d": "6 weeks", "i": "/assets/f41774a6748f7f652c56a1b88d2dba34.webp"}, "c-dm": {"s": "Digital Marketing & Analytics", "n": "Digital Marketing & Analytics Essentials", "l": "Short course", "b": "CPD", "p": "cpd", "f": "LKR 30,000", "d": "4 weeks", "i": "/assets/2a7f07599fe22f375ae04bfd461d6959.webp"}};
+const IC_CAMP = (window.IC_DATA&&window.IC_DATA.camp)||{
+  scholarship: { tag: 'Scholarship', text: 'The first 20 students receive a LKR 200,000 scholarship.', short: 'First 20 students get a LKR 200,000 scholarship', perk: 'Apply for the LKR 200,000 scholarship (first 20 students)' },
+  intake: { tag: 'Now enrolling', text: 'New intake open. Reserve your seat with the registration fee.', short: 'New intake open · reserve your seat today', perk: 'Your seat in the next intake is held' },
+  referral: { tag: 'Bring a friend', text: 'Earn LKR 15,000 for every friend who enrols.', short: 'Bring a friend · earn LKR 15,000 each', perk: 'Share your link and earn LKR 15,000 per friend who enrols' },
+  coffee: { tag: 'Free coffee', text: 'CPD UK and ATHE students get 48 free Barista coffees a year.', short: '48 free Barista coffees a year with CPD UK & ATHE', perk: 'Claim your first free Barista coffee this week' }
+};
+const IC_CPDFEE = (window.IC_DATA&&window.IC_DATA.cpdfee)||{ 'c-aimastery': 75000, 'c-cyber': 75000, 'c-aihr': 50000, 'c-looker': 35000, 'c-aimkt': 30000, 'c-dm': 30000 };
+const IC_LV = [['HND', 'HND'], ['Foundation', 'Foundation'], ['Top-Up', 'Top-up'], ['Postgraduate', 'Postgraduate'], ['Short course', 'Short courses']];
+const icLkr = n => 'LKR ' + Math.round(n).toLocaleString('en-US');
+function icPlans(c) {
+  if (window.IC_DATA&&window.IC_DATA.feePlans&&window.IC_DATA.feePlans[c.p]) return window.IC_DATA.feePlans[c.p];
+  if (c.p === 'hnd') return [
+    { t: 'Monthly · start with LKR 9,999', d: 'LKR 10,000 registration today, then 9 × LKR 9,999 in Year 1', a: 'LKR 9,999', u: 'a month', today: 10000, then: '9 × LKR 9,999 (Year 1)', hot: true },
+    { t: 'Pay Year 1 in full', d: 'One payment for Year 1. Year 2 billed later.', a: 'LKR 99,900', u: 'Year 1', today: 99900, then: 'Year 2 billed later' },
+    { t: 'Just reserve my seat', d: 'Pay registration now, choose your plan with an advisor', a: 'LKR 10,000', u: 'registration', today: 10000, then: 'Plan set with an advisor' }];
+  if (c.p === 'fnd') return [
+    { t: 'Monthly · LKR 5,000', d: 'LKR 9,500 registration today, then 8 × LKR 5,000', a: 'LKR 5,000', u: 'a month', today: 9500, then: '8 × LKR 5,000', hot: true },
+    { t: 'Pay in full', d: 'One payment, done', a: 'LKR 49,500', u: 'total', today: 49500, then: 'Nothing more' },
+    { t: 'Just reserve my seat', d: 'Pay registration now, start when ready', a: 'LKR 9,500', u: 'registration', today: 9500, then: 'Plan set with an advisor' }];
+  const fee = parseInt(String(c.f).replace(/[^0-9]/g, ''), 10) || 0;
+  if (c.p === 'cpd') return [
+    { t: 'Pay in full', d: 'Your seat in the next cohort', a: icLkr(fee), u: 'total', today: fee, then: 'Nothing more', hot: true },
+    { t: 'Reserve my seat', d: 'Hold a seat, an advisor confirms the cohort', a: 'LKR 0', u: 'today', today: 0, then: 'Pay before the cohort starts' }];
+  return [
+    { t: 'Reserve my seat', d: 'No payment today. An advisor sets your monthly plan.', a: 'LKR 0', u: 'today', today: 0, then: 'Monthly plan set with an advisor', hot: true },
+    { t: 'Pay in full', d: 'One payment', a: icLkr(fee), u: 'total', today: fee, then: 'Nothing more' }];
+}
+function icAdds(k) {
+  const c = IC_CAT[k]; if (!c) return [];
+  let a;
+  if (/^hnd-(se|net|cyber)|^f-idt|^tu-beng|^pg-(se|gen|app)/.test(k)) a = ['c-aimastery', 'c-cyber'];
+  else if (/ai|data|stat/.test(k)) a = ['c-looker', 'c-aimastery'];
+  else if (/acc|fin/.test(k)) a = ['c-looker', 'c-aimastery'];
+  else if (/people|edu|eng/.test(k)) a = ['c-aihr', 'c-aimastery'];
+  else if (/sales|bus|sme|ops|gen/.test(k)) a = ['c-dm', 'c-aimkt'];
+  else a = ['c-aimastery', 'c-dm'];
+  return a.filter(x => x !== k);
+}
+function icUp(k) {
+  const c = IC_CAT[k]; if (!c || c.p !== 'cpd') return null;
+  const to = /cyber/.test(k) ? 'hnd-cyber' : /looker|data/.test(k) ? 'hnd-data' : /mkt|dm|hr/.test(k) ? 'f-bus' : 'hnd-ai';
+  return { to, t: 'Upgrade: get this course free', d: 'Enrol in the ' + IC_CAT[to].s + ' (from ' + (IC_CAT[to].p === 'hnd' ? 'LKR 9,999' : 'LKR 5,000') + ' a month) and choose 2 CPD courses free, including this one.', cta: 'Upgrade' };
+}
+function icLoad() { try { return JSON.parse(localStorage.getItem('icBag') || 'null'); } catch (e) { return null; } }
+function icSave(b) { try { if (b) localStorage.setItem('icBag', JSON.stringify(b)); else localStorage.removeItem('icBag'); } catch (e) {} }
+function icOpen(self, key, extra) {
+  const ok = key && IC_CAT[key];
+  const pl = ok ? icPlans(IC_CAT[key]) : [];
+  const hot = Math.max(0, pl.findIndex(p => p.hot));
+  const x = Object.assign({}, self.state.x || {}, { open: true, step: ok ? 'plan' : 'pick', key: ok ? key : null, plan: hot, add: [], free: null, err: '', busy: false, done: false, lv: ok ? IC_CAT[key].l : 'HND' }, extra || {});
+  if (typeof icDL === 'function') icDL('begin_checkout', ok ? { currency: 'LKR', value: (pl[hot] || {}).today || 0, items: [icItem(key, (pl[hot] || {}).today || 0)] } : { checkout_step: 'choose_programme' });
+  const nb = ok ? { key, plan: hot, add: [] } : self.state.bag;
+  self.setState({ x, bag: nb });
+  if (ok) icSave(nb);
+}
+function icX(self, o) {
+  const s = self.state, x = s.x || {};
+  const set = p => { const nx = Object.assign({}, self.state.x || {}, p); const nb = nx.key && !nx.done ? { key: nx.key, plan: nx.plan || 0, add: nx.add || [] } : self.state.bag; self.setState({ x: nx, bag: nb }); if (nx.key && !nx.done) icSave(nb); };
+  const camp = IC_CAMP[o.campaign] || null;
+  const key = x.key, c = key ? IC_CAT[key] : null;
+  const PL = c ? icPlans(c) : [];
+  const pi = Math.min(x.plan || 0, Math.max(0, PL.length - 1));
+  const pl = PL[pi] || { today: 0, t: '', then: '' };
+  const athe = !!c && /ATHE/.test(c.b);
+  const free = athe ? (x.free || []).filter(a => IC_CPDFEE[a]).slice(0, 2) : [];
+  const add = (x.add || []).filter(a => IC_CPDFEE[a] && free.indexOf(a) < 0);
+  const addSum = add.reduce((n, a) => n + Math.round(IC_CPDFEE[a] * 0.75), 0);
+  const addSave = add.reduce((n, a) => n + Math.round(IC_CPDFEE[a] * 0.25), 0);
+  const today = (pl.today || 0) + addSum;
+  const coffee = !!c && (c.l === 'Short course' || /ATHE/.test(c.b));
+  const freeWorth = Object.keys(IC_CPDFEE).map(k2 => IC_CPDFEE[k2]).sort((m, n) => n - m).slice(0, 2).reduce((m, n) => m + n, 0);
+  const step = x.step || 'plan';
+  const cpdBuy = !!c && c.p === 'cpd';
+  const rw = [{ ic: '☕', t: cpdBuy ? '4 Barista coffees' : '48 Barista coffees', on: coffee }, ...(cpdBuy ? [{ ic: '🏷️', t: '25% off more CPD', on: true }, { ic: '🔥', t: 'Skill stacker badge', on: add.length >= 1 }] : []), ...(athe ? [{ ic: '🎁', t: '2 free CPD courses', on: free.length === 2 }] : []), { ic: '💜', t: 'Scholarship check', on: !!c && (step === 'pay' || step === 'done') }, { ic: '🤝', t: 'LKR 15,000 referrals', on: !!c && (step === 'pay' || step === 'done') }, { ic: '🧠', t: 'Inspire Brain + AI buddy', on: !!c }];
+  const rwOn = rw.filter(r => r.on).length;
+  const bag = s.bag;
+  const resumeC = bag && IC_CAT[bag.key];
+  const lines = c ? [{ k: 'Programme', v: c.s }, { k: 'Plan', v: pl.t }].concat(free.map(a => ({ k: 'Free CPD', v: IC_CAT[a].s + ' · LKR 0' }))).concat(add.map(a => ({ k: 'Add-on · 25% off', v: IC_CAT[a].s + ' · ' + icLkr(Math.round(IC_CPDFEE[a] * 0.75)) }))).concat(addSave ? [{ k: 'You saved (25% off)', v: '− ' + icLkr(addSave) }] : []).concat([{ k: 'After today', v: pl.then }]) : [];
+  const first = (x.name || '').trim().split(' ')[0] || 'friend';
+  const conf = Array.from({ length: 30 }, (_, i) => ({ l: (i * 37 % 100) + '%', d: (i % 10) * 0.07 + 's', c: ['#7c3aed', '#a855f7', '#f472b6', '#fbbf24', '#34d399', '#60a5fa'][i % 6] }));
+  const pay = () => {
+    const nm = (self.state.x.name || '').trim(), ph = (self.state.x.phone || '').replace(/[^0-9]/g, '');
+    if (nm.length < 2) return set({ err: 'Please add your full name.' });
+    if (ph.length < 9) return set({ err: 'Please add a WhatsApp number we can reach.' });
+    set({ err: '', busy: true });
+    window.icCreateOrder({ course_key: key, plan: pi, addons: add, free: free, method: (self.state.x.method || 0) === 0 ? 'payhere' : 'bank_transfer', name: nm, phone: ph, email: (self.state.x.email || '') }).then(r => { if (r.checkout) { window.icPayHere(r.checkout); return; } const ref = r.reference; if (typeof icDL === 'function') icDL('purchase', { transaction_id: ref, currency: 'LKR', value: today, payment_plan: pl.t, payment_method: (self.state.x.method || 0) === 0 ? 'card_payhere' : 'bank_transfer', items: [icItem(key, pl.today)].concat(add.map(a => icItem(a, Math.round(IC_CPDFEE[a] * 0.75)))).concat(free.map(a => icItem(a, 0))) }); if (typeof IC_AI !== 'undefined') IC_AI.bump(key, 8, c.l, null); self.setState({ x: Object.assign({}, self.state.x, { busy: false, done: true, step: 'done', ref }), bag: null }); icSave(null); }).catch(e => set({ busy: false, err: e.message }));
+  };
+  const isPick = step === 'pick', isPlan = step === 'plan' && !!c, isPay = step === 'pay' && !!c, isDone = step === 'done';
+  const up = c ? icUp(key) : null;
+  const perks = c ? ['100% online · live + replays', 'Study at your own pace'].concat(camp ? [camp.short] : []) : [];
+  const share = 'https://wa.me/?text=' + encodeURIComponent('I just enrolled at Inspire College' + (c ? ' for ' + c.s : '') + '. Study 100% online with live classes. Take a look: https://inspirecollege.lk');
+  return {
+    xOpen: !!x.open, xClose: () => set({ open: false }),
+    xResume: !x.open && !!resumeC, xRes: resumeC ? { img: resumeC.i, short: resumeC.s } : { img: '', short: '' }, xResumeGo: () => { const b = self.state.bag; if (b && IC_CAT[b.key]) self.setState({ x: Object.assign({}, self.state.x || {}, { open: true, step: 'plan', key: b.key, plan: b.plan || 0, add: b.add || [], done: false, err: '', busy: false, lv: IC_CAT[b.key].l }) }); },
+    xTitle: isDone ? 'Enrolment confirmed' : isPick ? 'Enrol in 3 quick steps' : isPlan ? 'Step 1 of 2 · Your plan' : 'Step 2 of 2 · Your details',
+    xCanBack: isPay || (isPlan && false), xBack: () => set({ step: 'plan', err: '' }),
+    xShowSteps: !isDone, xSteps: [isPlan || isPay ? 'on' : '', isPay ? 'on' : ''],
+    xHasCamp: !!camp && (isPick || isPlan), xCamp: camp || { tag: '', text: '' },
+    xIsPick: isPick, xIsPlan: isPlan, xIsPay: isPay, xIsDone: isDone,
+    xLvls: IC_LV.map(l => ({ t: l[1], cls: (x.lv || 'HND') === l[0] ? 'on' : '', pick: () => set({ lv: l[0] }) })),
+    xList: Object.keys(IC_CAT).filter(k => IC_CAT[k].l === (x.lv || 'HND')).map(k => ({ short: IC_CAT[k].s, fee: IC_CAT[k].f, dur: IC_CAT[k].d, img: IC_CAT[k].i, pick: () => { const pp = icPlans(IC_CAT[k]); set({ key: k, step: 'plan', plan: Math.max(0, pp.findIndex(p => p.hot)), add: [], free: null }); } })),
+    xProg: c ? { img: c.i, lvl: c.l, body: c.b, short: c.s, name: c.n, dur: c.d } : { img: '', lvl: '', body: '', short: '', name: '', dur: '' },
+    xChange: () => set({ step: 'pick' }),
+    xPlans: PL.map((p, i) => ({ t: p.t, d: p.d, a: p.a, u: p.u, hot: !!p.hot, on: i === pi, cls: 'xpl' + (i === pi ? ' on' : ''), pick: () => set({ plan: i }) })),
+    xAthe: isPlan && athe, xAtheDone: athe && free.length > 0, xFreeNames: free.map(a => IC_CAT[a].s).join(' + '),
+    xFreeCount: free.length === 2 ? '✓ 2 of 2 chosen' : free.length + ' of 2 chosen · tap to pick', xFreeCls: free.length === 2 ? 'ok' : '', xFreeWorth: 'up to ' + icLkr(freeWorth),
+    xFree: Object.keys(IC_CPDFEE).map(a => { const on = free.indexOf(a) >= 0; return { name: IC_CAT[a].s, img: IC_CAT[a].i, fee: icLkr(IC_CPDFEE[a]), dur: IC_CAT[a].d, on, cls: 'xfc' + (on ? ' on' : (free.length >= 2 ? ' dim' : '')), toggle: () => { let cur = free.slice(); const j = cur.indexOf(a); if (j >= 0) cur.splice(j, 1); else { if (cur.length >= 2) cur.shift(); cur.push(a); if (typeof icDL === 'function') icDL('add_to_cart', { currency: 'LKR', value: 0, promotion_name: 'ATHE 2 free CPD', items: [icItem(a, 0)] }); } set({ free: cur }); } }; }),
+    xRw: rw.map(r => ({ ic: r.on ? '●' : '○', t: r.t, cls: r.on ? 'on' : '' })), xRwTxt: rwOn + ' of ' + rw.length + ' unlocked', xRwPct: Math.round(rwOn / rw.length * 100) + '%',
+    xIsCpdBuy: isPlan && cpdBuy, xCoffeeTxt: cpdBuy ? '1 free Barista coffee a week for a month · 4 coffees' : '1 free Barista coffee a week · 4 a month · 48 a year',
+    xAddTitle: cpdBuy ? 'Add more courses · 25% off each' : 'Add a CPD course · 25% off',
+    xStkLvl: ['Starter', 'Skill stacker', 'Power learner', 'Unstoppable'][Math.min(3, add.length)], xStkCls: add.length ? 'ok' : '',
+    xStkSteps: [['1', 'Starter'], ['2', 'Stacker'], ['3', 'Power'], ['4+', 'Unstoppable']].map((t, i) => ({ n: t[0], t: t[1], cls: i <= add.length ? 'on' : '' })),
+    xStkMsg: add.length ? 'You save ' + icLkr(addSave) + ' with ' + (add.length + 1) + ' courses. ' + (add.length < 3 ? 'Add one more to reach ' + ['Skill stacker', 'Power learner', 'Unstoppable'][add.length] + '.' : 'Maximum level reached!') : 'Add a second course below to unlock Skill stacker and save 25% on it.',
+    xDoneCpd: cpdBuy, xMore: () => set({ step: 'plan', done: false, open: true }),
+    xHasAdds: !!c && !athe && (cpdBuy ? true : icAdds(key).length > 0),
+    xAdds: (c ? (cpdBuy ? Object.keys(IC_CPDFEE).filter(z => z !== key) : icAdds(key)) : []).map(a => ({ name: IC_CAT[a].s, img: IC_CAT[a].i, meta: IC_CAT[a].d + ' · CPD', was: icLkr(IC_CPDFEE[a]), now: icLkr(Math.round(IC_CPDFEE[a] * 0.75)), on: add.indexOf(a) >= 0, cls: 'xadd' + (add.indexOf(a) >= 0 ? ' on' : ''), toggle: () => { const cur = (self.state.x.add || []).slice(); const j = cur.indexOf(a); if (j >= 0) cur.splice(j, 1); else { cur.push(a); if (typeof icDL === 'function') icDL('add_to_cart', { currency: 'LKR', value: Math.round(IC_CPDFEE[a] * 0.75), promotion_name: 'CPD 25% stack', items: [icItem(a, Math.round(IC_CPDFEE[a] * 0.75))] }); } set({ add: cur }); } })),
+    xHasUp: !!up, xUp: up ? { t: up.t, d: up.d, cta: up.cta, go: () => { const pp = icPlans(IC_CAT[up.to]); const f2 = [key].concat(icAdds(up.to).filter(z => z !== key)).slice(0, 2); set({ key: up.to, plan: Math.max(0, pp.findIndex(p => p.hot)), add: [], free: f2 }); } } : { t: '', d: '', cta: '', go: () => {} },
+    xPerks: perks,
+    xHi: x.name ? ', ' + first : '', xNameLbl: o.parent ? 'Student’s full name' : 'Full name',
+    xName: x.name || '', xPhone: x.phone || '', xEmail: x.email || '',
+    xSetName: e => set({ name: e.target.value, err: '' }), xSetPhone: e => set({ phone: e.target.value, err: '' }), xSetEmail: e => set({ email: e.target.value }),
+    xMeths: [['Card · PayHere', 'Visa, Mastercard, Amex'], ['Bank transfer', 'Seat held for 48 hours']].map((m, i) => ({ t: m[0], d: m[1], on: (x.method || 0) === i, cls: (x.method || 0) === i ? 'on' : '', pick: () => set({ method: i }) })),
+    xLines: lines, xToday: icLkr(today), xDueLbl: isPlan ? 'Due today' : 'Total due today',
+    xHasErr: !!x.err, xErr: x.err || '', xBusy: !!x.busy,
+    xShowFoot: isPlan || isPay,
+    xCtaTxt: isPlan ? 'Continue →' : x.busy ? 'Processing…' : today === 0 ? 'Reserve my seat' : ((x.method || 0) === 0 ? 'Pay ' + icLkr(today) : 'Reserve & get bank details'),
+    xCta: isPlan ? () => { if (typeof icDL === 'function') icDL('add_payment_info', { currency: 'LKR', value: today, payment_plan: pl.t, items: [icItem(key, pl.today)].concat(add.map(a => icItem(a, Math.round(IC_CPDFEE[a] * 0.75)))).concat(free.map(a => icItem(a, 0))) }); set({ step: 'pay' }); } : () => { if (!self.state.x.busy) pay(); },
+    xFirst: first, xRef: x.ref || '', xConf: conf, xCoffee: coffee,
+    xDoneSub: today === 0 ? 'Your seat is reserved. An advisor will message you on WhatsApp.' : 'Payment received. Your seat is confirmed.',
+    xPaidLbl: today === 0 ? 'Paid today' : ((x.method || 0) === 0 ? 'Paid today' : 'To transfer'),
+    xPerkLine: camp ? camp.perk : coffee ? 'Claim your first free Barista coffee this week' : 'Book your first live class',
+    xShare: share,
+    xHasQuest: !!o.quest, xQuest: () => { set({ open: false }); if (o.quest) o.quest(); }
+  };
+}
+function icOffers(self, o) {
+  const s = self.state;
+  const act = f => e => { if (e && e.preventDefault) e.preventDefault(); self.setState({ ofOpen: false }); setTimeout(f, 60); };
+  const pr = id => { if (typeof icDL === 'function') icDL('select_promotion', { promotion_id: id }); };
+  const nav = () => () => self.setState({ ofOpen: false });
+  const wa = t => act(() => { try { window.open('https://wa.me/__IC_WA_MAIN__?text=' + encodeURIComponent(t), '_blank'); } catch (e) {} });
+  const close = () => self.setState({ ofOpen: false });
+  const L = [
+    { id: 'scholarship', k: 'Scholarship', t: 'LKR 200,000 scholarship for the first 20 students', d: 'Seats go in order of registration. Apply for the scholarship as you enrol.', cta: 'Reserve my seat', m: 'Limited to 20 seats', href: '#', go: act(o.enrol) },
+    { id: 'athe', k: 'ATHE bonus', t: '2 CPD short courses free with any ATHE programme', d: 'Choose any two at checkout, from AI Mastery to Digital Marketing. Worth up to LKR 150,000.', cta: 'Pick a programme', m: 'Foundation, HND, Level 7', href: '#', go: act(o.enrol) },
+    { id: 'stack', k: 'CPD stacking', t: '25% off every extra CPD course', d: 'Enrol in one CPD course and add any other at 25% off. Build a skill stack for less.', cta: 'Browse CPD courses', m: 'From LKR 22,500 each', href: o.cpd ? '#' : 'Program.dc.html#p-c-aimastery', go: o.cpd ? act(o.cpd) : nav() },
+    { id: 'coffee', k: 'Barista perk', t: 'Free Barista coffee every week', d: 'ATHE students get 1 a week, 48 a year. CPD UK students get 1 a week for a month. Weekdays, daytime.', cta: 'How it works', m: 'Inspire-only perk', href: o.coffeeHref, go: nav() },
+    { id: 'referral', k: 'Referral', t: 'Earn LKR 15,000 for every friend who enrols', d: 'Share your link from Inspire Brain and earn for every friend who enrols.', cta: 'Tell a friend', m: 'Paid per enrolment', href: '#', go: wa('Hi! I’m looking at Inspire College, 100% online UK-regulated qualifications. Have a look: https://inspirecollege.lk') },
+    { id: 'demo', k: 'Try first', t: 'A free demo class, no card needed', d: 'Watch a recorded lesson, try the AI study buddy, then unlock a seat in a live class.', cta: 'Book my free class', m: 'Takes about 10 minutes', href: 'Demo.dc.html', go: nav() }
+  ];
+  const featId = { scholarship: 'scholarship', intake: 'scholarship', referral: 'referral', coffee: 'coffee' }[o.campaign] || 'scholarship';
+  L.forEach(x => { const g = x.go; x.go = e => { pr(x.id); return g(e); }; });
+  const list = L.slice().sort((a, b) => (b.id === featId) - (a.id === featId)).map(x => Object.assign({}, x, { feat: x.id === featId, cls: 'ofo' + (x.id === featId ? ' feat' : '') }));
+  return { ofOpen: !!s.ofOpen, ofOpenFn: () => { if (typeof icDL === 'function') icDL('view_promotion', { promotion_count: L.length }); self.setState({ ofOpen: true }); }, ofClose: close, ofList: list, ofCount: String(L.length) };
+}
+function icTop() { try { if (window.parent && window.parent !== window && window.parent.document) return window.parent; } catch (e) {} return window; }
+function icQS() { try { return new URLSearchParams(icTop().location.search || ''); } catch (e) { return new URLSearchParams(''); } }
+function icAudDetect() {
+  const q = icQS(); let a = (q.get('aud') || q.get('utm_audience') || '').toLowerCase();
+  const camp = (q.get('utm_campaign') || '') + ' ' + (q.get('utm_content') || '');
+  if (!a && /parent|mum|dad|family/i.test(camp)) a = 'parent';
+  if (!a && /student|school.?leaver|career/i.test(camp)) a = 'student';
+  if (a === 'parent' || a === 'student') { try { localStorage.setItem('icAud', a); } catch (e) {} return a; }
+  try { const st = localStorage.getItem('icAud'); if (st === 'parent' || st === 'student') return st; } catch (e) {}
+  return null;
+}
+function icAudSave(a) { try { localStorage.setItem('icAud', a); } catch (e) {} }
+function icDL(event, params) {
+  const t = icTop(); let aud = 'student'; try { aud = localStorage.getItem('icAud') || 'student'; } catch (e) {}
+  const payload = Object.assign({ event: event, audience: aud, site_page: (document.title || '').split(' ')[0] }, params || {});
+  try { if (typeof t.icEmit === 'function') t.icEmit(payload); else { t.dataLayer = t.dataLayer || []; t.dataLayer.push(payload); } } catch (e) {}
+}
+function icItem(k, price) { const c = (typeof IC_CAT !== 'undefined' && IC_CAT[k]) || {}; return { item_id: k, item_name: c.n || k, item_category: c.l || '', item_brand: c.b || '', price: price || 0, quantity: 1 }; }
+(function () { if (window.__icLeadHook) return; window.__icLeadHook = 1; document.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest('a[href]'); if (!a) return; var h = a.getAttribute('href') || ''; if (/wa\.me|whatsapp/.test(h)) icDL('generate_lead', { lead_channel: 'whatsapp', link_text: (a.textContent || '').trim().slice(0, 60) }); else if (/Demo\.dc\.html/.test(h)) icDL('demo_click', { link_text: (a.textContent || '').trim().slice(0, 60) }); else if (/Aptitude\.dc\.html/.test(h)) icDL('ai_match_click', {}); }, true); })();
+/* On-device interest model: learns from what a visitor looks at, clicks and chooses. Nothing leaves the device. */
+const IC_AI = {
+  load() { try { return JSON.parse(localStorage.getItem('icInt') || 'null') || { k: {}, l: {}, s: {}, n: 0 }; } catch (e) { return { k: {}, l: {}, s: {}, n: 0 }; } },
+  save(p) { try { localStorage.setItem('icInt', JSON.stringify(p)); } catch (e) {} },
+  bump(key, w, lvl, school) { const p = IC_AI.load(); if (key) p.k[key] = (p.k[key] || 0) + w; if (lvl) p.l[lvl] = (p.l[lvl] || 0) + w * .6; if (school) p.s[school] = (p.s[school] || 0) + w * .6; p.n = (p.n || 0) + w; IC_AI.save(p); return p; },
+  score(p, key, lvl, school) { return (p.k[key] || 0) + (p.l[lvl] || 0) + (p.s[school] || 0); },
+  strong(p) { return (p.n || 0) >= 6; },
+  reset() { try { localStorage.removeItem('icInt'); } catch (e) {} }
+};
+function icWatchCards(root) {
+  const seen = {}; const dwell = {};
+  return setInterval(() => {
+    if (document.hidden) return;
+    const els = (root || document).querySelectorAll('[data-k]');
+    const vh = window.innerHeight || 800;
+    els.forEach(el => { const k = el.getAttribute('data-k'); if (!k || seen[k]) return; const r = el.getBoundingClientRect(); const vis = r.top < vh * .8 && r.bottom > vh * .2; if (vis) { dwell[k] = (dwell[k] || 0) + 1; if (dwell[k] >= 2) { seen[k] = 1; IC_AI.bump(k, 1, el.getAttribute('data-l'), el.getAttribute('data-s')); } } else dwell[k] = 0; });
+  }, 800);
+}
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    let hid = null; try { const hh = String(window.__dcHash || (window.location.hash || '').slice(1)); const m = hh.match(/p-([a-z0-9-]+)/); if (m) hid = m[1]; } catch (e) {}
+    this.state = { x: {}, bag: icLoad(), id: hid, lvl: (window.IC_DATA&&window.IC_DATA.lvl)||null, enrol: false, step: 1, who: 'me', name: '', email: '', phone: '', start: 0, up: false, plan: 1, method: 0, sch: false, refCode: '', agree: false, err: '', faq: 0, toast: null };
+  }
+  renderVals() {
+    const s = this.state;
+    const lkr = n => 'LKR ' + Math.round(n).toLocaleString('en-US');
+    const IMG = { se: '/assets/56b7f2da7a5200c8c69300aedde2c024.webp', ai: '/assets/360ee812dbd8b06e0c8d0466fcc6e2d1.webp', cy: '/assets/75c3ae7cbeac009d12cffb9c3772b324.webp', da: '/assets/50497969f86def66413907403d96f5fa.webp', net: '/assets/71702a6dd30a279ea346e5c8a51d8f72.webp', acc: '/assets/c26eb636170f3306dfb17aa0c8929ac8.webp', app: '/assets/a66e865f746418f7c249c77622575c84.webp', fnd: '/assets/6ce2497355e531ee512bb60825217e99.webp', biz: '/assets/42b14f61d3511834bb2ab5111636f45b.webp', pitch: '/assets/39d306276ca642e3b132b84ab20bbc4a.webp', pg: '/assets/a39f44d0a31a44129e6e79042d56eacf.webp', grad: '/assets/3537de4c83a85a1d4360988c476f4aa1.webp', ws: '/assets/05aab9df038da008212518655775f86a.webp', cpd: '/assets/c207daef09b15a19b09b7923f7ef32fd.webp' };
+    const HNDF = [{ h: 'Year 1 · LKR 99,900', rows: [['Registration (once)', 'LKR 10,000'], ['Balance', 'LKR 89,900'], ['Monthly', '9 × LKR 9,999'], ['Awarding-body fee', 'GBP 179']] }, { h: 'Year 2 · LKR 180,000', rows: [['Registration (once)', 'LKR 10,000'], ['Balance', 'LKR 170,000'], ['Monthly', '9 × LKR 18,890'], ['Awarding-body fee', 'GBP 193']] }];
+    const ACCF = [{ h: 'Year 1 · LKR 99,900', rows: [['Registration (once)', 'LKR 10,000'], ['Balance', 'LKR 89,900'], ['Monthly', '9 × LKR 9,999'], ['Awarding-body fee', 'GBP 179']] }, { h: 'Year 2 · LKR 180,000', rows: [['Registration (once)', 'LKR 10,000'], ['Balance', 'LKR 170,000'], ['Monthly', '9 × LKR 18,890'], ['Awarding-body fee', 'GBP 193']] }];
+    const FNDF = [{ h: 'Programme fee · LKR 49,500', rows: [['Registration (once, non-refundable)', 'LKR 9,500'], ['Monthly', '8 × LKR 5,000'], ['Total', 'LKR 49,500']] }];
+    const one = (fee, dur) => [{ h: 'Programme fee', rows: [['Fee', 'from ' + lkr(fee)], ['Duration', dur], ['Payment plan', 'Set with an advisor']] }];
+    const hndWho = ['School leavers after A/Ls', 'Foundation graduates moving up', 'Working people switching careers', 'Learners aiming for a UK top-up degree'];
+    const hndPath = k => [['Start', 'Foundation (optional)'], ['You are here', k], ['Next', 'UK top-up degree (final year)'], ['Then', 'Master’s']];
+    const H = (o) => Object.assign({ lvl: 'HND', body: 'ATHE (UK)', dur: '18 months', fee: 280000, feeHead: 'from LKR 280,000', offer: true, startAmt: 'LKR 9,999 / month', startNote: 'after LKR 10,000 registration · Year 1', monthTrust: 'From LKR 9,999 a month', fees: HNDF, feeTitle: 'Start your HND with LKR 9,999.', feeNote: 'Two-year total LKR 279,900 plus awarding-body fees in GBP, paid separately within one month of each year’s start. Limited offer.', who: hndWho, whoTitle: 'For builders and problem-solvers.', entry: 'Contact admissions for entry requirements. Foundation graduates progress directly.', cups: '48 free coffees a year', plan: 'hnd', finalLine: 'Start your HND with LKR 9,999.' }, o);
+    const F = (o) => Object.assign({ lvl: 'Foundation', body: 'ATHE (UK)', qual: 'Level 3 Diploma', dur: '8 months', fee: 49500, feeHead: 'LKR 49,500', offer: true, startAmt: 'LKR 5,000 / month', startNote: 'after LKR 9,500 registration · 8 months', monthTrust: 'From LKR 5,000 a month', fees: FNDF, feeTitle: 'UK qualifications from just LKR 5,000 a month.', feeNote: 'Awarding-body fee in GBP is separate (GBP 90 for Information & Digital Technologies), due within one month of the start. Limited offer.', who: ['Students who have finished O/Ls', 'Learners who want a head start', 'Anyone planning an HND or degree', 'Career starters'], whoTitle: 'For your first step after O/Ls.', entry: 'Designed for students finishing O/Ls. Contact admissions for entry requirements.', cups: '32 free coffees over 8 months', plan: 'fnd', path: [['Today', 'O/Ls done'], ['You are here', 'Foundation · Level 3'], ['Next', 'Level 4 diploma or HND'], ['Then', 'UK top-up degree']], finalLine: 'Start from LKR 5,000 a month.' }, o);
+    const PGx = (o) => Object.assign({ lvl: 'Postgraduate', body: 'UK-regulated', qual: 'Postgraduate Diploma · Level 7', dur: '10 or 12 months', offer: false, monthTrust: 'Monthly plans available', feeTitle: 'Invest in your next level.', feeNote: 'Payment plans are set with an advisor. Contact admissions for entry requirements and progression options.', whoTitle: 'For professionals ready to go further.', entry: 'For graduates and experienced professionals. Contact admissions for entry requirements.', cups: '40 free coffees', plan: 'pg', finalLine: 'Talk to an advisor about your plan.' }, o);
+    const TU = (o) => Object.assign({ lvl: 'Top-Up', body: 'UK university partner', qual: 'Bachelor’s top-up', dur: '10–12 months', fee: 250000, offer: false, monthTrust: 'Monthly plans available', feeTitle: 'Finish your degree in a year.', feeNote: 'Payment plans are set with an advisor. Contact admissions for entry requirements.', whoTitle: 'For HND graduates ready to finish a degree.', entry: 'Designed for HND or equivalent graduates. Contact admissions for entry requirements.', cups: '40 free coffees', plan: 'pg', who: ['HND graduates', 'Working professionals with a Level 5', 'Learners after a UK-recognised diploma', 'Future managers'], path: [['Before', 'HND · Level 5'], ['You are here', 'Top-up degree'], ['Next', 'Master’s'], ['Then', 'Leadership roles']], finalLine: 'Complete your bachelor’s online.' }, o);
+    const C = (o) => Object.assign({ lvl: 'Short course', body: 'CPD', qual: 'CPD-validated short course', offer: false, monthTrust: 'CPD certificate', feeTitle: 'One clear fee.', feeNote: 'Live online sessions plus the LMS. Contact admissions for the next cohort date.', whoTitle: 'For professionals who want skills fast.', entry: 'Open to working professionals and students. No coding required unless stated.', cups: '4 free coffees in your first month', plan: 'cpd', who: ['Working professionals', 'Managers and team leads', 'Entrepreneurs', 'Students adding a skill'], path: [['Today', 'Your current role'], ['You are here', 'CPD short course'], ['Next', 'Apply it at work'], ['Or', 'Stack it with an HND']], finalLine: 'Join the next cohort.' }, o);
+    const P = window.icDetails({ H, F, PGx, TU, C }, {
+      'hnd-se': H({ short: 'HND · Software Engineering', name: 'HND-Level Study in Computing – Software Engineering Pathway', qual: 'Level 4 & 5 Extended Diplomas', img: IMG.se, alt: 'A student sketching software architecture', chip: 'Full-stack + cloud', blurb: 'A full-stack and cloud-focused qualification that develops your software development, engineering and deployment skills, with a route to a UK top-up degree.', overview: 'Level 4 covers programming, web technologies, databases, networks and computing principles. Level 5 moves into cloud-native development, advanced programming, DevOps, virtualisation, cybersecurity and modern software engineering practice.', years: [['Level 4', 'Programming, web technologies, databases, networks and computing principles.'], ['Level 5', 'Cloud-native development, advanced programming, DevOps, virtualisation and cybersecurity.']], skills: ['Programming', 'Web technologies', 'Databases', 'Cloud-native development', 'DevOps', 'Virtualisation'], careers: ['Software developer', 'Software engineer', 'Mobile developer', 'Cloud engineer', 'DevOps technician'], path: hndPath('HND Software Engineering') }),
+      'hnd-ai': H({ short: 'HND · Computing & AI', name: 'HND-Level Study in Computing & Artificial Intelligence', qual: 'Level 4 & 5 Extended Diplomas', img: IMG.ai, alt: 'A student training a machine learning model', chip: 'Data science + ML', whoTitle: 'For the AI generation.', blurb: 'A specialised HND that builds your computing foundations and advances into data science, machine learning and AI.', overview: 'Year 1 covers the basics. Year 2 moves into projects and applied work in AI, data engineering and machine learning.', years: [['Year 1', 'Programming, databases, statistics, analytics and AI fundamentals.'], ['Year 2', 'Digital transformation projects, advanced statistics, AI theory, data engineering and practical machine learning.']], skills: ['Programming', 'Statistics', 'Analytics', 'AI theory', 'Data engineering', 'Machine learning'], careers: ['AI', 'Data science', 'Machine learning', 'Analytics'], path: hndPath('HND Computing & AI') }),
+      'hnd-cyber': H({ short: 'HND · Cyber Security', name: 'HND-Level Study in Computing – Cyber Security Pathway', qual: 'Level 4 & 5 Extended Diplomas', img: IMG.cy, alt: 'A student monitoring security screens', chip: 'Route to UK Cyber top-up', whoTitle: 'For digital defenders.', blurb: 'A specialised HND in cybersecurity, risk management, network protection, secure systems and ethical hacking.', overview: 'Year 1 builds foundations. Year 2 moves into advanced, hands-on security work.', years: [['Year 1', 'Programming, networks, security principles and computing essentials.'], ['Year 2', 'Penetration testing, digital forensics, network operations, cloud configuration and defensive strategies.']], skills: ['Network protection', 'Secure systems', 'Ethical hacking', 'Penetration testing', 'Digital forensics', 'Cloud security'], careers: ['Cybersecurity operations', 'SOC analyst', 'Ethical hacker', 'Digital forensics', 'Cloud security'], path: hndPath('HND Cyber Security') }),
+      'hnd-data': H({ short: 'HND · Data Analytics', name: 'HND-Level Study in Computing – Data Analytics Pathway', qual: 'Level 4 & 5 Extended Diplomas', img: IMG.da, alt: 'A student presenting dashboards', chip: 'Direct routes to UK top-ups', whoTitle: 'For people who love patterns.', blurb: 'Programming, databases, analytical methods, data engineering and machine learning, with direct routes to UK top-up degrees.', overview: 'Build the technical and analytical skills to turn data into decisions, from databases to machine learning.', years: [['Foundations', 'Programming, databases and analytical methods.'], ['Advanced', 'Data engineering and machine learning.']], skills: ['Programming', 'Databases', 'Analytical methods', 'Data engineering', 'Machine learning'], careers: ['Data analyst', 'Data technologist', 'BI analyst'], path: hndPath('HND Data Analytics') }),
+      'hnd-net': H({ short: 'HND · NetDevOps', name: 'HND-Level Study in Computing – NetDevOps Pathway', qual: 'Level 4 & 5 Extended Diplomas', img: IMG.net, alt: 'A student working at a server rack', chip: 'Network + cloud top-ups', whoTitle: 'For the people who keep the internet running.', blurb: 'Network engineering, cloud configuration, network automation and DevOps workflows, with a route to UK top-up degrees in Network Engineering or Cloud Infrastructure.', overview: 'Learn how modern networks are built, automated and run in the cloud.', years: [['Foundations', 'Network engineering and computing principles.'], ['Advanced', 'Cloud configuration, network automation and DevOps workflows.']], skills: ['Network engineering', 'Cloud configuration', 'Network automation', 'DevOps workflows'], careers: ['NetDevOps engineer', 'Network engineer', 'Cloud infrastructure'], path: hndPath('HND NetDevOps') }),
+      'hnd-acc': H({ short: 'HND · Accounting & Finance', name: 'HND-Level Study in Accounting & Finance', qual: 'Level 4 & 5 Extended Diplomas · 240 credits', dur: '12–18 months', img: IMG.acc, alt: 'A student working on financial statements', chip: 'Professional accounting route', whoTitle: 'For future accountants.', blurb: 'A 240-credit qualification covering accounting, finance and related business areas, with a practical view of how accounting works in real organisations.', overview: 'Builds on core accounting principles and extends into taxation, the business environment, economics and the legal aspects of accounting.', years: [['Core', 'Accounting principles, finance and the business environment.'], ['Advanced', 'Taxation, economics and the legal aspects of accounting.']], skills: ['Accounting principles', 'Finance', 'Taxation', 'Economics', 'Business law'], careers: ['Higher education', 'Professional accounting pathways'], fees: ACCF, feeNote: 'Year 2 is LKR 180,000 for this programme. Awarding-body fees in GBP are paid separately. Some figures on the live page differ slightly, so admissions confirms the final schedule.', path: hndPath('HND Accounting & Finance') }),
+      'f-idt': F({ short: 'Foundation · Digital Technologies', name: 'Foundation-Level – Information & Digital Technologies', img: IMG.app, alt: 'A school leaver designing an app', chip: 'Leads on to Level 4 and the HND', whoTitle: 'For your first step into tech.', blurb: 'An entry-level course for post-O/L students covering programming, cybersecurity, digital technologies, data concepts, and web and mobile development.', overview: 'Build a strong foundation in computing and IT before advancing to higher-level IT pathways.', years: [['Core areas', 'Programming, cybersecurity and digital technologies.'], ['Applied', 'Data concepts and modern web and mobile development.']], skills: ['Programming', 'Cybersecurity', 'Digital technologies', 'Data concepts', 'Web & mobile development'], careers: ['Level 4 diplomas', 'HND programmes', 'Entry-level tech roles'] }),
+      'f-bus': F({ short: 'Foundation · Business', name: 'Foundation in Business', img: IMG.fnd, alt: 'A school leaver studying online', chip: 'Leads on to the HND', blurb: 'Your first step after O/Ls into business and management, leading on to an HND.', overview: 'A practical introduction to how businesses work, preparing you for higher-level business study.', years: [['Core', 'Business fundamentals and management.'], ['Applied', 'Communication and study skills for higher education.']], skills: ['Business fundamentals', 'Management', 'Communication', 'Study skills'], careers: ['HND in Business', 'Entry-level business roles'] }),
+      'f-acc': F({ short: 'Foundation · Accounting', name: 'Foundation in Accounting', img: IMG.acc, alt: 'A student working with numbers', chip: 'Leads on to HND Accounting', blurb: 'Start your accounting journey after O/Ls with a UK Level 3 foundation.', overview: 'Learn core accounting ideas and get ready for the HND-Level Study in Accounting & Finance.', years: [['Core', 'Accounting basics and numeracy.'], ['Applied', 'Business finance foundations.']], skills: ['Accounting basics', 'Numeracy', 'Business finance'], careers: ['HND-Level Study in Accounting & Finance', 'Accounts assistant roles'] }),
+      'f-stat': F({ short: 'Foundation · Applied Statistics', name: 'Foundation in Applied Statistics', img: IMG.da, alt: 'Students reviewing charts', chip: 'Leads on to data pathways', blurb: 'Build your skills with numbers and data after O/Ls.', overview: 'An entry route into data-focused study, leading to HNDs in Data Analytics or Computing & AI.', years: [['Core', 'Statistics fundamentals.'], ['Applied', 'Working with data.']], skills: ['Statistics', 'Data handling', 'Problem solving'], careers: ['HND Data Analytics', 'HND Computing & AI'] }),
+      'f-eng': F({ short: 'Foundation · English & Comms', name: 'Foundation in English & Communications for Business', img: IMG.biz, alt: 'A student presenting to classmates', chip: 'Confidence for business', blurb: 'Build confident business English and communication skills after O/Ls.', overview: 'Strengthen the English and communication skills you need for higher study and work.', years: [['Core', 'Business English.'], ['Applied', 'Communication for work.']], skills: ['Business English', 'Presentations', 'Written communication'], careers: ['HND in Business', 'Customer-facing roles'] }),
+      'f-sme': F({ short: 'Foundation · Small Business Start-up', name: 'Foundation in Small Business & Social Enterprise Start-up', img: IMG.pitch, alt: 'A student pitching a business idea', chip: 'For young founders', blurb: 'Learn how to plan and launch a small business or social enterprise.', overview: 'An entrepreneurial foundation for students who want to build something of their own.', years: [['Core', 'Starting a business.'], ['Applied', 'Social enterprise and planning.']], skills: ['Business planning', 'Social enterprise', 'Pitching'], careers: ['Your own venture', 'HND in Business'] }),
+      'pg-edu': PGx({ short: 'PG Dip · Educational Leadership', name: 'Postgraduate-Level Study in Strategic Educational Leadership & Management', body: 'ATHE (UK)', qual: 'Level 7 Extended Diploma', dur: '10–12 months', fee: 350000, feeHead: 'LKR 350,000', startAmt: 'LKR 36,000 / month', startNote: 'or LKR 350,000 in full · 10–12 months', monthTrust: 'LKR 36,000 a month', fees: [{ h: 'Programme fee · LKR 350,000', rows: [['Full fee', 'LKR 350,000'], ['Monthly option', 'LKR 36,000 / month'], ['Duration', '10–12 months']] }], img: IMG.pg, alt: 'A principal leading a staff meeting', chip: 'For principals and academic leaders', whoTitle: 'Built for leaders in education.', blurb: 'A UK-regulated programme for experienced education professionals in leadership and management roles.', overview: 'Build leadership capacity and move into higher-level education management roles.', years: [['Leadership', 'Strategic leadership, team leadership and change management.'], ['Management', 'School operations, resource planning, teaching quality and professional development.']], skills: ['Strategic leadership', 'Educational management', 'Team leadership', 'Resource planning', 'Teaching quality', 'Change management'], careers: ['Senior leadership', 'Principal / headteacher', 'Academic management'], who: ['Senior leaders and principals', 'Headteachers', 'Academic managers', 'School administrators'], path: [['Today', 'Your leadership role'], ['You are here', 'Level 7 PG Diploma'], ['Next', 'Higher-level management'], ['Ask us', 'Progression options']] }),
+      'pg-ai': PGx({ short: 'PG Dip · Computing (AI)', name: 'Postgraduate Diploma in Computing: Artificial Intelligence', fee: 400000, feeHead: 'from LKR 400,000', startAmt: 'from LKR 400,000', startNote: 'payment plan set with an advisor', fees: one(400000, '10 or 12 months'), img: IMG.ai, alt: 'A student working with AI', chip: 'Level 7 computing', blurb: 'A postgraduate route into artificial intelligence for graduates and professionals.', overview: 'Deepen your computing expertise with a focus on AI.', years: [['Focus', 'Artificial intelligence.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Artificial intelligence', 'Advanced computing'], careers: ['AI roles', 'Master’s progression'], who: ['Computing graduates', 'Tech professionals', 'Career changers with a degree', 'Future AI specialists'], path: [['Before', 'Degree or equivalent'], ['You are here', 'PG Diploma'], ['Next', 'Master’s'], ['Then', 'Specialist roles']] }),
+      'pg-gen': PGx({ short: 'PG Dip · Computing (General)', name: 'Postgraduate Diploma in Computing: General Route', fee: 400000, feeHead: 'from LKR 400,000', startAmt: 'from LKR 400,000', startNote: 'payment plan set with an advisor', fees: one(400000, '10 or 12 months'), img: IMG.se, alt: 'A student designing software', chip: 'Level 7 computing', blurb: 'A broad postgraduate route across modern computing.', overview: 'Advance your computing knowledge at Level 7.', years: [['Focus', 'General computing.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Advanced computing'], careers: ['Senior tech roles', 'Master’s progression'], who: ['Computing graduates', 'Tech professionals', 'Career changers with a degree', 'Team leads'], path: [['Before', 'Degree or equivalent'], ['You are here', 'PG Diploma'], ['Next', 'Master’s'], ['Then', 'Senior roles']] }),
+      'pg-se': PGx({ short: 'PG Dip · Computing (Software Eng.)', name: 'Postgraduate Diploma in Computing: Software Engineering', fee: 400000, feeHead: 'from LKR 400,000', startAmt: 'from LKR 400,000', startNote: 'payment plan set with an advisor', fees: one(400000, '10 or 12 months'), img: IMG.se, alt: 'A student sketching architecture', chip: 'Level 7 computing', blurb: 'A postgraduate route in software engineering.', overview: 'Take your software engineering practice to Level 7.', years: [['Focus', 'Software engineering.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Software engineering'], careers: ['Senior developer', 'Master’s progression'], who: ['Developers', 'Computing graduates', 'Tech leads', 'Career changers with a degree'], path: [['Before', 'Degree or equivalent'], ['You are here', 'PG Diploma'], ['Next', 'Master’s'], ['Then', 'Senior roles']] }),
+      'pg-app': PGx({ short: 'PG · Application Development', name: 'Postgraduate-Level Study in Computing: Application Development', fee: 350000, feeHead: 'from LKR 350,000', startAmt: 'from LKR 350,000', startNote: 'payment plan set with an advisor', fees: one(350000, '10 or 12 months'), img: IMG.app, alt: 'An app being designed', chip: 'Level 7 computing', blurb: 'Postgraduate study in application development.', overview: 'Build advanced application development skills.', years: [['Focus', 'Application development.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Application development'], careers: ['App developer', 'Master’s progression'], who: ['Developers', 'Computing graduates', 'Product builders', 'Career changers with a degree'], path: [['Before', 'Degree or equivalent'], ['You are here', 'PG Diploma'], ['Next', 'Master’s'], ['Then', 'Senior roles']] }),
+      'pg-data': PGx({ short: 'PG · Data Analytics', name: 'Postgraduate-Level Study in Computing: Data Analytics', fee: 350000, feeHead: 'from LKR 350,000', startAmt: 'from LKR 350,000', startNote: 'payment plan set with an advisor', fees: one(350000, '10 or 12 months'), img: IMG.da, alt: 'Dashboards on a screen', chip: 'Level 7 computing', blurb: 'Postgraduate study in data analytics.', overview: 'Advance your analytics capability at Level 7.', years: [['Focus', 'Data analytics.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Data analytics'], careers: ['Senior analyst', 'Master’s progression'], who: ['Analysts', 'Graduates', 'Managers working with data', 'Career changers with a degree'], path: [['Before', 'Degree or equivalent'], ['You are here', 'PG Diploma'], ['Next', 'Master’s'], ['Then', 'Senior roles']] }),
+      'tu-beng': TU({ short: 'UoB BEng (Hons) Software Eng. Top-Up', name: 'UoB BEng (Hons) Software Engineering (Top-Up)', dur: '12 months', fee: 400000, feeHead: 'LKR 400,000', startAmt: 'LKR 400,000', startNote: 'payment plan set with an advisor', fees: one(400000, '12 months'), img: IMG.se, alt: 'A software engineering student', chip: 'Honours degree in 12 months', blurb: 'Top up your HND to a BEng (Hons) in Software Engineering.', overview: 'Complete the final year of a software engineering honours degree online.', years: [['Final year', 'Software engineering at honours level.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Software engineering'], careers: ['Software engineer', 'Master’s progression'] }),
+      'tu-fin': TU({ short: 'Top-Up · Management (Finance)', name: 'Bachelor’s-Level Study in Management: Finance Pathway', feeHead: 'LKR 250,000', startAmt: 'LKR 250,000', startNote: 'payment plan set with an advisor', fees: one(250000, '10–12 months'), img: IMG.acc, alt: 'Finance work', chip: 'Top-up in a year', blurb: 'Top up to a bachelor’s in management with a finance focus.', overview: 'Finish your degree with a finance pathway.', years: [['Final year', 'Management with finance.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Management', 'Finance'], careers: ['Finance roles', 'MBA progression'] }),
+      'tu-gen': TU({ short: 'Top-Up · Management (General)', name: 'Bachelor’s-Level Study in Management: General Route', feeHead: 'LKR 250,000', startAmt: 'LKR 250,000', startNote: 'payment plan set with an advisor', fees: one(250000, '10–12 months'), img: IMG.pitch, alt: 'A business pitch', chip: 'Top-up in a year', blurb: 'Top up to a bachelor’s in management.', overview: 'Finish your management degree online.', years: [['Final year', 'General management.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Management'], careers: ['Management roles', 'MBA progression'] }),
+      'tu-people': TU({ short: 'Top-Up · Managing People', name: 'Bachelor’s-Level Study in Management: Managing People Pathway', feeHead: 'LKR 250,000', startAmt: 'LKR 250,000', startNote: 'payment plan set with an advisor', fees: one(250000, '10–12 months'), img: IMG.biz, alt: 'A team meeting', chip: 'Top-up in a year', blurb: 'Top up to a bachelor’s focused on managing people.', overview: 'Finish your degree with a people-management focus.', years: [['Final year', 'Managing people.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Management', 'People management'], careers: ['HR and people roles', 'MBA progression'] }),
+      'tu-ops': TU({ short: 'Top-Up · Operations Mgmt', name: 'Bachelor’s-Level Study in Management: Operations Management Pathway', feeHead: 'LKR 250,000', startAmt: 'LKR 250,000', startNote: 'payment plan set with an advisor', fees: one(250000, '10–12 months'), img: IMG.biz, alt: 'A business meeting', chip: 'Top-up in a year', blurb: 'Top up to a bachelor’s with an operations focus.', overview: 'Finish your degree with operations management.', years: [['Final year', 'Operations management.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Management', 'Operations'], careers: ['Operations roles', 'MBA progression'] }),
+      'tu-sales': TU({ short: 'Top-Up · Sales & Marketing', name: 'Bachelor’s-Level Study in Management: Sales & Marketing Pathway', feeHead: 'LKR 250,000', startAmt: 'LKR 250,000', startNote: 'payment plan set with an advisor', fees: one(250000, '10–12 months'), img: IMG.pitch, alt: 'A sales pitch', chip: 'Top-up in a year', blurb: 'Top up to a bachelor’s with a sales and marketing focus.', overview: 'Finish your degree with sales and marketing.', years: [['Final year', 'Sales and marketing management.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Management', 'Sales', 'Marketing'], careers: ['Sales and marketing roles', 'MBA progression'] }),
+      'c-aimastery': C({ short: 'AI Mastery', name: 'AI Mastery', dur: '12 weeks', fee: 75000, feeHead: 'from LKR 75,000', startAmt: 'from LKR 75,000', startNote: '12 weeks · CPD-validated', fees: one(75000, '12 weeks'), img: IMG.ws, alt: 'Professionals in an AI workshop', chip: 'No coding required', blurb: 'Use AI tools with confidence, assess AI opportunities and risks, and design AI-enabled solutions for your organisation.', overview: 'A non-technical programme for professionals. You work on real business scenarios and finish with an applied AI use case.', years: [['Topics', 'Generative AI, large language models, prompt engineering and productivity tools.'], ['Applied', 'Decision support, no-code AI solutions and responsible AI adoption, ending with a final use case.']], skills: ['Generative AI', 'LLMs', 'Prompt engineering', 'No-code AI', 'Responsible AI'], careers: ['AI-enabled roles at work'] }),
+      'c-aihr': C({ short: 'AI for HR', name: 'AI for HR', dur: '6 weeks', fee: 50000, feeHead: 'LKR 50,000', startAmt: 'LKR 50,000', startNote: '6 weeks · CPD', fees: one(50000, '6 weeks'), img: IMG.ws, alt: 'An HR workshop', chip: 'For HR teams', blurb: 'Apply AI across recruitment, people operations and HR decision-making.', overview: 'A practical CPD course for HR professionals.', years: [['Focus', 'AI in HR.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['AI tools for HR'], careers: ['HR roles'] }),
+      'c-aimkt': C({ short: 'AI for Marketing', name: 'AI For Marketing', dur: '4 weeks', fee: 30000, feeHead: 'LKR 30,000', startAmt: 'LKR 30,000', startNote: '4 weeks · CPD', fees: one(30000, '4 weeks'), img: IMG.cpd, alt: 'A learner in a live class', chip: 'For marketers', blurb: 'Use AI to plan, create and measure marketing faster.', overview: 'A short, practical CPD course for marketers.', years: [['Focus', 'AI in marketing.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['AI tools for marketing'], careers: ['Marketing roles'] }),
+      'c-cyber': C({ short: 'Cyber Security in the AI Era', name: 'Cyber Security in the AI Era', dur: '12 weeks', fee: 75000, feeHead: 'LKR 75,000', startAmt: 'LKR 75,000', startNote: '12 weeks · CPD', fees: one(75000, '12 weeks'), img: IMG.cy, alt: 'Security monitoring screens', chip: 'Modern threats', blurb: 'Understand how AI is changing cyber threats and defences.', overview: 'A CPD course on security in an AI-driven world.', years: [['Focus', 'Cyber security and AI.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Cyber security', 'AI threats'], careers: ['Security-aware roles'] }),
+      'c-looker': C({ short: 'Data Analytics with Looker Studio', name: 'Data Analytics with Google & Looker Studio', dur: '6 weeks', fee: 35000, feeHead: 'LKR 35,000', startAmt: 'LKR 35,000', startNote: '6 weeks · CPD', fees: one(35000, '6 weeks'), img: IMG.da, alt: 'Dashboards', chip: 'Hands-on dashboards', blurb: 'Build clear dashboards and reports with Google tools and Looker Studio.', overview: 'A hands-on CPD course in practical analytics.', years: [['Focus', 'Google tools and Looker Studio.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Dashboards', 'Reporting'], careers: ['Analytics at work'] }),
+      'c-dm': C({ short: 'Digital Marketing & Analytics', name: 'Digital Marketing & Analytics Essentials', dur: '4 weeks', fee: 30000, feeHead: 'LKR 30,000', startAmt: 'LKR 30,000', startNote: '4 weeks · CPD', fees: one(30000, '4 weeks'), img: IMG.cpd, alt: 'A learner in a live class', chip: 'Campaigns + analytics', blurb: 'The essentials of digital marketing and how to measure it.', overview: 'A short CPD course covering digital channels and analytics.', years: [['Focus', 'Digital marketing and analytics.'], ['Format', 'Live online sessions plus the LMS.']], skills: ['Digital marketing', 'Analytics'], careers: ['Marketing roles'] })
+    });
+    const IMGS = (window.IC_DATA&&window.IC_DATA.imgs)||{"f-bus": "/assets/552198928148e7f650f560523de7be38.webp", "f-acc": "/assets/eb8ded50a8f89858e13101da1518fb65.webp", "f-stat": "/assets/700a47ba5b1c261c8a0143ff6a1f8cf3.webp", "f-eng": "/assets/2266ab5a3faf7a51451c570d88b32b37.webp", "f-sme": "/assets/d7297d66eb86ebc37ce53d0eed8a85e9.webp", "pg-ai": "/assets/e389c81bbc724f55fd11cfbb37f850a2.webp", "pg-gen": "/assets/ca4381bf753a08946a873d468e4c0bd1.webp", "pg-se": "/assets/9909c8448005916ce74e76bb864cf895.webp", "pg-app": "/assets/b12cb5fd0b662f8605a6843aa64fda3d.webp", "pg-data": "/assets/c05a2d05632297bc93824571fb5104ff.webp", "tu-beng": "/assets/7b5e92693234d7f157d97f52f204d7b9.webp", "tu-fin": "/assets/272389582f2a702a06e605cc7dcefdcf.webp", "tu-gen": "/assets/e809ca1a49a37b9faa8f59049ac5ebe3.webp", "tu-people": "/assets/5d208a8a94a292e2202a85fb29264dc1.webp", "tu-ops": "/assets/4fea0937215b31de5caad4bf571e1637.webp", "tu-sales": "/assets/b92c409333d3fd95370a948500190087.webp", "c-aihr": "/assets/9b79ddb4dd7fe05d48532d0ca28b76cb.webp", "c-aimkt": "/assets/1eb3d8ebcf26f96feaa13af68c478968.webp", "c-cyber": "/assets/5a65404b02dc3f4c332d02e7deede027.webp", "c-looker": "/assets/f41774a6748f7f652c56a1b88d2dba34.webp", "c-dm": "/assets/2a7f07599fe22f375ae04bfd461d6959.webp"};
+    Object.keys(IMGS).forEach(k => { if (P[k]) P[k].img = IMGS[k]; });
+    const LV = [['HND', 'HND'], ['Foundation', 'Foundation'], ['Top-Up', 'Top-up degrees'], ['Postgraduate', 'Postgraduate'], ['Short course', 'Short courses']];
+    const ids = Object.keys(P);
+    const id = s.id ?? this.props.programme ?? 'hnd-se';
+    const raw = P[id] || P['hnd-se'];
+    const lvl = s.lvl ?? raw.lvl;
+    const lvlTabs = LV.map(l => ({ t: l[1], on: l[0] === lvl, cls: l[0] === lvl ? 'on' : '', go: () => { const first = ids.find(k => P[k].lvl === l[0]); this.setState({ lvl: l[0], id: first, faq: 0 }); } }));
+    const chips = ids.filter(k => P[k].lvl === lvl).map(k => ({ short: P[k].short, on: k === id, cls: k === id ? 'on' : '', go: () => this.setState({ id: k, faq: 0 }) }));
+    const p = Object.assign({}, raw, { who: raw.who.map((t, i) => ({ t, n: String(i + 1).padStart(2, '0') })), path: raw.path.map(x => ({ k: x[0], t: x[1], cls: 'step' + (x[0] === 'You are here' ? ' here' : '') })), years: raw.years.map(y => ({ k: y[0], t: y[1] })), fees: raw.fees.map(f => ({ h: f.h, rows: f.rows.map(r => ({ k: r[0], v: r[1] })) })) });
+    let PL;
+    if (window.icQuestPlans && window.icQuestPlans(raw.plan)) PL = window.icQuestPlans(raw.plan);
+    else if (raw.plan === 'hnd') PL = [{ t: 'Pay Year 1 in full', d: 'One payment for Year 1', a: 'LKR 99,900', u: 'Year 1', today: 'LKR 99,900', then: 'Year 2 billed later' }, { t: 'Monthly · Start with LKR 9,999', d: 'LKR 10,000 registration, then 9 × LKR 9,999', a: 'LKR 9,999', u: 'a month · Year 1', today: 'LKR 10,000', then: '9 × LKR 9,999', hot: true }, { t: 'Reserve my seat', d: 'Pay registration now, choose your plan with an advisor', a: 'LKR 10,000', u: 'registration', today: 'LKR 10,000', then: 'Plan set with advisor' }];
+    else if (raw.plan === 'fnd') PL = [{ t: 'Pay in full', d: 'One payment, done', a: 'LKR 49,500', u: 'total', today: 'LKR 49,500', then: 'Nothing more' }, { t: 'Monthly · LKR 5,000', d: 'LKR 9,500 registration, then 8 × LKR 5,000', a: 'LKR 5,000', u: 'a month', today: 'LKR 9,500', then: '8 × LKR 5,000', hot: true }, { t: 'Reserve my seat', d: 'Pay registration now, start when ready', a: 'LKR 9,500', u: 'registration', today: 'LKR 9,500', then: 'Plan set with advisor' }];
+    else if (raw.plan === 'cpd') PL = [{ t: 'Pay in full', d: 'Your seat in the next cohort', a: raw.feeHead.replace('from ', ''), u: 'total', today: raw.feeHead.replace('from ', ''), then: 'Nothing more', hot: true }, { t: 'Reserve my seat', d: 'Hold a seat, an advisor confirms the cohort', a: 'Advisor call', u: 'no payment today', today: 'LKR 0', then: 'Pay before the cohort starts' }];
+    else PL = [{ t: 'Monthly plan', d: 'Set with an advisor after you reserve', a: 'Flexible', u: 'monthly', today: 'Registration', then: 'Monthly by PayHere link', hot: true }, { t: 'Pay in full', d: 'One payment', a: raw.feeHead.replace('from ', ''), u: 'total', today: raw.feeHead.replace('from ', ''), then: 'Nothing more' }, { t: 'Reserve my seat', d: 'Talk to an advisor first', a: 'Advisor call', u: 'no payment today', today: 'LKR 0', then: 'Plan set with advisor' }];
+    const planI = Math.min(s.plan, PL.length - 1);
+    const pl = PL[planI];
+    const plans = PL.map((o, i) => ({ ...o, hot: !!o.hot, on: i === planI, cls: 'opt' + (i === planI ? ' on' : ''), pick: () => this.setState({ plan: i }) }));
+    const M = [['Card via PayHere', 'Visa, Mastercard, Amex. Monthly payments by PayHere link.'], ['Bank transfer', 'We send account details and hold your seat for 48 hours.']];
+    const methods = M.map((m, i) => ({ t: m[0], d: m[1], on: i === s.method, cls: 'opt' + (i === s.method ? ' on' : ''), pick: () => this.setState({ method: i }) }));
+    const ST = [['As soon as possible', 'Join the next intake. An advisor confirms the date.'], ['Next month', 'Plan ahead and settle in first.'], ['I’m not sure yet', 'We’ll help you choose. No pressure.']];
+    const starts = ST.map((o, i) => ({ t: o[0], d: o[1], on: i === s.start, cls: 'opt' + (i === s.start ? ' on' : ''), pick: () => this.setState({ start: i }) }));
+    const XPS = [0, 0, 50, 150, 200, 300, 600];
+    let xp = XPS[Math.min(s.step, 6)] + (s.up && s.step > 3 ? 50 : 0) + (s.sch && s.step > 4 ? 50 : 0);
+    if (s.step >= 6) xp = 600;
+    xp = Math.min(600, xp);
+    const level = xp >= 600 ? 3 : xp >= 150 ? 2 : 1;
+    const levelName = ['Explorer', 'Pathfinder', 'Trailblazer'][level - 1];
+    const QT = [['About you', 50], ['Your start', 100], ['Documents', 50], ['Your plan', 100], ['Reserve', 300]];
+    const quests = QT.map((q, i) => ({ n: i + 1 < s.step ? '✓' : i + 1, t: q[0], xp: q[1], cls: i + 1 < s.step ? 'ok' : i + 1 === s.step ? 'cur' : '' }));
+    const qmap = QT.map((q, i) => ({ t: q[0], cls: i + 1 < s.step ? 'on' : '' }));
+    const unlocks = [['Coffee wallet · ' + raw.cups, s.step > 4], ['Scholarship check', s.sch], ['Referral code', s.step > 4], ['Inspire Brain access', s.step > 5]].map(u => ({ t: u[0], cls: u[1] ? 'on' : '' }));
+    const FQ = [
+      ['Is this programme fully online?', 'Yes. 100% online, with live online sessions plus the Inspire Brain LMS for materials and recordings.'],
+      ['Who awards the qualification?', raw.body.indexOf('ATHE') === 0 ? 'ATHE, a UK awarding organisation regulated by Ofqual.' : raw.body + '. An advisor can share full awarding details.'],
+      ['How do the payments work?', raw.feeNote],
+      ['What are the entry requirements?', raw.entry],
+      ['Can I try a class first?', 'Yes. Register for the free demo class, watch a recorded session and unlock a seat in a live class.']
+    ];
+    const faqs = FQ.map((f, i) => ({ q: f[0], a: f[1], open: i === s.faq, sign: i === s.faq ? '−' : '+', toggle: () => this.setState({ faq: s.faq === i ? -1 : i }) }));
+    const toastFor = { 2: [50, 'Quest 1 complete · Badge: Explorer'], 3: [100, 'Quest 2 complete · Level 2 unlocked'], 4: [50, 'Bonus quest · Documents'], 5: [100, 'Quest 4 complete · Coffee wallet unlocked'] };
+    const go = n => this.setState({ step: n, err: '', toast: toastFor[n] ? { xp: toastFor[n][0], t: toastFor[n][1] } : null });
+    const open = () => this.setState({ enrol: true, step: 1, err: '', toast: null });
+    const first = s.name.trim().split(' ')[0] || 'friend';
+    const curKey = P[id] ? id : 'hnd-se';
+    if (this._lastK !== curKey) { this._lastK = curKey; const cc = IC_CAT[curKey] || {}; setTimeout(() => { IC_AI.bump(curKey, 4, ({ HND: 'HND', Foundation: 'Foundation', 'Top-Up': 'Top-Up', Postgraduate: 'Postgraduate', 'Short course': 'Short Course' })[cc.l] || cc.l, null); icDL('view_item', { currency: 'LKR', value: 0, items: [icItem(curKey)] }); }, 0); }
+    return {
+      ...(() => { const k = curKey, c0 = IC_CAT[k] || {}; const same = Object.keys(IC_CAT).filter(z => z !== k && IC_CAT[z].l === c0.l); const cpd = c0.p === 'cpd'; const athe0 = /ATHE/.test(c0.b || '');
+        let pick = cpd ? same.slice(0, 2).concat((icUp(k) ? [icUp(k).to] : [])).concat(['f-bus']) : same.slice(0, 2).concat(icAdds(k).slice(0, 2));
+        pick = pick.filter((z, i) => IC_CAT[z] && pick.indexOf(z) === i && z !== k).slice(0, 4);
+        let h = 0; for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) % 9973;
+        const live = (typeof window !== 'undefined' && window.icLiveStats) ? window.icLiveStats(k) : null;
+        return {
+          rel: pick.map(z => ({ img: IC_CAT[z].i, lvl: IC_CAT[z].l, short: IC_CAT[z].s, dur: IC_CAT[z].d, fee: IC_CAT[z].f, free: athe0 && IC_CAT[z].p === 'cpd', view: () => { this.setState({ id: z, lvl: null, faq: 0 }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} }, enrol: () => icOpen(this, z) })),
+          relNote: cpd ? 'Enrol in one CPD course and every other CPD course is 25% off.' : athe0 ? 'Pair it with CPD short courses. Two are free with any ATHE programme.' : 'Related programmes and short courses that pair well with this one.',
+          vw: live ? { now: String(live.now), views: Number(live.views).toLocaleString('en-US'), sample: false } : { now: String(3 + h % 14), views: (180 + h % 900).toLocaleString('en-US'), sample: true }
+        }; })(),
+      ...(() => { const k = curKey;
+        const PAY = { comp: [['Software engineer', 'LKR 129K–555K'], ['AI engineer', 'LKR 62K–280K'], ['Data analyst', 'LKR 33K–298K']], cyber: [['Software engineer', 'LKR 129K–555K'], ['AI engineer', 'LKR 62K–280K'], ['Data analyst', 'LKR 33K–298K']], bus: [['Marketing manager', 'LKR 95K–254K'], ['HR manager', 'LKR 55K–290K'], ['Accountant', 'LKR 42K–173K']], acc: [['Accountant', 'LKR 42K–173K'], ['Data analyst', 'LKR 33K–298K'], ['Marketing manager', 'LKR 95K–254K']], mkt: [['Digital marketing specialist', 'LKR 40K–121K'], ['Digital marketing manager', 'LKR 56K–185K'], ['Marketing manager', 'LKR 95K–254K']], hr: [['HR generalist', 'LKR 60K–119K'], ['HR manager', 'LKR 55K–290K']], edu: [['Secondary school teacher', 'LKR 45K–90K'], ['University lecturer', 'LKR 64K–112K'], ['School principal', 'LKR 39K–220K']], data: [['Data analyst', 'LKR 33K–298K'], ['AI engineer', 'LKR 62K–280K'], ['Software engineer', 'LKR 129K–555K']] };
+        const area = /^c-(aimkt|dm)/.test(k) || /sales/.test(k) ? 'mkt' : /aihr|people/.test(k) ? 'hr' : /edu|eng$/.test(k) ? (k === 'pg-edu' ? 'edu' : 'bus') : /acc|fin|stat/.test(k) ? 'acc' : /looker|data/.test(k) ? 'data' : /^(hnd-(se|ai|cyber|net)|f-idt|pg-(ai|gen|se|app)|tu-beng|c-(aimastery|cyber))/.test(k) ? 'comp' : 'bus';
+        return { payRows: PAY[area].map(r => ({ role: r[0], lk: r[1] })),
+          faces: [['Nidarshana Premkumar', 'HND student', '/assets/09837c527e84a92316e486e08aac96dc.webp', '66%'], ['Gimhani Edirisinghe', 'HND student', '/assets/611c94883ba62d0bd5f4039c934d0719.webp', '70%'], ['Akram Razik', 'Foundation + HND', '/assets/306af9da34846d4e9ac72a934dc008df.webp', '63%'], ['Keneth Joel', 'Level 4', '/assets/5c091c05f7b949dc153bf80ba9f087d9.webp', '54%'], ['Yara Benjamin', 'Foundation student', '/assets/975d6324bb39d4835d5e638fe5c2db8f.webp', '68%']].map(f => ({ name: f[0], role: f[1], img: f[2], pos: f[3] })) }; })(),
+      ...icOffers(this, { campaign: this.props.campaign || 'scholarship', enrol: () => icOpen(this, curKey), cpd: () => { this.setState({ id: 'c-aimastery', lvl: null, faq: 0 }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} }, coffeeHref: 'Main.dc.html#coffee' }),
+      ...icX(this, { campaign: this.props.campaign || 'scholarship', quest: open }), openQuest: open,
+      p, lvlTabs, chips, faqs, qmap,
+      ctaMain: raw.plan === 'hnd' ? 'Start with LKR 9,999 →' : raw.plan === 'fnd' ? 'Start from LKR 5,000 →' : 'Reserve your seat →',
+      openEnrol: () => icOpen(this, curKey), atheBonus: /ATHE/.test((IC_CAT[curKey] || {}).b || ''), shopPlans: icPlans(IC_CAT[curKey] || IC_CAT['hnd-se']).map((o, i) => ({ a: o.a, u: o.u, t: o.t, d: o.d, hot: !!o.hot, cls: 'pcard' + (o.hot ? ' hot' : ''), go: () => icOpen(this, curKey, { plan: i }) })), closeEnrol: () => this.setState({ enrol: false }), enrolOpen: s.enrol,
+      e1: s.step === 1, e2: s.step === 2, e3: s.step === 3, e4: s.step === 4, e5: s.step === 5, paying: s.step === 6, notPaying: s.step < 6,
+      hasToast: !!s.toast, toast: s.toast || { xp: 0, t: '' },
+      xp, xpW: Math.round(xp / 6) + '%', level, levelName, quests,
+      meCls: s.who === 'me' ? 'on' : '', parCls: s.who === 'par' ? 'on' : '', asMe: () => this.setState({ who: 'me' }), asPar: () => this.setState({ who: 'par' }),
+      nameLabel: s.who === 'me' ? 'Full name' : 'Student’s full name',
+      name: s.name, email: s.email, phone: s.phone, refCode: s.refCode,
+      setName: e => this.setState({ name: e.target.value }), setEmail: e => this.setState({ email: e.target.value }), setPhone: e => this.setState({ phone: e.target.value }), setRef: e => this.setState({ refCode: e.target.value }),
+      err: s.err,
+      go2: () => { const ok = s.name.trim().length > 1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email.trim()) && s.phone.replace(/\D/g, '').length >= 9; if (!ok) { this.setState({ err: 'Please add a name, a valid email and a mobile number.' }); return; } go(2); },
+      go3: () => go(3), go4: () => go(4), go5: () => go(5), back: () => this.setState({ step: Math.max(1, s.step - 1), err: '', toast: null }),
+      starts, upTitle: s.up ? 'results.pdf added ✓ · +50 XP' : 'Drop your results here', doUp: () => this.setState({ up: true }), go4Txt: s.up ? 'Continue · +50 XP' : 'Skip for now',
+      plans, methods, planName: pl.t, dueToday: pl.today, dueThen: pl.then,
+      sch: s.sch, schCls: 'check' + (s.sch ? ' on' : ''), toggleSch: () => this.setState({ sch: !s.sch }),
+      agree: s.agree, agCls: 'check' + (s.agree ? ' on' : ''), toggleAg: () => this.setState({ agree: !s.agree }),
+      unlocks,
+      payTxt: pl.today === 'LKR 0' ? 'Reserve my seat · +300 XP' : (s.method === 0 ? 'Pay ' + pl.today + ' with PayHere · +300 XP' : 'Reserve with bank transfer · +300 XP'),
+      pay: () => { if (!s.agree) { this.setState({ err: 'Please accept the terms to continue.' }); return; } this.setState({ step: 6, err: '', toast: null }); window.icQuestOrder(this, curKey, raw.plan); },
+      backPay: () => this.setState({ step: 5 }),
+      handoffTxt: (s.method === 0 ? 'Opening PayHere for ' : 'Preparing bank details for ') + pl.today + ' · ' + raw.short,
+      first
+    };
+  }
+}
+
+window.Component=Component;window.__dcBoot(window.icBootProps({"campaign": "scholarship", "programme": "hnd-se"}));</script></body></html>

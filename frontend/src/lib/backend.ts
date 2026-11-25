@@ -1,0 +1,58 @@
+// Server-side access to the Inspire Web v2 backend (never the current production API).
+export const BACKEND_URL = (process.env.BACKEND_URL || "http://127.0.0.1:8120").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3110").replace(/\/$/, "");
+
+export type Course = {
+  id: number; key: string; slug: string; title: string; short: string; level: string; school: string; body: string;
+  plan_type: string; duration: string; fee: number; fee_label: string; monthly_label: string; cpd_addon_fee: number | null;
+  image: string; blurb: string; keywords: string; card_type: string; featured: boolean; sort_order: number;
+  detail: Record<string, unknown>; seo_title: string; seo_description: string;
+};
+export type News = { id: number; slug: string; title: string; excerpt: string; body: string; category: string; image: string; video_url: string; published_at: string };
+export type Settings = {
+  announcement_enabled: boolean; announcement_text: string; announcement_link: string; christmas_theme: boolean;
+  hero_slides: unknown[]; promo_banner: { enabled: boolean; title: string; text: string; cta: string; link: string; image: string };
+  contact: { whatsapp_main: string; whatsapp_advisor: string; phone_display: string; email: string };
+  theme: { palette: string; shape: string; font: string };
+  tracking: Record<string, string>;
+  default_campaign: string;
+  home_extra_cards: Record<string, string>[];
+  seo: { site_name: string; default_description: string };
+};
+export type Bundle = {
+  settings: Settings;
+  fee_plans: Record<string, unknown[]>;
+  courses: Course[];
+  testimonials: { name: string; role: string; image: string; image_pos: string; video_url: string; caption: string }[];
+  leaders: { name: string; role: string; initials: string; photo?: string; photo_pos?: string; bio?: string }[];
+  faqs: { audience: string; question: string; answer: string }[];
+  campaigns: { key: string; tag: string; text: string; short: string; perk: string }[];
+  news: News[];
+};
+
+export async function backendGet<T>(path: string, revalidate = 60): Promise<T> {
+  const r = await fetch(BACKEND_URL + path, { next: { revalidate } });
+  if (!r.ok) throw new Error(`Backend ${path} -> ${r.status}`);
+  return r.json() as Promise<T>;
+}
+
+export async function getBundle(): Promise<Bundle> {
+  return backendGet<Bundle>("/api/v1/public/bundle", 60);
+}
+
+export async function getNewsList(): Promise<News[]> {
+  return backendGet<News[]>("/api/v1/public/news", 300);
+}
+
+export async function getNewsItem(slug: string): Promise<News | null> {
+  const r = await fetch(`${BACKEND_URL}/api/v1/public/news/${encodeURIComponent(slug)}`, { next: { revalidate: 300 } });
+  return r.ok ? r.json() : null;
+}
+
+export type DemoMe = { user: { name: string; email: string }; expires_at: string; state: Record<string, unknown> | null };
+
+export async function getDemoMe(token: string | undefined): Promise<DemoMe | null> {
+  if (!token) return null;
+  const r = await fetch(BACKEND_URL + "/api/v1/demo/me", { headers: { Authorization: "Bearer " + token }, cache: "no-store" });
+  return r.ok ? r.json() : null;
+}
