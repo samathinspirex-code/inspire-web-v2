@@ -6,17 +6,15 @@ services:
     name: inspire-web-v2-api
     runtime: python
     region: singapore
-    plan: starter            # always on: the 15-minute billing job and PayHere callbacks need it (free plan sleeps)
+    plan: free               # preview. For real payments switch to starter (always on) and add the disk below.
     rootDir: backend
     buildCommand: pip install -r requirements.txt
-    preDeployCommand: python scripts/upgrade_db.py   # adds new tables/columns only; never drops data
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
+    # upgrade_db adds new tables/columns only (never drops data); free plan has no pre-deploy step, so it runs at start
+    startCommand: python scripts/upgrade_db.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
     healthCheckPath: /health
     autoDeploy: true
-    disk:                    # bank slips and media uploads survive deploys
-      name: data
-      mountPath: /var/data
-      sizeGB: 1
+    # On starter, add a disk so bank slips and media survive deploys, and set MEDIA_DIR/SLIP_DIR to it:
+    # disk: {name: data, mountPath: /var/data, sizeGB: 1}
     envVars:
       - key: PYTHON_VERSION
         value: 3.12.8
@@ -52,7 +50,3 @@ services:
         value: enrol@inspire.college
       - key: MAIL_FROM_NAME
         value: Inspire College
-      - key: MEDIA_DIR
-        value: /var/data/media
-      - key: SLIP_DIR
-        value: /var/data/slips
