@@ -71,6 +71,8 @@
     ".lx-orb.olive{background:radial-gradient(circle at 32% 28%,#E9EDB0 0%,#A8AD6A 36%,#62683F 74%,#33381F 100%)}" +
     ".lx-student{position:absolute;z-index:2;left:50%;top:50%;width:min(62%,420px);height:auto;border-radius:32px;box-shadow:0 40px 80px rgba(0,0,0,.45);transform:translate(-50%,-50%) rotate(-2deg);animation:lx-float 6s ease-in-out infinite}" +
     ".lx-art .tagline{z-index:3}" +
+    ".lx-back{position:absolute;z-index:4;top:22px;left:22px;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;font-weight:650;font-size:14px;text-decoration:none;backdrop-filter:blur(6px);transition:background .2s}" +
+    ".lx-back:hover{background:rgba(255,255,255,.26)}" +
     "@keyframes lx-orb-drift{to{transform:translate3d(var(--orb-dx),var(--orb-dy),0) scale(1.06)}}" +
     "@keyframes lx-float{0%,100%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-54%) rotate(2deg)}}" +
     "@media(max-width:860px){.lx-student{width:min(46%,240px)}}" +
@@ -335,7 +337,7 @@
     var orbs = LX_ORBS.map(function (o) {
       return '<i class="lx-orb ' + o[0] + '" style="--orb-size:' + o[1] + 'px;--orb-dx:' + o[4] + 'px;--orb-dy:' + o[5] + 'px;left:' + o[2] + '%;top:' + o[3] + '%;animation-duration:' + o[6] + 's;animation-delay:' + o[7] + 's"></i>';
     }).join("");
-    var art = '<div class="art lx-art">' + LX_CSS + '<div class="lx-orbs" aria-hidden="true">' + orbs + '</div>' +
+    var art = '<div class="art lx-art">' + LX_CSS + '<a class="lx-back" href="/">← Back to website</a><div class="lx-orbs" aria-hidden="true">' + orbs + '</div>' +
       '<img class="lx-student" src="/assets/lms/login-student.webp" alt="A student studying on a laptop, floating among glossy shapes"><div class="tagline"><b>Learn. Level up.<br><span class="hl">Get coffee.</span></b></div></div>';
     var panel = '<div class="brand"><b>inspire</b><span>college</span></div>' +
       '<div><h1 id="lgTitle">Hey, welcome back.</h1><p id="lgSub" style="margin-top:10px">' + (expired ? "Your session ended. Log in again to continue." : "Log in to your Inspire Brain demo account.") + '</p></div>' +
