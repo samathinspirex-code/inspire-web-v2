@@ -61,9 +61,9 @@ export const SECTIONS: Section[] = [
   },
   {
     name: "demo_classes", title: "Demo LMS classes", singular: "class", columns: ["code", "title", "programme", "study_mode", "status", "published"],
-    help: "Classes students see under My Classes in the free-demo LMS (/portal). Filters there follow Awarding body → School → Programme → Study mode.",
+    help: "Classes students see under My Classes in the free-demo LMS (/portal). Use \"Course content\" to add sections, videos, PDFs, slides and lessons, like the lecturer panel in the current LMS.",
     newItem: { code: "", title: "", awarding_body: "ATHE (UK)", school: "School of Computing", programme: "", intake: "September", study_mode: "Full Time",
-      start_date: null, end_date: null, lecturers: "", status: "Active", image: "", description: "", sort_order: 100, published: "draft" },
+      start_date: null, end_date: null, lecturers: "", status: "Active", image: "", description: "", takeaways: "", sort_order: 100, published: "draft" },
     fields: [
       { key: "code", label: "Class code", help: "e.g. B_L3_M5" }, { key: "title", label: "Class / module title", help: "e.g. Market Research" },
       { key: "awarding_body", label: "Awarding body", type: "select", options: ["ATHE (UK)", "CPD UK", "Jain University", "LSBF Singapore"] },
@@ -75,7 +75,8 @@ export const SECTIONS: Section[] = [
       { key: "start_date", label: "Start date", type: "date" }, { key: "end_date", label: "End date", type: "date" },
       { key: "lecturers", label: "Lecturers", help: "Comma-separated names", wide: true },
       { key: "image", label: "Class banner", type: "image", wide: true },
-      { key: "description", label: "Short description", type: "textarea", wide: true },
+      { key: "description", label: "About this class", type: "textarea", wide: true, help: "Shown on the class Details tab" },
+      { key: "takeaways", label: "Takeaways from this course", type: "textarea", wide: true, help: "One per line" },
       { key: "published", label: "Show in demo LMS", type: "select", options: ["published", "draft"] }, order,
     ],
   },

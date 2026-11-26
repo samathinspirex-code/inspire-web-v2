@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { api, ApiError, del, getPath, post, put, setPath } from "./api";
 import { FieldInput } from "./fields";
+import ClassStudio from "./ClassStudio";
 import PaymentsApp from "./Payments";
 import { SECTIONS, type Field, type Section } from "./schemas";
 
@@ -146,7 +147,9 @@ function SectionPage({ section }: { section: Section }) {
             {rows.map((r) => (
               <tr key={String(r.id)} onClick={() => setEditing(r)}>
                 {section.columns.map((c) => <td key={c}>{fmt(r[c])}</td>)}
-                <td className="right"><button className="btn ghost sm">Edit</button></td>
+                <td className="right"><div className="row end">
+                  {section.name === "demo_classes" && <Link className="btn sm" href={`/admin/class-content/${r.id}`} onClick={(e) => e.stopPropagation()}>Course content</Link>}
+                  <button className="btn ghost sm">Edit</button></div></td>
               </tr>
             ))}
             {data && !rows.length && <tr><td colSpan={section.columns.length + 1} className="muted">Nothing here yet.</td></tr>}
@@ -318,6 +321,7 @@ export default function AdminApp() {
   else if (page === "leads")
     body = <RecordsPage title="Leads" path="leads" help="Sign-ups and forms from the new website (stored only in the new database)." columns={["created_at", "kind", "name", "email", "phone", "course_key", "status"]}
       actions={(r, reload) => r.status === "new" ? <button className="btn ghost sm" onClick={() => put(`leads/${r.id}`, { status: "contacted" }).then(reload)}>Mark contacted</button> : null} />;
+  else if (page === "class-content") body = <ClassStudio key={pathname} id={pathname.split("/").filter(Boolean)[2] || ""} />;
   else if (page === "payments") body = <PaymentsApp path={pathname.replace(/^\/admin\/payments\/?/, "").split("/").filter(Boolean)} />;
   else if (page === "demo-accounts")
     body = <RecordsPage title="Demo accounts" path="demo-accounts" help="Free-demo LMS accounts. Each one is deleted automatically 24 hours after sign-up." columns={["created_at", "full_name", "email", "phone", "interest", "points_earned", "expires_at"]}

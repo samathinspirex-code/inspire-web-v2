@@ -200,7 +200,7 @@ if (fs.existsSync(OS_SRC)) {
   const n = "OS";
   h = patch(n, h, "<title>Inspire College OS</title>", "<title>Inspire Brain · Demo</title><!--IC_HEAD-->");
   // Only the student portal exists in the demo.
-  h = patch(n, h, "const V={command:vCommand,", "for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];\nPORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);\nconst V={livecampus:()=>{S.view='student';S.portal='student';try{history.replaceState(null,'','/portal')}catch(e){}save();setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class=\"wrap\"><p>Opening Live Campus…</p></div>';},command:vCommand,");
+  h = patch(n, h, "const V={command:vCommand,", "for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];\nPORTALS.student.nav.forEach(g=>{g[1]=g[1].filter(n=>n[0]!=='player');});\nPORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);\nconst V={livecampus:()=>{S.view='student';S.portal='student';try{history.replaceState(null,'','/portal')}catch(e){}save();setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class=\"wrap\"><p>Opening Live Campus…</p></div>';},command:vCommand,");
   // State is loaded from / saved to the demo account on the server (not just this browser).
   h = patch(n, h, "function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}", "function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}window.icDemoSave&&window.icDemoSave(S);}");
   h = patch(n, h, "function restore(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S=Object.assign(defaults(),o);}}catch(e){}}",

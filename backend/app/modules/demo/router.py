@@ -12,6 +12,7 @@ from app.modules.demo import service
 from sqlalchemy import select
 
 from app.modules.demo.models import DemoClass, DemoState, DemoUser
+from app.modules.demo.studio_router import class_tree
 
 router = APIRouter(prefix="/api/v1/demo", tags=["demo"])
 
@@ -104,7 +105,8 @@ async def published_classes(db: AsyncSession) -> list[dict]:
         "programme": c.programme, "intake": c.intake, "study_mode": c.study_mode,
         "start_date": c.start_date.isoformat() if c.start_date else None, "end_date": c.end_date.isoformat() if c.end_date else None,
         "lecturers": [x.strip() for x in (c.lecturers or "").split(",") if x.strip()], "status": c.status,
-        "image": c.image, "description": c.description,
+        "image": c.image, "description": c.description, "takeaways": [x.strip() for x in (c.takeaways or "").splitlines() if x.strip()],
+        "sections": await class_tree(db, c.id, published_only=True),
     } for c in rows]
 
 

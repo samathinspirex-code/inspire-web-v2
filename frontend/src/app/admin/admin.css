@@ -114,3 +114,38 @@ td { max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: n
 .slip-img { width: 220px; max-height: 300px; object-fit: contain; border-radius: 14px; background: var(--surface-2); display: grid; place-items: center; min-height: 140px; }
 .slip-img.pdf { text-decoration: none; font-weight: 600; }
 @media (max-width: 700px) { .slip { grid-template-columns: 1fr; } .slip-img { width: 100%; } }
+
+/* ---- Class content editor (like the current LMS lecturer Course Studio) ---- */
+.studio .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-2); }
+.studio-toolbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.studio-toolbar h2 { font-size: 22px; margin: 4px 0; }
+.studio-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 720px; margin-bottom: 16px; }
+.studio-summary div { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: var(--surface); }
+.studio-summary b { display: block; font-size: 19px; color: var(--accent-2); } .studio-summary span { font-size: 12px; color: var(--muted); }
+.studio-empty { display: grid; justify-items: center; gap: 6px; width: 100%; max-width: 980px; padding: 34px; border: 2px dashed color-mix(in srgb, var(--accent-2) 45%, transparent); border-radius: 14px; background: var(--tint); color: inherit; font: inherit; cursor: pointer; }
+.studio-empty i { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-style: normal; font-size: 26px; background: var(--accent-2); color: #fff; }
+.studio-empty span { color: var(--muted); font-size: 13px; }
+.studio-list { display: grid; gap: 10px; max-width: 980px; }
+.studio-section { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); overflow: hidden; }
+.studio-section-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px; padding-right: 12px; }
+.section-toggle { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 14px 16px; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; min-width: 0; }
+.section-toggle .num { font-size: 15px; font-weight: 700; color: var(--accent-2); }
+.section-toggle b, .studio-item b { font-size: 14px; }
+.section-toggle small, .studio-item small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.section-toggle .chev { color: var(--accent-2); font-size: 18px; }
+.section-actions, .item-actions { display: flex; gap: 7px; align-items: center; }
+.mini { width: 26px; height: 26px; border-radius: 7px; border: 1px solid var(--line); background: var(--surface); color: inherit; cursor: pointer; }
+.mini:disabled { opacity: .4; cursor: default; }
+.studio-items { border-top: 1px solid var(--line); padding: 6px 18px 16px 74px; }
+.studio-item { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 11px; min-height: 60px; border-bottom: 1px solid var(--line); padding: 8px 0; }
+.content-icon { width: 30px; height: 30px; border-radius: 7px; display: grid; place-items: center; font-size: 9px; font-weight: 900; color: var(--accent-2); background: var(--tint); }
+.content-icon.video { color: #fff; background: var(--accent-2); font-size: 12px; }
+.content-icon.pdf { color: #C43E4D; background: #FDEBED; } .content-icon.pptx { color: #B86B08; background: #FFF3D8; }
+.content-icon.link { color: #256EB5; background: #E8F2FC; } .content-icon.assignment, .content-icon.quiz { color: #B86B08; background: #FFF3D8; }
+.add-content { margin-top: 12px; padding: 9px 14px; border: 1px dashed color-mix(in srgb, var(--accent-2) 35%, transparent); border-radius: 7px; background: var(--tint); color: var(--accent-2); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+.stored-file { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; align-items: center; gap: 12px; margin-top: 14px; padding: 12px; border: 1px dashed var(--line); border-radius: 10px; }
+.stored-file.attached { border-style: solid; border-color: #16845B; }
+.stored-file .content-icon { width: 42px; height: 42px; font-size: 10px; }
+.stored-file small { display: block; font-size: 12px; color: var(--muted); }
+.studio-modal .field { margin-top: 12px; }
+@media (max-width: 760px) { .studio-items { padding-left: 16px; } .studio-section-head { grid-template-columns: 1fr; padding: 0 12px 12px; } }

@@ -122,7 +122,8 @@ async def delete_item(name: str, item_id: int, db: AsyncSession = Depends(get_db
 
 
 # ---------- media ----------
-ALLOWED_MEDIA = {"image/png", "image/jpeg", "image/webp", "image/gif", "image/svg+xml", "video/mp4", "application/pdf"}
+ALLOWED_MEDIA = {"image/png", "image/jpeg", "image/webp", "image/gif", "image/svg+xml", "video/mp4", "application/pdf",
+                 "application/vnd.openxmlformats-officedocument.presentationml.presentation"}   # PPTX for class content
 
 
 @router.get("/media")
@@ -134,7 +135,7 @@ async def list_media(db: AsyncSession = Depends(get_db)):
 @router.post("/media")
 async def upload_media(file: UploadFile = File(...), db: AsyncSession = Depends(get_db)):
     if file.content_type not in ALLOWED_MEDIA:
-        raise HTTPException(415, "Use an image, MP4 or PDF")
+        raise HTTPException(415, "Use an image, MP4, PDF or PowerPoint (.pptx)")
     data = await file.read()
     if len(data) > 25 * 1024 * 1024:
         raise HTTPException(413, "Max 25 MB")

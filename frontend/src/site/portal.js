@@ -157,21 +157,161 @@
         "<h3>" + esc(c.title) + '</h3><div class="dc-path">' + path + "</div>" +
         '<div class="dc-meta"><div><small>Dates</small><b>' + esc(fmtD(c.start_date)) + (c.end_date ? " – " + esc(fmtD(c.end_date)) : "") + "</b></div>" +
         "<div><small>Mode</small><b>" + esc(c.study_mode) + "</b></div><div><small>Lecturers</small><b>" + (c.lecturers || []).length + "</b></div></div>" +
-        '<button class="dc-open" type="button" data-view="player">Open class →</button></article>';
+        '<button class="dc-open" type="button" data-dcopen="' + esc(c.id) + '">Open class →</button></article>';
     }).join("");
     return '<div class="dc-filters">' +
       sel("ab", "1 · Awarding body", "Select awarding body", uniq(a, "awarding_body"), true) +
       sel("school", "2 · School", cf.ab ? "All schools" : "Select awarding body first", uniq(b, "school"), !!cf.ab) +
       sel("prog", "3 · Programme", cf.school ? "All programmes" : "Select school first", uniq(s, "programme"), !!cf.school) +
       sel("mode", "4 · Study mode", cf.prog ? "All study modes" : "Select programme first", uniq(p, "study_mode"), !!cf.prog) + "</div>" +
-      (cards ? '<div class="dc-grid">' + cards + "</div>" : '<p style="color:var(--muted)">No classes match these filters yet.</p>') +
+      (cards ? '<div class="dc-grid">' + cards + "</div>" : '<p style="color:var(--muted)">' + (CLASSES.length ? "No classes match these filters yet." : "You have no classes yet. They appear here once your college adds them.") + "</p>") +
       '<div class="dc-pager"><button type="button" data-dcp="-1" aria-label="Previous page"' + (cpage ? "" : " disabled") + '>←</button><b>' + (cpage + 1) + " / " + pages +
       '</b><button type="button" data-dcp="1" aria-label="Next page"' + (cpage < pages - 1 ? "" : " disabled") + ">→</button></div>";
   }
-  window.icDemoClassesView = function () {
-    return '<div class="wrap fade">' + CL_CSS + '<p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c4a2ff">Student portal</p>' +
+  // ---- Class page (after "Open class"), like the current LMS: banner, sticky bar with ← and tabs,
+  // Details (overview + summary card) and Course Content (outline on the left, viewer on the right). ----
+  var openId = null, ctab = "details", citem = null;
+  var DONE_KEY = "icdc-done-" + ((DEMO.user && DEMO.user.email) || "x");
+  function doneSet() { try { return JSON.parse(localStorage.getItem(DONE_KEY) || "{}"); } catch (e) { return {}; } }
+  function markDone(id) { var d = doneSet(); d[id] = 1; try { localStorage.setItem(DONE_KEY, JSON.stringify(d)); } catch (e) {} }
+  var ICON = { video: "▶", pdf: "PDF", pptx: "PPTX", text: "T", link: "↗", assignment: "A", quiz: "Q" };
+  var TLABEL = { video: "Video", pdf: "PDF material", pptx: "PowerPoint slides", text: "Text lesson", link: "External link", assignment: "Assignment", quiz: "Quiz" };
+  var CP_CSS = "<style>" +
+    ".cw{--pp:#9B6BFF;--pp-soft:rgba(155,107,255,.14)}" +
+    ".cw-banner{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;min-height:150px;padding:24px;border-radius:14px;margin:0 0 6px;color:#fff;background:linear-gradient(135deg,#3d0067,#6800a7 60%,#9738c0) center/cover}" +
+    ".cw-banner.img{background-image:linear-gradient(90deg,rgba(27,5,40,.92),rgba(71,8,105,.72)),var(--cw-img)}" +
+    ".cw-banner .eb{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.86)}" +
+    ".cw-banner strong{font-size:clamp(1.2rem,2.5vw,1.75rem)}.cw-banner small{color:rgba(255,255,255,.86);font-size:13px}" +
+    ".cw-bar{position:sticky;top:0;z-index:8;display:grid;grid-template-columns:auto minmax(180px,1fr) auto;align-items:center;gap:14px;min-height:56px;padding:0 4px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--card) 96%,transparent);backdrop-filter:blur(12px)}" +
+    ".cw-back{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:16px}.cw-back:hover{color:var(--pp);border-color:var(--pp)}" +
+    ".cw-bar strong{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cw-bar strong span{font-size:13px;font-weight:500;color:var(--muted)}" +
+    ".cw-tabs{display:flex;gap:24px;align-self:stretch;overflow-x:auto}" +
+    ".cw-tabs button{position:relative;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;padding:0}" +
+    ".cw-tabs button:hover,.cw-tabs button.on{color:var(--pp)}" +
+    ".cw-tabs button::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px 2px 0 0;background:var(--pp);opacity:0;transform:scaleX(.4);transition:all .18s}.cw-tabs button.on::after{opacity:1;transform:scaleX(1)}" +
+    ".cw-details{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:64px;padding:42px 0 8px}" +
+    ".cw-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}" +
+    ".cw-pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}.cw-pill.Active{background:rgba(34,197,94,.15);color:#4ade80}.cw-pill.Planned{background:var(--pp-soft);color:var(--pp)}.cw-pill.Completed{background:rgba(148,163,184,.18);color:#94a3b8}" +
+    ".cw-details h1{font-size:clamp(30px,3.4vw,44px);line-height:1.08;letter-spacing:-.025em;margin:14px 0}" +
+    ".cw-copy p{line-height:1.7;color:var(--muted);white-space:pre-wrap}" +
+    ".cw-take{margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}.cw-take ul{padding-left:20px;line-height:1.9}" +
+    ".cw-sum{position:sticky;top:76px;align-self:start;border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--card);box-shadow:0 14px 36px rgba(35,16,48,.08)}" +
+    ".cw-art{position:relative;height:142px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#3d0067,#6800a7 60%,#9738c0) center/cover;display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:800}" +
+    ".cw-btn{display:flex;justify-content:center;align-items:center;width:100%;min-height:40px;margin:16px 0;border:0;border-radius:8px;background:#6A1BE0;color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer}" +
+    ".cw-btn.sec{background:none;border:1px solid var(--line);color:inherit;width:auto;padding:0 16px;display:inline-flex}" +
+    ".cw-sum h4{margin:14px 0 6px;font-size:13px}.cw-sum dl{margin:0}.cw-sum dl div{display:flex;justify-content:space-between;font-size:12px;padding:7px 0;border-bottom:1px solid var(--line)}" +
+    ".cw-lect{display:flex;align-items:center;gap:10px;padding:6px 0}.cw-lect i{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;color:#fff;background:linear-gradient(135deg,#a855f7,#7c3aed)}" +
+    ".cw-learn{display:grid;grid-template-columns:clamp(300px,31vw,480px) minmax(0,1fr);min-height:620px;border:1px solid var(--line);background:var(--card);margin-top:26px}" +
+    ".cw-outline{max-height:780px;overflow-y:auto;border-right:1px solid var(--line)}" +
+    ".cw-about{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:62px;padding:0 22px;border:0;border-bottom:1px solid var(--line);background:none;color:inherit;font:inherit;font-weight:600;cursor:pointer}.cw-about:hover{color:var(--pp);background:var(--pp-soft)}" +
+    ".cw-sec{padding:18px 16px;border-bottom:1px solid var(--line)}" +
+    ".cw-sec-t{display:grid;grid-template-columns:26px 1fr auto;gap:8px;align-items:center}.cw-sec-t .n{color:var(--pp);font-size:13px;font-weight:700}.cw-sec-t b{font-size:12.5px}.cw-sec-t small{display:block;font-size:10px;color:var(--muted)}" +
+    ".cw-it{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:12px;width:100%;margin-top:8px;padding:12px 14px;border:1px solid transparent;border-radius:10px;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}" +
+    ".cw-it:hover,.cw-it.on{border-color:var(--line);background:var(--soft,rgba(127,127,127,.06))}.cw-it.on{box-shadow:inset 3px 0 var(--pp)}" +
+    ".cw-it b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cw-it small{font-size:11px;color:var(--muted)}" +
+    ".cw-ic{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:9px;font-weight:900;color:var(--pp);background:var(--pp-soft)}" +
+    ".cw-ic.video{color:#fff;background:#6A1BE0;font-size:12px}.cw-ic.pdf{color:#ff7b8a;background:rgba(196,62,77,.18)}.cw-ic.link{color:#7cb8f5;background:rgba(37,110,181,.2)}.cw-ic.pptx,.cw-ic.assignment,.cw-ic.quiz{color:#f2b04c;background:rgba(184,107,8,.2)}" +
+    ".cw-done{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#16845B;color:#fff;font-size:12px}" +
+    ".cw-viewer{padding:30px 38px;min-width:0}.cw-lesson{max-width:1080px;margin:0 auto}" +
+    ".cw-media{position:relative;aspect-ratio:16/9;border:1px solid var(--line);border-radius:2px;background:#0F0A14;overflow:hidden}.cw-media iframe,.cw-media video{position:absolute;inset:0;width:100%;height:100%;border:0}" +
+    ".cw-media.doc{aspect-ratio:auto;height:680px;background:var(--card)}" +
+    ".cw-textl{padding:36px;font-size:16px;line-height:1.8;white-space:pre-wrap;border:1px solid var(--line);border-radius:10px}" +
+    ".cw-res{display:grid;justify-items:center;gap:12px;padding:56px 20px;border:1px solid var(--line);border-radius:10px;text-align:center}.cw-res .cw-ic{width:64px;height:64px;font-size:16px;border-radius:16px}" +
+    ".cw-label{display:flex;gap:8px;align-items:center;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--pp);margin-top:22px}" +
+    ".cw-label .req{background:rgba(184,107,8,.2);color:#f2b04c;padding:2px 8px;border-radius:999px;letter-spacing:0}.cw-label .ok{background:rgba(22,132,91,.2);color:#4ade80;padding:2px 8px;border-radius:999px;letter-spacing:0}" +
+    ".cw-lesson h2{font-size:26px;margin:8px 0}.cw-lesson .desc{color:var(--muted);line-height:1.7;white-space:pre-wrap}" +
+    ".cw-empty{display:grid;justify-items:center;align-content:center;gap:10px;min-height:420px;color:var(--muted)}.cw-empty i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;background:#6A1BE0;color:#fff}" +
+    ".cw-panel{padding:36px 0 8px}.cw-panel .box{border:1px dashed var(--line);border-radius:14px;padding:34px;text-align:center;color:var(--muted)}" +
+    "@media(max-width:1000px){.cw-details,.cw-learn{grid-template-columns:1fr}.cw-outline{border-right:0;border-bottom:1px solid var(--line);max-height:none}.cw-bar{grid-template-columns:auto 1fr}.cw-tabs{grid-column:1/-1}}" +
+    "</style>";
+  function allItems(c) { var o = []; (c.sections || []).forEach(function (s) { (s.items || []).forEach(function (i) { o.push(i); }); }); return o; }
+  function embed(u) {
+    u = String(u || "");
+    var m = u.match(/vimeo\.com\/(?:video\/)?(\d+)(?:\/([a-z0-9]+))?/i);
+    if (m) return '<iframe src="https://player.vimeo.com/video/' + m[1] + "?dnt=1&title=0&byline=0&portrait=0" + (m[2] ? "&h=" + m[2] : "") + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    m = u.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{6,})/i);
+    if (m) return '<iframe src="https://www.youtube-nocookie.com/embed/' + m[1] + '?rel=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    if (/\.(mp4|webm)(\?|$)/i.test(u)) return '<video src="' + esc(u) + '" controls playsinline preload="metadata"></video>';
+    return "";
+  }
+  function viewer(c) {
+    var it = allItems(c).filter(function (i) { return String(i.id) === String(citem); })[0];
+    if (!it) return '<div class="cw-empty"><i>▶</i><b>Select a learning item</b><span>Choose a lesson from the course outline.</span></div>';
+    var media = "", t = it.item_type, done = !!doneSet()[it.id];
+    if (t === "video") media = embed(it.resource_url) ? '<div class="cw-media">' + embed(it.resource_url) + "</div>" : '<div class="cw-res"><span class="cw-ic video">▶</span><b>Video coming soon</b></div>';
+    else if (t === "pdf" && it.resource_url) media = '<div class="cw-media doc"><iframe src="' + esc(it.resource_url) + '#toolbar=0" title="' + esc(it.title) + '"></iframe></div>';
+    else if (t === "pptx" && it.resource_url) media = '<div class="cw-media doc"><iframe src="https://view.officeapps.live.com/op/embed.aspx?src=' + encodeURIComponent(it.resource_url) + '" title="' + esc(it.title) + '"></iframe></div>';
+    else if (t === "text") media = '<div class="cw-textl">' + esc(it.text_content) + "</div>";
+    else media = '<div class="cw-res"><span class="cw-ic ' + esc(t) + '">' + (ICON[t] || "•") + "</span><b>" + esc(TLABEL[t] || "Resource") + "</b>" +
+      (it.resource_url ? '<a class="cw-btn" style="width:auto;padding:0 18px" href="' + esc(it.resource_url) + '" target="_blank" rel="noopener">Open resource ↗</a>' : "<small>Details below.</small>") + "</div>";
+    return '<div class="cw-lesson">' + media + '<div class="cw-label">' + esc(TLABEL[t] || t) + (it.is_required ? '<span class="req">Required</span>' : "") + (done ? '<span class="ok">Completed</span>' : "") + "</div>" +
+      "<h2>" + esc(it.title) + "</h2>" + (it.description ? '<div class="desc">' + esc(it.description) + "</div>" : "") +
+      (done ? "" : '<p><button class="cw-btn sec" type="button" data-cwdone="' + it.id + '">Mark as complete</button></p>') + "</div>";
+  }
+  function classPage(c) {
+    var items = allItems(c), done = doneSet();
+    var count = function (t) { return items.filter(function (i) { return i.item_type === t; }).length; };
+    var dates = (c.start_date ? fmtD(c.start_date) : "") + (c.end_date ? " – " + fmtD(c.end_date) : "");
+    var tabs = [["details", "Details"], ["content", "Course Content"], ["recordings", "Recordings"], ["assignments", "Assignments"], ["discussions", "Discussions"]];
+    var head = '<div class="cw-banner' + (c.image ? ' img" style="--cw-img:url(\'' + esc(c.image) + '\')' : "") + '"><span class="eb">' + esc(c.programme || c.school) + " · " + esc(c.study_mode) + "</span>" +
+      "<strong>" + esc(c.title) + "</strong><small>" + esc(c.code) + (c.intake ? " · " + esc(c.intake) + " intake" : "") + "</small><small>" + esc(dates) + "</small></div>" +
+      '<div class="cw-bar"><button class="cw-back" type="button" data-cwback aria-label="Back to My Classes">←</button><strong>' + esc(c.title) + " <span>· Batch: " + esc(c.code) + "</span></strong>" +
+      '<nav class="cw-tabs">' + tabs.map(function (t) { return '<button type="button" data-cwtab="' + t[0] + '" class="' + (ctab === t[0] ? "on" : "") + '">' + t[1] + "</button>"; }).join("") + "</nav></div>";
+    var body;
+    if (ctab === "details") {
+      body = '<div class="cw-details"><div class="cw-copy"><div class="cw-meta"><span class="cw-pill ' + esc(c.status) + '">' + esc(c.status) + "</span>" + esc(c.code) + (c.programme ? " · " + esc(c.programme) : "") + "</div>" +
+        "<h1>" + esc(c.title) + "</h1>" + (c.description ? "<p>" + esc(c.description) + "</p>" : '<p>Welcome to ' + esc(c.title) + ". Open Course Content to start learning.</p>") +
+        ((c.takeaways || []).length ? '<div class="cw-take"><h2>Takeaways from this course</h2><ul>' + c.takeaways.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul></div>" : "") + "</div>" +
+        '<aside class="cw-sum"><div class="cw-art"' + (c.image ? ' style="background-image:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.6)),url(\'' + esc(c.image) + '\')"' : "") + ">" + esc(c.code) + "</div>" +
+        '<button class="cw-btn" type="button" data-cwtab="content">View course content →</button><h4>This course includes</h4><dl>' +
+        [["Course sections", (c.sections || []).length], ["Videos", count("video")], ["PDF materials", count("pdf") + count("pptx")], ["Activities", count("assignment") + count("quiz") + count("text") + count("link")]]
+          .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd style=\"margin:0\"><b>" + r[1] + "</b></dd></div>"; }).join("") + "</dl>" +
+        ((c.lecturers || []).length ? "<h4>Your lecturer" + (c.lecturers.length > 1 ? "s" : "") + "</h4>" + c.lecturers.map(function (l) { return '<div class="cw-lect"><i>' + esc(l.charAt(0)) + "</i><span><b style=\"font-size:13px\">" + esc(l) + '</b><br><small style="color:var(--muted)">Lecturer</small></span></div>'; }).join("") : "") +
+        "</aside></div>";
+    } else if (ctab === "content") {
+      var outline = '<button class="cw-about" type="button" data-cwtab="details">About this course <span>›</span></button>' + (c.sections || []).map(function (s, i) {
+        return '<div class="cw-sec"><div class="cw-sec-t"><span class="n">' + String(i + 1).padStart(2, "0") + "</span><span><b>" + esc(s.title) + "</b><small>" + s.items.length + " item" + (s.items.length === 1 ? "" : "s") + "</small></span><span style=\"color:var(--muted)\">›</span></div>" +
+          s.items.map(function (it) {
+            return '<button type="button" class="cw-it' + (String(citem) === String(it.id) ? " on" : "") + '" data-cwitem="' + it.id + '"><span class="cw-ic ' + esc(it.item_type) + '">' + (ICON[it.item_type] || "•") + "</span>" +
+              "<span style=\"min-width:0\"><b>" + esc(it.title) + "</b><small>" + esc(TLABEL[it.item_type] || "") + (it.duration_minutes ? " · " + it.duration_minutes + " min" : "") + (done[it.id] ? " · Completed" : "") + "</small></span>" +
+              (done[it.id] ? '<span class="cw-done">✓</span>' : "<span></span>") + "</button>";
+          }).join("") + "</div>";
+      }).join("");
+      if (!(c.sections || []).length) outline += '<div class="cw-sec" style="color:var(--muted)">No content has been added to this class yet.</div>';
+      body = '<div class="cw-learn"><aside class="cw-outline">' + outline + '</aside><main class="cw-viewer">' + viewer(c) + "</main></div>";
+    } else {
+      var msg = { recordings: "Class recordings appear here after each live session.", assignments: "Assignments for this class will appear here.", discussions: "Discussions with your lecturer and classmates will appear here." }[ctab];
+      body = '<div class="cw-panel"><div class="box">' + esc(msg) + "</div></div>";
+    }
+    return '<div class="wrap fade cw">' + CP_CSS + head + body + "</div>";
+  }
+  function currentClass() { return CLASSES.filter(function (c) { return String(c.id) === String(openId); })[0]; }
+  function redrawPage() { var el = document.getElementById("dcRoot"); if (el) el.innerHTML = rootHtml(); window.scrollTo(0, 0); }
+  function rootHtml() { var c = openId && currentClass(); return c ? classPage(c) : '<div class="wrap fade">' + classesList() + "</div>"; }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("[data-dcopen],[data-cwback],[data-cwtab],[data-cwitem],[data-cwdone]");
+    if (!t || !document.getElementById("dcRoot")) return;
+    e.preventDefault(); e.stopPropagation();
+    if (t.hasAttribute("data-dcopen")) { openId = t.getAttribute("data-dcopen"); ctab = "details"; citem = null; }
+    else if (t.hasAttribute("data-cwback")) { openId = null; }
+    else if (t.hasAttribute("data-cwtab")) {
+      ctab = t.getAttribute("data-cwtab");
+      if (ctab === "content" && !citem) { var c = currentClass(), f = c && allItems(c)[0]; citem = f ? f.id : null; }
+    }
+    else if (t.hasAttribute("data-cwitem")) { citem = t.getAttribute("data-cwitem"); }
+    else if (t.hasAttribute("data-cwdone")) { markDone(t.getAttribute("data-cwdone")); }
+    redrawPage();
+  }, true);
+
+  function classesList() {
+    return CL_CSS + '<p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c4a2ff">Student portal</p>' +
       '<h1 style="margin:6px 0 6px">My Classes</h1><p style="margin:0;color:var(--muted)">Open your classes, learning materials, assignments and discussions.</p>' +
-      '<div id="dcBody">' + classesBody() + "</div></div>";
+      '<div id="dcBody">' + classesBody() + "</div>";
+  }
+
+  window.icDemoClassesView = function () {
+    if (openId && currentClass()) return '<div id="dcRoot">' + classPage(currentClass()) + "</div>";
+    return '<div id="dcRoot"><div class="wrap fade">' + classesList() + "</div></div>";
   };
   function redraw() { var el = document.getElementById("dcBody"); if (el) el.innerHTML = classesBody(); }
   document.addEventListener("change", function (e) {

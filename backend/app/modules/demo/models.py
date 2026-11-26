@@ -1,5 +1,5 @@
 """Free-demo accounts. Each one lives for DEMO_TTL_HOURS and is then purged with all its data."""
-from sqlalchemy import Date, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, Date, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -56,5 +56,33 @@ class DemoClass(Base):
     status: Mapped[str] = mapped_column(String(20), default="Active")  # Planned | Active | Completed
     image: Mapped[str] = mapped_column(String(500), default="")
     description: Mapped[str] = mapped_column(Text, default="")
+    takeaways: Mapped[str] = mapped_column(Text, default="", server_default="")   # one per line
     sort_order: Mapped[int] = mapped_column(Integer, default=100)
     published: Mapped[str] = mapped_column(String(20), default="published")   # published | draft
+
+
+class DemoClassSection(Base):
+    """A section of class content (like a module/week in the current LMS Course Studio)."""
+    __tablename__ = "demo_class_sections"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    class_id: Mapped[int] = mapped_column(ForeignKey("demo_classes.id", ondelete="CASCADE"), index=True)
+    title: Mapped[str] = mapped_column(String(200))
+    description: Mapped[str] = mapped_column(Text, default="")
+    status: Mapped[str] = mapped_column(String(20), default="active")      # draft | active
+    position: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class DemoClassItem(Base):
+    """A learning item inside a section: video, pdf, pptx, text, link, assignment or quiz."""
+    __tablename__ = "demo_class_items"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    section_id: Mapped[int] = mapped_column(ForeignKey("demo_class_sections.id", ondelete="CASCADE"), index=True)
+    item_type: Mapped[str] = mapped_column(String(20), default="video")
+    title: Mapped[str] = mapped_column(String(200))
+    description: Mapped[str] = mapped_column(Text, default="")
+    resource_url: Mapped[str] = mapped_column(String(800), default="")     # video URL / file URL / link
+    text_content: Mapped[str] = mapped_column(Text, default="")
+    duration_minutes: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="published")   # draft | published
+    is_required: Mapped[bool] = mapped_column(Boolean, default=False)
+    position: Mapped[int] = mapped_column(Integer, default=0)

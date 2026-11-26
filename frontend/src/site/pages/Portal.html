@@ -2816,6 +2816,7 @@ const PORTALS={
  hr:{label:'HR & Payroll',user:'HR office',ab:'H',nav:[['PEOPLE',[['hrhome','HR overview','grid'],['directory','Staff directory','people'],['hratt','Attendance','clock'],['leave','Leave','leave']]],['PAY',[['payroll','Payroll','money'],['incentives','Incentives','bolt']]],['GROWTH',[['orgchart','Org chart','team'],['performance','Performance','target']]],['COMMUNICATION',[['messages','Messages','chat']]]]}
 };
 for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];
+PORTALS.student.nav.forEach(g=>{g[1]=g[1].filter(n=>n[0]!=='player');});
 PORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);
 const V={livecampus:()=>{S.view='student';S.portal='student';try{history.replaceState(null,'','/portal')}catch(e){}save();setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class="wrap"><p>Opening Live Campus…</p></div>';},command:vCommand,schools:vSchools,finance:vFinance,people:vPeople,analytics:vAnalytics,coverage:vCoverage,
  programmes:vProgrammes,classes:vClasses,enrolments:vEnrol,teams:vTeams,attreport:vAttReport,calendar:vCalendar,announce:vAnnounce,rewardsadmin:vRewardsAdmin,integrations:vIntegrations,

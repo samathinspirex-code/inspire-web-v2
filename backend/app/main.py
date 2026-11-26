@@ -15,6 +15,7 @@ from app.modules.content.admin_router import router as admin_router
 from app.modules.content.public_router import router as public_router
 from app.modules.demo.router import router as demo_router
 from app.modules.demo.service import purge_expired
+from app.modules.demo.studio_router import router as demo_studio_router
 from app.modules.leads.router import router as leads_router
 from app.modules.live.router import router as live_router
 from app.modules.payments.admin_router import router as payments_admin_router
@@ -70,7 +71,7 @@ app.add_middleware(
     allow_methods=["*"], allow_headers=["*"],
 )
 
-for r in (public_router, leads_router, payments_router, demo_router, live_router, admin_auth_router, admin_router, payments_admin_router):
+for r in (public_router, leads_router, payments_router, demo_router, live_router, admin_auth_router, admin_router, payments_admin_router, demo_studio_router):
     app.include_router(r)
 
 Path(settings.MEDIA_DIR).mkdir(parents=True, exist_ok=True)

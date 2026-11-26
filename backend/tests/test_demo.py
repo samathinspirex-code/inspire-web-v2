@@ -75,3 +75,30 @@ async def test_cms_demo_class_shows_in_demo_lms(client):
     me = (await client.get("/api/v1/demo/me", headers={"Authorization": "Bearer " + s.json()["token"]})).json()
     c = [x for x in me["classes"] if x["code"] == "B_L3_M5"][0]
     assert c["start_date"] == "2026-09-01" and c["lecturers"] == ["Leandra Joseph", "A N Other"] and c["study_mode"] == "Full Time"
+
+
+async def test_class_studio_sections_items_and_student_view(client):
+    from app.core.security import make_token
+    from app.modules.admin_auth.models import AdminUser
+    async with SessionLocal() as db:
+        admin = AdminUser(email="studio-admin@example.com", full_name="Admin", password_hash="x")
+        db.add(admin)
+        await db.commit()
+        h = {"Authorization": "Bearer " + make_token(str(admin.id), "admin", timedelta(hours=1))}
+    cid = (await client.post("/api/v1/admin/content/demo_classes", headers=h, json={"code": "C_L4_U1", "title": "Programming", "published": "published"})).json()["id"]
+    s1 = (await client.post(f"/api/v1/admin/demo-classes/{cid}/sections", headers=h, json={"title": "Week 1 · Introduction"})).json()
+    s2 = (await client.post(f"/api/v1/admin/demo-classes/{cid}/sections", headers=h, json={"title": "Week 2 · Draft", "status": "draft"})).json()
+    v = (await client.post(f"/api/v1/admin/demo-classes/sections/{s1['id']}/items", headers=h, json={"item_type": "video", "title": "Welcome", "resource_url": "https://vimeo.com/123"})).json()
+    t = (await client.post(f"/api/v1/admin/demo-classes/sections/{s1['id']}/items", headers=h, json={"item_type": "text", "title": "Read me", "text_content": "Hello"})).json()
+    await client.post(f"/api/v1/admin/demo-classes/sections/{s1['id']}/items", headers=h, json={"item_type": "pdf", "title": "Hidden", "status": "draft"})
+    assert (await client.post(f"/api/v1/admin/demo-classes/sections/{s1['id']}/items", headers=h, json={"item_type": "nope", "title": "x"})).status_code == 422
+    await client.put(f"/api/v1/admin/demo-classes/sections/{s1['id']}/items/reorder", headers=h, json={"ids": [t["id"], v["id"]]})
+    tree = (await client.get(f"/api/v1/admin/demo-classes/{cid}/studio", headers=h)).json()["sections"]
+    assert [x["title"] for x in tree] == ["Week 1 · Introduction", "Week 2 · Draft"] and [i["title"] for i in tree[0]["items"]][:2] == ["Read me", "Welcome"]
+    # students only see active sections and published items
+    s = await client.post("/api/v1/demo/signup", json={"name": "Studio Viewer", "email": "studio-viewer@example.com", "phone": "0771234567", "password": "secret1"})
+    me = (await client.get("/api/v1/demo/me", headers={"Authorization": "Bearer " + s.json()["token"]})).json()
+    c = [x for x in me["classes"] if x["id"] == cid][0]
+    assert [x["title"] for x in c["sections"]] == ["Week 1 · Introduction"] and [i["title"] for i in c["sections"][0]["items"]] == ["Read me", "Welcome"]
+    assert (await client.delete(f"/api/v1/admin/demo-classes/sections/{s2['id']}", headers=h)).status_code == 200
+    assert (await client.get(f"/api/v1/admin/demo-classes/{cid}/studio")).status_code == 401
