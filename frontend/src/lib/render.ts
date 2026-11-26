@@ -103,6 +103,13 @@ const BANNER_FIT =
   // Banners carry their heading top-left and the awarding-body logo bottom-left, so card badges sit on the right.
   ".pc-rec,.pc-bon,.ic .pc-rec{left:auto!important;right:10px!important}" +
   `${B(".fimg")} .fbadge{left:auto!important;right:14px!important}` +
+  // CPU: no live blur over moving video (labels get a near-identical solid pill), lighter blur elsewhere,
+  // and off-screen sections are not rendered until scrolled near.
+  ".tile .lbl,.tile .live{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}" +
+  ".tile .lbl{background:rgba(255,255,255,.95)!important}.tile .live{background:rgba(20,8,40,.68)!important}" +
+  ".hbar{-webkit-backdrop-filter:saturate(1.5) blur(12px)!important;backdrop-filter:saturate(1.5) blur(12px)!important}" +
+  ".sk-card,.sk-count{-webkit-backdrop-filter:blur(8px)!important;backdrop-filter:blur(8px)!important}" +
+  "section.band{content-visibility:auto;contain-intrinsic-size:auto 900px}" +
   // Student stories: inline video fills the expanded card (transparent until its first frame, so the photo shows meanwhile).
   // Videos are portrait 9:16 with a branded strip at the top: keep them centred (crops top and bottom evenly).
   ".st-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transition:opacity .5s;pointer-events:none}.st.on .st-vid{opacity:1}" +

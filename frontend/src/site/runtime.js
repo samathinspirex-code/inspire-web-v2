@@ -136,6 +136,46 @@
   }
   document.addEventListener("DOMContentLoaded", applyTheme);
 
+  // ---- CPU saver: autoplay videos (hero wall, feature and final banners) play only while on screen ----
+  // and the tab is visible; nothing autoplays for visitors who ask for reduced motion or data saving.
+  // Story videos (.st-vid) are handled separately below.
+  (function () {
+    var calm = (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) ||
+      (navigator.connection && navigator.connection.saveData);
+    var seen = new WeakSet(), onScreen = new WeakMap(), io = null;
+    function sync(v) {
+      var want = !calm && !document.hidden && onScreen.get(v);
+      if (want && v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      else if (!want && !v.paused) v.pause();
+    }
+    function scan() {
+      document.querySelectorAll("video[autoplay]:not(.st-vid)").forEach(function (v) {
+        if (seen.has(v)) return;
+        seen.add(v);
+        v.__tried = 1;                       // the page framework won't force-play it; we decide
+        v.setAttribute("preload", "metadata");
+        onScreen.set(v, false);
+        if (io) io.observe(v); else sync(v);
+      });
+    }
+    if ("IntersectionObserver" in window) {
+      io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { onScreen.set(e.target, e.isIntersecting); sync(e.target); });
+      }, { rootMargin: "120px 0px" });
+    }
+    document.addEventListener("visibilitychange", function () {
+      document.querySelectorAll("video[autoplay]:not(.st-vid)").forEach(sync);
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      scan();
+      var root = document.getElementById("dc-root");
+      if (root) {   // the framework can swap video elements on re-render: pick new ones up (debounced)
+        var t = 0;
+        new MutationObserver(function () { clearTimeout(t); t = setTimeout(scan, 200); }).observe(root, { childList: true, subtree: true });
+      }
+    });
+  })();
+
   // ---- Student stories: the expanded card plays its video while the visitor is on the stories row --
   // Which card is expanded and whether sound is on come from the page (class "on", data-sound);
   // this only starts/stops playback, which the page's re-renders never touch.
