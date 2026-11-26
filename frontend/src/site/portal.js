@@ -77,6 +77,118 @@
     "@media(prefers-reduced-motion:reduce){.lx-orb,.lx-student{animation:none}}" +
     "</style>";
 
+  // ---- Look of the current LMS: sidebar logo (icon + "inspire.college" wordmark) and the profile card at the bottom ----
+  function esc(v) {
+    return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; });
+  }
+  var LMS_CSS = "<style>" +
+    ".ic-brand{display:flex;align-items:center;gap:10px;padding:4px 6px 14px;text-decoration:none}" +
+    ".ic-brand img{width:36px;height:36px;border-radius:10px;flex:none;display:block}" +
+    ".ic-brand .wm{display:block;width:150px;height:25px;background:linear-gradient(90deg,var(--ic-logo-a,#B794FF) 0 49.1%,var(--ic-logo-b,#A39BBE) 49.1% 100%);" +
+    "-webkit-mask:url(/assets/lms/inspire-college-logo.png) left center/contain no-repeat;mask:url(/assets/lms/inspire-college-logo.png) left center/contain no-repeat}" +
+    // Wordmark colours from the current LMS: light purple/grey on dark, deep purple/grey on light (portal uses html[data-theme] or auto).
+    "html[data-theme=light] .ic-brand .wm{--ic-logo-a:#4E008E;--ic-logo-b:#8f8f9a}" +
+    "@media (prefers-color-scheme: light){html:not([data-theme=dark]) .ic-brand .wm{--ic-logo-a:#4E008E;--ic-logo-b:#8f8f9a}}" +
+    ".ic-user{position:relative;margin-top:12px}.ic-user summary{list-style:none;display:flex;align-items:center;gap:10px;padding:10px;border-radius:16px;cursor:pointer;border:1px solid var(--line)}" +
+    ".ic-user summary::-webkit-details-marker{display:none}.ic-user summary:hover{background:var(--soft,rgba(127,127,127,.08))}" +
+    ".ic-user .av{width:38px;height:38px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;color:#fff;background:linear-gradient(135deg,#a855f7,#7c3aed)}" +
+    ".ic-user b{display:block;font-size:14px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+    ".ic-user small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+    ".ic-user .menu{position:absolute;left:0;right:0;bottom:calc(100% + 6px);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.25);z-index:20}" +
+    ".ic-user .menu button{width:100%;text-align:left;border:0;background:none;color:inherit;font:inherit;padding:10px 12px;border-radius:10px;cursor:pointer}" +
+    ".ic-user .menu button:hover{background:var(--soft,rgba(127,127,127,.1))}" +
+    "</style>";
+  window.icDemoBrand = function () {
+    return LMS_CSS + '<a class="ic-brand" href="/portal" aria-label="Inspire College demo LMS home"><img src="/assets/lms/icon-192.png" alt=""><span class="wm" aria-hidden="true"></span></a>';
+  };
+  window.icDemoUserCard = function () {
+    var u = DEMO.user || {}, name = u.name || "Student";
+    return '<details class="ic-user"><summary><span class="av">' + esc(name.charAt(0).toUpperCase()) + '</span><span style="flex:1;min-width:0"><b>' + esc(name) +
+      '</b><small>' + esc(u.email || "Demo student") + '</small></span><span aria-hidden="true" style="color:var(--muted)">⌄</span></summary>' +
+      '<div class="menu"><button type="button" data-view="profile">My profile</button><button type="button" data-act="signOut">Sign out</button></div></details>';
+  };
+
+  // ---- My Classes (student): cards + Awarding body → School → Programme → Study mode filters, like the current LMS ----
+  var CLASSES = Array.isArray(DEMO.classes) ? DEMO.classes : [];
+  var cf = { ab: "", school: "", prog: "", mode: "" }, cpage = 0, PER = 6;
+  var CL_CSS = "<style>" +
+    ".dc-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0 20px}" +
+    ".dc-filters label{display:grid;gap:8px;font-weight:600;font-size:14px}" +
+    ".dc-filters select{min-height:50px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:inherit;font:inherit;padding:0 14px}" +
+    ".dc-filters select:disabled{opacity:.6}" +
+    ".dc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:18px}" +
+    ".dc-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;background:var(--card);padding:12px;gap:10px}" +
+    ".dc-img{aspect-ratio:29/15;border-radius:14px;background:var(--soft,#2a2140) center/cover no-repeat}" +
+    ".dc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:2px 6px 0}" +
+    ".dc-chip{font-size:12px;font-weight:700;padding:4px 9px;border-radius:8px;background:rgba(168,85,247,.16);color:#c4a2ff}" +
+    ".dc-st{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}" +
+    ".dc-st.Active{background:rgba(34,197,94,.15);color:#4ade80}.dc-st.Planned{background:rgba(168,85,247,.16);color:#c4a2ff}.dc-st.Completed{background:rgba(148,163,184,.18);color:#94a3b8}" +
+    ".dc-card h3{margin:0;padding:0 6px;font-size:21px;letter-spacing:-.01em}" +
+    ".dc-path{padding:0 6px;color:#c4a2ff;font-size:14px;line-height:1.5}" +
+    ".dc-meta{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:8px;padding:0 6px}" +
+    ".dc-meta div{border-radius:12px;background:var(--soft,rgba(127,127,127,.08));padding:8px;text-align:center}" +
+    ".dc-meta small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.dc-meta b{font-size:13.5px}" +
+    ".dc-open{align-self:flex-start;margin:2px 6px 4px;border:0;background:none;color:#c4a2ff;font:inherit;font-weight:650;cursor:pointer;padding:0}" +
+    ".dc-pager{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:22px}" +
+    ".dc-pager button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:inherit;cursor:pointer}.dc-pager button:disabled{opacity:.35;cursor:default}" +
+    "@media(max-width:900px){.dc-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.dc-filters{grid-template-columns:1fr}}" +
+    "</style>";
+  function uniq(list, key) { var o = []; list.forEach(function (c) { if (c[key] && o.indexOf(c[key]) < 0) o.push(c[key]); }); return o.sort(); }
+  function fmtD(s) { if (!s) return ""; var d = new Date(s + "T00:00:00"); return d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); }
+  function filtered() {
+    return CLASSES.filter(function (c) {
+      return (!cf.ab || c.awarding_body === cf.ab) && (!cf.school || c.school === cf.school) && (!cf.prog || c.programme === cf.prog) && (!cf.mode || c.study_mode === cf.mode);
+    });
+  }
+  function sel(key, label, placeholder, options, enabled) {
+    return '<label>' + label + '<select data-dcf="' + key + '"' + (enabled ? "" : " disabled") + '><option value="">' + esc(placeholder) + "</option>" +
+      options.map(function (o) { return '<option value="' + esc(o) + '"' + (cf[key] === o ? " selected" : "") + ">" + esc(o) + "</option>"; }).join("") + "</select></label>";
+  }
+  function classesBody() {
+    var a = CLASSES, b = a.filter(function (c) { return !cf.ab || c.awarding_body === cf.ab; }),
+      s = b.filter(function (c) { return !cf.school || c.school === cf.school; }), p = s.filter(function (c) { return !cf.prog || c.programme === cf.prog; });
+    var list = filtered(), pages = Math.max(1, Math.ceil(list.length / PER));
+    if (cpage >= pages) cpage = pages - 1;
+    var cards = list.slice(cpage * PER, cpage * PER + PER).map(function (c) {
+      var short = c.study_mode === "Part Time" ? "PT" : "FT";
+      var path = [short + "-" + c.code, c.code, c.intake, c.title].filter(Boolean).map(esc).join(" → ");
+      return '<article class="dc-card"><div class="dc-img" style="background-image:url(\'' + esc(c.image) + '\')" role="img" aria-label="' + esc(c.title) + '"></div>' +
+        '<div class="dc-top"><span class="dc-chip">' + esc(c.code) + '</span><span class="dc-st ' + esc(c.status) + '">' + esc(c.status) + "</span></div>" +
+        "<h3>" + esc(c.title) + '</h3><div class="dc-path">' + path + "</div>" +
+        '<div class="dc-meta"><div><small>Dates</small><b>' + esc(fmtD(c.start_date)) + (c.end_date ? " – " + esc(fmtD(c.end_date)) : "") + "</b></div>" +
+        "<div><small>Mode</small><b>" + esc(c.study_mode) + "</b></div><div><small>Lecturers</small><b>" + (c.lecturers || []).length + "</b></div></div>" +
+        '<button class="dc-open" type="button" data-view="player">Open class →</button></article>';
+    }).join("");
+    return '<div class="dc-filters">' +
+      sel("ab", "1 · Awarding body", "Select awarding body", uniq(a, "awarding_body"), true) +
+      sel("school", "2 · School", cf.ab ? "All schools" : "Select awarding body first", uniq(b, "school"), !!cf.ab) +
+      sel("prog", "3 · Programme", cf.school ? "All programmes" : "Select school first", uniq(s, "programme"), !!cf.school) +
+      sel("mode", "4 · Study mode", cf.prog ? "All study modes" : "Select programme first", uniq(p, "study_mode"), !!cf.prog) + "</div>" +
+      (cards ? '<div class="dc-grid">' + cards + "</div>" : '<p style="color:var(--muted)">No classes match these filters yet.</p>') +
+      '<div class="dc-pager"><button type="button" data-dcp="-1" aria-label="Previous page"' + (cpage ? "" : " disabled") + '>←</button><b>' + (cpage + 1) + " / " + pages +
+      '</b><button type="button" data-dcp="1" aria-label="Next page"' + (cpage < pages - 1 ? "" : " disabled") + ">→</button></div>";
+  }
+  window.icDemoClassesView = function () {
+    return '<div class="wrap fade">' + CL_CSS + '<p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c4a2ff">Student portal</p>' +
+      '<h1 style="margin:6px 0 6px">My Classes</h1><p style="margin:0;color:var(--muted)">Open your classes, learning materials, assignments and discussions.</p>' +
+      '<div id="dcBody">' + classesBody() + "</div></div>";
+  };
+  function redraw() { var el = document.getElementById("dcBody"); if (el) el.innerHTML = classesBody(); }
+  document.addEventListener("change", function (e) {
+    var k = e.target && e.target.getAttribute && e.target.getAttribute("data-dcf");
+    if (!k) return;
+    cf[k] = e.target.value;
+    var order = ["ab", "school", "prog", "mode"];
+    for (var i = order.indexOf(k) + 1; i < order.length; i++) cf[order[i]] = "";   // a new choice resets the steps after it
+    cpage = 0; redraw();
+  }, true);
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-dcp]");
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    cpage += Number(b.getAttribute("data-dcp")); redraw();
+  }, true);
+
   window.icDemoLoginPanel = function (ASSET) {
     var expired = /expired=1/.test(location.search);
     // Same scene as the current LMS login (LMS-UI LoginScene): drifting glossy orbs + the floating student picture.

@@ -49,7 +49,7 @@ export async function getNewsItem(slug: string): Promise<News | null> {
   return r.ok ? r.json() : null;
 }
 
-export type DemoMe = { user: { name: string; email: string }; expires_at: string; state: Record<string, unknown> | null };
+export type DemoMe = { user: { name: string; email: string }; expires_at: string; state: Record<string, unknown> | null; classes?: Record<string, unknown>[] };
 
 export async function getDemoMe(token: string | undefined): Promise<DemoMe | null> {
   const s = await demoSession(token);

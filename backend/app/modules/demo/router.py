@@ -9,7 +9,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.security import read_token
 from app.modules.demo import service
-from app.modules.demo.models import DemoState, DemoUser
+from sqlalchemy import select
+
+from app.modules.demo.models import DemoClass, DemoState, DemoUser
 
 router = APIRouter(prefix="/api/v1/demo", tags=["demo"])
 
@@ -90,7 +92,20 @@ async def me(user: DemoUser = Depends(current_demo_user), db: AsyncSession = Dep
         "user": {"name": user.full_name, "email": user.email, "phone": user.phone, "interest": user.interest},
         "expires_at": user.expires_at.isoformat(),
         "state": row.state if row else None,
+        "classes": await published_classes(db),
     }
+
+
+async def published_classes(db: AsyncSession) -> list[dict]:
+    rows = (await db.execute(select(DemoClass).where(DemoClass.published == "published")
+                             .order_by(DemoClass.sort_order, DemoClass.id))).scalars().all()
+    return [{
+        "id": c.id, "code": c.code, "title": c.title, "awarding_body": c.awarding_body, "school": c.school,
+        "programme": c.programme, "intake": c.intake, "study_mode": c.study_mode,
+        "start_date": c.start_date.isoformat() if c.start_date else None, "end_date": c.end_date.isoformat() if c.end_date else None,
+        "lecturers": [x.strip() for x in (c.lecturers or "").split(",") if x.strip()], "status": c.status,
+        "image": c.image, "description": c.description,
+    } for c in rows]
 
 
 @router.put("/state")

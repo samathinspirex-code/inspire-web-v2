@@ -17,7 +17,7 @@ export async function GET(req: Request) {
   }
   return renderPortalPage({
     name: me.user.name,
-    demo: { user: me.user, state: me.state, expires_at: me.expires_at },
+    demo: { user: me.user, state: me.state, expires_at: me.expires_at, classes: me.classes || [] },
     seo: { title: "Inspire Brain · Demo", path: "/portal" },
   });
 }

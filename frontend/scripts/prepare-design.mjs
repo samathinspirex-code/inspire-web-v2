@@ -211,6 +211,15 @@ if (fs.existsSync(OS_SRC)) {
   h = patch(n, h, "ACT.signOut=()=>{S.authed=false;S.lgStep='welcome';render(false);};", "ACT.signOut=()=>{window.icDemoSignOut();};");
   // Login screen: email + password for the demo account (instead of the design's one-time code).
   h = patch(n, h, "function vLogin(){const st=S.lgStep||'welcome';let panel='';", "function vLogin(){const st='welcome';let panel='';if(window.icDemoLoginPanel)return window.icDemoLoginPanel(ASSET);");
+  // Sidebar like the current LMS: icon + "inspire.college" wordmark at the top, profile card at the bottom
+  // (the design's portal switcher at the top is removed — the demo only has the student portal).
+  h = patch(n, h, '<div class="logo"><b>inspire</b><span>college</span><span style="font-size:11px;font-weight:600;color:var(--muted);margin-left:6px;letter-spacing:.04em">OS</span></div>',
+    '${window.icDemoBrand?window.icDemoBrand():\'<div class="logo"><b>inspire</b><span>college</span></div>\'}');
+  h = patchRe(n, h, / <div class="portal"><button class="portal-btn"[\s\S]*?:''\}<\/div>\n/, "");
+  h = patch(n, h, '<button class="reset" data-act="resetDemo">Reset demo data</button></div>`;',
+    '<button class="reset" data-act="resetDemo">Reset demo data</button>${window.icDemoUserCard?window.icDemoUserCard():\'\'}</div>`;');
+  // My Classes: cards with Awarding body → School → Programme → Study mode filters (classes managed in the website CMS).
+  h = patch(n, h, "function vMyClasses(){", "function vMyClasses(){if(S.portal==='student'&&window.icDemoClassesView)return window.icDemoClassesView();");
   // Personal name instead of the sample student's.
   h = h.replace(/Nethmi Senaratne/g, "__IC_FULL__").replace(/\bNethmi\b/g, "__IC_FIRST__");
   fs.writeFileSync(path.join(OUT, "Portal.html"), h);

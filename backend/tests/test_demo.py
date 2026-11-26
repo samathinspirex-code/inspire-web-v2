@@ -55,3 +55,23 @@ async def test_reset_password_existing_and_missing(client):
     r = await client.post("/api/v1/demo/reset-password", json={"email": "nobody-here@example.com", "password": "whatever1"})
     assert r.status_code == 404 and "Create a free account" in r.json()["detail"]
     assert (await client.post("/api/v1/demo/reset-password", json={"email": "reset-me@example.com", "password": "123"})).status_code == 422
+
+
+async def test_cms_demo_class_shows_in_demo_lms(client):
+    from app.core.security import make_token
+    from app.modules.admin_auth.models import AdminUser
+    async with SessionLocal() as db:
+        admin = AdminUser(email="classes-admin@example.com", full_name="Admin", password_hash="x")
+        db.add(admin)
+        await db.commit()
+        h = {"Authorization": "Bearer " + make_token(str(admin.id), "admin", timedelta(hours=1))}
+    r = await client.post("/api/v1/admin/content/demo_classes", headers=h, json={
+        "code": "B_L3_M5", "title": "Market Research", "awarding_body": "ATHE (UK)", "school": "School of Business",
+        "programme": "Foundation · Business", "intake": "September", "study_mode": "Full Time",
+        "start_date": "2026-09-01T00:00:00Z", "end_date": "2026-11-01T00:00:00Z", "lecturers": "Leandra Joseph, A N Other",
+        "status": "Active", "published": "published"})
+    assert r.status_code == 200, r.text
+    s = await client.post("/api/v1/demo/signup", json={"name": "Class Viewer", "email": "class-viewer@example.com", "phone": "0771234567", "password": "secret1"})
+    me = (await client.get("/api/v1/demo/me", headers={"Authorization": "Bearer " + s.json()["token"]})).json()
+    c = [x for x in me["classes"] if x["code"] == "B_L3_M5"][0]
+    assert c["start_date"] == "2026-09-01" and c["lecturers"] == ["Leandra Joseph", "A N Other"] and c["study_mode"] == "Full Time"

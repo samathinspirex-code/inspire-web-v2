@@ -1,5 +1,5 @@
 """Free-demo accounts. Each one lives for DEMO_TTL_HOURS and is then purged with all its data."""
-from sqlalchemy import ForeignKey, Integer, String
+from sqlalchemy import Date, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -37,3 +37,24 @@ class DemoEvent(Base):
     label: Mapped[str] = mapped_column(String(200))
     points: Mapped[int] = mapped_column(Integer, default=0)
     created_at = mapped_column(UTCDateTime, default=utcnow, index=True)
+
+
+class DemoClass(Base):
+    """Classes shown in the demo LMS "My Classes" (managed in the website CMS, like classes in the current LMS admin)."""
+    __tablename__ = "demo_classes"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    code: Mapped[str] = mapped_column(String(60))                      # e.g. B_L3_M5
+    title: Mapped[str] = mapped_column(String(200))                    # e.g. Market Research
+    awarding_body: Mapped[str] = mapped_column(String(120), default="ATHE (UK)")
+    school: Mapped[str] = mapped_column(String(120), default="")
+    programme: Mapped[str] = mapped_column(String(200), default="")
+    intake: Mapped[str] = mapped_column(String(60), default="")        # e.g. September
+    study_mode: Mapped[str] = mapped_column(String(30), default="Full Time")   # Full Time | Part Time
+    start_date = mapped_column(Date, nullable=True)
+    end_date = mapped_column(Date, nullable=True)
+    lecturers: Mapped[str] = mapped_column(String(300), default="")    # comma-separated names
+    status: Mapped[str] = mapped_column(String(20), default="Active")  # Planned | Active | Completed
+    image: Mapped[str] = mapped_column(String(500), default="")
+    description: Mapped[str] = mapped_column(Text, default="")
+    sort_order: Mapped[int] = mapped_column(Integer, default=100)
+    published: Mapped[str] = mapped_column(String(20), default="published")   # published | draft

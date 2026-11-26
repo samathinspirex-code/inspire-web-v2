@@ -1,11 +1,11 @@
 """/admin API: everything the website CMS can change. All routes need an admin token."""
 import re
 import uuid
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
-from sqlalchemy import func, inspect, select
+from sqlalchemy import Date, func, inspect, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
@@ -14,7 +14,7 @@ from app.core.types import utcnow
 from app.modules.admin_auth.router import current_admin
 from app.modules.content.models import Campaign, Course, Faq, Leader, Media, News, Redirect, Testimonial
 from app.modules.content.service import all_settings, put_settings, to_dict
-from app.modules.demo.models import DemoEvent, DemoUser
+from app.modules.demo.models import DemoClass, DemoEvent, DemoUser
 from app.modules.demo.service import purge_user
 from app.modules.leads.models import Lead
 from app.modules.payments.models import Enrolment, Invoice, Slip
@@ -23,7 +23,7 @@ router = APIRouter(prefix="/api/v1/admin", tags=["admin"], dependencies=[Depends
 
 RESOURCES = {
     "courses": Course, "testimonials": Testimonial, "leaders": Leader, "faqs": Faq,
-    "campaigns": Campaign, "news": News, "redirects": Redirect,
+    "campaigns": Campaign, "news": News, "redirects": Redirect, "demo_classes": DemoClass,
 }
 READ_ONLY = {"id", "updated_at", "created_at"}
 
@@ -41,6 +41,8 @@ def _apply(obj, data: dict) -> None:
         if k in cols and k not in READ_ONLY:
             if k == "published_at" and isinstance(v, str) and v:
                 v = datetime.fromisoformat(v.replace("Z", "+00:00"))
+            elif isinstance(cols[k].columns[0].type, Date) and isinstance(v, str):
+                v = date.fromisoformat(v[:10]) if v else None
             setattr(obj, k, v)
 
 

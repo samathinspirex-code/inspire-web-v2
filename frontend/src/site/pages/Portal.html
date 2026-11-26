@@ -1980,7 +1980,7 @@ function vLecturersList(){
  <section class="card"><div class="tbl-wrap"><table class="t"><thead><tr><th>Lecturer</th><th>Unit</th><th>Contract</th><th class="r">Students</th><th style="min-width:140px">Pass rate</th><th class="r">Rating</th><th class="r">Score</th><th></th></tr></thead><tbody>${LECT.map(l=>{const s=STAFF.find(x=>x.lect===l.k);return `<tr><td><b>${l.name}</b></td><td>${l.unit}</td><td>${l.type}</td><td class="r num">${l.st}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="track" style="flex:1"><i style="width:${l.pass}%;background:${l.pass<80?'var(--warn)':'var(--accent-2)'}"></i></div><span class="num">${l.pass}%</span></div></td><td class="r num">${l.rating}</td><td class="r num"><b>${perfScore(s)}</b></td><td><button class="btn ghost sm" data-perf="${s.id}">Scorecard</button></td></tr>`}).join('')}</tbody></table></div></section></div>`;}
 
 function classHealth(c){const r=rng(hash(c.code));return{att:Math.round(62+r()*30),eng:Math.round(50+r()*45),pass:Math.round(60+r()*35),trend:Array.from({length:8},()=>Math.round(55+r()*40))};}
-function vMyClasses(){const stu=S.portal==='student';const list=stu?S.classes.filter(c=>c.students.includes('IC-2001')):S.classes.filter(c=>c.lect==='Ruwan Silva'||c.course==='Managing Finance');
+function vMyClasses(){if(S.portal==='student'&&window.icDemoClassesView)return window.icDemoClassesView();const stu=S.portal==='student';const list=stu?S.classes.filter(c=>c.students.includes('IC-2001')):S.classes.filter(c=>c.lect==='Ruwan Silva'||c.course==='Managing Finance');
  return `<div class="wrap fade">${head(stu?'Learning':'Teaching','My classes','',!stu)}
  <div class="grid g-3">${list.map(c=>{const h=classHealth(c);const sc=Math.round((h.att+h.eng+h.pass)/3);return `<section class="card" style="gap:12px"><div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><div><b style="font-size:17px">${c.course}</b><div class="who">${c.code} · ${c.mode} · ${c.time}</div></div><span class="status ${sc>=75?'s-ok':'s-warn'}">Health ${sc}</span></div>
   <svg viewBox="0 0 200 50" width="100%" height="50" aria-hidden="true"><path d="${h.trend.map((v,i)=>(i?'L':'M')+(5+i*27)+' '+(48-(v-50)*0.9).toFixed(1)).join(' ')}" fill="none" stroke="var(--accent-2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2834,11 +2834,9 @@ const NOTIFS={
 let portalOpen=false,notifOpen=false;
 function sidebar(){
  const P=PORTALS[S.portal];
- return `<div class="logo"><b>inspire</b><span>college</span><span style="font-size:11px;font-weight:600;color:var(--muted);margin-left:6px;letter-spacing:.04em">OS</span></div>
- <div class="portal"><button class="portal-btn" data-act="portalMenu" aria-expanded="${portalOpen}" aria-haspopup="true"><span class="pa">${P.ab}</span><span style="flex:1;min-width:0"><b>${P.label}</b><small>${P.user}</small></span><span aria-hidden="true" style="color:var(--muted)">⌄</span></button>
- ${portalOpen?`<div class="portal-menu" role="menu">${Object.entries(PORTALS).map(([k,p])=>`<button role="menuitem" aria-current="${k===S.portal}" data-portal="${k}"><b>${p.label}</b><small>${p.user}</small></button>`).join('')}</div>`:''}</div>
+ return `${window.icDemoBrand?window.icDemoBrand():'<div class="logo"><b>inspire</b><span>college</span></div>'}
  ${P.nav.map(g=>`<div class="nav-group">${g[0]}</div>${g[1].map(n=>`<button class="nav-btn" data-view="${n[0]}" aria-current="${n[0]===S.view?'page':'false'}">${ic(n[2])}${n[1]}</button>`).join('')}`).join('')}
- <div class="side-foot"><div style="font-size:12px;color:var(--muted)">Appearance</div><div class="theme-row" role="group" aria-label="Appearance">${['light','auto','dark'].map(m=>`<button data-theme-set="${m}" aria-pressed="${(load('ib-theme')||'auto')===m}">${m[0].toUpperCase()+m.slice(1)}</button>`).join('')}</div><button class="reset" data-act="resetDemo">Reset demo data</button></div>`;
+ <div class="side-foot"><div style="font-size:12px;color:var(--muted)">Appearance</div><div class="theme-row" role="group" aria-label="Appearance">${['light','auto','dark'].map(m=>`<button data-theme-set="${m}" aria-pressed="${(load('ib-theme')||'auto')===m}">${m[0].toUpperCase()+m.slice(1)}</button>`).join('')}</div><button class="reset" data-act="resetDemo">Reset demo data</button>${window.icDemoUserCard?window.icDemoUserCard():''}</div>`;
 }
 function topbar(){if(S.portal==='student')return studentHud()+topbarBell();
  return topbarStd();}

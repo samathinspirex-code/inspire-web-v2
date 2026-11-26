@@ -60,6 +60,26 @@ export const SECTIONS: Section[] = [
     ],
   },
   {
+    name: "demo_classes", title: "Demo LMS classes", singular: "class", columns: ["code", "title", "programme", "study_mode", "status", "published"],
+    help: "Classes students see under My Classes in the free-demo LMS (/portal). Filters there follow Awarding body → School → Programme → Study mode.",
+    newItem: { code: "", title: "", awarding_body: "ATHE (UK)", school: "School of Computing", programme: "", intake: "September", study_mode: "Full Time",
+      start_date: null, end_date: null, lecturers: "", status: "Active", image: "", description: "", sort_order: 100, published: "draft" },
+    fields: [
+      { key: "code", label: "Class code", help: "e.g. B_L3_M5" }, { key: "title", label: "Class / module title", help: "e.g. Market Research" },
+      { key: "awarding_body", label: "Awarding body", type: "select", options: ["ATHE (UK)", "CPD UK", "Jain University", "LSBF Singapore"] },
+      { key: "school", label: "School", type: "select", options: ["School of Computing", "School of Business", "School of Education", "School of CPD"] },
+      { key: "programme", label: "Programme", help: "e.g. HND · Software Engineering" },
+      { key: "intake", label: "Intake", help: "e.g. September" },
+      { key: "study_mode", label: "Study mode", type: "select", options: ["Full Time", "Part Time"] },
+      { key: "status", label: "Class status", type: "select", options: ["Planned", "Active", "Completed"] },
+      { key: "start_date", label: "Start date", type: "date" }, { key: "end_date", label: "End date", type: "date" },
+      { key: "lecturers", label: "Lecturers", help: "Comma-separated names", wide: true },
+      { key: "image", label: "Class banner", type: "image", wide: true },
+      { key: "description", label: "Short description", type: "textarea", wide: true },
+      { key: "published", label: "Show in demo LMS", type: "select", options: ["published", "draft"] }, order,
+    ],
+  },
+  {
     name: "leaders", title: "Leadership", singular: "leader", columns: ["name", "role", "status"],
     newItem: { name: "", role: "", initials: "", photo: "", photo_pos: "center 20%", bio: "", status: "draft", sort_order: 100 },
     fields: [
