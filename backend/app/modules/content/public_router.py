@@ -33,7 +33,7 @@ async def bundle(db: AsyncSession = Depends(get_db)):
         "leaders": await _published(db, Leader),
         "faqs": await _published(db, Faq),
         "campaigns": await _published(db, Campaign),
-        "news": await _published(db, News, order=[News.published_at.desc()], limit=6),
+        "news": await _published(db, News, order=[News.published_at.desc()], limit=12),
     }
 
 

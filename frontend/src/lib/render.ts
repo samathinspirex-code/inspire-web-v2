@@ -133,7 +133,7 @@ const BANNER_FIT =
 // Home "Latest from Inspire College": the design's three placeholder tiles become the latest real news (CMS / current site),
 // each showing its own banner in full.
 function newsCards(b: Bundle): string {
-  const items = (b.news || []).slice(0, 3);
+  const items = (b.news || []).slice(0, 12);
   if (!items.length) return '<div class="news"></div>';
   const cards = items.map((n) => {
     const d = n.published_at ? new Date(n.published_at) : null;
@@ -144,7 +144,28 @@ function newsCards(b: Bundle): string {
       : `<span class="nv nv-a" aria-hidden="true"><em>News</em><i>${esc(n.category || "College news")}</i></span>`;
     return `<a class="nc" href="/news/${encodeURIComponent(n.slug)}">${pic}<span class="nb"><small>${esc(meta)}</small><h3>${esc(n.title)}</h3><p>${esc(n.excerpt || "")}</p><span class="more">Read more →</span></span></a>`;
   });
-  return `<style>.nv-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--soft,#f1ecfb);aspect-ratio:16/9!important}</style><div class="news">\n    ${cards.join("\n    ")}\n  </div>`;
+  // A sliding row: 3 cards on desktop, 2 on tablets, swipe on phones, with ‹ › arrows on the sides.
+  const css =
+    "<style>.nv-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--soft,#f1ecfb);aspect-ratio:16/9!important}" +
+    ".nx-wrap{position:relative;margin-top:36px}" +
+    ".news.nx{display:flex!important;gap:16px;margin-top:0!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:4px 2px 10px}" +
+    ".news.nx::-webkit-scrollbar{display:none}.news.nx>*{animation:none!important}" +
+    ".news.nx>.nc{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}" +
+    ".nx-btn{position:absolute;top:calc(50% - 26px);z-index:3;width:52px;height:52px;border-radius:50%;border:1px solid rgba(124,58,237,.18);background:#fff;color:#5b21b6;" +
+    "font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(76,29,149,.18);transition:opacity .2s,transform .2s}" +
+    ".nx-btn:hover{transform:scale(1.06)}.nx-prev{left:-26px}.nx-next{right:-26px}" +
+    "@media(max-width:1100px){.nx-prev{left:-8px}.nx-next{right:-8px}}" +
+    "@media(max-width:900px){.news.nx>.nc{flex-basis:calc((100% - 16px)/2)}}" +
+    "@media(max-width:760px){.news.nx{gap:12px;margin-left:-20px!important;margin-right:-20px!important;padding:4px 20px 10px;scroll-padding:0 20px}.news.nx>.nc{flex-basis:min(82%,320px)}" +
+    ".nx-btn{width:42px;height:42px;font-size:18px;top:clamp(60px,calc(41vw*9/16 - 7px),110px)}.nx-prev{left:-6px}.nx-next{right:-6px}}</style>";
+  // Both arrows always show and wrap around at the ends (the page framework resets attributes, so no enabled/disabled state).
+  const js =
+    "<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.nx-btn');if(!b)return;e.preventDefault();" +
+    "var s=b.closest('.nx-wrap').querySelector('.news'),c=s.querySelector('.nc'),next=b.classList.contains('nx-next');" +
+    "var step=c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(s).columnGap||16):s.clientWidth,max=s.scrollWidth-s.clientWidth;" +
+    "if(next&&s.scrollLeft>=max-4)s.scrollTo({left:0,behavior:'smooth'});else if(!next&&s.scrollLeft<4)s.scrollTo({left:max,behavior:'smooth'});" +
+    "else s.scrollBy({left:(next?1:-1)*step,behavior:'smooth'});},true);})();</script>";
+  return `${css}<div class="nx-wrap"><button type="button" class="nx-btn nx-prev" aria-label="Previous news">‹</button><div class="news nx">${cards.join("")}</div><button type="button" class="nx-btn nx-next" aria-label="More news">›</button></div>${js}`;
 }
 
 export function renderDesignPage(page: string, b: Bundle, opts: RenderOpts): Response {
