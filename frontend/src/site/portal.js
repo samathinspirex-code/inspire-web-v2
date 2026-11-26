@@ -86,17 +86,35 @@
     var art = '<div class="art lx-art">' + LX_CSS + '<div class="lx-orbs" aria-hidden="true">' + orbs + '</div>' +
       '<img class="lx-student" src="/assets/lms/login-student.webp" alt="A student studying on a laptop, floating among glossy shapes"><div class="tagline"><b>Learn. Level up.<br><span class="hl">Get coffee.</span></b></div></div>';
     var panel = '<div class="brand"><b>inspire</b><span>college</span></div>' +
-      '<div><h1>Hey, welcome back.</h1><p style="margin-top:10px">' + (expired ? "Your session ended. Log in again to continue." : "Log in to your Inspire Brain demo account.") + '</p></div>' +
+      '<div><h1 id="lgTitle">Hey, welcome back.</h1><p id="lgSub" style="margin-top:10px">' + (expired ? "Your session ended. Log in again to continue." : "Log in to your Inspire Brain demo account.") + '</p></div>' +
       '<div class="stickers"><span class="sticker" style="background:#C6F432;color:#1A2300">12-day streaks</span><span class="sticker" style="background:#FF4FA3;color:#fff">Free coffee</span><span class="sticker" style="background:#7CC8FF;color:#06243D">AI study buddy</span></div>' +
       '<form id="demoLoginForm" style="display:flex;flex-direction:column;gap:14px" novalidate>' +
       '<div class="field"><label for="lgEmail">Email</label><input class="lin" id="lgEmail" name="email" type="email" autocomplete="username" placeholder="you@example.com" required></div>' +
-      '<div class="field"><label for="lgPw">Password</label><input class="lin" id="lgPw" name="password" type="password" autocomplete="current-password" required></div>' +
+      '<div class="field"><label for="lgPw" id="lgPwLabel">Password</label><input class="lin" id="lgPw" name="password" type="password" autocomplete="current-password" required></div>' +
+      '<button type="button" id="lgForgot" style="align-self:flex-start;background:none;border:0;padding:0;color:#C6F432;font:inherit;font-size:13px;font-weight:600;cursor:pointer">Forgot password?</button>' +
       '<p class="tiny" id="lgErr" role="alert" style="min-height:1em;color:#FFB4D6"></p>' +
-      '<button class="go" type="submit">Log in</button></form>' +
+      '<button class="go" id="lgGo" type="submit">Log in</button></form>' +
       '<div class="or">or</div><a class="alt" href="/free-demo" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Create a free demo account</a>' +
       '<p class="tiny">Demo accounts are filled with sample data and deleted 24 hours after sign-up.</p>';
     return '<div class="login" role="dialog" aria-label="Student sign in">' + art + '<div class="panel">' + panel + "</div></div>";
   };
+
+  // Forgot password (demo accounts): the same form switches to "Reset password" (email + new password).
+  // Existing demo account → new password set and signed in; no account → error, then the registration page.
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("#lgForgot");
+    if (!b) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    var f = document.getElementById("demoLoginForm"), reset = f.getAttribute("data-mode") !== "reset";
+    f.setAttribute("data-mode", reset ? "reset" : "login");
+    document.getElementById("lgTitle").textContent = reset ? "Reset your password" : "Hey, welcome back.";
+    document.getElementById("lgSub").textContent = reset ? "Enter your demo account email and choose a new password." : "Log in to your Inspire Brain demo account.";
+    document.getElementById("lgPwLabel").textContent = reset ? "New password" : "Password";
+    document.getElementById("lgGo").textContent = reset ? "Set new password and log in" : "Log in";
+    f.password.value = ""; f.password.setAttribute("autocomplete", reset ? "new-password" : "current-password");
+    b.textContent = reset ? "Back to log in" : "Forgot password?";
+    document.getElementById("lgErr").textContent = "";
+  }, true);
 
   document.addEventListener("submit", function (e) {
     var f = e.target;
@@ -104,6 +122,19 @@
     e.preventDefault(); e.stopImmediatePropagation();
     var err = document.getElementById("lgErr");
     var email = f.email.value.trim(), password = f.password.value;
+    if (f.getAttribute("data-mode") === "reset") {
+      if (!email) { err.textContent = "Enter the email of your demo account."; return; }
+      if (password.length < 6) { err.textContent = "Choose a new password of at least 6 characters."; return; }
+      err.textContent = "Setting your new password…";
+      fetch("/api/demo/reset", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email, password: password }), credentials: "same-origin" })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var x = new Error(j.detail || "Could not reset the password"); x.status = r.status; throw x; } }); })
+        .then(function () { location.href = "/portal"; })
+        .catch(function (x) {
+          err.textContent = x.message;
+          if (x.status === 404) { err.textContent = "There's no demo account with this email yet. Taking you to create one…"; setTimeout(function () { location.href = "/free-demo"; }, 2500); }
+        });
+      return;
+    }
     if (!email || !password) { err.textContent = "Enter your email and password."; return; }
     err.textContent = "Signing you in…";
     fetch("/api/demo/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: email, password: password }), credentials: "same-origin" })

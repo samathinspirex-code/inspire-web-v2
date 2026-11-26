@@ -138,10 +138,26 @@ for (const f of ["Main", "Program", "Demo", "Aptitude", "Enrol", "LMS", "Live"])
     "this.setState({ err: 'Creating your demo account…' }); window.icDemo('signup', { name: s.name, email: s.email, phone: s.phone, interest: s.interest, password: s.pw }).catch(e => this.setState({ err: e.message })); },");
   h = patch("Demo", h, "this.setState({ step: 'class', err: '', toastLogin: true, reg: true }); },",
     "this.setState({ err: 'Signing you in…' }); window.icDemo('login', { email: s.email, password: s.pw2 }).catch(e => this.setState({ err: e.message })); },");
+  // Forgot password: the same login form switches to "Reset password" (email + new password). Existing demo account →
+  // password set and signed in; no account → sent to the registration form with the email kept.
+  h = patch("Demo", h, "login: () => { if (!okEmail(s.email) || !s.pw2) {",
+    "resetMode: !!s.rs, notReset: !s.rs, pwLabel: s.rs ? 'New password' : 'Password', pwAuto: s.rs ? 'new-password' : 'current-password', " +
+    "loginBtn: s.rs ? 'Set new password and log in' : 'Log in to my demo class', resetLink: s.rs ? 'Back to log in' : 'Forgot password?', " +
+    "toggleReset: () => this.setState({ rs: !s.rs, err: '', pw2: '' }), " +
+    "loginOrReset: () => { if (!s.rs) return this.renderVals().login(); if (!okEmail(s.email)) { this.setState({ err: 'Enter the email of your demo account.' }); return; } " +
+    "if ((s.pw2 || '').length < 6) { this.setState({ err: 'Choose a new password of at least 6 characters.' }); return; } this.setState({ err: 'Setting your new password…' }); " +
+    "window.icDemo('reset', { email: s.email, password: s.pw2 }).catch(e => this.setState(e.status === 404 ? { rs: false, step: 'reg', pw: '', pw2: '', err: e.message } : { err: e.message })); }, " +
+    "login: () => { if (!okEmail(s.email) || !s.pw2) {");
+  h = patch("Demo", h, '<h2>Log in</h2>\n    <p class="sub">Use the email and password you just created.</p>',
+    '<template data-sc="if" value="{{notReset}}"><h2>Log in</h2><p class="sub">Use the email and password of your demo account.</p></template>' +
+    '<template data-sc="if" value="{{resetMode}}"><h2>Reset password</h2><p class="sub">Enter your demo account email and choose a new password.</p></template>');
+  h = patch("Demo", h, '<label class="l">Password<input type="password" value="{{pw2}}" onInput="{{setPw2}}" autocomplete="current-password"></label>',
+    '<label class="l">{{pwLabel}}<input type="password" value="{{pw2}}" onInput="{{setPw2}}" autocomplete="{{pwAuto}}"></label>');
+  h = patch("Demo", h, '<button class="btn k" type="button" onClick="{{login}}">Log in to my demo class</button>',
+    '<button class="btn k" type="button" onClick="{{loginOrReset}}">{{loginBtn}}</button><p class="switch"><button type="button" onClick="{{toggleReset}}">{{resetLink}}</button></p>');
   h = patch("Demo", h, "if (s.reg && s.pw2 !== s.pw) { this.setState({ err: 'That password doesn’t match. Try again.' }); return; } ", "");
   h = patch("Demo", h, "Design preview: nothing is saved. On the live site this creates an Inspire Brain demo account.",
     "This creates a sample Inspire Brain account filled with demo data. It is deleted automatically after 24 hours.");
-  h = patch("Demo", h, "<p class=\"sub\">Use the email and password you just created.</p>", "<p class=\"sub\">Use the email and password of your demo account.</p>");
   pages.Demo = h;
 }
 

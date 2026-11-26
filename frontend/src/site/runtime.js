@@ -8,7 +8,7 @@
     return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), credentials: "same-origin" })
       .then(function (r) {
         return r.json().catch(function () { return {}; }).then(function (j) {
-          if (!r.ok) throw new Error((j && (typeof j.detail === "string" ? j.detail : j.error)) || "Something went wrong. Please try again.");
+          if (!r.ok) { var err = new Error((j && (typeof j.detail === "string" ? j.detail : j.error)) || "Something went wrong. Please try again."); err.status = r.status; throw err; }
           return j;
         });
       });
@@ -109,7 +109,7 @@
   window.icDemo = function (kind, body) {
     if (kind === "signup") body.utm = utm();
     return post("/api/demo/" + kind, body).then(function () {
-      if (window.icEmit) window.icEmit({ event: kind === "signup" ? "sign_up" : "login", method: "demo" });
+      if (window.icEmit) window.icEmit({ event: kind === "signup" ? "sign_up" : "login", method: kind === "reset" ? "demo_reset" : "demo" });
       location.href = "/portal";
     });
   };

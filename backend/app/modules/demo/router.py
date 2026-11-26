@@ -1,4 +1,6 @@
 import json
+import time
+from collections import defaultdict, deque
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from pydantic import BaseModel
@@ -56,6 +58,26 @@ async def signup(body: SignupIn, db: AsyncSession = Depends(get_db)):
 async def login(body: LoginIn, db: AsyncSession = Depends(get_db)):
     try:
         user = await service.login(db, body.email, body.password)
+    except service.DemoError as e:
+        raise HTTPException(e.status, e.message) from e
+    return _session(user)
+
+
+_resets: dict[str, deque] = defaultdict(deque)
+
+
+@router.post("/reset-password")
+async def reset_password(body: LoginIn, request: Request, db: AsyncSession = Depends(get_db)):
+    """Forgot password on a demo account: sets the new password and signs the student in."""
+    ip = (request.headers.get("x-forwarded-for", "").split(",")[0].strip() or (request.client.host if request.client else "?"))
+    q, now = _resets[ip], time.monotonic()
+    while q and now - q[0] > 600:
+        q.popleft()
+    if len(q) >= 10:
+        raise HTTPException(429, "Too many attempts. Please wait a few minutes.")
+    q.append(now)
+    try:
+        user = await service.reset_password(db, body.email, body.password)
     except service.DemoError as e:
         raise HTTPException(e.status, e.message) from e
     return _session(user)

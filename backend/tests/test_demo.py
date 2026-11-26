@@ -41,3 +41,17 @@ async def test_signup_login_state_and_purge(client):
         left = (await db.execute(DemoEvent.__table__.select().where(DemoEvent.user_id == u.id))).all()
         assert left == []
     assert (await client.get("/api/v1/demo/me", headers=h)).status_code == 401
+
+
+async def test_reset_password_existing_and_missing(client):
+    r = await client.post("/api/v1/demo/signup", json={"name": "Reset Person", "email": "reset-me@example.com", "phone": "0771234567", "password": "oldpass1"})
+    assert r.status_code == 200
+    # existing account: new password works, old one doesn't
+    r = await client.post("/api/v1/demo/reset-password", json={"email": "Reset-Me@example.com", "password": "newpass2"})
+    assert r.status_code == 200 and r.json()["token"]
+    assert (await client.post("/api/v1/demo/login", json={"email": "reset-me@example.com", "password": "newpass2"})).status_code == 200
+    assert (await client.post("/api/v1/demo/login", json={"email": "reset-me@example.com", "password": "oldpass1"})).status_code == 401
+    # no such account: 404 telling them to register; short password: 422
+    r = await client.post("/api/v1/demo/reset-password", json={"email": "nobody-here@example.com", "password": "whatever1"})
+    assert r.status_code == 404 and "Create a free account" in r.json()["detail"]
+    assert (await client.post("/api/v1/demo/reset-password", json={"email": "reset-me@example.com", "password": "123"})).status_code == 422

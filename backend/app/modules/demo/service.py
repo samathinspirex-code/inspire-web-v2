@@ -60,6 +60,22 @@ async def login(db: AsyncSession, email: str, password: str) -> DemoUser:
     return user
 
 
+async def reset_password(db: AsyncSession, email: str, password: str) -> DemoUser:
+    """Demo accounts only (sample data, deleted after 24h): set a new password for an existing active account by email.
+    No email verification by design — if there is no such account the student is sent to register instead."""
+    email = (email or "").strip().lower()
+    if not EMAIL_RE.match(email):
+        raise DemoError(422, "Please enter the email you used for your demo account.")
+    if len(password or "") < 6:
+        raise DemoError(422, "Choose a password of at least 6 characters.")
+    user = (await db.execute(select(DemoUser).where(DemoUser.email == email))).scalar_one_or_none()
+    if not user or user.expires_at <= utcnow():
+        raise DemoError(404, "There's no demo account with this email yet. Create a free account below.")
+    user.password_hash = hash_password(password)
+    await db.commit()
+    return user
+
+
 async def get_active(db: AsyncSession, user_id: str) -> DemoUser | None:
     user = await db.get(DemoUser, user_id)
     if not user or user.expires_at <= utcnow():
