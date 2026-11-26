@@ -189,3 +189,14 @@ export function htmlResponse(html: string, sMaxAge: number, status = 200): Respo
     },
   });
 }
+
+// Shown when the API is still waking up (free hosting sleeps when idle). Keeps the login cookie and retries by itself.
+export function wakingPage(): Response {
+  const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Opening Inspire Brain…</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#120a24;color:#fff;font:16px/1.5 system-ui,sans-serif;text-align:center;padding:20px}
+.s{width:42px;height:42px;border-radius:50%;border:4px solid rgba(255,255,255,.2);border-top-color:#c6f432;margin:0 auto 18px;animation:r 1s linear infinite}@keyframes r{to{transform:rotate(360deg)}}
+p{color:rgba(255,255,255,.7);margin:6px 0}</style></head><body><div><div class="s"></div><h1 style="font-size:22px;margin:0">Opening your Inspire Brain demo…</h1>
+<p>The demo server is waking up. This can take up to a minute.</p><p id="t"></p></div>
+<script>var n=0;function go(){n++;document.getElementById('t').textContent='Trying again… ('+n+')';location.reload();}setTimeout(go,6000);</script></body></html>`;
+  return new Response(html, { status: 503, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "Retry-After": "6" } });
+}

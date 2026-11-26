@@ -170,6 +170,7 @@ pages.LMS = common("LMS", pages.LMS);
   h = patch("Live", h, "    const feed = ago.map(",
     "    const feed = (window.icLiveFeed ? window.icLiveFeed() : []).slice(0, 3).map(f => ({ i: f[0], c: f[1], t: f[2], p: f[3], w: 'live' })).concat(ago.map(");
   h = patch("Live", h, "p: f[3], w }; });", "p: f[3], w }; })).slice(0, 7);");
+  h = patch("Live", h, '<a href="Main.dc.html#features">Student life</a>', "");   // removed from the top menu
   h = h.replace(/href="Main\.dc\.html#features"/g, 'href="/brain"');
   pages.Live = h;
 }
@@ -183,11 +184,13 @@ if (fs.existsSync(OS_SRC)) {
   const n = "OS";
   h = patch(n, h, "<title>Inspire College OS</title>", "<title>Inspire Brain · Demo</title><!--IC_HEAD-->");
   // Only the student portal exists in the demo.
-  h = patch(n, h, "const V={command:vCommand,", "for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];\nPORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);\nconst V={livecampus:()=>{setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class=\"wrap\"><p>Opening Live Campus…</p></div>';},command:vCommand,");
+  h = patch(n, h, "const V={command:vCommand,", "for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];\nPORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);\nconst V={livecampus:()=>{S.view='student';S.portal='student';try{history.replaceState(null,'','/portal')}catch(e){}save();setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class=\"wrap\"><p>Opening Live Campus…</p></div>';},command:vCommand,");
   // State is loaded from / saved to the demo account on the server (not just this browser).
   h = patch(n, h, "function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}", "function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}window.icDemoSave&&window.icDemoSave(S);}");
   h = patch(n, h, "function restore(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);S=Object.assign(defaults(),o);}}catch(e){}}",
-    "function restore(){S=window.icDemoRestore?window.icDemoRestore(defaults()):defaults();}");
+    "function restore(){S=window.icDemoRestore?window.icDemoRestore(defaults()):defaults();if(S.view==='livecampus'){S.view='student';S.portal='student';}}");
+  // Live Campus is a separate page: never reopen it from a saved screen or a leftover #livecampus (that looped back).
+  h = patch(n, h, "const h0=(location.hash||'').slice(1);if(V[h0]){", "const h0=(location.hash||'').slice(1);if(V[h0]&&h0!=='livecampus'){");
   h = patch(n, h, "ACT.doReset=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=defaults();", "ACT.doReset=()=>{try{localStorage.removeItem(KEY)}catch(e){}S=window.icDemoPersonalise?window.icDemoPersonalise(defaults()):defaults();");
   h = patch(n, h, "ACT.signOut=()=>{S.authed=false;S.lgStep='welcome';render(false);};", "ACT.signOut=()=>{window.icDemoSignOut();};");
   // Login screen: email + password for the demo account (instead of the design's one-time code).

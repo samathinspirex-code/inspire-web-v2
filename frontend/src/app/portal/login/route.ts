@@ -3,6 +3,7 @@ import { cookieValue, DEMO_COOKIE } from "@/lib/proxy";
 import { renderPortalPage } from "@/lib/render";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 export async function GET(req: Request) {
   if (await getDemoMe(await cookieValue(DEMO_COOKIE))) {

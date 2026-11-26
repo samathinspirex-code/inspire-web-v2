@@ -52,7 +52,20 @@ export async function getNewsItem(slug: string): Promise<News | null> {
 export type DemoMe = { user: { name: string; email: string }; expires_at: string; state: Record<string, unknown> | null };
 
 export async function getDemoMe(token: string | undefined): Promise<DemoMe | null> {
-  if (!token) return null;
-  const r = await fetch(BACKEND_URL + "/api/v1/demo/me", { headers: { Authorization: "Bearer " + token }, cache: "no-store" });
-  return r.ok ? r.json() : null;
+  const s = await demoSession(token);
+  return s.me;
+}
+
+/** Demo login check that tells "not signed in" apart from "backend unreachable" (e.g. the free Render API waking up),
+ *  so a sleeping backend never logs the student out. */
+export async function demoSession(token: string | undefined): Promise<{ me: DemoMe | null; unavailable: boolean }> {
+  if (!token) return { me: null, unavailable: false };
+  try {
+    const r = await fetch(BACKEND_URL + "/api/v1/demo/me", { headers: { Authorization: "Bearer " + token }, cache: "no-store", signal: AbortSignal.timeout(25000) });
+    if (r.ok) return { me: (await r.json()) as DemoMe, unavailable: false };
+    if (r.status === 401 || r.status === 403 || r.status === 404) return { me: null, unavailable: false };
+    return { me: null, unavailable: true };   // 5xx / gateway: backend starting or down
+  } catch {
+    return { me: null, unavailable: true };   // timeout / network
+  }
 }

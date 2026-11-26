@@ -765,7 +765,7 @@ function defaults(){return{
 let S=defaults();
 const KEY='icos-v1';
 function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}window.icDemoSave&&window.icDemoSave(S);}
-function restore(){S=window.icDemoRestore?window.icDemoRestore(defaults()):defaults();}
+function restore(){S=window.icDemoRestore?window.icDemoRestore(defaults()):defaults();if(S.view==='livecampus'){S.view='student';S.portal='student';}}
 function allStudents(){return STUDENTS.concat(S.extraStudents);}
 const stuName=id=>(allStudents().find(s=>s.id===id)||{name:id}).name;
 const balance=()=>S.ledger.reduce((a,b)=>a+b.p,0);
@@ -2817,7 +2817,7 @@ const PORTALS={
 };
 for(const k of Object.keys(PORTALS))if(k!=='student')delete PORTALS[k];
 PORTALS.student.nav.push(['LIVE',[['livecampus','Live Campus','bolt']]]);
-const V={livecampus:()=>{setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class="wrap"><p>Opening Live Campus…</p></div>';},command:vCommand,schools:vSchools,finance:vFinance,people:vPeople,analytics:vAnalytics,coverage:vCoverage,
+const V={livecampus:()=>{S.view='student';S.portal='student';try{history.replaceState(null,'','/portal')}catch(e){}save();setTimeout(()=>{location.href='/portal/live-campus'},0);return '<div class="wrap"><p>Opening Live Campus…</p></div>';},command:vCommand,schools:vSchools,finance:vFinance,people:vPeople,analytics:vAnalytics,coverage:vCoverage,
  programmes:vProgrammes,classes:vClasses,enrolments:vEnrol,teams:vTeams,attreport:vAttReport,calendar:vCalendar,announce:vAnnounce,rewardsadmin:vRewardsAdmin,integrations:vIntegrations,
  lecturer:vLecturer,coursestudio:vCourseStudio,coursework:vCoursework,qbank:vQbank,practice:vPractice,meetings:vMeetings,classatt:vClassAtt,awardpts:vAwardPts,myhr:vMyHr,
  student:vStudent,player:vPlayer,myassign:vMyAssign,mypractice:vMyPractice,grades:vGrades,myatt:vMyAtt,community:vCommunity,rewards:vRewards,mobile:vMobile,profile:vProfile,
@@ -2923,7 +2923,7 @@ function setTheme(m){
 }
 restore();
 const saved=load('ib-theme');if(saved==='light'||saved==='dark')document.documentElement.setAttribute('data-theme',saved);
-const h0=(location.hash||'').slice(1);if(V[h0]){S.view=h0;S.portal=portalOf(h0);}
+const h0=(location.hash||'').slice(1);if(V[h0]&&h0!=='livecampus'){S.view=h0;S.portal=portalOf(h0);}
 window.addEventListener('hashchange',()=>{const v=location.hash.slice(1);if(V[v]&&v!==S.view)go(v);});
 setInterval(()=>{const c=$('#clockNow');if(c)c.textContent=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});},15000);
 render(false);
