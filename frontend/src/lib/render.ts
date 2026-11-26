@@ -153,18 +153,24 @@ function newsCards(b: Bundle): string {
     ".news.nx>.nc{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}" +
     ".nx-btn{position:absolute;top:calc(50% - 26px);z-index:3;width:52px;height:52px;border-radius:50%;border:1px solid rgba(124,58,237,.18);background:#fff;color:#5b21b6;" +
     "font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(76,29,149,.18);transition:opacity .2s,transform .2s}" +
-    ".nx-btn:hover{transform:scale(1.06)}.nx-prev{left:-26px}.nx-next{right:-26px}" +
+    ".nx-btn:hover{transform:scale(1.06)}.nx-prev{opacity:0;pointer-events:none}.nx-prev{left:-26px}.nx-next{right:-26px}" +
     "@media(max-width:1100px){.nx-prev{left:-8px}.nx-next{right:-8px}}" +
     "@media(max-width:900px){.news.nx>.nc{flex-basis:calc((100% - 16px)/2)}}" +
     "@media(max-width:760px){.news.nx{gap:12px;margin-left:-20px!important;margin-right:-20px!important;padding:4px 20px 10px;scroll-padding:0 20px}.news.nx>.nc{flex-basis:min(82%,320px)}" +
     ".nx-btn{width:42px;height:42px;font-size:18px;top:clamp(60px,calc(41vw*9/16 - 7px),110px)}.nx-prev{left:-6px}.nx-next{right:-6px}}</style>";
-  // Both arrows always show and wrap around at the ends (the page framework resets attributes, so no enabled/disabled state).
+  // Arrows hide at the ends. The page framework resets attributes on its own nodes, so the state lives in a
+  // <style id="nx-state"> this script owns in <head> (prev is hidden by default until the row is scrolled).
   const js =
-    "<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.nx-btn');if(!b)return;e.preventDefault();" +
-    "var s=b.closest('.nx-wrap').querySelector('.news'),c=s.querySelector('.nc'),next=b.classList.contains('nx-next');" +
-    "var step=c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(s).columnGap||16):s.clientWidth,max=s.scrollWidth-s.clientWidth;" +
-    "if(next&&s.scrollLeft>=max-4)s.scrollTo({left:0,behavior:'smooth'});else if(!next&&s.scrollLeft<4)s.scrollTo({left:max,behavior:'smooth'});" +
-    "else s.scrollBy({left:(next?1:-1)*step,behavior:'smooth'});},true);})();</script>";
+    "<script>(function(){function st(){var s=document.querySelector('.nx-wrap .news');if(!s)return;" +
+    "var el=document.getElementById('nx-state');if(!el){el=document.createElement('style');el.id='nx-state';document.head.appendChild(el);}" +
+    "var h='{opacity:0;pointer-events:none}',v='{opacity:1;pointer-events:auto}',atS=s.scrollLeft<4,atE=s.scrollLeft+s.clientWidth>=s.scrollWidth-4;" +
+    "var css='.nx-wrap .nx-btn.nx-prev'+(atS?h:v)+'.nx-wrap .nx-btn.nx-next'+(atE?h:v);if(el.textContent!==css)el.textContent=css;}" +
+    "document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.nx-btn');if(!b)return;e.preventDefault();" +
+    "var s=b.closest('.nx-wrap').querySelector('.news'),c=s.querySelector('.nc');" +
+    "var step=c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(s).columnGap||16):s.clientWidth;" +
+    "s.scrollBy({left:(b.classList.contains('nx-next')?1:-1)*step,behavior:'smooth'});},true);" +
+    "document.addEventListener('scroll',function(e){var t=e.target;if(t&&t.classList&&t.classList.contains('nx'))st();},true);" +
+    "window.addEventListener('resize',st);window.addEventListener('load',st);setTimeout(st,300);setTimeout(st,1500);})();</script>";
   return `${css}<div class="nx-wrap"><button type="button" class="nx-btn nx-prev" aria-label="Previous news">‹</button><div class="news nx">${cards.join("")}</div><button type="button" class="nx-btn nx-next" aria-label="More news">›</button></div>${js}`;
 }
 
