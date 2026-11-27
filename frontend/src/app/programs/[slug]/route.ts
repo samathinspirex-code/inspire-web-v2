@@ -1,4 +1,4 @@
-import { getBundle } from "@/lib/backend";
+import { getBundle, SITE_URL } from "@/lib/backend";
 import { renderDesignPage } from "@/lib/render";
 import { courseBySlug } from "@/lib/site-data";
 
@@ -11,17 +11,30 @@ export async function GET(_req: Request, ctx: { params: Promise<{ slug: string }
   if (!c) return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain" } });
   return renderDesignPage("Program", b, {
     hash: "p-" + c.key,
-    data: { boot: { campaign: b.settings.default_campaign || "scholarship", programme: c.key } },
+    data: { detailKey: c.key, boot: { campaign: b.settings.default_campaign || "scholarship", programme: c.key } },
     seo: {
       path: "/programs/" + c.slug,
       title: `${c.seo_title || c.title} | Inspire College`,
       description: c.seo_description || c.blurb,
       image: c.image,
-      jsonLd: {
-        "@context": "https://schema.org", "@type": "Course", name: c.title, description: c.seo_description || c.blurb,
-        provider: { "@type": "CollegeOrUniversity", name: "Inspire College" },
-        ...(c.fee ? { offers: { "@type": "Offer", price: c.fee, priceCurrency: "LKR", category: "Paid" } } : {}),
-      },
+      jsonLd: [
+        {
+          "@context": "https://schema.org", "@type": "Course", name: c.title, description: c.seo_description || c.blurb, url: SITE_URL + "/programs/" + c.slug,
+          ...(c.image ? { image: c.image.startsWith("http") ? c.image : SITE_URL + c.image } : {}),
+          inLanguage: "en",
+          provider: { "@type": "CollegeOrUniversity", name: "Inspire College", url: SITE_URL + "/" },
+          ...(c.body ? { educationalCredentialAwarded: c.body } : {}),
+          hasCourseInstance: { "@type": "CourseInstance", courseMode: "Online" },
+          ...(c.fee ? { offers: { "@type": "Offer", price: c.fee, priceCurrency: "LKR", category: "Paid", url: SITE_URL + "/programs/" + c.slug } } : {}),
+        },
+        {
+          "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL + "/" },
+            { "@type": "ListItem", position: 2, name: "Programmes", item: SITE_URL + "/programs" },
+            { "@type": "ListItem", position: 3, name: c.title, item: SITE_URL + "/programs/" + c.slug },
+          ],
+        },
+      ],
     },
   });
 }

@@ -1279,8 +1279,8 @@ class Component extends DCLogic {
     const id = s.id ?? this.props.programme ?? 'hnd-se';
     const raw = P[id] || P['hnd-se'];
     const lvl = s.lvl ?? raw.lvl;
-    const lvlTabs = LV.map(l => ({ t: l[1], on: l[0] === lvl, cls: l[0] === lvl ? 'on' : '', go: () => { const first = ids.find(k => P[k].lvl === l[0]); this.setState({ lvl: l[0], id: first, faq: 0 }); } }));
-    const chips = ids.filter(k => P[k].lvl === lvl).map(k => ({ short: P[k].short, on: k === id, cls: k === id ? 'on' : '', go: () => this.setState({ id: k, faq: 0 }) }));
+    const lvlTabs = LV.map(l => ({ t: l[1], on: l[0] === lvl, cls: l[0] === lvl ? 'on' : '', go: () => { const first = ids.find(k => P[k].lvl === l[0]); if (first && first !== id) icGoProgram(first); else this.setState({ lvl: l[0], faq: 0 }); } }));
+    const chips = ids.filter(k => P[k].lvl === lvl).map(k => ({ short: P[k].short, on: k === id, cls: k === id ? 'on' : '', go: () => icGoProgram(k) }));
     const p = Object.assign({}, raw, { who: raw.who.map((t, i) => ({ t, n: String(i + 1).padStart(2, '0') })), path: raw.path.map(x => ({ k: x[0], t: x[1], cls: 'step' + (x[0] === 'You are here' ? ' here' : '') })), years: raw.years.map(y => ({ k: y[0], t: y[1] })), fees: raw.fees.map(f => ({ h: f.h, rows: f.rows.map(r => ({ k: r[0], v: r[1] })) })) });
     let PL;
     if (window.icQuestPlans && window.icQuestPlans(raw.plan)) PL = window.icQuestPlans(raw.plan);
@@ -1326,7 +1326,7 @@ class Component extends DCLogic {
         let h = 0; for (let i = 0; i < k.length; i++) h = (h * 31 + k.charCodeAt(i)) % 9973;
         const live = (typeof window !== 'undefined' && window.icLiveStats) ? window.icLiveStats(k) : null;
         return {
-          rel: pick.map(z => ({ img: IC_CAT[z].i, lvl: IC_CAT[z].l, short: IC_CAT[z].s, dur: IC_CAT[z].d, fee: IC_CAT[z].f, free: athe0 && IC_CAT[z].p === 'cpd', view: () => { this.setState({ id: z, lvl: null, faq: 0 }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} }, enrol: () => icOpen(this, z) })),
+          rel: pick.map(z => ({ img: IC_CAT[z].i, lvl: IC_CAT[z].l, short: IC_CAT[z].s, dur: IC_CAT[z].d, fee: IC_CAT[z].f, free: athe0 && IC_CAT[z].p === 'cpd', view: () => icGoProgram(z), enrol: () => icOpen(this, z) })),
           relNote: cpd ? 'Enrol in one CPD course and every other CPD course is 25% off.' : athe0 ? 'Pair it with CPD short courses. Two are free with any ATHE programme.' : 'Related programmes and short courses that pair well with this one.',
           vw: live ? { now: String(live.now), views: Number(live.views).toLocaleString('en-US'), sample: false } : { now: String(3 + h % 14), views: (180 + h % 900).toLocaleString('en-US'), sample: true }
         }; })(),
@@ -1335,7 +1335,7 @@ class Component extends DCLogic {
         const area = /^c-(aimkt|dm)/.test(k) || /sales/.test(k) ? 'mkt' : /aihr|people/.test(k) ? 'hr' : /edu|eng$/.test(k) ? (k === 'pg-edu' ? 'edu' : 'bus') : /acc|fin|stat/.test(k) ? 'acc' : /looker|data/.test(k) ? 'data' : /^(hnd-(se|ai|cyber|net)|f-idt|pg-(ai|gen|se|app)|tu-beng|c-(aimastery|cyber))/.test(k) ? 'comp' : 'bus';
         return { payRows: PAY[area].map(r => ({ role: r[0], lk: r[1] })),
           faces: [['Nidarshana Premkumar', 'HND student', '/assets/09837c527e84a92316e486e08aac96dc.webp', '66%'], ['Gimhani Edirisinghe', 'HND student', '/assets/611c94883ba62d0bd5f4039c934d0719.webp', '70%'], ['Akram Razik', 'Foundation + HND', '/assets/306af9da34846d4e9ac72a934dc008df.webp', '63%'], ['Keneth Joel', 'Level 4', '/assets/5c091c05f7b949dc153bf80ba9f087d9.webp', '54%'], ['Yara Benjamin', 'Foundation student', '/assets/975d6324bb39d4835d5e638fe5c2db8f.webp', '68%']].map(f => ({ name: f[0], role: f[1], img: f[2], pos: f[3] })) }; })(),
-      ...icOffers(this, { campaign: this.props.campaign || 'scholarship', enrol: () => icOpen(this, curKey), cpd: () => { this.setState({ id: 'c-aimastery', lvl: null, faq: 0 }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} }, coffeeHref: 'Main.dc.html#coffee' }),
+      ...icOffers(this, { campaign: this.props.campaign || 'scholarship', enrol: () => icOpen(this, curKey), cpd: () => icGoProgram('c-aimastery'), coffeeHref: 'Main.dc.html#coffee' }),
       ...icX(this, { campaign: this.props.campaign || 'scholarship', quest: open }), openQuest: open,
       p, lvlTabs, chips, faqs, qmap,
       ctaMain: raw.plan === 'hnd' ? 'Start with LKR 9,999 →' : raw.plan === 'fnd' ? 'Start from LKR 5,000 →' : 'Reserve your seat →',

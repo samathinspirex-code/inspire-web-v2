@@ -47,11 +47,16 @@
   window.icBootProps = function (def) { return Object.assign({}, def || {}, D.boot || {}); };
 
   // ---- Programme details (Program page) from the CMS ---------------------------------------------
+  // Only the open course's full details are sent with the page (keeps every page small); the others get a
+  // light entry from the catalogue for the level tabs and chips, which open that course's own page.
+  window.icGoProgram = function (key) { location.href = window.icRoute("Program", "p-" + key); };
   window.icDetails = function (T, base) {
     if (!D.details) return base;
-    var out = {};
-    Object.keys(D.details).forEach(function (k) {
-      var d = Object.assign({}, D.details[k]);
+    var out = {}, cat = D.cat || {};
+    Object.keys(cat).concat(Object.keys(D.details)).forEach(function (k) {
+      if (out[k]) return;
+      var c = cat[k] || {};
+      var d = Object.assign({ lvl: c.l, plan: c.p, short: c.s, name: c.n, img: c.i, dur: c.d, body: c.b }, D.details[k] || {});
       var tpl = d.plan === "hnd" ? T.H : d.plan === "fnd" ? T.F : d.plan === "cpd" ? T.C : d.lvl === "Top-Up" ? T.TU : T.PGx;
       out[k] = tpl ? tpl(d) : d;
     });
@@ -134,7 +139,7 @@
   // ---- Live Campus: real activity from demo students ----------------------------------------------
   var live = [], COLORS = ["#7c3aed", "#0d9488", "#e11d48", "#4f46e5", "#0891b2", "#b45309"];
   function pollLive() {
-    fetch("/api/live/feed", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    fetch("/api/live/feed").then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (!j) return;
       live = (j.events || []).slice(0, 6).map(function (e, i) {
         return [e.who.charAt(0).toUpperCase(), COLORS[i % COLORS.length], e.who + " · " + e.label, "+" + e.points + " XP"];
@@ -142,7 +147,12 @@
     }).catch(function () {});
   }
   window.icLiveFeed = function () { return live; };
-  if (D.page === "Live") { pollLive(); setInterval(pollLive, 5000); }
+  // Every 15 s, and only while the tab is visible (a hidden tab makes no requests).
+  if (D.page === "Live") {
+    pollLive();
+    setInterval(function () { if (!document.hidden) pollLive(); }, 15000);
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) pollLive(); });
+  }
 
   // ---- Colour theme: visitor's choice, else the site default from the CMS ------------------------
   function applyTheme() {

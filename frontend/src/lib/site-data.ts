@@ -18,7 +18,7 @@ export function buildIcData(b: Bundle, extra: Record<string, unknown> = {}) {
   const cpdfee: Record<string, number> = {};
   for (const c of b.courses) {
     cat[c.key] = { s: c.short || c.title, n: c.title, l: c.level, b: c.body, p: c.plan_type, f: c.fee_label, d: c.duration, i: c.image };
-    details[c.key] = { lvl: c.level, plan: c.plan_type, short: c.short || c.title, name: c.title, img: c.image, dur: c.duration, body: c.body, ...c.detail };
+    if (c.key === extra.detailKey) details[c.key] = { lvl: c.level, plan: c.plan_type, short: c.short || c.title, name: c.title, img: c.image, dur: c.duration, body: c.body, ...c.detail };
     imgs[c.key] = c.image;
     slugs[c.key] = c.slug;
     slugs[slugify(c.title)] = c.slug;
@@ -47,6 +47,7 @@ export function buildIcData(b: Bundle, extra: Record<string, unknown> = {}) {
     theme: b.settings.theme,
     boot: { campaign: b.settings.default_campaign || "scholarship" },
     ...extra,
+    detailKey: undefined,
   };
 }
 

@@ -64,6 +64,8 @@ function icThemeCss(t) {
     c += '.ic .xhot,.ic .xrbar i,.ic .xsteps span.on,.ic .mark,.ic .xbadge,.ic .ai-fab i,.ic .brew .cupi,.ic .cupgrid i.f,.ic .val i,.ic .fstep b{background:linear-gradient(140deg,' + p.g2 + ',' + p.g3 + ')!important}';
     c += '.ic .final::before{background:linear-gradient(120deg,' + mix(p.g1, 92) + ',' + mix(p.g2, 78) + ' 70%,' + mix(p.g3, 60) + ')!important}';
     c += '.ic::after{background:linear-gradient(90deg,' + p.g2 + ',' + p.g3 + ')!important}';
+    // Top announcement strip sits outside .ic (first thing in the page body), so it is coloured here directly.
+    c += '#ic-announce{background:linear-gradient(90deg,' + p.g1 + ',' + p.g2 + ' 60%,' + p.g3 + ')!important}';
     c += '.ic .btn.p{box-shadow:0 16px 36px -14px ' + mix(p.a, 70) + '!important}.ic .btn.p:hover{box-shadow:0 18px 38px -14px ' + mix(p.a, 80) + '!important}';
     c += '.ic .kpis b{background:linear-gradient(120deg,' + p.a + ',' + p.g3 + ');-webkit-background-clip:text;background-clip:text}';
     c += '.ic .xpl.on,.ic .xfc.on,.ic .pcard.hot,.ic .sk.on{box-shadow:0 0 0 3px ' + mix(p.a, 18) + '!important}';

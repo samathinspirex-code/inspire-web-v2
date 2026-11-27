@@ -21,7 +21,9 @@ const LS = String.fromCharCode(0x2028), PS = String.fromCharCode(0x2029);
 export const safeJson = (v: unknown) =>
   JSON.stringify(v).split("<").join(BS + "u003c").split(LS).join(BS + "u2028").split(PS).join(BS + "u2029");
 
-export type Seo = { title: string; description?: string; path: string; image?: string; jsonLd?: object; noindex?: boolean };
+export type Seo = { title: string; description?: string; path: string; image?: string; jsonLd?: object | object[]; noindex?: boolean };
+
+const MEDIA_CDN = "https://d18ep2e197efjz.cloudfront.net";
 
 export function seoTags(seo: Seo, siteName = "Inspire College"): string {
   const url = SITE_URL + seo.path;
@@ -34,9 +36,13 @@ export function seoTags(seo: Seo, siteName = "Inspire College"): string {
     `<meta property="og:site_name" content="${esc(siteName)}"><meta property="og:type" content="website"><meta property="og:url" content="${esc(url)}">`,
     `<meta property="og:title" content="${esc(seo.title)}">`,
     seo.description ? `<meta property="og:description" content="${esc(seo.description)}">` : "",
-    `<meta property="og:image" content="${esc(img)}"><meta name="twitter:card" content="summary_large_image">`,
-    `<meta name="theme-color" content="#6d28d9"><link rel="icon" href="/favicon.ico">`,
-    seo.jsonLd ? `<script type="application/ld+json">${safeJson(seo.jsonLd)}</script>` : "",
+    `<meta property="og:locale" content="en_LK"><meta property="og:image" content="${esc(img)}"><meta property="og:image:alt" content="${esc(seo.title)}">`,
+    `<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(seo.title)}">`,
+    seo.description ? `<meta name="twitter:description" content="${esc(seo.description)}">` : "",
+    `<meta name="theme-color" content="#6d28d9"><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-icon.png">`,
+    // Fonts and CMS images come from other hosts: open those connections early.
+    `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="${MEDIA_CDN}">`,
+    ...(seo.jsonLd ? ([] as object[]).concat(seo.jsonLd).map((j) => `<script type="application/ld+json">${safeJson(j)}</script>`) : []),
   ].join("");
 }
 
@@ -59,13 +65,38 @@ export function routeFor(page: string, hash: string, slugs: Record<string, strin
   }
 }
 
+// Closable bars: a short id of the content, so editing the message in the CMS shows it again.
+function dismissId(text: string): string {
+  let x = 5381;
+  for (let i = 0; i < text.length; i++) x = ((x * 33) ^ text.charCodeAt(i)) >>> 0;
+  return x.toString(36);
+}
+
+// Runs right after the bar, before it paints: hides it if this visitor already closed it, wires the × and,
+// for the top strip, tells the sticky header how far down to sit.
+function dismissScript(elId: string, id: string, pushHeader: boolean): string {
+  const k = JSON.stringify("icClosed:" + elId);
+  return `<script>(function(){var el=document.getElementById(${JSON.stringify(elId)});if(!el)return;var k=${k},v=${JSON.stringify(id)},r=document.documentElement;` +
+    `function gone(){el.remove();${pushHeader ? "r.style.removeProperty('--ic-ann-h');" : ""}}` +
+    `try{if(localStorage.getItem(k)===v){gone();return;}}catch(e){}` +
+    (pushHeader ? `function fit(){if(el.isConnected)r.style.setProperty('--ic-ann-h',el.offsetHeight+'px');}fit();addEventListener('resize',fit);` : "") +
+    `el.querySelector('[data-ic-close]').addEventListener('click',function(e){e.preventDefault();e.stopPropagation();try{localStorage.setItem(k,v);}catch(x){}gone();});})();</script>`;
+}
+
 function siteBars(b: Bundle, page: string): { top: string; bottom: string } {
   const s = b.settings;
   let top = "", bottom = "";
   if (s.announcement_enabled && s.announcement_text) {
+    // Stays at the top while scrolling (the sticky header sits just below it). Closing it is remembered in this
+    // browser for this message only, so a new announcement shows again.
+    const id = dismissId(s.announcement_text + "|" + (s.announcement_link || ""));
     const inner = esc(s.announcement_text) + (s.announcement_link ? ` <span style="text-decoration:underline">Learn more</span>` : "");
-    const tag = s.announcement_link ? `a href="${esc(s.announcement_link)}"` : "div";
-    top += `<${tag} id="ic-announce" style="display:block;position:relative;z-index:60;padding:9px 16px;text-align:center;font:600 13.5px/1.4 Geist,system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,#2a0e5c,#6d28d9 60%,#a855f7);text-decoration:none">${inner}</${tag.split(" ")[0]}>`;
+    const tag = s.announcement_link ? `a href="${esc(s.announcement_link)}"` : "span";
+    top += `<div id="ic-announce" style="position:sticky;top:0;z-index:65;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 44px;text-align:center;font:600 13.5px/1.4 Geist,system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,#2a0e5c,#6d28d9 60%,#a855f7)">` +
+      `<${tag} style="flex:1;min-width:0;color:#fff;text-decoration:none">${inner}</${tag.split(" ")[0]}>` +
+      `<button type="button" aria-label="Close announcement" data-ic-close="ic-announce" style="flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:17px;line-height:1;cursor:pointer">×</button></div>` +
+      `<style>.hdr{top:calc(12px + var(--ic-ann-h,0px))!important}</style>` +
+      dismissScript("ic-announce", id, true);
   }
   if (s.christmas_theme) {
     top += `<div aria-hidden="true" id="ic-snow"></div><style>#ic-snow{position:fixed;inset:0;pointer-events:none;z-index:250;background-image:radial-gradient(3px 3px at 20px 30px,#fff,transparent),radial-gradient(2px 2px at 120px 80px,#fff,transparent),radial-gradient(3px 3px at 220px 140px,#fff,transparent),radial-gradient(2px 2px at 300px 60px,#fff,transparent);background-size:340px 220px;opacity:.65;animation:icsnow 14s linear infinite}@keyframes icsnow{to{background-position:0 660px}}@media(prefers-reduced-motion:reduce){#ic-snow{display:none}}</style>`;
@@ -76,7 +107,12 @@ function siteBars(b: Bundle, page: string): { top: string; bottom: string } {
       (pb.image ? `<img src="${esc(pb.image)}" alt="" style="width:64px;height:64px;border-radius:16px;object-fit:cover;flex:none">` : "") +
       `<div style="flex:1;min-width:0"><b style="display:block">${esc(pb.title)}</b><span style="opacity:.8">${esc(pb.text)}</span></div>` +
       (pb.link ? `<a href="${esc(pb.link)}" style="flex:none;padding:10px 16px;border-radius:999px;background:#fff;color:#160f24;font-weight:600;text-decoration:none">${esc(pb.cta || "Open")}</a>` : "") +
-      `<button type="button" aria-label="Close" onclick="this.parentNode.remove()" style="flex:none;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer">×</button></aside>`;
+      `<button type="button" aria-label="Close" data-ic-close="ic-promo" style="flex:none;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;cursor:pointer">×</button></aside>` +
+      dismissScript("ic-promo", dismissId([pb.title, pb.text, pb.link, pb.image].join("|")), false);
+  }
+  if (page === "Main") {
+    bottom += `<a class="wa-float" href="${WA_BOT}" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">` +
+      `<svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="${WA_ICON}"/></svg></a>`;
   }
   return { top, bottom };
 }
@@ -129,10 +165,33 @@ const BANNER_FIT =
   "@media(max-width:560px){.ic .pc{grid-template-columns:minmax(0,1fr)!important}" +
   ".ic .pc-img{grid-row:auto!important;min-height:0!important;height:auto!important;margin:8px 8px 0!important}}" +
   // "Ask Inspire AI" floating button: just the round icon, opening to show the label while the pointer is on it.
-  ".ic .ai-fab{padding:0 8px;gap:0}" +
+  // No dark ring: the coloured circle is the whole button; the dark pill only appears with the label on hover.
+  ".ic .ai-fab{padding:0;gap:0;min-height:56px;background:transparent;box-shadow:none;transition:background .3s,box-shadow .3s;animation:icfab-in .7s cubic-bezier(.34,1.56,.64,1) .6s backwards}" +
+  ".ic .ai-fab i{position:relative;width:56px;height:56px;box-shadow:0 14px 30px -10px color-mix(in srgb,var(--act,#6d28d9) 70%,transparent)}" +
+  ".ic .ai-fab i::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--act,#6d28d9);opacity:0;animation:icfab-ring 3.2s cubic-bezier(.22,.61,.36,1) 1.6s infinite}" +
+  ".ic .ai-fab i svg{width:22px;height:22px;animation:icfab-spark 3.2s ease-in-out 1.6s infinite}" +
+  ".ic .ai-fab:hover{background:var(--ink);box-shadow:0 20px 40px -16px rgba(42,14,92,.6)}" +
+  "@keyframes icfab-in{0%{opacity:0;transform:scale(0) rotate(-90deg)}100%{opacity:1;transform:none}}" +
+  "@keyframes icfab-ring{0%{opacity:.6;transform:scale(1)}80%,100%{opacity:0;transform:scale(1.6)}}" +
+  "@keyframes icfab-spark{0%,70%,100%{transform:scale(1) rotate(0)}78%{transform:scale(1.25) rotate(25deg)}86%{transform:scale(.9) rotate(-10deg)}}" +
+  // Home: WhatsApp button above the AI button (same look and motion as the current site).
+  ".wa-float{position:fixed;right:22px;bottom:92px;z-index:70;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none;" +
+  "box-shadow:0 8px 22px rgba(18,140,74,.38),0 2px 6px rgba(0,0,0,.12);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background-color .3s;animation:icfab-in .7s cubic-bezier(.34,1.56,.64,1) .8s backwards}" +
+  ".wa-float::before,.wa-float::after{content:'';position:absolute;inset:0;z-index:-1;border:2px solid #25D366;border-radius:50%;opacity:0;animation:icwa-ripple 3s cubic-bezier(.22,.61,.36,1) 1.5s infinite}" +
+  ".wa-float::after{animation-delay:2.5s}" +
+  ".wa-float svg{width:28px;height:28px;transform-origin:50% 60%;animation:icwa-wiggle 4s ease-in-out 2s infinite}" +
+  ".wa-float:hover{background:#1EBE5A;transform:scale(1.1)}.wa-float:hover svg{animation:none;transform:rotate(-12deg)}.wa-float:active{transform:scale(.94)}" +
+  "@keyframes icwa-ripple{0%{opacity:.7;transform:scale(1)}80%,100%{opacity:0;transform:scale(1.7)}}" +
+  "@keyframes icwa-wiggle{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-14deg)}88%{transform:rotate(12deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(4deg)}}" +
+  // Phones: the AI button is hidden and the Apply bar + tab bar sit at the bottom, so WhatsApp goes above them.
+  "@media(max-width:760px){.wa-float{right:16px;bottom:calc(152px + env(safe-area-inset-bottom));width:48px;height:48px}.wa-float svg{width:26px;height:26px}}" +
+  "@media(prefers-reduced-motion:reduce){.ic .ai-fab,.ic .ai-fab i::after,.ic .ai-fab i svg,.wa-float,.wa-float::before,.wa-float::after,.wa-float svg{animation:none!important}}" +
   ".ic .ai-fab>span{max-width:0;margin:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .35s ease,margin .35s ease,opacity .25s ease}" +
   ".ic .ai-fab:hover>span,.ic .ai-fab:focus-visible>span{max-width:160px;margin:0 14px 0 10px;opacity:1}" +
   "</style>";
+
+const WA_ICON =
+  "M16.04 3C8.86 3 3.03 8.82 3.03 16c0 2.3.6 4.54 1.74 6.52L3 29l6.65-1.74A12.96 12.96 0 0 0 16.04 29C23.2 29 29 23.18 29 16S23.2 3 16.04 3Zm0 23.8c-1.95 0-3.86-.52-5.53-1.51l-.4-.24-3.94 1.03 1.05-3.84-.26-.4A10.77 10.77 0 0 1 5.2 16c0-5.97 4.86-10.83 10.84-10.83 5.96 0 10.8 4.86 10.8 10.83 0 5.98-4.84 10.8-10.8 10.8Zm5.93-8.1c-.33-.16-1.93-.95-2.23-1.06-.3-.11-.52-.16-.73.16-.22.33-.84 1.06-1.03 1.28-.19.22-.38.24-.7.08-.33-.16-1.38-.51-2.62-1.62-.97-.86-1.62-1.93-1.81-2.25-.19-.33-.02-.5.14-.66.15-.15.33-.38.49-.57.16-.19.22-.33.33-.54.11-.22.05-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.26-.63-.53-.55-.73-.56h-.62c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.71s1.17 3.14 1.33 3.36c.16.22 2.3 3.5 5.56 4.91.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.93-.79 2.2-1.55.27-.76.27-1.41.19-1.55-.08-.14-.3-.22-.62-.38Z";
 
 // "Chat on WhatsApp" links open the WhatsApp bot with a ready-typed greeting.
 const WA_BOT =
@@ -156,6 +215,8 @@ function newsCards(b: Bundle): string {
   const css =
     "<style>.nv-img{background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--soft,#f1ecfb);aspect-ratio:16/9!important}" +
     ".nx-wrap{position:relative;margin-top:36px}" +
+    ".nx-wrap .nb{display:flex!important;flex-direction:column;flex:1}.nx-wrap .nc h3{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}" +
+    ".nx-wrap .nc p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}.nx-wrap .nc .more{margin-top:auto;padding-top:14px}" +
     ".news.nx{display:flex!important;gap:16px;margin-top:0!important;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:4px 2px 10px}" +
     ".news.nx::-webkit-scrollbar{display:none}.news.nx>*{animation:none!important}" +
     ".news.nx>.nc{flex:0 0 calc((100% - 32px)/3);scroll-snap-align:start}" +
@@ -183,7 +244,7 @@ function newsCards(b: Bundle): string {
 }
 
 export function renderDesignPage(page: string, b: Bundle, opts: RenderOpts): Response {
-  const data = buildIcData(b, { page, ...(opts.data || {}) });
+  const data = buildIcData(b, { page, ...(page === "Program" ? { detailKey: "hnd-se" } : {}), ...(opts.data || {}) });
   let html = read(`pages/${page}.html`);
   const c = b.settings.contact;
   html = html
@@ -201,8 +262,9 @@ export function renderDesignPage(page: string, b: Bundle, opts: RenderOpts): Res
   html = html.replace("<!--IC_HEAD-->", head);
   if (page === "Main") html = html.replace(/<div class="news">[\s\S]*?\n  <\/div>/, newsCards(b));
   const bars = siteBars(b, page);
-  if (bars.top) html = html.replace("<body>", "<body>" + bars.top);
-  if (bars.bottom) html = html.replace("</body>", bars.bottom + "</body>");
+  // The real <body> tag comes after </head> (inlined scripts could mention the word earlier).
+  if (bars.top) html = html.replace(/(<\/head>\s*<body[^>]*>)/, "$1" + bars.top.replace(/\$/g, "$$$$"));
+  if (bars.bottom) { const i = html.lastIndexOf("</body>"); if (i >= 0) html = html.slice(0, i) + bars.bottom + html.slice(i); }
   return htmlResponse(html, 60);
 }
 

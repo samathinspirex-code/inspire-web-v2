@@ -8,7 +8,7 @@ export type Course = {
   image: string; blurb: string; keywords: string; card_type: string; featured: boolean; sort_order: number;
   detail: Record<string, unknown>; seo_title: string; seo_description: string;
 };
-export type News = { id: number; slug: string; title: string; excerpt: string; body: string; category: string; image: string; video_url: string; published_at: string };
+export type News = { id: number; slug: string; title: string; excerpt: string; body: string; category: string; image: string; video_url: string; video_orientation?: string; video_poster_url?: string; published_at: string };
 export type Settings = {
   announcement_enabled: boolean; announcement_text: string; announcement_link: string; christmas_theme: boolean;
   hero_slides: unknown[]; promo_banner: { enabled: boolean; title: string; text: string; cta: string; link: string; image: string };

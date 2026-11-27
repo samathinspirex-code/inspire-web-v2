@@ -26,7 +26,7 @@ export async function errorBody(r: Response): Promise<{ detail: string; code?: s
   return { detail: typeof j?.detail === "string" ? j.detail : "Something went wrong. Please try again." };
 }
 
-export async function forward(req: Request, backendPath: string, opts: { token?: string; method?: string; body?: BodyInit; contentType?: string } = {}): Promise<Response> {
+export async function forward(req: Request, backendPath: string, opts: { token?: string; method?: string; body?: BodyInit; contentType?: string; cdnSeconds?: number } = {}): Promise<Response> {
   const method = opts.method || req.method;
   const headers: Record<string, string> = proxyHeaders(req);
   const ct = opts.contentType || req.headers.get("content-type");
@@ -42,7 +42,7 @@ export async function forward(req: Request, backendPath: string, opts: { token?:
   if (!r.ok) {
     return Response.json(await errorBody(r), { status: r.status, headers: { "Cache-Control": "no-store" } });
   }
-  const out: Record<string, string> = { "Content-Type": r.headers.get("content-type") || "application/json", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
+  const out: Record<string, string> = { "Content-Type": r.headers.get("content-type") || "application/json", "Cache-Control": opts.cdnSeconds ? `public, s-maxage=${opts.cdnSeconds}, stale-while-revalidate=${opts.cdnSeconds * 3}` : "no-store", "X-Content-Type-Options": "nosniff" };
   return new Response(r.body, { status: r.status, headers: out });
 }
 

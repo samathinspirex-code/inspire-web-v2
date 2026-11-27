@@ -8,7 +8,7 @@ const date = (d: string) => new Date(d).toLocaleDateString("en-GB", { day: "nume
 export async function GET() {
   const [b, news] = await Promise.all([getBundle(), getNewsList()]);
   const cards = news
-    .map((n) => `<article class="card news"><a href="/news/${esc(n.slug)}">${n.image ? `<img src="${esc(n.image)}" alt="" loading="lazy">` : ""}<span class="muted">${esc(n.category)}${n.published_at ? " · " + date(n.published_at) : ""}</span><b style="font-size:19px;line-height:1.25">${esc(n.title)}</b><span class="muted">${esc(n.excerpt)}</span></a></article>`)
+    .map((n) => `<article class="card news"><a href="/news/${esc(n.slug)}">${n.image ? `<img src="${esc(n.image)}" alt="" loading="lazy">` : ""}<span class="muted">${esc(n.category)}${n.published_at ? " · " + date(n.published_at) : ""}</span><b class="nt">${esc(n.title)}</b><span class="muted ne">${esc(n.excerpt)}</span><span class="more">Read more →</span></a></article>`)
     .join("");
   return chromePage(
     b,

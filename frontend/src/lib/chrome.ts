@@ -28,6 +28,9 @@ const EXTRA = `<style>
 .cp .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:16px}
 .cp .news a{text-decoration:none;display:flex;flex-direction:column;gap:10px;height:100%}
 .cp .news img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:22px;background:var(--soft)}
+.news .nt{font-size:19px;line-height:1.25;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.news .ne{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.news .more{margin-top:auto;padding-top:4px;color:var(--act-ink,#6d28d9);font-weight:650;font-size:14px}
 .cp .muted{color:var(--muted);font-size:14px}
 .cp .body p{margin:0 0 16px;line-height:1.7}
 .cp .l input,.cp .l textarea,.cp .l select{width:100%;min-height:52px;padding:12px 16px;border-radius:18px;border:1px solid var(--line);background:var(--soft);font:inherit;color:var(--ink)}
