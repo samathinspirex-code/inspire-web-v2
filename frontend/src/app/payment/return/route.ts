@@ -14,7 +14,7 @@ export async function GET() {
   var q = new URLSearchParams(location.search), ref = q.get('ref') || '', n = 0;
   var T = document.getElementById('pt'), M = document.getElementById('pm');
   document.getElementById('pr').textContent = ref ? 'Reference ' + ref : '';
-  if (!/^(IC-[A-Z0-9]{6}|INV-\d{5,})$/.test(ref)) { T.textContent = 'Payment reference missing'; M.textContent = 'If you paid, an advisor will confirm on WhatsApp.'; return; }
+  if (!/^IC-[A-Z0-9]{6}$/.test(ref)) { T.textContent = 'Payment reference missing'; M.textContent = 'If you paid, an advisor will confirm on WhatsApp.'; return; }
   function show(o) {
     if (o.status === 'paid') {
       T.textContent = 'Payment received. Your seat is confirmed.'; M.textContent = 'Welcome to Inspire! An advisor will message you with next steps.';

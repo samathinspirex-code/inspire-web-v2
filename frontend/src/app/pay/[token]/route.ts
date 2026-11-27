@@ -98,7 +98,7 @@ export async function GET() {
       var fd = new FormData(form);
       var file = fd.get('file');
       if (!file || !file.size) { out.textContent = 'Please choose a photo or PDF of your slip.'; return; }
-      if (file.size > 5 * 1024 * 1024) { out.textContent = 'The file is too large (max 5 MB).'; return; }
+      if (file.size > 4 * 1024 * 1024) { out.textContent = 'The file is too large (max 4 MB).'; return; }
       out.textContent = 'Uploading…';
       fetch('/api/pay/' + encodeURIComponent(token) + '/slip', { method: 'POST', body: fd })
         .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.detail || 'Upload failed'); return j; }); })
@@ -109,7 +109,7 @@ export async function GET() {
         h('label', {}, ['Amount you transferred (LKR)', h('input', { name: 'amount', type: 'number', min: '1', step: '1', required: 'required', value: String(Math.round(inv.balance)) })]),
         h('label', {}, ['Date of transfer', h('input', { name: 'paid_on', type: 'date', value: new Date().toISOString().slice(0, 10) })]),
         h('label', {}, ['Bank reference (optional)', h('input', { name: 'reference', maxlength: '120' })]),
-        h('label', {}, ['Slip photo or PDF (max 5 MB)', h('input', { name: 'file', type: 'file', accept: 'image/jpeg,image/png,application/pdf', required: 'required' })])
+        h('label', {}, ['Slip photo or PDF (max 4 MB)', h('input', { name: 'file', type: 'file', accept: 'image/jpeg,image/png,application/pdf', required: 'required' })])
       ]),
       h('div', { 'class': 'acts' }, [h('button', { 'class': 'btn p', type: 'submit', text: 'Send slip for review' })]), out
     ]);
@@ -139,6 +139,7 @@ export async function GET() {
     fetch('/api/pay/' + encodeURIComponent(token) + '/checkout', { method: 'POST' })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.detail || 'Could not start the card payment'); return j; }); })
       .then(function (c) {
+        if (c.method === 'get') { location.href = c.action; return; }
         var f = h('form', { method: 'POST', action: c.action });
         Object.keys(c.fields).forEach(function (k) { f.appendChild(h('input', { type: 'hidden', name: k, value: c.fields[k] })); });
         document.body.appendChild(f); f.submit();

@@ -1,25 +1,48 @@
-// Same-origin API routes forward to the backend, so browsers never need the backend URL or a token.
+// Same-origin API routes forward to the Inspire API (AWS), so browsers never need the API address or a token.
 import { cookies } from "next/headers";
 
 import { BACKEND_URL } from "./backend";
 
 export const DEMO_COOKIE = "ic_demo";
-export const ADMIN_COOKIE = "ic_admin";
 
-export async function forward(req: Request, backendPath: string, opts: { token?: string; method?: string } = {}): Promise<Response> {
+/** Lets the API rate-limit per visitor: it trusts X-Web-Visitor-IP only with the shared WEB_PROXY_SECRET. */
+export function proxyHeaders(req?: Request): Record<string, string> {
+  const out: Record<string, string> = {};
+  const secret = process.env.WEB_PROXY_SECRET;
+  if (secret) out["X-Web-Proxy-Key"] = secret;
+  const ip = req ? (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || req.headers.get("x-real-ip") || "" : "";
+  if (ip) out["X-Web-Visitor-IP"] = ip.slice(0, 64);
+  return out;
+}
+
+/** The API answers errors as {error: {code, message}}; the site's scripts read {detail}. */
+export async function errorBody(r: Response): Promise<{ detail: string; code?: string }> {
+  const j = await r.json().catch(() => null);
+  const e = j?.error;
+  if (e && typeof e === "object") {
+    const extra = Array.isArray(e.details) && e.details.length ? ` (${e.details.map((d: { field?: string; issue?: string }) => `${d.field}: ${d.issue}`).join(", ")})` : "";
+    return { detail: String(e.message || "Something went wrong") + extra, code: e.code };
+  }
+  return { detail: typeof j?.detail === "string" ? j.detail : "Something went wrong. Please try again." };
+}
+
+export async function forward(req: Request, backendPath: string, opts: { token?: string; method?: string; body?: BodyInit; contentType?: string } = {}): Promise<Response> {
   const method = opts.method || req.method;
-  const headers: Record<string, string> = {};
-  const ct = req.headers.get("content-type");
+  const headers: Record<string, string> = proxyHeaders(req);
+  const ct = opts.contentType || req.headers.get("content-type");
   if (ct) headers["Content-Type"] = ct;
   if (opts.token) headers.Authorization = "Bearer " + opts.token;
-  const fwd = req.headers.get("x-forwarded-for");
-  if (fwd) headers["X-Forwarded-For"] = fwd;
-  const body = method === "GET" || method === "HEAD" ? undefined : await req.arrayBuffer();
-  const r = await fetch(BACKEND_URL + backendPath, { method, headers, body, cache: "no-store" });
-  const out: Record<string, string> = { "Content-Type": r.headers.get("content-type") || "application/json", "Cache-Control": "no-store" };
-  const cd = r.headers.get("content-disposition");   // CSV exports keep their file name
-  if (cd) out["Content-Disposition"] = cd;
-  if (r.headers.get("x-content-type-options")) out["X-Content-Type-Options"] = "nosniff";
+  const body = method === "GET" || method === "HEAD" ? undefined : opts.body ?? (await req.arrayBuffer());
+  let r: Response;
+  try {
+    r = await fetch(BACKEND_URL + backendPath, { method, headers, body, cache: "no-store", signal: AbortSignal.timeout(30000) });
+  } catch {
+    return Response.json({ detail: "We couldn't reach the server. Please try again in a moment." }, { status: 503, headers: { "Cache-Control": "no-store" } });
+  }
+  if (!r.ok) {
+    return Response.json(await errorBody(r), { status: r.status, headers: { "Cache-Control": "no-store" } });
+  }
+  const out: Record<string, string> = { "Content-Type": r.headers.get("content-type") || "application/json", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
   return new Response(r.body, { status: r.status, headers: out });
 }
 

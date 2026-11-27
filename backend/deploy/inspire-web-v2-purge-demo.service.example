@@ -1,7 +1,0 @@
-[Unit]
-Description=Inspire Web v2 - delete demo accounts older than 24h
-
-[Service]
-Type=oneshot
-WorkingDirectory=/home/ubuntu/inspire-web-v2/backend
-ExecStart=/home/ubuntu/inspire-web-v2/backend/.venv/bin/python scripts/purge_demo.py

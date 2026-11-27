@@ -1277,7 +1277,7 @@ footer{padding-bottom:170px}
       <div class="xf">
         <div><label>{{xNameLbl}}</label><input type="text" value="{{xName}}" onInput="{{xSetName}}" autocomplete="name" placeholder="Full name"></div>
         <div><label>WhatsApp number</label><input type="tel" value="{{xPhone}}" onInput="{{xSetPhone}}" autocomplete="tel" placeholder="07X XXX XXXX"></div>
-        <div><label>Email <span style="color:var(--muted);font-weight:500">(optional)</span></label><input type="email" value="{{xEmail}}" onInput="{{xSetEmail}}" autocomplete="email" placeholder="you@example.com"></div>
+        <div><label>Email</label><input type="email" value="{{xEmail}}" onInput="{{xSetEmail}}" autocomplete="email" placeholder="you@example.com"></div>
       </div>
       <p class="xsec">Pay with</p>
       <div class="xmeth"><template data-sc="for" list="{{xMeths}}" as="m" hint-placeholder-count="2"><button type="button" class="{{m.cls}}" onClick="{{m.pick}}" aria-pressed="{{m.on}}"><b>{{m.t}}</b><small>{{m.d}}</small></button></template></div>
@@ -1487,6 +1487,7 @@ function icX(self, o) {
     const nm = (self.state.x.name || '').trim(), ph = (self.state.x.phone || '').replace(/[^0-9]/g, '');
     if (nm.length < 2) return set({ err: 'Please add your full name.' });
     if (ph.length < 9) return set({ err: 'Please add a WhatsApp number we can reach.' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((self.state.x.email || '').trim())) return set({ err: 'Please add your email so we can send your receipt and payment link.' });
     set({ err: '', busy: true });
     window.icCreateOrder({ course_key: key, plan: pi, addons: add, free: free, method: (self.state.x.method || 0) === 0 ? 'payhere' : 'bank_transfer', name: nm, phone: ph, email: (self.state.x.email || '') }).then(r => { if (r.checkout) { window.icPayHere(r.checkout); return; } const ref = r.reference; if (typeof icDL === 'function') icDL('purchase', { transaction_id: ref, currency: 'LKR', value: today, payment_plan: pl.t, payment_method: (self.state.x.method || 0) === 0 ? 'card_payhere' : 'bank_transfer', items: [icItem(key, pl.today)].concat(add.map(a => icItem(a, Math.round(IC_CPDFEE[a] * 0.75)))).concat(free.map(a => icItem(a, 0))) }); if (typeof IC_AI !== 'undefined') IC_AI.bump(key, 8, c.l, null); self.setState({ x: Object.assign({}, self.state.x, { busy: false, done: true, step: 'done', ref }), bag: null }); icSave(null); }).catch(e => set({ busy: false, err: e.message }));
   };
@@ -1523,7 +1524,7 @@ function icX(self, o) {
     xPerks: perks,
     xHi: x.name ? ', ' + first : '', xNameLbl: o.parent ? 'Student’s full name' : 'Full name',
     xName: x.name || '', xPhone: x.phone || '', xEmail: x.email || '',
-    xSetName: e => set({ name: e.target.value, err: '' }), xSetPhone: e => set({ phone: e.target.value, err: '' }), xSetEmail: e => set({ email: e.target.value }),
+    xSetName: e => { set({ name: e.target.value, err: '' }); window.icDraftLead && window.icDraftLead({ name: e.target.value, email: self.state.x.email, phone: self.state.x.phone, course_key: key, plan: pl.t }); }, xSetPhone: e => { set({ phone: e.target.value, err: '' }); window.icDraftLead && window.icDraftLead({ name: self.state.x.name, email: self.state.x.email, phone: e.target.value, course_key: key, plan: pl.t }); }, xSetEmail: e => { set({ email: e.target.value }); window.icDraftLead && window.icDraftLead({ name: self.state.x.name, email: e.target.value, phone: self.state.x.phone, course_key: key, plan: pl.t }); },
     xMeths: [['Card · PayHere', 'Visa, Mastercard, Amex'], ['Bank transfer', 'Seat held for 48 hours']].map((m, i) => ({ t: m[0], d: m[1], on: (x.method || 0) === i, cls: (x.method || 0) === i ? 'on' : '', pick: () => set({ method: i }) })),
     xLines: lines, xToday: icLkr(today), xDueLbl: isPlan ? 'Due today' : 'Total due today',
     xHasErr: !!x.err, xErr: x.err || '', xBusy: !!x.busy,

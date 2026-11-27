@@ -1,5 +1,5 @@
-// Server-side access to the Inspire Web v2 backend (never the current production API).
-export const BACKEND_URL = (process.env.BACKEND_URL || "http://127.0.0.1:8120").replace(/\/$/, "");
+// Server-side access to the Inspire API (AWS): the same backend as the CMS, CRM and LMS.
+export const BACKEND_URL = (process.env.BACKEND_URL || "https://api.inspirecollege.lk").replace(/\/$/, "");
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3110").replace(/\/$/, "");
 
 export type Course = {
@@ -37,15 +37,15 @@ export async function backendGet<T>(path: string, revalidate = 60): Promise<T> {
 }
 
 export async function getBundle(): Promise<Bundle> {
-  return backendGet<Bundle>("/api/v1/public/bundle", 60);
+  return backendGet<Bundle>("/api/v1/public/web/bundle", 60);
 }
 
 export async function getNewsList(): Promise<News[]> {
-  return backendGet<News[]>("/api/v1/public/news", 300);
+  return backendGet<News[]>("/api/v1/public/web/news", 300);
 }
 
 export async function getNewsItem(slug: string): Promise<News | null> {
-  const r = await fetch(`${BACKEND_URL}/api/v1/public/news/${encodeURIComponent(slug)}`, { next: { revalidate: 300 } });
+  const r = await fetch(`${BACKEND_URL}/api/v1/public/web/news/${encodeURIComponent(slug)}`, { next: { revalidate: 300 } });
   return r.ok ? r.json() : null;
 }
 
@@ -61,7 +61,7 @@ export async function getDemoMe(token: string | undefined): Promise<DemoMe | nul
 export async function demoSession(token: string | undefined): Promise<{ me: DemoMe | null; unavailable: boolean }> {
   if (!token) return { me: null, unavailable: false };
   try {
-    const r = await fetch(BACKEND_URL + "/api/v1/demo/me", { headers: { Authorization: "Bearer " + token }, cache: "no-store", signal: AbortSignal.timeout(25000) });
+    const r = await fetch(BACKEND_URL + "/api/v1/public/web/demo/me", { headers: { Authorization: "Bearer " + token }, cache: "no-store", signal: AbortSignal.timeout(25000) });
     if (r.ok) return { me: (await r.json()) as DemoMe, unavailable: false };
     if (r.status === 401 || r.status === 403 || r.status === 404) return { me: null, unavailable: false };
     return { me: null, unavailable: true };   // 5xx / gateway: backend starting or down

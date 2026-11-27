@@ -1,5 +1,5 @@
-// Root layout for the React pages (the website CMS at /admin). Website pages are served by route handlers.
-export const metadata = { title: "Inspire Website CMS", robots: { index: false, follow: false } };
+// Root layout (Next requires one). Website pages are served by route handlers; there are no React pages.
+export const metadata = { title: "Inspire College", robots: { index: false, follow: false } };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

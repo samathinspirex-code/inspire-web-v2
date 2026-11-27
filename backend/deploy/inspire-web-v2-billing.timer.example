@@ -1,9 +1,0 @@
-[Unit]
-Description=Run Inspire Web v2 instalment billing hourly (backup to the in-app loop)
-
-[Timer]
-OnBootSec=10min
-OnUnitActiveSec=1h
-
-[Install]
-WantedBy=timers.target

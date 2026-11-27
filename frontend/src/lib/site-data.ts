@@ -1,4 +1,5 @@
 // Turns backend content into the exact data shapes the design pages already use (IC_CAT, P, S, L, FQ...).
+import { LEADERS } from "./leaders";
 import type { Bundle, Course } from "./backend";
 
 export const slugify = (n: string) => n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -38,7 +39,7 @@ export function buildIcData(b: Bundle, extra: Record<string, unknown> = {}) {
     cat, details, imgs, slugs, cpdfee, cards, camp,
     feePlans: b.fee_plans,
     stories: b.testimonials.map((t) => [t.name, t.role, t.image, t.image_pos, t.video_url]),
-    leaders: b.leaders.map((l) => [l.name, l.role, l.initials, l.photo || "", l.bio || "", l.photo_pos || "center 20%"]),
+    leaders: LEADERS.map((l) => [l.name, l.role, l.initials, l.photo || "", l.bio || "", l.photo_pos || "center 20%"]),
     faq: b.faqs.filter((f) => f.audience === "student").map((f) => [f.question, f.answer]),
     faqp: b.faqs.filter((f) => f.audience === "parent").map((f) => [f.question, f.answer]),
     contact: b.settings.contact,

@@ -64,6 +64,15 @@ function catalogue(name, h) {
   h = patch(name, h, "setTimeout(() => { const ref = 'IC-' + Math.random().toString(36).slice(2, 8).toUpperCase(); ",
     "window.icCreateOrder({ course_key: key, plan: pi, addons: add, free: free, method: (self.state.x.method || 0) === 0 ? 'payhere' : 'bank_transfer', name: nm, phone: ph, email: (self.state.x.email || '') }).then(r => { if (r.checkout) { window.icPayHere(r.checkout); return; } const ref = r.reference; ");
   h = patch(name, h, "icSave(null); }, 1400);", "icSave(null); }).catch(e => set({ busy: false, err: e.message }));");
+  // Email is required (receipt, invoices and the payment link go there), and the CRM lead starts as soon as
+  // name, email and phone are all filled in (before any payment).
+  h = patch(name, h, '<label>Email <span style="color:var(--muted);font-weight:500">(optional)</span></label>', "<label>Email</label>");
+  h = patch(name, h, "if (ph.length < 9) return set({ err: 'Please add a WhatsApp number we can reach.' });",
+    "if (ph.length < 9) return set({ err: 'Please add a WhatsApp number we can reach.' });\n    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test((self.state.x.email || '').trim())) return set({ err: 'Please add your email so we can send your receipt and payment link.' });");
+  h = patch(name, h, "xSetName: e => set({ name: e.target.value, err: '' }), xSetPhone: e => set({ phone: e.target.value, err: '' }), xSetEmail: e => set({ email: e.target.value }),",
+    "xSetName: e => { set({ name: e.target.value, err: '' }); window.icDraftLead && window.icDraftLead({ name: e.target.value, email: self.state.x.email, phone: self.state.x.phone, course_key: key, plan: pl.t }); }, " +
+    "xSetPhone: e => { set({ phone: e.target.value, err: '' }); window.icDraftLead && window.icDraftLead({ name: self.state.x.name, email: self.state.x.email, phone: e.target.value, course_key: key, plan: pl.t }); }, " +
+    "xSetEmail: e => { set({ email: e.target.value }); window.icDraftLead && window.icDraftLead({ name: self.state.x.name, email: e.target.value, phone: self.state.x.phone, course_key: key, plan: pl.t }); },");
   // WhatsApp numbers are CMS settings.
   h = h.replace(/wa\.me\/94711993331/g, "wa.me/__IC_WA_MAIN__").replace(/wa\.me\/94743762393/g, "wa.me/__IC_WA_ADVISOR__");
   return h;
@@ -138,6 +147,9 @@ for (const f of ["Main", "Program", "Demo", "Aptitude", "Enrol", "LMS", "Live"])
   h = patch("Program", h, "id: hid, lvl: null,", `id: hid, lvl: (${D}.lvl)||null,`);
   // Final quest step: create the order (PayHere / bank transfer) for real.
   h = patch("Program", h, "this.setState({ step: 6, err: '', toast: null }); },", "this.setState({ step: 6, err: '', toast: null }); window.icQuestOrder(this, curKey, raw.plan); },");
+  // Programme quest: name, email and phone are checked on step 1 -> start the CRM lead there.
+  h = patch("Program", h, "if (!ok) { this.setState({ err: 'Please add a name, a valid email and a mobile number.' }); return; } go(2); },",
+    "if (!ok) { this.setState({ err: 'Please add a name, a valid email and a mobile number.' }); return; } window.icDraftLead && window.icDraftLead({ name: s.name, email: s.email, phone: s.phone, course_key: curKey }, true); go(2); },");
   pages.Program = h;
 }
 

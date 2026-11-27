@@ -1,9 +1,0 @@
-[Unit]
-Description=Run the Inspire Web v2 demo purge every 15 minutes
-
-[Timer]
-OnBootSec=5min
-OnUnitActiveSec=15min
-
-[Install]
-WantedBy=timers.target

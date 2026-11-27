@@ -79,7 +79,24 @@
       return r;
     });
   };
+  // CRM lead as soon as name, email and phone are all filled in at checkout (once per person and course).
+  var draftTimer = null, draftSent = {};
+  window.icDraftLead = function (v, now) {
+    v = v || {};
+    var name = String(v.name || "").trim(), email = String(v.email || "").trim(), phone = String(v.phone || "").replace(/\D/g, "");
+    if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || phone.length < 9) return;
+    var sig = [name.toLowerCase(), email.toLowerCase(), phone.slice(-9), v.course_key || ""].join("|");
+    if (draftSent[sig]) return;
+    clearTimeout(draftTimer);
+    draftTimer = setTimeout(function () {
+      draftSent[sig] = 1;
+      post("/api/leads/draft", { name: name, email: email, phone: String(v.phone || "").trim(), course_key: v.course_key || "", plan: v.plan || "", utm: utm() })
+        .catch(function () { delete draftSent[sig]; });
+    }, now ? 0 : 1500);
+  };
   window.icPayHere = function (co) {
+    // The API opens PayHere from its own (PayHere-approved) address.
+    if (co.method === "get") { location.href = co.action; return; }
     var f = document.createElement("form");
     f.method = "POST"; f.action = co.action;
     Object.keys(co.fields).forEach(function (k) {
