@@ -1,4 +1,5 @@
 import { getBundle, SITE_URL } from "@/lib/backend";
+import { notFoundPage } from "@/lib/chrome";
 import { renderDesignPage } from "@/lib/render";
 import { courseBySlug } from "@/lib/site-data";
 
@@ -8,7 +9,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ slug: string }
   const { slug } = await ctx.params;
   const b = await getBundle();
   const c = courseBySlug(b, slug);
-  if (!c) return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+  if (!c) return notFoundPage(b, "/programs/" + slug);
   return renderDesignPage("Program", b, {
     hash: "p-" + c.key,
     data: { detailKey: c.key, boot: { campaign: b.settings.default_campaign || "scholarship", programme: c.key } },

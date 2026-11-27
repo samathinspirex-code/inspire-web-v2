@@ -28,7 +28,10 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   e.preventDefault();
   var f = e.target, m = document.getElementById('cf-msg');
   var d = { kind: 'contact', name: f.name.value.trim(), phone: f.phone.value.trim(), email: f.email.value.trim(), course_key: f.course_key.value, message: f.message.value.trim(), data: { page: '/contact' } };
-  if (d.name.length < 2 || d.phone.replace(/\\D/g, '').length < 9) { m.textContent = 'Please add your name and a mobile number.'; return; }
+  // Email is optional here, but checked when given. The first problem is named and that field focused.
+  var bad = d.name.length < 2 ? ['name', 'Please add your full name.'] : d.phone.replace(/\\D/g, '').length < 9 ? ['phone', 'Please add a mobile number with at least 9 digits.'] :
+    d.email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$/.test(d.email) ? ['email', "That email address doesn't look right. Please check it (for example name@gmail.com)."] : null;
+  if (bad) { m.style.color = ''; m.textContent = bad[1]; f[bad[0]].focus(); return; }
   m.style.color = ''; m.textContent = 'Sending…';
   fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
     .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw new Error(j.detail || 'Could not send'); }); })

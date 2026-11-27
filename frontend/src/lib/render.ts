@@ -92,10 +92,20 @@ function siteBars(b: Bundle, page: string): { top: string; bottom: string } {
     const id = dismissId(s.announcement_text + "|" + (s.announcement_link || ""));
     const inner = esc(s.announcement_text) + (s.announcement_link ? ` <span style="text-decoration:underline">Learn more</span>` : "");
     const tag = s.announcement_link ? `a href="${esc(s.announcement_link)}"` : "span";
-    top += `<div id="ic-announce" style="position:sticky;top:0;z-index:65;display:flex;align-items:center;gap:8px;padding:8px 8px 8px 44px;text-align:center;font:600 13.5px/1.4 Geist,system-ui,sans-serif;color:#fff;background:linear-gradient(90deg,#2a0e5c,#6d28d9 60%,#a855f7)">` +
-      `<${tag} style="flex:1;min-width:0;color:#fff;text-decoration:none">${inner}</${tag.split(" ")[0]}>` +
-      `<button type="button" aria-label="Close announcement" data-ic-close="ic-announce" style="flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:17px;line-height:1;cursor:pointer">×</button></div>` +
-      `<style>.hdr{top:calc(12px + var(--ic-ann-h,0px))!important}</style>` +
+    // The message glides right to left across the strip (same motion as the current site), pausing on hover.
+    top += `<div id="ic-announce" role="region" aria-label="Announcement">` +
+      `<${tag} class="ica-link" aria-label="${esc(s.announcement_text)}"><span class="ica-track" aria-hidden="true"><span class="ica-text">${inner}</span></span></${tag.split(" ")[0]}>` +
+      `<button type="button" aria-label="Close announcement" data-ic-close="ic-announce">×</button></div>` +
+      `<style>#ic-announce{position:sticky;top:0;z-index:65;display:flex;align-items:center;gap:8px;height:40px;padding:0 8px;color:#fff;background:linear-gradient(90deg,#2a0e5c,#6d28d9 60%,#a855f7);font:600 14px/1 Geist,system-ui,sans-serif}` +
+      `#ic-announce .ica-link{position:relative;flex:1;align-self:stretch;min-width:0;color:#fff;text-decoration:none}` +
+      `#ic-announce .ica-track{position:absolute;inset:0 6% 0 4%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}` +
+      `#ic-announce .ica-text{position:absolute;top:50%;left:100%;white-space:nowrap;letter-spacing:.01em;transform:translate(0,-50%);animation:ica-glide 18s linear infinite}` +
+      `#ic-announce:hover .ica-text{animation-play-state:paused}` +
+      `@keyframes ica-glide{0%{left:100%;transform:translate(0,-50%);opacity:0}8%{opacity:1}86%{opacity:1}100%{left:0;transform:translate(-100%,-50%);opacity:0}}` +
+      `#ic-announce [data-ic-close]{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;font-size:17px;line-height:1;cursor:pointer}` +
+      `@media(max-width:560px){#ic-announce{height:36px;font-size:12.5px}#ic-announce .ica-track{inset:0 2px}#ic-announce .ica-text{animation-duration:14s}}` +
+      `@media(prefers-reduced-motion:reduce){#ic-announce .ica-text{animation:none;left:50%;transform:translate(-50%,-50%);max-width:100%;overflow:hidden;text-overflow:ellipsis}}` +
+      `.hdr{top:calc(12px + var(--ic-ann-h,0px))!important}</style>` +
       dismissScript("ic-announce", id, true);
   }
   if (s.christmas_theme) {
@@ -185,6 +195,14 @@ const BANNER_FIT =
   "@keyframes icwa-wiggle{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-14deg)}88%{transform:rotate(12deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(4deg)}}" +
   // Phones: the AI button is hidden and the Apply bar + tab bar sit at the bottom, so WhatsApp goes above them.
   "@media(max-width:760px){.wa-float{right:16px;bottom:calc(152px + env(safe-area-inset-bottom));width:48px;height:48px}.wa-float svg{width:26px;height:26px}}" +
+  // Phones: the hero offer pill wraps instead of being cut off; the demo header drops the "Free demo class"
+  // subtitle so the level label beside the L1 badge has room.
+  "@media(max-width:760px){.ic .camp{border-radius:22px;max-width:100%}.ic .camp span{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.3}}" +
+  "@media(max-width:560px){.ic .tbar .logo.brand>span.lgsub{display:none!important}}" +
+  // Phones: bigger tap areas (44px) for small links, without moving the layout (padding offset by negative margin).
+  "@media(max-width:760px){.ic footer .fcols a{display:flex;align-items:center;min-height:44px}" +
+  ".ic footer .base a,.ic footer .base button,.ic footer .fs a,.ic .fnote a,.ic .pc-more,.ic .pc-note button,.ic .pc-t a,.ic .verify{display:inline-block;padding-block:13px;margin-block:-13px}" +
+  "#ic-announce [data-ic-close]{width:36px!important;height:36px!important}}" +
   "@media(prefers-reduced-motion:reduce){.ic .ai-fab,.ic .ai-fab i::after,.ic .ai-fab i svg,.wa-float,.wa-float::before,.wa-float::after,.wa-float svg{animation:none!important}}" +
   ".ic .ai-fab>span{max-width:0;margin:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .35s ease,margin .35s ease,opacity .25s ease}" +
   ".ic .ai-fab:hover>span,.ic .ai-fab:focus-visible>span{max-width:160px;margin:0 14px 0 10px;opacity:1}" +
@@ -260,6 +278,8 @@ export function renderDesignPage(page: string, b: Bundle, opts: RenderOpts): Res
     `<script>window.IC_DATA=${safeJson(data)};${opts.hash ? `window.__dcHash=${safeJson(opts.hash)};` : ""}</script>` +
     `<script>${read("tracking.js")}</script><script>${read("runtime.js")}</script>`;
   html = html.replace("<!--IC_HEAD-->", head);
+  // Home stats: the programme count comes from the live course list.
+  if (page === "Main" && b.courses.length) html = html.replace('<div><b>87</b><span>programmes', `<div><b>${b.courses.length}</b><span>programmes`);
   if (page === "Main") html = html.replace(/<div class="news">[\s\S]*?\n  <\/div>/, newsCards(b));
   const bars = siteBars(b, page);
   // The real <body> tag comes after </head> (inlined scripts could mention the word earlier).

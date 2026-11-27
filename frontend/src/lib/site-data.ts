@@ -10,6 +10,23 @@ export function cardName(c: Course): string {
   return (c.detail?.card_name as string) || c.title;
 }
 
+// Imported text sometimes carries a stray "A-circumflex" before "·" (UTF-8 read twice); fix it everywhere in a course's details.
+function fixText<T>(v: T): T {
+  if (typeof v === "string") return v.replace(/Â(?=[ -¿])/g, "") as T;
+  if (Array.isArray(v)) return v.map(fixText) as T;
+  if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fixText(x)])) as T;
+  return v;
+}
+
+const PG_ENTRY = "A bachelor's degree, or an HND / Level 5 diploma with relevant work experience";
+
+function cleanDetail(c: Course, d: Record<string, unknown>): Record<string, unknown> {
+  const out = fixText(d);
+  // Postgraduate pages: the imported entry text was copied from the HND template (O/L, A/L, "completed the HND").
+  if (c.level === "Postgraduate" && typeof out.entry === "string" && /O\/L|A\/L|HND in related field/i.test(out.entry)) out.entry = PG_ENTRY;
+  return out;
+}
+
 export function buildIcData(b: Bundle, extra: Record<string, unknown> = {}) {
   const cat: Record<string, object> = {};
   const details: Record<string, object> = {};
@@ -17,8 +34,8 @@ export function buildIcData(b: Bundle, extra: Record<string, unknown> = {}) {
   const slugs: Record<string, string> = {};
   const cpdfee: Record<string, number> = {};
   for (const c of b.courses) {
-    cat[c.key] = { s: c.short || c.title, n: c.title, l: c.level, b: c.body, p: c.plan_type, f: c.fee_label, d: c.duration, i: c.image };
-    if (c.key === extra.detailKey) details[c.key] = { lvl: c.level, plan: c.plan_type, short: c.short || c.title, name: c.title, img: c.image, dur: c.duration, body: c.body, ...c.detail };
+    cat[c.key] = { s: c.short || c.title, n: c.title, l: c.level, b: c.body, p: c.plan_type, f: c.fee_label, d: c.duration, i: c.image, sc: c.school };
+    if (c.key === extra.detailKey) details[c.key] = cleanDetail(c, { lvl: c.level, plan: c.plan_type, short: c.short || c.title, name: c.title, img: c.image, dur: c.duration, body: c.body, ...c.detail });
     imgs[c.key] = c.image;
     slugs[c.key] = c.slug;
     slugs[slugify(c.title)] = c.slug;

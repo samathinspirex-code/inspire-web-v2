@@ -381,7 +381,7 @@ class Component extends DCLogic {
       name: s.name, email: s.email, phone: s.phone, refCode: s.refCode,
       setName: e => this.setState({ name: e.target.value }), setEmail: e => this.setState({ email: e.target.value }), setPhone: e => this.setState({ phone: e.target.value }), setRef: e => this.setState({ refCode: e.target.value }),
       err: s.err,
-      next1: () => { const ok = s.name.trim().length > 1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email.trim()) && s.phone.replace(/\D/g, '').length >= 9; this.setState(ok ? { step: 2, err: '' } : { err: 'Please add a name, a valid email and a mobile number.' }); },
+      next1: () => { const bad = window.icFieldErr({ name: s.name, email: s.email, phone: s.phone }); this.setState(bad ? { err: bad } : { step: 2, err: '' }); },
       next2: () => this.setState({ step: 3 }),
       next3: () => this.setState({ step: 4 }), next3Txt: s.up ? 'Continue · +50 XP' : 'Skip for now',
       doUpload: () => this.setState({ up: true }), uploadTitle: s.up ? 'results.pdf added ✓' : 'Drop your results here',
@@ -390,8 +390,8 @@ class Component extends DCLogic {
       sch: s.sch, schCls: 'check' + (s.sch ? ' on' : ''), toggleSch: () => this.setState({ sch: !s.sch }),
       agree: s.agree, agCls: 'check' + (s.agree ? ' on' : ''), toggleAg: () => this.setState({ agree: !s.agree }),
       planName: p.t, dueLabel: s.plan === 1 && (k === 'hnd' || k === 'fnd') ? 'Then monthly' : 'Due today', dueTxt: p.pr,
-      payTxt: s.method === 1 ? 'Reserve my seat · +300 XP' : 'Pay ' + p.pr + ' · +300 XP',
-      pay: () => { if (!s.agree) { this.setState({ err: 'Please accept the terms to continue.' }); return; } const a = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let r = ''; for (let i = 0; i < 6; i++) r += a[Math.floor(Math.random() * a.length)]; this.setState({ step: 5, err: '', ref: 'IC-2026-' + r }); window.icLead('admissions', { name: s.name, email: s.email, phone: s.phone, course_key: (C[s.course] || [])[0] || '', data: { who: s.who, plan: s.plan, method: s.method, scholarship: s.sch, referral: s.refCode, ref: 'IC-2026-' + r } }); },
+      payTxt: s.saving ? 'Saving…' : s.method === 1 ? 'Reserve my seat · +300 XP' : 'Pay ' + p.pr + ' · +300 XP',
+      pay: () => { if (!s.agree) { this.setState({ err: 'Please accept the terms to continue.' }); return; } if (s.saving) return; const a = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let r = ''; for (let i = 0; i < 6; i++) r += a[Math.floor(Math.random() * a.length)]; this.setState({ saving: true, err: '' }); window.icLead('admissions', { name: s.name, email: s.email, phone: s.phone, course_key: (C[s.course] || [])[0] || '', data: { who: s.who, plan: s.plan, method: s.method, scholarship: s.sch, referral: s.refCode, ref: 'IC-2026-' + r } }, true).then(() => this.setState({ step: 5, saving: false, err: '', ref: 'IC-2026-' + r })).catch(e => this.setState({ saving: false, err: (e && e.message) || 'We could not save your details. Please try again or WhatsApp us.' })); },
       refNo: s.ref, first, myCode: (first.toUpperCase().slice(0, 6) || 'INSPIRE') + '-IC',
       cupDots: Array.from({ length: 12 }, (_, i) => ({ cls: i === 0 ? 'f' : '' }))
     };

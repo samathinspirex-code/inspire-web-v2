@@ -1,5 +1,5 @@
 import { getBundle, getNewsItem } from "@/lib/backend";
-import { chromePage, esc } from "@/lib/chrome";
+import { chromePage, esc, notFoundPage } from "@/lib/chrome";
 
 export const revalidate = 300;
 
@@ -28,7 +28,7 @@ const NEWS_VIDEO_JS = `document.querySelectorAll('.nvid').forEach(function(f){va
 export async function GET(_req: Request, ctx: { params: Promise<{ slug: string }> }) {
   const { slug } = await ctx.params;
   const [b, n] = await Promise.all([getBundle(), getNewsItem(slug)]);
-  if (!n) return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain" } });
+  if (!n) return notFoundPage(b, "/news/" + slug);
   const paras = (n.body || "").split(/\n+/).map((p) => p.trim()).filter(Boolean).map((p) => `<p>${esc(p)}</p>`).join("");
   const portrait = !!n.video_url && n.video_orientation === "portrait";
   // Same as the current site: a portrait video is pinned beside the text while it scrolls; a landscape video sits

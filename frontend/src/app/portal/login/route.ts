@@ -9,5 +9,5 @@ export async function GET(req: Request) {
   if (await getDemoMe(await cookieValue(DEMO_COOKIE))) {
     return Response.redirect(new URL("/portal", req.url), 307);
   }
-  return renderPortalPage({ name: "Student", demo: { login: true }, seo: { title: "Log in · Inspire Brain demo", path: "/portal/login" } });
+  return renderPortalPage({ name: "Student", demo: { login: true }, seo: { title: "Log in to Inspire Brain | Inspire College", description: "Log in to Inspire Brain, the Inspire College student portal: live classes, recordings, assignments and your free demo class.", path: "/portal/login" } });
 }

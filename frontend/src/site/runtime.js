@@ -49,6 +49,38 @@
   // ---- Programme details (Program page) from the CMS ---------------------------------------------
   // Only the open course's full details are sent with the page (keeps every page small); the others get a
   // light entry from the catalogue for the level tabs and chips, which open that course's own page.
+  // "Typical pay in Sri Lanka" panel: which Paylab job set fits a course, from its name, school and key.
+  window.icPayArea = function (k) {
+    var c = (D.cat && D.cat[k]) || {};
+    var t = (k + " " + (c.n || "") + " " + (c.sc || "")).toLowerCase();
+    if (/cyber|security/.test(t)) return "cyber";
+    if (/cloud|devops|network/.test(t)) return "cloud";
+    if (c.sc === "Law" || /\blaw\b/.test(t)) return "law";
+    if (/health|social care/.test(t)) return "health";
+    if (/project management/.test(t)) return "pm";
+    if (/logistics|supply chain/.test(t)) return "log";
+    if (/banking/.test(t)) return "bank";
+    if (/educat/.test(t)) return "edu";
+    if (/(mba|bba|business administration|management).*(analytics|intelligence)|(analytics|intelligence).*(mba|bba)/.test(t)) return "ba";
+    if (/marketing|sales|aimkt|c-dm\b/.test(t)) return "mkt";
+    if (/\bhr\b|aihr|human resource|people/.test(t)) return "hr";
+    if (/account|financ|statistic|commerce|b\.com/.test(t)) return "acc";
+    if (/data|looker/.test(t)) return "data";
+    if (/operations/.test(t)) return "ops";
+    if (/strategic|mba|master of business|postgraduate.*management/.test(t)) return "mgmt";
+    if (/comput|software|\bai\b|artificial|bca|mca|digital tech|beng|application|nlp|aimastery/.test(t)) return "comp";
+    return "bus";
+  };
+  // Form checks shared by the contact, free demo and enrol forms: the first problem, naming the field.
+  window.icFieldErr = function (f) {
+    var email = (f.email || "").trim();
+    if ("name" in f && (f.name || "").trim().length < 2) return "Please add your full name.";
+    if ("email" in f && !email && f.emailRequired !== false) return "Please add your email address.";
+    if ("email" in f && email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return "That email address doesn't look right. Please check it (for example name@gmail.com).";
+    if ("phone" in f && (f.phone || "").replace(/\D/g, "").length < 9) return "Please add a mobile number with at least 9 digits.";
+    if ("pw" in f && (f.pw || "").length < 6) return "Please choose a password of at least 6 characters.";
+    return "";
+  };
   window.icGoProgram = function (key) { location.href = window.icRoute("Program", "p-" + key); };
   window.icDetails = function (T, base) {
     if (!D.details) return base;
@@ -121,11 +153,17 @@
   };
 
   // ---- Leads (admissions / contact / aptitude) -----------------------------------------------------
-  window.icLead = function (kind, data) {
+  // strict: the caller shows success only once the lead is saved (admissions); otherwise failures are silent.
+  window.icLead = function (kind, data, strict) {
     data = data || {};
     data.data = Object.assign({ utm: utm(), page: location.pathname }, data.data || {});
-    return post("/api/leads", Object.assign({ kind: kind }, data)).catch(function () {});
+    var p = post("/api/leads", Object.assign({ kind: kind }, data));
+    return strict ? p : p.catch(function () {});
   };
+
+  // Back from PayHere (or any page) can restore this page from the browser's memory with a button stuck on
+  // "Processing…": reload it instead, so the state is fresh. The enrol drawer keeps its progress in localStorage.
+  window.addEventListener("pageshow", function (e) { if (e.persisted) location.reload(); });
 
   // ---- Free demo account -> demo LMS --------------------------------------------------------------
   window.icDemo = function (kind, body) {
@@ -153,6 +191,36 @@
     setInterval(function () { if (!document.hidden) pollLive(); }, 15000);
     document.addEventListener("visibilitychange", function () { if (!document.hidden) pollLive(); });
   }
+
+  // ---- Home stats row: numbers count up from 0 the first time the row scrolls into view ------------
+  // Keeps any text around the number ("LKR ", "%") and the thousands commas. Off for reduced motion.
+  (function () {
+    if (D.page !== "Main" || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function run(el) {
+      var m = /^(\D*)([\d,]+)(.*)$/.exec(el.textContent.trim());
+      if (!m) return;
+      var end = parseInt(m[2].replace(/,/g, ""), 10), comma = m[2].indexOf(",") >= 0, t0 = null, dur = 1400;
+      function fmt(n) { return m[1] + (comma ? n.toLocaleString("en-US") : String(n)) + m[3]; }
+      function step(t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);   // ease-out
+        el.textContent = fmt(Math.round(end * e));
+        if (p < 1) requestAnimationFrame(step);
+      }
+      el.textContent = fmt(0);
+      requestAnimationFrame(step);
+    }
+    var tries = 0;
+    (function wait() {
+      var els = document.querySelectorAll(".kpis b");
+      if (!els.length) { if (++tries < 40) setTimeout(wait, 150); return; }
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } });
+      }, { threshold: 0.6 });
+      els.forEach(function (el) { el.style.fontVariantNumeric = "tabular-nums"; io.observe(el); });
+    })();
+  })();
 
   // ---- Colour theme: visitor's choice, else the site default from the CMS ------------------------
   function applyTheme() {

@@ -40,7 +40,7 @@ const EXTRA = `<style>
 @media(max-width:760px){.cp .tbar nav a:not(.cta){display:none}}
 </style>`;
 
-export function chromePage(b: Bundle, seo: Seo, body: string, opts: { script?: string } = {}): Response {
+export function chromePage(b: Bundle, seo: Seo, body: string, opts: { script?: string; status?: number } = {}): Response {
   const c = b.settings.contact;
   const head = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
     `<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Outfit:wght@300..700&family=Plus+Jakarta+Sans:wght@400..700&display=swap" rel="stylesheet">` +
@@ -50,7 +50,20 @@ export function chromePage(b: Bundle, seo: Seo, body: string, opts: { script?: s
   const foot = `<footer><span>© ${new Date().getFullYear()} Inspire College</span><a href="/about">About</a><a href="/contact">Contact</a><a href="/privacy-policy">Privacy</a><a href="/refund-policy">Refunds</a><a href="/terms-conditions">Terms</a>` +
     `<a href="https://wa.me/${esc(c.whatsapp_main)}">WhatsApp ${esc(c.phone_display)}</a><a href="mailto:${esc(c.email)}">${esc(c.email)}</a></footer>`;
   const html = `${head}<body><div class="ic cp">${top}<main class="wrap">${body}</main>${foot}</div>${opts.script ? `<script>${opts.script}</script>` : ""}</body></html>`;
-  return htmlResponse(html, 60);
+  return htmlResponse(html, opts.status && opts.status >= 400 ? 0 : 60, opts.status || 200);
+}
+
+/** Site-styled "page not found" (real 404 status, not indexed). */
+export function notFoundPage(b: Bundle, path: string): Response {
+  return chromePage(
+    b,
+    { path, title: "Page not found | Inspire College", description: "This page could not be found.", noindex: true },
+    `<div class="page" style="text-align:center;padding:40px 0 20px"><span class="eyebrow">Error 404</span><h1>We couldn't find that page.</h1>` +
+      `<p class="lead">The link may be old or mistyped. Try one of these instead.</p>` +
+      `<p style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px">` +
+      `<a class="btn p" href="/">Go to the home page</a><a class="btn s" href="/programs">Browse programmes</a><a class="btn s" href="/contact">Contact us</a></p></div>`,
+    { status: 404 },
+  );
 }
 
 export { esc, safeJson };
