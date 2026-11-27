@@ -128,7 +128,15 @@ const BANNER_FIT =
   // Phones: the design's 104px side thumbnail is too small for a text banner, so show it full width on top.
   "@media(max-width:560px){.ic .pc{grid-template-columns:minmax(0,1fr)!important}" +
   ".ic .pc-img{grid-row:auto!important;min-height:0!important;height:auto!important;margin:8px 8px 0!important}}" +
+  // "Ask Inspire AI" floating button: just the round icon, opening to show the label while the pointer is on it.
+  ".ic .ai-fab{padding:0 8px;gap:0}" +
+  ".ic .ai-fab>span{max-width:0;margin:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .35s ease,margin .35s ease,opacity .25s ease}" +
+  ".ic .ai-fab:hover>span,.ic .ai-fab:focus-visible>span{max-width:160px;margin:0 14px 0 10px;opacity:1}" +
   "</style>";
+
+// "Chat on WhatsApp" links open the WhatsApp bot with a ready-typed greeting.
+const WA_BOT =
+  "https://api.whatsapp.com/send/?phone=94743762393&amp;text=Hi+Inspire+College%21+I%27d+like+to+know+more+about+your+programmes.&amp;type=phone_number&amp;app_absent=0";
 
 // Home "Latest from Inspire College": the design's three placeholder tiles become the latest real news (CMS / current site),
 // each showing its own banner in full.
@@ -182,6 +190,8 @@ export function renderDesignPage(page: string, b: Bundle, opts: RenderOpts): Res
     .replace(/href="([A-Za-z]+)\.dc\.html(?:#([^"{]*))?"/g, (_m, p, h) => `href="${routeFor(p, h || "", data.slugs)}"`)
     .replace(/__IC_WA_MAIN__|94711993331/g, c.whatsapp_main)
     .replace(/__IC_WA_ADVISOR__|94743762393/g, c.whatsapp_advisor)
+    .replace(/__IC_PHONE__/g, esc(c.phone_display))
+    .replace(/__IC_WA_BOT__/g, WA_BOT) // after the number swaps, so the bot's number is left as it is
     .replace(/<title>[^<]*<\/title>/, "");
   const head =
     seoTags(opts.seo, b.settings.seo?.site_name) +

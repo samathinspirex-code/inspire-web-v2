@@ -29,6 +29,8 @@ const D = "window.IC_DATA&&window.IC_DATA";
 // ---- shared patches for every DC page -------------------------------------------------------------
 function common(name, h) {
   h = assets(h);
+  // The phone number shown on the pages is a CMS setting.
+  h = h.replace(/\+94 71 199 3331/g, "__IC_PHONE__");
   // In-page navigation: the design posted to a parent frame; we navigate to real URLs instead.
   h = patch(name, h, "parent.postMessage({ic:'go',page:m[1],hash:(m[2]||'').slice(1)},'*');return;",
     "location.href=window.icRoute(m[1],(m[2]||'').slice(1));return;");
@@ -77,6 +79,15 @@ for (const f of ["Main", "Program", "Demo", "Aptitude", "Enrol", "LMS", "Live"])
   let h = common("Main", pages.Main);
   h = patch("Main", h, '<a class="btn p" href="/portal">Take a tour of the portal</a>', '<a class="btn p" href="/brain">Take a tour of the portal</a>');
   h = catalogue("Main", h);
+  // The general "chat with us" links go to the WhatsApp bot (address filled in by render.ts).
+  for (const label of ["Chat on WhatsApp", "WhatsApp us"]) {
+    h = patch("Main", h, `href="https://wa.me/__IC_WA_MAIN__">${label}</a>`, `href="__IC_WA_BOT__" target="_blank" rel="noopener">${label}</a>`);
+  }
+  // Footer: one "Call us or WhatsApp" line with the number, instead of separate contact links.
+  h = patch("Main", h, '<a href="tel:+94711993331" style="color:inherit">__IC_PHONE__</a>',
+    '<a href="tel:+94711993331" style="color:inherit">Call us</a> or <a href="https://wa.me/__IC_WA_MAIN__" target="_blank" rel="noopener" style="color:inherit">WhatsApp</a>: <b style="white-space:nowrap">__IC_PHONE__</b>');
+  h = patch("Main", h, '<a href="https://wa.me/__IC_WA_MAIN__">Contact Us</a>', "");
+  h = patch("Main", h, '<a href="https://wa.me/__IC_WA_MAIN__">WhatsApp</a>', "");
   // Visionary leaders: separate cards with a fixed-frame profile photo and a short description (CMS fields).
   h = patch("Main", h, "const leaders = L.map((l, i) => ({ name: l[0], role: l[1], ini: l[2], hue: hues[i] }));",
     "const leaders = L.map((l, i) => ({ name: l[0], role: l[1], ini: l[2], hue: hues[i], photo: l[3] || '', hasPhoto: !!l[3], noPhoto: !l[3], bio: l[4] || '', pos: l[5] || 'center 20%' }));");
